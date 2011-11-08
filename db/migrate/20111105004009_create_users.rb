@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string     "last_name",  :null => false
       t.string     "email",      :null => false
       t.text       "bio"
+      t.string     "image"
       t.integer    "status",     :null => false, :default => 1
       t.timestamps
     end
