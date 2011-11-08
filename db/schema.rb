@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(:version => 20111107175919) do
     t.string   "last_name",                 :null => false
     t.string   "email",                     :null => false
     t.text     "bio"
+    t.string   "image"
+    t.integer  "reports_to"
     t.integer  "status",     :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
