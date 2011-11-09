@@ -1,6 +1,8 @@
 $('#share-message')
   .live('click', () ->
     $('#share-active').show();
+    $('#post_content').autogrow();
+    $('#post_content').focus();
     $('#share-message').hide();
   )
 
