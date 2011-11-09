@@ -9,6 +9,7 @@
       %form
         #share-message= t :share_to_the_community
         #share-active
+          = text_area :post, :content
           #share-button
             = submit_tag (t :share), :disabled => true, :disable_with => (t :share_wait)
       .clearfix
