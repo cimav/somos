@@ -1,3 +1,14 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+loadGroupList = () ->
+  url = '/groups/list'
+  $.get(url, {}, (html) ->
+    $('#left-sidebar-inner').html(html);
+  )
+
+$('.get-group')
+  .live('ajax:success', (data, status, xhr) ->
+    window.location.hash = '#!/group/' + $(this).attr('short_name')
+    $('#main-inner').html(status);
+  )
+
+$ ->
+  loadGroupList()
