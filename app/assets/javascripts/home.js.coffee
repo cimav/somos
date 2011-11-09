@@ -1,3 +1,9 @@
+$('#share-message')
+  .live('click', () ->
+    $('#share-active').show();
+    $('#share-message').hide();
+  )
+
 loadGroupList = () ->
   url = '/groups/list'
   $.get(url, {}, (html) ->
