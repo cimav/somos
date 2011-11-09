@@ -3,6 +3,7 @@ class CreateGroups < ActiveRecord::Migration
     create_table :groups do |t|
       t.references :group_type
       t.string     "name",        :null => false
+      t.string     "short_name",        :null => false
       t.string     "description"
       t.integer    "position"
       t.integer    "can_publish", :default => 1
