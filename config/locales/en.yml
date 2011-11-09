@@ -2,4 +2,6 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  share: "Share"
+  share_to_the_community: "Share to the community..."
+  share_wait: "Posting..."
