@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20111107175919) do
   create_table "groups", :force => true do |t|
     t.integer  "group_type_id"
     t.string   "name",                           :null => false
+    t.string   "short_name",                     :null => false
     t.string   "description"
     t.integer  "position"
     t.integer  "can_publish",   :default => 1
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20111107175919) do
     t.string   "first_name",                :null => false
     t.string   "last_name",                 :null => false
     t.string   "email",                     :null => false
+    t.date     "birth_date"
     t.text     "bio"
     t.string   "image"
     t.integer  "reports_to"
