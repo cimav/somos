@@ -8,22 +8,33 @@
   overflow: visible;
   background-color: $top-gradient-from;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  
   @include gradient($top-gradient-from, $top-gradient-to);
   @include shadow(4px,0px,0px,#999);
 
-  a {
-    color: #bfbfbf;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  }
+  #topbar-inner {
+    width: $container-width;
+    margin: 0 auto;
+    a {
+      color: #bfbfbf;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    }
 
-  #brand {
-    float: left;
-    font-size: 20px;
-    color: #fff;
-    margin-top: 6px;
-    margin-left: 10px;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    #brand {
+      float: left;
+      font-size: 20px;
+      color: #fff;
+      margin-top: 6px;
+      margin-left: 10px;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    }
+ 
+    #user-area {
+      float: right;
+      color: $white;
+      #account {
+        margin-top: 8px;
+      }
+    }
   }
 }
 
