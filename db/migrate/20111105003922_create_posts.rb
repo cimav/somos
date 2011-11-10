@@ -3,7 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.references :user
       t.references :group
-      t.string     "entry_type", :null => false
+      t.references :post_type
       t.text       "content",    :null => false
       t.integer    "status",     :null => false, :default => 1
       t.timestamps

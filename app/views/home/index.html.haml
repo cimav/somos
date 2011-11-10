@@ -9,9 +9,24 @@
       %form
         #share-message= t :share_to_the_community
         #share-active
-          = text_area :post, :content
-          #share-button
-            = submit_tag (t :share), :disabled => true, :disable_with => (t :share_wait)
+          #share-header
+            #share-type
+              = t :share 
+              = select_tag "post_type_id", options_from_collection_for_select(@post_types, "id", "share_title")
+            #share-close
+              = image_tag("close.png")
+          #share-content 
+            = text_area :post, :content
+          #share-footer 
+            #share-as
+              = t :share_as
+              - share_as_options = "<option value=\"0\">Jonathan Hernandez</option>"
+              - @user_groups.each do |group|
+                - share_as_options += "<option value=\"#{group.id}\">#{group.name}</option>" 
+              = select_tag "group_id", share_as_options.html_safe
+            #share-button
+              = submit_tag (t :share), :disabled => true, :disable_with => (t :share_wait)
+          .clearfix
       .clearfix
 
 #right-sidebar

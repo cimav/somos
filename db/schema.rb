@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111107175919) do
+ActiveRecord::Schema.define(:version => 20111109191817) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -74,12 +74,23 @@ ActiveRecord::Schema.define(:version => 20111107175919) do
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
+  create_table "post_types", :force => true do |t|
+    t.string   "name",                       :null => false
+    t.string   "short_name",                 :null => false
+    t.string   "share_title",                :null => false
+    t.integer  "in_stream",   :default => 1
+    t.integer  "in_pages",    :default => 0
+    t.integer  "status",      :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.string   "entry_type",                :null => false
-    t.text     "content",                   :null => false
-    t.integer  "status",     :default => 1, :null => false
+    t.integer  "post_type_id"
+    t.text     "content",                     :null => false
+    t.integer  "status",       :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,8 +1,8 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
-  share: "Share"
-  share_as: "Share as"
-  share_to_the_community: "Share to the community..."
-  share_wait: "Posting..."
+es:
+  share: "Compartir"
+  share_as: "Compartir como"
+  share_to_the_community: "Compartir a la comunidad..."
+  share_wait: "Publicando..."

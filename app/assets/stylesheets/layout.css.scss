@@ -6,10 +6,11 @@
   right: 0;
   z-index: 10000;
   overflow: visible;
-  background-color: #222;
-  background-color: #222222;
+  background-color: $top-gradient-from;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  
   @include gradient($top-gradient-from, $top-gradient-to);
-  @include shadow(8px,0px,0px,#666);
+  @include shadow(4px,0px,0px,#999);
 
   a {
     color: #bfbfbf;
@@ -38,7 +39,7 @@
    }
   }
   #main {
-   min-width: ($container-width - $left-sidebar-width - $right-sidebar-width);
+   min-width: $main-width;
    float: left;
    #main-inner {
      border-left: 1px solid $line-color;

@@ -9,11 +9,12 @@ $top-gradient-to: #06c;
 $container-width: 1000px;
 $left-sidebar-width: 180px;
 $right-sidebar-width: 250px;
+$main-width: $container-width - $left-sidebar-width - $right-sidebar-width;
 
 $line-color: #ddd;
 
 $group-type-color: #06c;
 $groups-nav-hover-color: #f0f0f0;
 
-$share-button-gradient-from: #049cdb;
-$share-button-gradient-to: #0064cd;
+$share-button-gradient-from: #62c462;
+$share-button-gradient-to: #57a957;

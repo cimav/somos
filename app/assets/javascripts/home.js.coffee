@@ -1,15 +1,31 @@
 $('#share-message')
   .live('click', () ->
-    $('#share-active').show();
-    $('#post_content').autogrow();
-    $('#post_content').focus();
-    $('#share-message').hide();
+    $('#share-message').hide()
+    $('#share-active').slideDown('fast', ->
+      $('#share-type').show()
+      $('#share-as').show()
+      $('#share-button').show()
+      $('#share-close').show()
+      $('#post_content').autogrow()
+      $('#post_content').focus()
+    )
   )
+
+$('#share-close')
+  .live('click', () ->
+    $('#share-message').show()
+    $('#share-active').hide()
+    $('#share-type').hide()
+    $('#share-as').hide()
+    $('#share-button').hide()
+    $('#share-close').hide()
+  )
+    
 
 loadGroupList = () ->
   url = '/groups/list'
   $.get(url, {}, (html) ->
-    $('#left-sidebar-inner').html(html);
+    $('#left-sidebar-inner').html(html)
   )
 
 $('.get-group')
