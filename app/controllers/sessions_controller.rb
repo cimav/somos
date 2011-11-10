@@ -10,4 +10,8 @@ class SessionsController < ApplicationController
       render :text => '401 Unauthorized', :status => 401
     end
   end
+
+  def failure
+      render :text => '403 Auth method has failed', :status => 403
+  end
 end
