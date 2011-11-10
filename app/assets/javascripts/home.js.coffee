@@ -1,5 +1,5 @@
 $('#share-message')
-  .live('click', () ->
+  .live('click touchstart', () ->
     $('#share-message').hide()
     $('#share-active').slideDown('fast', ->
       $('#share-type').show()
