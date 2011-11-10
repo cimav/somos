@@ -2,6 +2,8 @@ Somos::Application.routes.draw do
   root :to => 'home#index'
   match 'groups/list' => 'groups#list'
   resources :groups
+  match '/auth/admin/callback', :to => 'sessions#authenticate'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

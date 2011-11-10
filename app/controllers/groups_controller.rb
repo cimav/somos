@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  respond_to :html, :xml, :json
+  before_filter :auth_required
+  respond_to :html, :json
 
   def list
     @groups = GroupType.where(:can_publish => 1).order('position')
