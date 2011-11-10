@@ -1,0 +1,5 @@
+- @posts.each do |post|
+  .post
+    .post-user= link_to post.user.full_name, "/#!/#{post.user.email}"
+    .post-content= post.content
+    .post-date= post.created_at

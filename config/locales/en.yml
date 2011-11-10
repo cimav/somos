@@ -6,3 +6,6 @@ en:
   share_as: "Share as"
   share_to_the_community: "Share to the community..."
   share_wait: "Posting..."
+
+  post_created: "Post created"
+  cant_create_post: "Can't create new post"

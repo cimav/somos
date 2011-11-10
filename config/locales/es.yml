@@ -6,3 +6,6 @@ es:
   share_as: "Compartir como"
   share_to_the_community: "Compartir a la comunidad..."
   share_wait: "Publicando..."
+
+  post_created: "Publicación creada"
+  cant_create_post: "No se pudo crear la publicación"
