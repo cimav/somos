@@ -1,5 +1,8 @@
 - @posts.each do |post|
   .post
+    .post-display
+      %img{:src => profile_picture(post.user.email), :alt => post.user.email, :width => 48, :height => 48}
     .post-user= link_to post.user.full_name, "/#!/#{post.user.email}"
     .post-content= post.content
-    .post-date= post.created_at
+    .post-footer
+      = post.created_at
