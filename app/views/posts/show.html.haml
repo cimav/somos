@@ -1,7 +1,1 @@
 = render :partial => 'post', :locals => {:post => @post}
-:javascript
-  if (typeof excludeList === 'undefined') {
-    var excludeList = "#{@post.id}";
-  } else {
-    var excludeList = excludeList + ",#{@post.id}";
-  }

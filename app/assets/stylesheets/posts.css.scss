@@ -2,11 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#new-posts-message {
+  border: 1px solid $line-color;
+  padding: 10px;
+  color: $grey;
+  margin-top: 10px;
+  text-align: center;
+  cursor: pointer;
+  display: none;
+}
+
 #posts-area {
   margin-top: 20px;
   .post {
-    padding: 10px;
     min-height: 48px;
+    padding: 10px 0;
     .post-display {
       float: left;
     }
@@ -25,9 +35,14 @@
     }
     .post-footer {
       margin-left: 60px;
+      font-size: 11px;
+      a {
+        color: $grey;
+      }
     }
     &:hover {
-      .post-user {
+      .post-user,
+      .post-footer {
         a {
           color: $link-color;
           &:hover {

@@ -1,7 +1,7 @@
-.post{:id => "post-#{post.id}"}
+- no_show = !params[:id].blank?
+.post{:id => "post-#{post.id}", :class => "#{'hide-me' if no_show}"}
   .post-display
-    //%img{:src => profile_picture(post.user.email), :alt => post.user.email, :width => 48, :height => 48}
-    = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => 'profile-picture-small'
+    = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
 
   .post-user= link_to post.user.full_name, "/#!/#{post.user.username}"
   .post-content= post.content

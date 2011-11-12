@@ -11,10 +11,6 @@ class PostsController < ApplicationController
     @posts = Post.order("created_at DESC").where("status = 1")
     if !params[:id].blank?
       @posts = @posts.where("id > :id", {:id => params[:id]})
-      # TODO: Validate :exclude list, reset if already shown.
-      if !params[:exclude].blank?
-        @posts = @posts.where("id NOT IN (#{params[:exclude]})")
-      end
     else
       @posts = @posts.limit(HOME_INITIAL_POSTS)
     end
@@ -27,7 +23,12 @@ class PostsController < ApplicationController
     else
       count = Post.count(:conditions => ["status = 1"])
     end
-    render :text => count
+    if (count > 0)
+      txt = (t :new_posts_message, :count => count)
+    else
+      txt = 0
+    end
+    render :text => txt
   end
 
   def create

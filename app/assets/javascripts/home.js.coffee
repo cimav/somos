@@ -29,11 +29,13 @@ $('#share-close')
 $('#new_post')
     .live("ajax:beforeSend", (evt, xhr, settings) ->
       # TODO: Display geting spinner
+      clearInterval(recentTimer)
     )
     .live("ajax:success", (evt, data, status, xhr) ->
       res = $.parseJSON(xhr.responseText);
       hideShareArea()
-      getPost(res['id'])
+      getRecentPosts()
+      recentTimer = setInterval(getRecentPostsCounter, 5000)
     )
     .live('ajax:complete', (evt, xhr, status) ->
       # Complete
@@ -63,17 +65,25 @@ getPosts = () ->
 
 getRecentPosts = () ->
   url = '/posts/recent/' + latestPostId 
-  if (typeof excludeList != 'undefined')
-    url = url + '/' + excludeList
+  #if (typeof previousLatestPostId != 'undefined') 
+  #  for i in [(previousLatestPostId + 1)..latestPostId]
+  #    alert(i)
   $.get(url, {}, (html) ->
-    $(html).hide().prependTo('#posts-area').fadeIn('slow')
+    $('#new-posts-message').hide()
+    $(html).prependTo('#posts-area')
+    $('.hide-me.post').fadeIn('slow')
   )
 
 
 getRecentPostsCounter = () ->
-  url = '/posts/recent/counter/' + latestPost
+  url = '/posts/recent/counter/' + latestPostId
   $.get(url, {}, (html) ->
-    $(html).hide().prependTo('#posts-area').fadeIn('slow')
+    $('#new-posts-message').html(html).show() if (html != '0')
+  )
+
+$('#new-posts-message')
+  .live('click touchstart', () ->
+    getRecentPosts()
   )
 
 $('.get-group')
@@ -88,5 +98,5 @@ getHome = () ->
 
 $ ->
   getHome()
-  recentTimer = setInterval(getRecentPosts, 10000)
 
+recentTimer = setInterval(getRecentPostsCounter, 5000)
