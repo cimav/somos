@@ -34,6 +34,8 @@ GEM
     addressable (2.2.6)
     arel (2.2.1)
     builder (3.0.0)
+    carrierwave (0.5.7)
+      activesupport (~> 3.0)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -64,6 +66,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
+    mini_magick (3.2)
+      subexec (~> 0.0.4)
     multi_json (1.0.3)
     multi_xml (0.4.1)
     multipart-post (1.1.3)
@@ -158,6 +162,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    subexec (0.0.4)
     systemu (2.2.0)
     therubyracer (0.9.8)
       libv8 (~> 3.3.10)
@@ -177,10 +182,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  carrierwave
   coffee-rails (~> 3.1.1)
   haml
   jquery-rails
   json
+  mini_magick
   mysql2
   oa-openid
   oauth
