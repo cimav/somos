@@ -1,4 +1,3 @@
-- no_show = !params[:id].blank?
 .post{:id => "post-#{post.id}", :class => "#{'hide-me' if no_show}"}
   .post-display
     = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"

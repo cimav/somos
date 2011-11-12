@@ -65,13 +65,10 @@ getPosts = () ->
 
 getRecentPosts = () ->
   url = '/posts/recent/' + latestPostId 
-  #if (typeof previousLatestPostId != 'undefined') 
-  #  for i in [(previousLatestPostId + 1)..latestPostId]
-  #    alert(i)
   $.get(url, {}, (html) ->
     $('#new-posts-message').hide()
     $(html).prependTo('#posts-area')
-    $('.hide-me.post').fadeIn('slow')
+    $('.hide-me.post').fadeIn()
   )
 
 
