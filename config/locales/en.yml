@@ -9,3 +9,4 @@ en:
 
   post_created: "Post created"
   cant_create_post: "Can't create new post"
+  new_posts_message: "%{count} new posts"

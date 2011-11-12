@@ -163,3 +163,4 @@ es:
 
   post_created: "Publicación creada"
   cant_create_post: "No se pudo crear la publicación"
+  new_posts_message: "%{count} nuevas publicaciones"
