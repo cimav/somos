@@ -76,8 +76,8 @@ es:
   date:
     formats:
       default: "%d-%m-%Y"
-      short: "%b %d"
-      long: "%B %d, %Y"
+      short: "%b %e"
+      long: "%B %e, %Y"
 
     day_names: [Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado]
     abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
@@ -89,11 +89,11 @@ es:
       - :year
   time:
     formats:
-      default: "%a, %d %b %Y %H:%M:%S %z"
-      short: "%d %b %H:%M"
-      long: "%B %d, %Y %H:%M"
-    am: "am"
-    pm: "pm"
+      default: "%a, %e %b %Y %H:%M:%S %z"
+      short: "%b %e, %l:%M %p"
+      long: "%B %e, %Y %l:%M %p"
+    am: "AM"
+    pm: "PM"
 
     support:
       array:
@@ -163,3 +163,5 @@ es:
 
   post_created: "Publicación creada"
   cant_create_post: "No se pudo crear la publicación"
+
+  yesterday: "ayer"
