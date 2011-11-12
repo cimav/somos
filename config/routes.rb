@@ -2,10 +2,11 @@ Somos::Application.routes.draw do
   root :to => 'home#index'
   match 'groups/list' => 'groups#list'
   resources :groups
+  match 'posts/recent/counter/g/:group_id(/:id(.:format))' => 'posts#recent_counter'
   match 'posts/recent/counter(/:id(.:format))' => 'posts#recent_counter'
+  match 'posts/recent/g/:group_id(/:id(.:format))' => 'posts#recent'
   match 'posts/recent(.:format)' => 'posts#recent'
   match 'posts/recent(/:id(.:format))' => 'posts#recent'
-  match 'posts/recent(/:id/:exclude(.:format))' => 'posts#recent'
 
   resources :posts
   match '/auth/admin/callback', :to => 'sessions#authenticate'

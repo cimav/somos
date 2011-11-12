@@ -9,15 +9,22 @@ class PostsController < ApplicationController
 
   def recent
     @posts = Post.order("created_at DESC").where("status = 1")
+
+    if !params[:group_id].blank?
+      @posts = @posts.where("group_id = :group_id", {:group_id => params[:group_id]})
+    end
+
     if !params[:id].blank?
       @posts = @posts.where("id > :id", {:id => params[:id]})
     else
       @posts = @posts.limit(HOME_INITIAL_POSTS)
     end
+
     render :layout => false
   end
 
   def recent_counter
+    # TODO: Fix conditions for groups
     if !params[:id].blank?
       count = Post.count(:conditions => ["status = 1 AND id > ?", params[:id]])
     else

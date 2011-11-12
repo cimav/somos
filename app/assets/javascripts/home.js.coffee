@@ -1,3 +1,5 @@
+currentGroup = 0
+
 $('#share-message')
   .live('click touchstart', () ->
     $('#share-message').hide()
@@ -59,12 +61,17 @@ getGroupList = () ->
 
 getPosts = () -> 
   url = '/posts/recent'
+  if (currentGroup > 0)
+    url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
     $('#posts-area').html(html)
   )
 
 getRecentPosts = () ->
-  url = '/posts/recent/' + latestPostId 
+  url = '/posts/recent/'
+  if (currentGroup > 0)
+    url = url + 'g/' + currentGroup + '/'
+  url = url + latestPostId
   $.get(url, {}, (html) ->
     $('#new-posts-message').hide()
     $(html).prependTo('#posts-area')
@@ -73,7 +80,10 @@ getRecentPosts = () ->
 
 
 getRecentPostsCounter = () ->
-  url = '/posts/recent/counter/' + latestPostId
+  url = '/posts/recent/counter/'
+  if (currentGroup > 0)
+    url = url + 'g/' + currentGroup + '/'
+  url = url + latestPostId
   $.get(url, {}, (html) ->
     $('#new-posts-message').html(html).show() if (html != '0')
   )
@@ -86,7 +96,9 @@ $('#new-posts-message')
 $('.get-group')
   .live('ajax:success', (data, status, xhr) ->
     window.location.hash = '#!/g/' + $(this).attr('short_name')
+    currentGroup = $(this).attr('group_id')
     $('#main-inner').html(status);
+    getPosts()
   )
 
 getHome = () ->

@@ -6,5 +6,5 @@
         %ul.groups 
           - group_type.group.order('position').each do |group|
             %li.group-title
-              = link_to group, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}" do
+              = link_to group, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}", :group_id => "#{group.id}" do
                 = group.name
