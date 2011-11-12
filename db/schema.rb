@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20111109191817) do
   add_index "user_badges", ["user_id"], :name => "index_user_badges_on_user_id"
 
   create_table "users", :force => true do |t|
+    t.string   "username",                  :null => false
     t.string   "first_name",                :null => false
     t.string   "last_name",                 :null => false
     t.string   "email",                     :null => false
