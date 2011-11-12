@@ -1,8 +1,8 @@
 # Config
-GAPPS_DOMAIN = 'cimav.edu.mx'
+GAPPS_DOMAIN = 'your_google_apps_domain.com'
 GAPPS_CONSUMER_KEY = GAPPS_DOMAIN
-GAPPS_CONSUMER_SECRET = '7rnMDVitfQiVgcBYQyBu7oku'
-GAPPS_REQUESTOR_ID = 'ion@cimav.edu.mx'
+GAPPS_CONSUMER_SECRET = 'YOUR_KEY_SECRET'
+GAPPS_REQUESTOR_ID = 'some-admin-of@your_google_apps_domain.com'
 
 HOME_INITIAL_POSTS = 10
 
