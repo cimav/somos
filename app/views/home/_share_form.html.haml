@@ -1,0 +1,22 @@
+= form_for(@post, :remote => true) do |f| 
+  = f.hidden_field :user_id, {:value => @user.id }
+  #share-message= t :share_to_the_community
+  #share-active
+    #share-header
+      #share-type
+        = t :share 
+        = f.select :post_type_id, options_from_collection_for_select(@post_types, "id", "share_title")
+      #share-close
+        = image_tag("close.png")
+    #share-content 
+      = f.text_area :content
+    #share-footer 
+      #share-as
+        = t :share_as
+        - share_as_options = "<option value=\"0\">#{@user.full_name}</option>"
+        - @user.groups.where(:can_publish => 1).each do |group|
+          - share_as_options += "<option value=\"#{group.id}\">#{group.name}</option>" 
+        = f.select :group_id, share_as_options.html_safe
+      #share-button
+        = submit_tag (t :share), :disable_with => (t :share_wait), :id => "share-submit"
+  .clearfix

@@ -5,7 +5,6 @@
 #posts-area {
   margin-top: 20px;
   .post {
-    font-size: 12px;
     padding: 10px;
     min-height: 48px;
     .post-display {
@@ -13,17 +12,29 @@
     }
 
     .post-user {
-      margin-left: 58px;
+      margin-left: 60px;
       a {
+        color: $black;
+        text-decoration: none;
         font-weight: bold;
       }
     }
     .post-content {
-      margin-left: 58px;
+      margin-left: 60px;
       white-space: pre;
     }
     .post-footer {
-      margin-left: 58px;
+      margin-left: 60px;
+    }
+    &:hover {
+      .post-user {
+        a {
+          color: $link-color;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }
 }
