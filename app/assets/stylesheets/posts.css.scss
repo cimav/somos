@@ -29,6 +29,14 @@
         font-weight: bold;
       }
     }
+    .post-group {
+      margin-left: 60px;
+      float: right;
+      background-color: $line-color;
+      @include rounded(4px);
+      padding: 2px 10px;
+      font-size: 11px;
+    }
     .post-content {
       margin-left: 60px;
       white-space: pre;

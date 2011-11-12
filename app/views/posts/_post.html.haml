@@ -3,6 +3,8 @@
     = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
 
   .post-user= link_to post.user.full_name, "/#!/#{post.user.username}"
+  - if post.group_id > 0
+    .post-group= post.group.name
   .post-content= post.content
   .post-footer
     .post-date= link_to post_date(post.created_at), "/p/#{post.id}"
