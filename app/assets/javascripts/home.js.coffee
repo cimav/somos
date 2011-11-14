@@ -37,7 +37,7 @@ $('#new_post')
       res = $.parseJSON(xhr.responseText);
       hideShareArea()
       getRecentPosts()
-      recentTimer = setInterval(getRecentPostsCounter, 5000)
+      recentTimer = setInterval(getRecentPostsCounter, 10000)
     )
     .live('ajax:complete', (evt, xhr, status) ->
       # Complete
@@ -108,4 +108,4 @@ getHome = () ->
 $ ->
   getHome()
 
-recentTimer = setInterval(getRecentPostsCounter, 5000)
+recentTimer = setInterval(getRecentPostsCounter, 10000)
