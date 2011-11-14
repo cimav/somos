@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20111109191817) do
     t.string   "username",                  :null => false
     t.string   "first_name",                :null => false
     t.string   "last_name",                 :null => false
+    t.string   "occupation"
     t.string   "email",                     :null => false
     t.date     "birth_date"
     t.text     "bio"
