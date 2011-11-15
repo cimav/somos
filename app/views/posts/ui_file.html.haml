@@ -1,0 +1,7 @@
+= fields_for @post do |f|
+  = f.fields_for :post_file do |file_fields|
+    = file_fields.file_field :file
+%iframe#post-iframe{:width => 0, :height => 0, :scrolling => "no", :frameborder => "0"}
+:javascript
+  $("#new_post").attr("target", "post-iframe");
+

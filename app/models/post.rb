@@ -5,4 +5,8 @@ class Post < ActiveRecord::Base
 
   has_one :post_link
   accepts_nested_attributes_for :post_link
+
+  has_one :post_file
+  accepts_nested_attributes_for :post_file
+
 end

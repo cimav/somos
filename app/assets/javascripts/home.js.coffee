@@ -21,8 +21,7 @@ $('#share-message')
     )
   )
 
-
-hideShareArea = () ->
+@hideShareArea = hideShareArea = () ->
   $('#share-message').show()
   $('#share-active').hide()
   $('#share-type').hide()
@@ -81,7 +80,7 @@ getPosts = () ->
     $('#posts-area').html(html)
   )
 
-getRecentPosts = () ->
+@getRecentPosts = getRecentPosts = () ->
   url = '/posts/recent/'
   if (currentGroup > 0)
     url = url + 'g/' + currentGroup + '/'
@@ -124,3 +123,5 @@ $ ->
   getHome()
 
 recentTimer = setInterval(getRecentPostsCounter, 10000)
+
+

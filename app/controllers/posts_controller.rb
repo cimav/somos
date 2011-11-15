@@ -54,7 +54,10 @@ class PostsController < ApplicationController
             json[:flash] = flash
             render :json => json
           else
-            redirect_to @post
+            @post_type = PostType.find(@post.post_type_id)
+            template = "create_#{@post_type.short_name}"
+            render template, :layout => false
+            #redirect_to @post
           end
         end
       end
