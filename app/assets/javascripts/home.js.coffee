@@ -1,5 +1,13 @@
 currentGroup = 0
 
+$('#post_post_type_id')
+  .live('change', () ->
+    url = '/posts/ui/' + $(this).val()
+    $.get(url, {}, (html) ->
+      $('#share-add-ui').html(html)
+    )
+  )
+
 $('#share-message')
   .live('click touchstart', () ->
     $('#share-message').hide()
@@ -53,6 +61,12 @@ getPost = (id) ->
     $("#post-" + id).delay(200).fadeIn('slow')
   )
 
+getShareForm = () ->
+  url = '/posts/share_form'
+  $.get(url, {}, (html) ->
+    $('#share-area').html(html)
+  )
+
 getGroupList = () ->
   url = '/groups/list'
   $.get(url, {}, (html) ->
@@ -103,6 +117,7 @@ $('.get-group')
 
 getHome = () ->
   getGroupList()
+  getShareForm()
   getPosts()
 
 $ ->

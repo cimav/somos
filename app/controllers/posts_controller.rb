@@ -2,6 +2,13 @@ class PostsController < ApplicationController
   before_filter :auth_required
   respond_to :html, :json
 
+  def share_form
+    @post = Post.new
+    @post.send('build_post_link')
+    @post_types = PostType.all
+    render :layout => false
+  end
+
   def show
     @post = Post.find(params[:id])
     render :layout => false
@@ -66,6 +73,14 @@ class PostsController < ApplicationController
         end
       end
     end
-
   end
+
+  def ui
+    @post_type = PostType.find(params[:id])
+    template = "ui_#{@post_type.short_name}"
+    @post = Post.new
+    @post.send("build_post_#{@post_type.short_name}")
+    render template, :layout => false
+  end 
+
 end

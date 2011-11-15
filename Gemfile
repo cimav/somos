@@ -28,6 +28,8 @@ gem 'oa-openid', :require => 'omniauth/openid'
 gem 'carrierwave'
 gem 'mini_magick'
 
+gem 'metainspector'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

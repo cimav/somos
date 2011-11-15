@@ -5,6 +5,10 @@
   .post-user= link_to post.user.full_name, "/#!/#{post.user.username}"
   - if post.group_id > 0
     .post-group= post.group.name
-  .post-content= post.content
+  .post-content
+    = post.content
+    - if post.post_type_id > 1
+      = render :partial => "view_#{post.post_type.short_name}", :locals => {:post => post} 
+
   .post-footer
-    .post-date= link_to post_date(post.created_at), "/p/#{post.id}"
+    .post-date= link_to post_date(post.created_at), "/#!/p/#{post.id}"

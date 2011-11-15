@@ -14,13 +14,13 @@
     display: none;
 
     #post_content {
-      border: none;
       resize: none; 
       outline: none;
+      border: 1px solid $line-color;
       overflow : hidden;
       @include border-box();
       width: 100%;
-      height: 1.2em;
+      height: 4em;
       &:focus {
         outline: 0px none transparent;
         -moz-appearance:none;

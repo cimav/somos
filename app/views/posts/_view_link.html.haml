@@ -1,0 +1,4 @@
+%img{:src => "http://www.google.com/s2/u/0/favicons?domain=#{URI.parse(post.post_link.link).host}"}
+- page = MetaInspector.new(post.post_link.link)
+= link_to page.title, post.post_link.link
+%img{:src => "http://#{URI.parse(post.post_link.link).host}#{page.images[0]}"}

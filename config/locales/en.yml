@@ -10,3 +10,6 @@ en:
   post_created: "Post created"
   cant_create_post: "Can't create new post"
   new_posts_message: "%{count} new posts"
+
+  type_or_paste_link: "Type or paste a link"
+  what_do_you_want_to_share: "What do you want to share?"

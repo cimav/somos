@@ -7,6 +7,8 @@ Somos::Application.routes.draw do
   match 'posts/recent/g/:group_id(/:id(.:format))' => 'posts#recent'
   match 'posts/recent(.:format)' => 'posts#recent'
   match 'posts/recent(/:id(.:format))' => 'posts#recent'
+  match 'posts/share_form(/:id(.:format))' => 'posts#share_form'
+  match 'posts/ui(/:id(.:format))' => 'posts#ui'
 
   resources :posts
   match '/auth/admin/callback', :to => 'sessions#authenticate'
