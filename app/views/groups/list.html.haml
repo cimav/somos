@@ -1,5 +1,8 @@
 #groups-area
   %ul.group-types
+    %li
+      .home-link
+        = link_to (t :home_link), "/"
     - @groups.each do |group_type|
       %li
         .group-type-title= group_type.name

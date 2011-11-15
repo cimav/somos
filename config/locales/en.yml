@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  home_link: "Home"
   share: "Share"
   share_as: "Share as"
   share_to_the_community: "Share to the community..."

@@ -155,7 +155,7 @@ es:
       submit: 'Guardar %{model}'
 
 
-
+  home_link: "Inicio"
   share: "Compartir"
   share_as: "Compartir como"
   share_to_the_community: "Compartir a la comunidad..."
