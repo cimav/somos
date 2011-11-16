@@ -41,7 +41,18 @@ class PostsController < ApplicationController
   end
 
   def create
+    # XXX: Ugly hack for multiple file uploads, needs to do more generic fix
+    if params[:post][:post_file_attributes].respond_to?('each')
+      aux = []
+      params[:post][:post_file_attributes]['file'].each do |f|
+        aux << {:file => f}
+      end
+      params[:post][:post_file_attributes] = aux
+    end
+
     @post = Post.new(params[:post])
+
+    
 
     if @post.save
       flash[:notice] = t :post_created
@@ -87,11 +98,8 @@ class PostsController < ApplicationController
     @post = Post.new
     if @post.respond_to?(method)
       @post.send(method)
-      render template, :layout => false
-    else
-      render :text => '';
     end
-     
+    render template, :layout => false
   end 
 
 end
