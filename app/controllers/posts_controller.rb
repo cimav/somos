@@ -80,10 +80,18 @@ class PostsController < ApplicationController
 
   def ui
     @post_type = PostType.find(params[:id])
+
+    method = "build_post_#{@post_type.short_name}"
     template = "ui_#{@post_type.short_name}"
+
     @post = Post.new
-    @post.send("build_post_#{@post_type.short_name}")
-    render template, :layout => false
+    if @post.respond_to?(method)
+      @post.send(method)
+      render template, :layout => false
+    else
+      render :text => '';
+    end
+     
   end 
 
 end

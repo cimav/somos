@@ -2,10 +2,13 @@ currentGroup = 0
 
 $('#post_post_type_id')
   .live('change', () ->
-    url = '/posts/ui/' + $(this).val()
-    $.get(url, {}, (html) ->
-      $('#share-add-ui').html(html)
-    )
+    if $(this).val() > 1
+      url = "/posts/ui/#{$(this).val()}"
+      $.get(url, {}, (html) ->
+        $('#share-add-ui').html(html)
+      )
+    else
+      $('#share-add-ui').html('')
   )
 
 $('#share-message')
@@ -29,6 +32,8 @@ $('#share-message')
   $('#share-button').hide()
   $('#share-close').hide()
   $('#post_content').val('')
+  $('#share-add-ui').html('')
+  $('#post_post_type_id').val(1)
 
 $('#share-close')
   .live('click', () ->
