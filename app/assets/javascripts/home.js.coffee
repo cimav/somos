@@ -79,7 +79,7 @@ getGroupList = () ->
 
 getPosts = () -> 
   url = '/posts/recent'
-  if (currentGroup > 0)
+  if currentGroup > 0
     url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
     $('#posts-area').html(html)
@@ -87,9 +87,10 @@ getPosts = () ->
 
 @getRecentPosts = getRecentPosts = () ->
   url = '/posts/recent/'
-  if (currentGroup > 0)
+  if currentGroup > 0
     url = url + 'g/' + currentGroup + '/'
-  url = url + latestPostId
+  if latestPostId?
+    url = url + latestPostId
   $.get(url, {}, (html) ->
     $('#new-posts-message').hide()
     $(html).prependTo('#posts-area')
