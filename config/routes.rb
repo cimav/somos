@@ -1,7 +1,9 @@
 Somos::Application.routes.draw do
   root :to => 'home#index'
+
   match 'groups/list' => 'groups#list'
   resources :groups
+
   match 'posts/recent/counter/g/:group_id(/:id(.:format))' => 'posts#recent_counter'
   match 'posts/recent/counter(/:id(.:format))' => 'posts#recent_counter'
   match 'posts/recent/g/:group_id(/:id(.:format))' => 'posts#recent'
@@ -9,8 +11,9 @@ Somos::Application.routes.draw do
   match 'posts/recent(/:id(.:format))' => 'posts#recent'
   match 'posts/share_form(/:id(.:format))' => 'posts#share_form'
   match 'posts/ui(/:id(.:format))' => 'posts#ui'
-
+  match 'posts/:id/f/:file_id/:filename' => 'post_files#file', :constraints => { :filename => /[^\/]*/ }
   resources :posts
+
   match '/auth/admin/callback', :to => 'sessions#authenticate'
   match '/auth/failure', :to => 'sessions#failure'
 
