@@ -13,9 +13,11 @@ $main-width: $container-width - $left-sidebar-width - $right-sidebar-width;
 
 $line-color: #ddd;
 $link-color: #06c;
+$nav-hover-color: #f0f0f0;
 
 $group-type-color: #06c;
-$nav-hover-color: #f0f0f0;
+$group-bg-color: $group-type-color;
+$group-color: #fff;
 
 $share-button-gradient-from: #62c462;
 $share-button-gradient-to: #57a957;
