@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115040315) do
+ActiveRecord::Schema.define(:version => 20111116193621) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(:version => 20111115040315) do
   end
 
   add_index "post_links", ["post_id"], :name => "index_post_links_on_post_id"
+
+  create_table "post_photos", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "photo"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_photos", ["post_id"], :name => "index_post_photos_on_post_id"
 
   create_table "post_types", :force => true do |t|
     t.string   "name",                       :null => false

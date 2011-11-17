@@ -9,4 +9,7 @@ class Post < ActiveRecord::Base
   has_many :post_file
   accepts_nested_attributes_for :post_file
 
+  has_many :post_photo
+  accepts_nested_attributes_for :post_photo
+
 end

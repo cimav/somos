@@ -50,7 +50,9 @@
    }
   }
   #main {
+   width: $main-width;
    min-width: $main-width;
+   max-width: $main-width;
    float: left;
    #main-inner {
      border-left: 1px solid $line-color;

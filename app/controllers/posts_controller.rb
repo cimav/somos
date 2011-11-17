@@ -49,6 +49,14 @@ class PostsController < ApplicationController
       end
       params[:post][:post_file_attributes] = aux
     end
+    # XXX: Ugly hack for multiple photo uploads, needs to do more generic fix
+    if params[:post][:post_photo_attributes].respond_to?('each')
+      aux = []
+      params[:post][:post_photo_attributes]['photo'].each do |f|
+        aux << {:photo => f}
+      end
+      params[:post][:post_photo_attributes] = aux
+    end
 
     @post = Post.new(params[:post])
 
@@ -68,7 +76,6 @@ class PostsController < ApplicationController
             @post_type = PostType.find(@post.post_type_id)
             template = "create_#{@post_type.short_name}"
             render template, :layout => false
-            #redirect_to @post
           end
         end
       end

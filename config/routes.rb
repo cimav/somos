@@ -12,6 +12,7 @@ Somos::Application.routes.draw do
   match 'posts/share_form(/:id(.:format))' => 'posts#share_form'
   match 'posts/ui(/:id(.:format))' => 'posts#ui'
   match 'posts/:id/f/:file_id/:filename' => 'post_files#file', :constraints => { :filename => /[^\/]*/ }
+  match 'posts/:id/photo/:photo_id/:version/:filename' => 'post_photos#photo', :constraints => { :filename => /[^\/]*/ }
   resources :posts
 
   match '/auth/admin/callback', :to => 'sessions#authenticate'
