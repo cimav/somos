@@ -26,6 +26,7 @@ gem 'oauth'
 gem 'oa-openid', :require => 'omniauth/openid'
 
 gem 'carrierwave'
+gem 'rmagick'
 gem 'mini_magick'
 
 gem 'metainspector'
