@@ -1,3 +1,9 @@
-%ul
-- post.post_file.each do |f|
-  %li= link_to File.basename(f.file.to_s), :controller => "post_files", :action => "file", :id => post.id, :file_id => f.id, :filename => File.basename(f.file.to_s)
+.clearfix
+.post-files
+  - post.post_file.each do |f|
+    - if File.extname(f.file.to_s) == ''
+      - ext = 'unknown'
+    - else
+      - ext = File.extname(f.file.to_s)[1..-1]
+    .file-entry{:class => "type-#{ext}"}= link_to File.basename(f.file.to_s), :controller => "post_files", :action => "file", :id => post.id, :file_id => f.id, :filename => File.basename(f.file.to_s)
+  .clearfix
