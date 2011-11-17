@@ -29,11 +29,11 @@ class PostPhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :thumbnail do
-    process :resize_to_fit => [100, 75]
+    process :resize_to_fit => [80, 60]
   end
 
   version :square do
-    process :resize_to_fill => [75, 75]
+    process :resize_to_fill => [60, 60]
   end
 
 
