@@ -1,0 +1,6 @@
+- last_comment = 0 
+- @post.comments.where("id > :i", {:i => @last}).each do |comment|
+  - last_comment = comment.id
+  = render :partial => 'comment', :locals => {:comment => comment }
+:javascript
+  $("#post-#{@post.id}").attr("last_comment", "#{last_comment}")

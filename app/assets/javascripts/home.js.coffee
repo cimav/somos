@@ -61,7 +61,7 @@ $('#new_post')
 getPost = (id) ->
   url = '/posts/' + id
   $.get(url, {}, (html) ->
-    $(html).hide().prependTo('#posts-area')
+    $(html).prependTo('#posts-area')
     $("#post-" + id).delay(200).fadeIn('slow')
   )
 
@@ -84,6 +84,43 @@ getPosts = () ->
   $.get(url, {}, (html) ->
     $('#posts-area').html(html)
   )
+
+getComments = (post_id) ->
+  url = "/posts/#{post_id}/comments/#{$("#post-#{post_id}").attr('last_comment')}"
+  $.get(url, {}, (html) ->
+    $(html).appendTo("#post-#{post_id}-comments")
+  )
+
+
+$('.comment-textarea')
+  .live('click', () ->
+    $(this).height('4em')
+    $(this).autogrow()
+    # TODO: Show after re-comment
+    $("#comment_button_#{$(this).attr('post_id')}").show()
+  )
+
+$('.comment-form')
+  .live("ajax:beforeSend", (evt, xhr, settings) ->
+    # TODO: Display geting spinner
+  )
+  .live("ajax:success", (evt, data, status, xhr) ->
+    res = $.parseJSON(xhr.responseText);
+    getComments(res['post_id'], res['id'])
+    resetCommentArea(res['post_id'])
+  )
+  .live('ajax:complete', (evt, xhr, status) ->
+    # Complete
+  )
+  .live("ajax:error", (evt, xhr, status, error) ->
+    # TODO: Display errors
+  )
+
+resetCommentArea = (post_id) ->
+  $("#comment_content_#{post_id}").height('2em')
+  $("#comment_content_#{post_id}").val('')
+  $("#comment_button_#{post_id}").hide()
+
 
 @getRecentPosts = getRecentPosts = () ->
   url = '/posts/recent/'
@@ -119,6 +156,7 @@ $('.get-group')
     $('#main-inner').html(status);
     getPosts()
   )
+
 
 getHome = () ->
   getGroupList()

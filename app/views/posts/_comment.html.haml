@@ -1,0 +1,9 @@
+.comment-entry{:id => "comment_#{comment.id}"}
+  .comment-display
+    = image_tag comment.post.user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
+  .comment-content
+    %span.comment-user= link_to comment.user.full_name, "/#!/#{comment.user.username}"
+    %span.separator= "-"
+    = comment.content
+  .comment-footer
+    .comment-date= post_date(comment.created_at)

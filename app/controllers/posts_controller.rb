@@ -30,6 +30,7 @@ class PostsController < ApplicationController
 
   def recent
     @posts = recent_query(params[:group_id], params[:id])
+    @comment = Comment.new
     render :layout => false
   end
 
@@ -108,5 +109,11 @@ class PostsController < ApplicationController
     end
     render template, :layout => false
   end 
+
+  def comments
+    @post = Post.find(params[:id])
+    @last = params[:last]
+    render :layout => false
+  end
 
 end

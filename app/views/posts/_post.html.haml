@@ -1,4 +1,4 @@
-.post{:id => "post-#{post.id}", :class => "#{'hide-me' if no_show}"}
+.post{:id => "post-#{post.id}", :class => "#{'hide-me' if no_show}", :last_comment => "0"}
   .post-display
     = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
 
@@ -12,3 +12,19 @@
 
   .post-footer
     .post-date= link_to post_date(post.created_at), "/#!/p/#{post.id}"
+
+  .post-comments{:id => "post-#{post.id}-comments"}
+    - last_comment = 0 
+    - post.comments.each do |comment|
+      - last_comment = comment.id
+      = render :partial => 'comment', :locals => {:comment => comment }
+  .post-comment-form
+    = form_for(@comment, :remote => true, :html => {:class => "comment-form", :id => "comment_form_#{post.id}"}) do |f|
+      = f.hidden_field :post_id, {:value => post.id}
+      = f.hidden_field :user_id, {:value => @user.id }
+      = f.text_area :content, :id => "comment_content_#{post.id}", :class => "comment-textarea", :post_id => post.id, :placeholder => (t :add_a_comment)
+      .comment-button{:id => "comment_button_#{post.id}"}
+        = submit_tag (t :post_comment), :disable_with => (t :posting_comment)
+  .clearfix
+:javascript
+  $("#post-#{post.id}").attr("last_comment", "#{last_comment}")

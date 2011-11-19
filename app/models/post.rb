@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   belongs_to :group
   belongs_to :post_type
 
+  has_many :comments
+
   has_one :post_link
   accepts_nested_attributes_for :post_link
 
