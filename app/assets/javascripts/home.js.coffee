@@ -97,7 +97,7 @@ $('.comment-textarea')
     $(this).height('4em')
     $(this).autogrow()
     $("#comment_button_#{$(this).attr('post_id')}").show()
-    $('.comment-cancel').show()
+    $("#comment-cancel-#{$(this).attr('post_id')}").show()
   )
 
 $('.comment-form')
@@ -120,7 +120,7 @@ resetCommentArea = (post_id) ->
   $("#comment_content_#{post_id}").height('24px')
   $("#comment_content_#{post_id}").val('')
   $("#comment_button_#{post_id}").hide()
-  $('.comment-cancel').hide()
+  $("#comment-cancel-#{post_id}").hide()
 
 $('.comment-cancel')
   .live("click", () ->
