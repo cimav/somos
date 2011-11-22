@@ -24,7 +24,7 @@ $('#share-message')
     )
   )
 
-@hideShareArea = hideShareArea = () ->
+@resetShareArea = resetShareArea = () ->
   $('#share-message').show()
   $('#share-active').hide()
   $('#share-type').hide()
@@ -37,7 +37,7 @@ $('#share-message')
 
 $('#share-close')
   .live('click', () ->
-    hideShareArea()
+    resetShareArea()
   )
 
 $('#new_post')
@@ -47,7 +47,7 @@ $('#new_post')
     )
     .live("ajax:success", (evt, data, status, xhr) ->
       res = $.parseJSON(xhr.responseText);
-      hideShareArea()
+      resetShareArea()
       getRecentPosts()
       recentTimer = setInterval(getRecentPostsCounter, 10000)
     )
@@ -96,8 +96,8 @@ $('.comment-textarea')
   .live('click', () ->
     $(this).height('4em')
     $(this).autogrow()
-    # TODO: Show after re-comment
     $("#comment_button_#{$(this).attr('post_id')}").show()
+    $('.comment-cancel').show()
   )
 
 $('.comment-form')
@@ -117,9 +117,15 @@ $('.comment-form')
   )
 
 resetCommentArea = (post_id) ->
-  $("#comment_content_#{post_id}").height('2em')
+  $("#comment_content_#{post_id}").height('24px')
   $("#comment_content_#{post_id}").val('')
   $("#comment_button_#{post_id}").hide()
+  $('.comment-cancel').hide()
+
+$('.comment-cancel')
+  .live("click", () ->
+    resetCommentArea($(this).attr('post_id'))
+  )
 
 
 @getRecentPosts = getRecentPosts = () ->

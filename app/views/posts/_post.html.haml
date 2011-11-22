@@ -22,9 +22,12 @@
     = form_for(@comment, :remote => true, :html => {:class => "comment-form", :id => "comment_form_#{post.id}"}) do |f|
       = f.hidden_field :post_id, {:value => post.id}
       = f.hidden_field :user_id, {:value => @user.id }
-      = f.text_area :content, :id => "comment_content_#{post.id}", :class => "comment-textarea", :post_id => post.id, :placeholder => (t :add_a_comment)
+      .comment-area
+        = f.text_area :content, :id => "comment_content_#{post.id}", :class => "comment-textarea", :post_id => post.id, :placeholder => (t :add_a_comment)
+        %span.comment-cancel{:post_id => post.id}
+          = image_tag("close.png")
       .comment-button{:id => "comment_button_#{post.id}"}
-        = submit_tag (t :post_comment), :disable_with => (t :posting_comment)
+        = submit_tag (t :post_comment), :class=> 'post-comment-button', :disable_with => (t :posting_comment)
   .clearfix
 :javascript
   $("#post-#{post.id}").attr("last_comment", "#{last_comment}")

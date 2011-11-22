@@ -154,6 +154,7 @@ es:
       update: 'Actualizar %{model}'
       submit: 'Guardar %{model}'
 
+  cancel: "Cancelar"
 
   home_link: "Inicio"
   share: "Compartir"
