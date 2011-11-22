@@ -24,7 +24,7 @@
       = f.hidden_field :user_id, {:value => @user.id }
       .comment-area
         = f.text_area :content, :id => "comment_content_#{post.id}", :class => "comment-textarea", :post_id => post.id, :placeholder => (t :add_a_comment)
-        %span.comment-cancel{:post_id => post.id}
+        %span.comment-cancel{:post_id => post.id, :id => "comment-cancel-#{post.id}"}
           = image_tag("close.png")
       .comment-button{:id => "comment_button_#{post.id}"}
         = submit_tag (t :post_comment), :class=> 'post-comment-button', :disable_with => (t :posting_comment)
