@@ -18,6 +18,8 @@ Somos::Application.routes.draw do
 
   resources :comments
 
+  match 'events/upcoming' => 'post_events#upcoming'
+
   match '/auth/admin/callback', :to => 'sessions#authenticate'
   match '/auth/failure', :to => 'sessions#failure'
 
