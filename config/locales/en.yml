@@ -24,3 +24,11 @@ en:
   image: "image"
   photo: "photo"
   of: "of"
+
+  event_title: "Title"
+  event_start_date: "Date and time"
+  event_end_date: "End date"
+  event_location: "Location"
+  event_link: "Link"
+  upcoming_events: "Upcoming Events"
+

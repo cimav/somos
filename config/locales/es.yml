@@ -178,3 +178,11 @@ es:
   image: "imagen"
   photo: "foto"
   of: "de"
+
+  event_title: "Titulo"
+  event_start_date: "Fecha y hora"
+  event_end_date: "Hora de finalización"
+  event_location: "Ubicación"
+  event_link: "Liga al evento"
+  upcoming_events: "Próximos Eventos"
+
