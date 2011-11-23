@@ -1,4 +1,5 @@
-= fields_for @post do |f|
-  = f.fields_for :post_link do |link_fields|
-    = link_fields.text_field :link, :placeholder => (t :type_or_paste_link)
+#share-link
+  = fields_for @post do |f|
+    = f.fields_for :post_link do |link_fields|
+      = link_fields.text_field :link, :placeholder => (t :type_or_paste_link)
 

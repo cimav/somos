@@ -15,14 +15,14 @@
     width: $container-width;
     margin: 0 auto;
     a {
-      color: #bfbfbf;
+      color: $top-color;
       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     }
 
     #brand {
       float: left;
       font-size: 20px;
-      color: #fff;
+      color: $top-color;
       margin-top: 6px;
       margin-left: 10px;
       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -30,7 +30,7 @@
  
     #user-area {
       float: right;
-      color: $white;
+      color: $top-color;
       #account {
         margin-top: 8px;
       }
@@ -69,11 +69,17 @@
   }
 }
 
+
+
 #groups-area {
   ul.group-types {
     li {
        font-weight: bold;
        color: $group-type-color;
+       .home-link a {
+         font-weight: bold;
+         color: $group-type-color
+       }
        .group-type-title {
          padding: 5px 0;
        }

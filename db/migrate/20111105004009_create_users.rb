@@ -6,6 +6,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string     "last_name",  :null => false
       t.string     "occupation"
       t.string     "email",      :null => false
+      t.string     "phone1",     :null => false
+      t.string     "phone2",     :null => false
+      t.string     "location"
       t.date       "birth_date"
       t.text       "bio"
       t.string     "image"

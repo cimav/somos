@@ -1,3 +1,18 @@
-.post-photos
+.post-photos{:id => "gallery-#{post.id}"}
   - post.post_photo.each do |f|
-    %img{:src => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => 'square', :filename => File.basename(f.photo.to_s)), :width => 75, :height => 75}
+    %a{:href => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => 'large', :filename => File.basename(f.photo.to_s))}
+      %img{:src => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => 'square', :filename => File.basename(f.photo.to_s)), :width => 75, :height => 75}
+
+:javascript
+  $(function() {
+    $("#gallery-#{post.id} a").lightBox({
+      imageLoading: '/assets/loader.gif',
+      imageBtnClose: '/assets/close.png',
+      imageBtnPrev: '/assets/lb-prev.png',
+      imageBtnNext: '/assets/lb-next.png',
+      imageBlank: '/assets/blank.gif',
+      containerResizeSpeed: 350,
+      txtImage: "#{(t :image).capitalize}",
+      txtOf: '#{t :of}'
+    });
+  });
