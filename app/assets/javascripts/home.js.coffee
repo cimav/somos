@@ -163,11 +163,18 @@ $('.get-group')
     getPosts()
   )
 
+getUpcomingEvents = () ->
+  url = '/events/upcoming'
+  $.get(url, {}, (html) ->
+    $('#upcoming-area').html(html)
+  )
+
 
 getHome = () ->
   getGroupList()
   getShareForm()
   getPosts()
+  getUpcomingEvents()
 
 $ ->
   getHome()

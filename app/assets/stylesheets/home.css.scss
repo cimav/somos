@@ -88,3 +88,22 @@
 #share-files {
   margin-top: 5px;
 }
+
+#share-event {
+  margin-top: 20px;
+}
+
+.fields-table {
+  width: 90%;
+  td {
+    vertical-align: top;
+    padding-bottom: 5px;  
+    &.label {
+      text-align: right;
+      padding-right: 5px;
+    }
+    input, textarea {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.post-event
+  .sheet
+    .month= post.post_event.start_date.strftime("%b")
+    .day= post.post_event.start_date.day
+  .event-title= post.post_event.title
+  .event-date= "#{l post.post_event.end_date, :format => :short} - #{l post.post_event.end_date, :format => :short}"
+  .event-location= post.post_event.location
+  - if !link_to post.post_event.link.blank?
+    .event-link= link_to post.post_event.link, post.post_event.link

@@ -1,0 +1,8 @@
+%h2= t :upcoming_events
+- @events.each do |event|
+  .upcoming-event
+    .sheet
+      .month= event.start_date.strftime("%b")
+      .day= event.start_date.day
+    .event-title=  link_to event.title, "/#!/p/#{event.post.id}"
+    .event-date=  "#{event.start_date.strftime "%l:%M %p"} - #{event.end_date.strftime "%l:%M %p"}"

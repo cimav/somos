@@ -14,4 +14,7 @@ class Post < ActiveRecord::Base
   has_many :post_photo
   accepts_nested_attributes_for :post_photo
 
+  has_one :post_event
+  accepts_nested_attributes_for :post_event
+
 end

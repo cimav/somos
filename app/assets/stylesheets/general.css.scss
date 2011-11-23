@@ -73,6 +73,10 @@ textarea, input, select {
   line-height: 18px;
   color: $black;
   @include rounded(3px);
+  padding: 4px;
+  background: $white;
+  border-width: 1px;
+  border-color: $line-color;
 }
 
 select {

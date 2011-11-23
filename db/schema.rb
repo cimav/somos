@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116193621) do
+ActiveRecord::Schema.define(:version => 20111123002122) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -74,6 +74,21 @@ ActiveRecord::Schema.define(:version => 20111116193621) do
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
+  create_table "post_events", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "title"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text     "location"
+    t.text     "information"
+    t.string   "link"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_events", ["post_id"], :name => "index_post_events_on_post_id"
+
   create_table "post_files", :force => true do |t|
     t.integer  "post_id"
     t.string   "file"
@@ -86,6 +101,8 @@ ActiveRecord::Schema.define(:version => 20111116193621) do
   create_table "post_links", :force => true do |t|
     t.integer  "post_id"
     t.string   "link"
+    t.text     "description"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -144,6 +161,9 @@ ActiveRecord::Schema.define(:version => 20111116193621) do
     t.string   "last_name",                 :null => false
     t.string   "occupation"
     t.string   "email",                     :null => false
+    t.string   "phone1",                    :null => false
+    t.string   "phone2",                    :null => false
+    t.string   "location"
     t.date     "birth_date"
     t.text     "bio"
     t.string   "image"

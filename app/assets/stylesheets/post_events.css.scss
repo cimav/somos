@@ -1,0 +1,83 @@
+// Place all the styles related to the PostEvents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.post-event {
+  min-height: 60px;
+  margin: 5px 0;
+  padding: 10px;
+  //border-top: 1px solid $line-color;
+  background-color: $light-bg;
+
+  .sheet {
+    border: 1px solid $line-color;
+    height: 48px;
+    width: 48px;
+    float: left;
+    .month {
+      background-color: $red;
+      color: $white;
+      font-size: 11px;
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: bold;
+      padding: 2px;
+    }
+    .day {
+      color: $black;
+      padding: 4px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      background: $white;
+    }
+  }
+
+  .event-title { 
+    margin-left: 60px;
+    font-weight: bold;
+  }
+  .event-date { 
+    margin-left: 60px;
+  }
+  .event-location { 
+    margin-left: 60px;
+  }
+  .event-link { 
+    margin-left: 60px;
+  }
+}
+
+.upcoming-event {
+  min-height: 38px;
+  margin-top: 5px;
+
+  .sheet {
+    border: 1px solid $line-color;
+    width: 28px;
+    float: left;
+    .month {
+      background-color: $red;
+      color: $white;
+      font-size: 8px;
+      padding: 0px;
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: bold;
+    }
+    .day {
+      color: $black;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      background: $white;
+    }
+  }
+  .event-title {
+    margin-left: 36px;
+  }
+  .event-date {
+    margin-left: 36px;
+    color: $grey;
+  }
+
+}
