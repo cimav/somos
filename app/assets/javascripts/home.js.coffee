@@ -163,6 +163,14 @@ $('.get-group')
     getPosts()
   )
 
+$('.get-post') 
+  .live('ajax:success', (data, status, xhr) ->
+    window.location.hash = '#!/p/' + $(this).attr('post_id')
+    currentPost = $(this).attr('post_id')
+    $('#main-inner').html(status);
+  )
+
+
 getUpcomingEvents = () ->
   url = '/events/upcoming'
   $.get(url, {}, (html) ->

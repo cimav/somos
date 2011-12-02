@@ -11,7 +11,9 @@
       = render :partial => "view_#{post.post_type.short_name}", :locals => {:post => post} 
 
   .post-footer
-    .post-date= link_to post_date(post.created_at), "/#!/p/#{post.id}"
+    = link_to post, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}" do
+      = post_date(post.created_at)
+
 
   .post-comments{:id => "post-#{post.id}-comments"}
     - last_comment = 0 
