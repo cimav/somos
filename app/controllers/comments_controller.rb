@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
   respond_to :html, :json
 
   def create
+    # User ID
+    params[:comment][:user_id] = session[:user].id 
 
     @comment = Comment.new(params[:comment])
 

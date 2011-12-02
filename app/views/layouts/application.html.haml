@@ -12,7 +12,7 @@
         #nav 
         #searchbox
         #user-area
-          #account= @user.email
+          #account= session[:user].email
     #container
       #flash-notice
       = yield

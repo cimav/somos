@@ -21,7 +21,6 @@
   .post-comment-form
     = form_for(@comment, :remote => true, :html => {:class => "comment-form", :id => "comment_form_#{post.id}"}) do |f|
       = f.hidden_field :post_id, {:value => post.id}
-      = f.hidden_field :user_id, {:value => @user.id }
       .comment-area
         = f.text_area :content, :id => "comment_content_#{post.id}", :class => "comment-textarea", :post_id => post.id, :placeholder => (t :add_a_comment)
         %span.comment-cancel{:post_id => post.id, :id => "comment-cancel-#{post.id}"}

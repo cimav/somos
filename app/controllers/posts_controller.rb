@@ -60,6 +60,9 @@ class PostsController < ApplicationController
       params[:post][:post_photo_attributes] = aux
     end
 
+    # User ID
+    params[:post][:user_id] = session[:user].id 
+
     @post = Post.new(params[:post])
 
     

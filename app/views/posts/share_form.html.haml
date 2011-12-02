@@ -1,5 +1,5 @@
 = form_for(@post, :remote => true, :html => {:multipart => true}) do |f| 
-  = f.hidden_field :user_id, {:value => @user.id }
+  - user = User.find(session[:user].id)
   #share-message= t :share_to_the_community
   #share-active
     #share-header
@@ -14,8 +14,8 @@
     #share-footer 
       #share-as
         = t :share_as
-        - share_as_options = "<option value=\"0\">#{@user.full_name}</option>"
-        - @user.groups.where(:can_publish => 1).each do |group|
+        - share_as_options = "<option value=\"0\">#{session[:user].full_name}</option>"
+        - user.groups.where(:can_publish => 1).each do |group|
           - share_as_options += "<option value=\"#{group.id}\">#{group.name}</option>" 
         = f.select :group_id, share_as_options.html_safe
       #share-button
