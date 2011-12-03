@@ -1,8 +1,7 @@
 - latest = 0
-- no_show = !params[:id].blank?
 .posts
   - @posts.each do |post|
-    = render :partial => 'post', :locals => {:post => post, :no_show => no_show }
+    = render :partial => 'post', :locals => {:post => post }
     - latest = post.id if latest < post.id
 - if latest > 0
   :javascript

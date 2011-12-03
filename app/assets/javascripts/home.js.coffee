@@ -1,4 +1,6 @@
 currentGroup = 0
+currentPost = 0
+currentUser = 0
 
 $('#post_post_type_id')
   .live('change', () ->
@@ -68,13 +70,21 @@ getPost = (id) ->
 getShareForm = () ->
   url = '/posts/share_form'
   $.get(url, {}, (html) ->
-    $('#share-area').html(html)
+    $('<div id="share-area"></div>').prependTo("#main-content")
+    $('#share-area').prepend(html)
   )
 
 getGroupList = () ->
   url = '/groups/list'
   $.get(url, {}, (html) ->
-    $('#left-sidebar-inner').html(html)
+    $('#ls-left').html(html)
+    $lsb = $("#left-sidebar-content")
+    #if parseInt($lsb.css('left'),10) == 0
+    $lsb.animate({
+      left: 0
+    })
+    #end
+    adjustLeftSidebarHeight()
   )
 
 getPosts = () -> 
@@ -82,6 +92,7 @@ getPosts = () ->
   if currentGroup > 0
     url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
+    $('<div id="posts-area"></div>').appendTo("#main-content")
     $('#posts-area').html(html)
   )
 
@@ -158,8 +169,10 @@ $('#new-posts-message')
 $('.get-group')
   .live('ajax:success', (data, status, xhr) ->
     window.location.hash = '#!/g/' + $(this).attr('short_name')
+    $("#li_group_#{currentGroup}").removeClass('selected')
     currentGroup = $(this).attr('group_id')
-    $('#main-inner').html(status);
+    $('#main-content').html(status);
+    $("#li_group_#{currentGroup}").addClass('selected')
     getPosts()
   )
 
@@ -167,8 +180,40 @@ $('.get-post')
   .live('ajax:success', (data, status, xhr) ->
     window.location.hash = '#!/p/' + $(this).attr('post_id')
     currentPost = $(this).attr('post_id')
-    $('#main-inner').html(status);
+    $('#main-content').html(status);
   )
+
+$('.get-user')
+  .live('ajax:success', (data, status, xhr) ->
+    username =  $(this).attr('username')
+    window.location.hash = '#!/' + username
+    currentUsername = username
+    $('#main-content').html(status)
+    url = '/' + username + '/sidebar'
+    $.get(url, {}, (html) ->
+      hideRightSidebar()
+      $('#ls-right').html(html)
+      $lsb = $("#left-sidebar-content")
+      if parseInt($lsb.css('left'),10) == 0
+        $lsb.animate({
+          #left: if parseInt($lsb.css('left'),10) == 0 then -($lsb.outerWidth()/2) else 0
+          left: -($lsb.outerWidth()/2)
+        })
+      end
+    )
+  )
+
+$('#get-home')
+  .live('click', () ->
+    getHome()  
+  )
+
+$('#brand')
+  .live('click', () ->
+    getHome()  
+  )
+
+
 
 
 getUpcomingEvents = () ->
@@ -177,8 +222,27 @@ getUpcomingEvents = () ->
     $('#upcoming-area').html(html)
   )
 
+adjustLeftSidebarHeight = () ->
+  $('#left-sidebar').height($('#ls-left').height() + 50)
+
+hideRightSidebar = () ->
+  $('#main').addClass('superwide')
+  $('#main-content').addClass('superwide')
+  $('#right-sidebar').hide()
+
+showRightSidebar = () ->
+  $('#main').removeClass('superwide')
+  $('#main-content').removeClass('superwide')
+  $('#right-sidebar').show()
+
 
 getHome = () ->
+  window.history.pushState('', document.title, window.location.pathname)
+  currentGroup = 0
+  currentPost = 0
+  currentUser = 0
+  $("#main-content").html('')
+  showRightSidebar()
   getGroupList()
   getShareForm()
   getPosts()

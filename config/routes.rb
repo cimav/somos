@@ -18,10 +18,15 @@ Somos::Application.routes.draw do
 
   resources :comments
 
+  resources :users
+
   match 'events/upcoming' => 'post_events#upcoming'
 
   match '/auth/admin/callback', :to => 'sessions#authenticate'
   match '/auth/failure', :to => 'sessions#failure'
+
+  match ':username' => 'users#profile'
+  match ':username/sidebar' => 'users#sidebar'
 
 
   # The priority is based upon order of creation:

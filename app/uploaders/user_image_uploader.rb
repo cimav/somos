@@ -13,10 +13,11 @@ class UserImageUploader < CarrierWave::Uploader::Base
      "/assets/" + [version_name, "user_default.jpg"].compact.join('_')
   end
 
-  # Process files as they are uploaded:
-  process :resize_to_fill => [400, 400]
-
   # Create different versions of your uploaded files:
+  version :profile do
+    process :resize_to_fill => [200, 200]
+  end
+
   version :medium do
     process :resize_to_fill => [100, 100]
   end

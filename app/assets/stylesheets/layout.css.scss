@@ -11,7 +11,7 @@
   @include gradient($top-gradient-from, $top-gradient-to);
   @include shadow(4px,0px,0px,#999);
 
-  #topbar-inner {
+  #topbar-content {
     width: $container-width;
     margin: 0 auto;
     a {
@@ -26,6 +26,7 @@
       margin-top: 6px;
       margin-left: 10px;
       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      cursor: pointer;
     }
  
     #user-area {
@@ -43,30 +44,57 @@
   margin: 0 auto;
   margin-top: 40px;
   #left-sidebar {
+   margin-top: 10px;
    width: $left-sidebar-width;
+   position: relative;
    float: left;
-   #left-sidebar-inner {
-     padding: 10px;
+   overflow: hidden;
+   #left-sidebar-content {
+     overflow: hidden;
+     width: $left-sidebar-width * 2;
+     position: absolute;
+     left: 0px;
+     #ls-left {
+       width: $left-sidebar-width;
+       float: left;
+     } 
+     #ls-right {
+       float: right;
+       width: $left-sidebar-width;
+     }
    }
   }
   #main {
    width: $main-width;
-   min-width: $main-width;
-   max-width: $main-width;
-   float: left;
-   #main-inner {
+   //min-width: $main-width;
+   //max-width: $main-width;
+   position: relative;
+   left: $left-sidebar-width + 10;
+   #main-content {
+     position: absolute;
+     width: $main-width;
+     //min-width: $main-width;
+     //max-width: $main-width;
      border-left: 1px solid $line-color;
      border-right: 1px solid $line-color;
      padding: 10px;
    }
   }
   #right-sidebar {
-   float: right;
+   position: relative;
    width: $right-sidebar-width;
-   #right-sidebar-inner {
+   #right-sidebar-content {
+     left: $left-sidebar-width + $main-width + 30;
+     width: $right-sidebar-width;
+     position: absolute;
      padding: 10px;
    }
   }
+}
+
+.superwide {
+  width: ($main-width + $right-sidebar-width - 30) !important;
+  padding-right: 30px;
 }
 
 
@@ -81,16 +109,22 @@
          color: $group-type-color
        }
        .group-type-title {
-         padding: 5px 0;
+         padding: 8px 0;
        }
        ul.groups {
          li {
            color: $black;
            font-weight: normal;
-           padding: 5px 10px;
+           padding: 8px 10px;
            cursor: pointer;
            &:hover {
              background-color: $nav-hover-color;
+           }
+           &.selected {
+             a {
+               font-weight: bold;
+               color: $red;
+             }
            }
            a {
              color: $black;

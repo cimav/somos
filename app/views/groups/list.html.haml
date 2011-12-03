@@ -2,12 +2,12 @@
   %ul.group-types
     %li
       .home-link
-        = link_to (t :home_link), "/"
+        = link_to (t :home_link), "#!", :id => "get-home"
     - @groups.each do |group_type|
       %li
         .group-type-title= group_type.name
         %ul.groups 
           - group_type.group.order('position').each do |group|
-            %li.group-title
+            %li.group-title{:id => "li_group_#{group.id}"}
               = link_to group, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}", :group_id => "#{group.id}" do
                 = group.name
