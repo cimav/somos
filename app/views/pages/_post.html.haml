@@ -1,0 +1,5 @@
+.post{:id => "post-#{post.id}"}
+  .post-content
+    = post.content
+    - if post.post_type_id > 1
+      = render :partial => "posts/view_#{post.post_type.short_name}", :locals => {:post => post} 

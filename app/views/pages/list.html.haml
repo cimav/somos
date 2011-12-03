@@ -1,0 +1,6 @@
+#pages-area
+  %ul.page-list
+  - @pages.each do |page|
+    %li.page-title{:id => "li_page_#{page.id}"}
+      = link_to page, :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{page.id}", :short_name => "#{page.short_name}", :page_id => "#{page.id}" do
+        = page.title

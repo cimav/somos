@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def recent_query (group_id, id)
-    posts = Post.order("created_at DESC").where("status = 1")
+    posts = Post.order("created_at DESC").where("status = 1 AND page_id = 0")
 
     if !group_id.blank?
       posts = posts.where("group_id = :group_id", {:group_id => group_id})

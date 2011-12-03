@@ -20,6 +20,11 @@ Somos::Application.routes.draw do
 
   resources :users
 
+  match 'group-page/:group_id/list/' => 'pages#list'
+  match 'group-page/:group_id/:id' => 'pages#display'
+  match 'user-page/:user_id/:id' => 'pages#display'
+  resources :pages
+
   match 'events/upcoming' => 'post_events#upcoming'
 
   match '/auth/admin/callback', :to => 'sessions#authenticate'

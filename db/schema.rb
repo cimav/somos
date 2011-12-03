@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123002122) do
+ActiveRecord::Schema.define(:version => 20111203200042) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -74,6 +74,22 @@ ActiveRecord::Schema.define(:version => 20111123002122) do
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
+  create_table "pages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.string   "title",                       :null => false
+    t.string   "short_name",                  :null => false
+    t.integer  "position",   :default => 1,   :null => false
+    t.string   "can_modify"
+    t.string   "can_read",   :default => "*"
+    t.integer  "status",     :default => 1,   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["group_id"], :name => "index_pages_on_group_id"
+  add_index "pages", ["user_id"], :name => "index_pages_on_user_id"
+
   create_table "post_events", :force => true do |t|
     t.integer  "post_id"
     t.string   "title"
@@ -133,14 +149,17 @@ ActiveRecord::Schema.define(:version => 20111123002122) do
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
+    t.integer  "page_id",      :default => 0
     t.integer  "post_type_id"
     t.text     "content",                     :null => false
+    t.integer  "position",     :default => 0, :null => false
     t.integer  "status",       :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "posts", ["group_id"], :name => "index_posts_on_group_id"
+  add_index "posts", ["page_id"], :name => "index_posts_on_page_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "user_badges", :force => true do |t|
