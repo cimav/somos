@@ -10,6 +10,8 @@ class PagesController < ApplicationController
   end
 
   def show_group_page
+    # TODO: Validate group
+    @user = User.find(session[:user].id)
     @page = Page.find(params[:id])
     render :layout => false
   end
@@ -33,6 +35,13 @@ class PagesController < ApplicationController
     page.user_id = user.id
     page.save
     render :inline => "TODO"
+  end
+
+  def update
+    @page = Page.find(params[:id])
+    params[:page][:short_name] = params[:page][:title].parameterize
+    @page.update_attributes(params[:page])
+    render :inline => params[:page][:title]
   end
 
 end

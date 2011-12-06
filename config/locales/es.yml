@@ -154,6 +154,9 @@ es:
       update: 'Actualizar %{model}'
       submit: 'Guardar %{model}'
 
+  save: "Guardar"
+  edit: "Editar"
+  delete: "Eliminar"
   cancel: "Cancelar"
   untitled: "Sin Título"
 

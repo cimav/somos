@@ -1,5 +1,23 @@
 %h1= @page.group.name
-%h2= @page.title
+- membership = @user.memberships.where(:group_id => @page.group.id).first
+- if !membership.blank?
+  %h2
+    %span.edit-page-title{:id => "page_#{@page.id}"}= @page.title
+- else
+  %h2= @page.title
+
 .page
   - @page.posts.order('position').each do |post|
     = render :partial => 'post', :locals => {:post => post }
+
+:javascript
+  $('.edit-page-title').editable("#{page_path(@page)}", {
+    name: 'page[title]',
+    method: 'PUT',
+    callback : function(value, settings) {
+      $("#page_link_#{@page.id}").html(value);
+    },
+    submitdata: {
+      authenticity_token: #{form_authenticity_token.to_json}
+    }
+  })
