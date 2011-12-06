@@ -4,7 +4,7 @@
 
   .post-user 
     = link_to post.user.full_name, {:controller => "users", :action => "profile", :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}" 
-  - if post.group_id > 0
+  - if post.group_id > 0 && params[:group_id].blank?
     .post-group= post.group.name
   .post-content
     = post.content

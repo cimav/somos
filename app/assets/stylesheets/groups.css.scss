@@ -1,3 +1,83 @@
 // Place all the styles related to the Groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#groups-area {
+  ul.group-types {
+    li {
+       font-weight: bold;
+       color: $group-type-color;
+       .home-link a {
+         font-weight: bold;
+         color: $group-type-color
+       }
+       .group-type-title {
+         padding: 8px 0;
+       }
+       ul.groups {
+         li {
+           color: $black;
+           font-weight: normal;
+           padding: 8px 10px;
+           cursor: pointer;
+           &:hover {
+             background-color: $nav-hover-color;
+           }
+           &.selected {
+             a {
+               font-weight: bold;
+               color: $red;
+             }
+           }
+           a {
+             color: $black;
+             text-decoration: none;
+             display: block;
+           }
+         }
+       }
+    }
+  }
+}
+
+ul.page-list {
+  li {
+    color: $black;
+    font-weight: normal;
+    padding: 4px 4px;
+    cursor: pointer;
+    &:hover {
+      background-color: $nav-hover-color;
+    }
+    &.selected {
+      a {
+        font-weight: bold;
+        color: $red;
+      }
+    }
+    a {
+      color: $black;
+      text-decoration: none;
+      display: block;
+    }
+    &#li_add_page {
+      color: $grey;
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+}
+
+
+
+#group-members {
+  margin: 10px 0;
+}
+
+.member {
+  a {
+    text-decoration: none;
+    margin-right: 1px; 
+  }
+}

@@ -1,0 +1,7 @@
+%h3= "#{t :members} (#{@members.count})"
+#group-members
+  - @members.each do |member|
+    %span.member
+      = link_to url_for(:controller => "users", :action => "profile", :username => "#{member.user.username}"), :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "member_user_#{member.id}", :username => "#{member.user.username}" do
+        = image_tag member.user.image_url(:small).to_s, :width => 24, :height => 24, :class => "profile-picture-xsmall", :title => "#{member.user.full_name}"
+

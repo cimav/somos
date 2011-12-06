@@ -2,6 +2,8 @@ Somos::Application.routes.draw do
   root :to => 'home#index'
 
   match 'groups/list' => 'groups#list'
+  match 'groups/:id/members' => 'groups#members'
+  match 'groups/:id/page_list' => 'groups#page_list'
   resources :groups
 
   match 'posts/recent/counter/g/:group_id(/:id(.:format))' => 'posts#recent_counter'
@@ -20,18 +22,17 @@ Somos::Application.routes.draw do
 
   resources :users
 
-  match 'group-page/:group_id/list/' => 'pages#list'
-  match 'group-page/:group_id/:id' => 'pages#display'
-  match 'user-page/:user_id/:id' => 'pages#display'
   resources :pages
+  match 'groups/:group_id/page/add' => 'pages#add_page'
+  match 'groups/:group_id/page/:id' => 'pages#show_group_page'
 
   match 'events/upcoming' => 'post_events#upcoming'
 
   match '/auth/admin/callback', :to => 'sessions#authenticate'
   match '/auth/failure', :to => 'sessions#failure'
 
-  match ':username' => 'users#profile'
-  match ':username/sidebar' => 'users#sidebar'
+  match ':username' => 'users#profile', :constraints => { :username => /[^\/]*/ }
+  match ':username/sidebar' => 'users#sidebar', :constraints => { :username => /[^\/]*/ }
 
 
   # The priority is based upon order of creation:

@@ -2,7 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  cancel: "Cancelar"
+  cancel: "Cancel"
+  untitled: "Untitled"
 
   home_link: "Home"
   share: "Share"
@@ -10,6 +11,7 @@ en:
   share_to_the_community: "Share to the community..."
   share_wait: "Posting..."
 
+  posts: "Posts"
   post_created: "Post created"
   cant_create_post: "Can't create new post"
   new_posts_message: "%{count} new posts"
@@ -31,4 +33,9 @@ en:
   event_location: "Location"
   event_link: "Link"
   upcoming_events: "Upcoming Events"
+
+  members: "Members"
+  
+  pages: "Pages"
+  add_page: "Add page"
 

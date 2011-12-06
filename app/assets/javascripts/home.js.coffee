@@ -146,7 +146,7 @@ $('.comment-cancel')
   if latestPostId?
     url = url + latestPostId
   $.get(url, {}, (html) ->
-    $('#new-posts-message').hide()
+    $('#new-posts-message').remove()
     $(html).prependTo('#posts-area')
     $('.hide-me.post').fadeIn()
   )
@@ -158,6 +158,7 @@ getRecentPostsCounter = () ->
     url = url + 'g/' + currentGroup + '/'
   url = url + latestPostId
   $.get(url, {}, (html) ->
+    $('<div id="new-posts-message"></div>').prependTo("#posts-area") if $('#new-posts-message').length == 0
     $('#new-posts-message').html(html).show() if (html != '0')
   )
 
@@ -174,6 +175,28 @@ $('.get-group')
     $('#main-content').html(status);
     $("#li_group_#{currentGroup}").addClass('selected')
     getPosts()
+    getGroupSidebar(currentGroup)
+  )
+
+$('.get-page')
+  .live('ajax:success', (data, status, xhr) ->
+    window.location.hash = '#!/g/' + $(this).attr('group_name') + '/' + $(this).attr('short_name')
+    #$("#li_group_#{currentGroup}").removeClass('selected')
+    #currentGroup = $(this).attr('group_id')
+    $('#main-content').html(status);
+    #$("#li_group_#{currentGroup}").addClass('selected')
+  )
+
+
+getGroupSidebar = (group) ->
+  $("#right-sidebar-content").html('')
+  url = '/groups/' + group + '/members'
+  $.get(url, {}, (html) ->
+    $("#right-sidebar-content").append(html)
+    url = '/groups/' + group + '/page_list'
+    $.get(url, {}, (html) ->
+      $("#right-sidebar-content").append(html)
+    )
   )
 
 $('.get-post') 
@@ -213,13 +236,10 @@ $('#brand')
     getHome()  
   )
 
-
-
-
 getUpcomingEvents = () ->
   url = '/events/upcoming'
   $.get(url, {}, (html) ->
-    $('#upcoming-area').html(html)
+    $('#right-sidebar-content').append(html)
   )
 
 adjustLeftSidebarHeight = () ->

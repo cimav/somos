@@ -155,6 +155,7 @@ es:
       submit: 'Guardar %{model}'
 
   cancel: "Cancelar"
+  untitled: "Sin Título"
 
   home_link: "Inicio"
   share: "Compartir"
@@ -162,6 +163,7 @@ es:
   share_to_the_community: "Compartir a la comunidad..."
   share_wait: "Publicando..."
 
+  posts: "Publicaciones"
   post_created: "Publicación creada"
   cant_create_post: "No se pudo crear la publicación"
   new_posts_message: "%{count} nuevas publicaciones"
@@ -185,4 +187,8 @@ es:
   event_location: "Ubicación"
   event_link: "Liga al evento"
   upcoming_events: "Próximos Eventos"
+  
+  members: "Miembros"
 
+  pages: "Páginas"
+  add_page: "Agregar página"
