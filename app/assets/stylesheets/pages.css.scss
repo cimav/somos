@@ -3,16 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .edit-page-title {
-  width: 95%;
+  width: ($main-width - 20);
   display: block;
+  font-size: 18px;
+  color: $strong-color2;
+  font-weight: bold;
   input {
     margin: 0;
     padding: 4px;
     border: 1px solid $line-color;
     outline: none;
-    font-size: 16px;
-    color: $strong-color2;
+    font-size: 18px;
+    color: $black;
     font-weight: bold;
     width: 100%;
   }
+  &:hover { 
+    cursor: pointer;
+  }
+}
+
+.page {
+  margin-top: 20px;
 }

@@ -24,13 +24,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 22px;
   color: $strong-color;
-  margin-bottom: 10px;
+  border-bottom: 1px dotted $line-color;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 h2 {
-  font-size: 16px;
+  font-size: 18px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
   color: $strong-color2;
 }

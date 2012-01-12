@@ -1,8 +1,8 @@
 %h1= @page.group.name
 - membership = @user.memberships.where(:group_id => @page.group.id).first
 - if !membership.blank?
-  %h2
-    %span.edit-page-title{:id => "page_#{@page.id}"}= @page.title
+  %span.edit-page-title{:id => "page_#{@page.id}", :title => (t :edit_title)}= @page.title
+
 - else
   %h2= @page.title
 

@@ -77,14 +77,14 @@
      //max-width: $main-width;
      border-left: 1px solid $line-color;
      border-right: 1px solid $line-color;
-     padding: 10px;
+     padding: 20px;
    }
   }
   #right-sidebar {
    position: relative;
    width: $right-sidebar-width;
    #right-sidebar-content {
-     left: $left-sidebar-width + $main-width + 30;
+     left: $left-sidebar-width + $main-width + 50;
      width: $right-sidebar-width;
      position: absolute;
      padding: 10px;
