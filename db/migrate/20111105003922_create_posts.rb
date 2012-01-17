@@ -3,7 +3,6 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.references :user
       t.references :group
-      t.references :page,      :default => 0
       t.references :post_type
       t.text       "content",  :null => false
       t.integer    "position", :null => false, :default => 0
