@@ -1,7 +1,6 @@
 class Page < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
-  has_many :posts
 
   after_create :check_short_name
   after_update :check_short_name
