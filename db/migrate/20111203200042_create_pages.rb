@@ -9,10 +9,12 @@ class CreatePages < ActiveRecord::Migration
       t.text       "content"
       t.string     "can_modify"
       t.string     "can_read",   :default => "*"
+      t.references :page
       t.integer    "status",     :null => false, :default => 1
       t.timestamps
     end
     add_index("pages", "user_id")
     add_index("pages", "group_id")
+    add_index("pages", "page_id")
   end
 end

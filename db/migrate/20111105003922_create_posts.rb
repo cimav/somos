@@ -11,6 +11,5 @@ class CreatePosts < ActiveRecord::Migration
     end
     add_index("posts", "user_id")
     add_index("posts", "group_id")
-    add_index("posts", "page_id")
   end
 end
