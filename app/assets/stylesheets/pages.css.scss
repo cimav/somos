@@ -2,12 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#edit-page {
+  display: none;  
+}
+
 .edit-page-title {
-  width: ($main-width - 20);
+  width: ($main-width - 10);
   display: block;
   font-size: 18px;
   color: $strong-color2;
   font-weight: bold;
+  margin-bottom: 10px;
   input {
     margin: 0;
     padding: 4px;
@@ -18,11 +23,36 @@
     font-weight: bold;
     width: 100%;
   }
+}
+
+.page {
+  margin-top: 20px;
+}
+
+#page-editor {
+  width: ($main-width - 20);
+  height: 480px;
+  padding: 10px;
+}
+
+#page-toolbar {
+  float: right;
+  img {
+    @include opacity(.5);
+    &:hover {
+      @include opacity(1);
+    }
+  }
+}
+
+#edit-page-button,
+#delete-page-button {
   &:hover { 
     cursor: pointer;
   }
 }
 
-.page {
-  margin-top: 20px;
+#save-page-button {
+  float: right;
+  margin-top: 10px;
 }

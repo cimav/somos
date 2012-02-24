@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_filter :auth_required
+  respond_to :html, :json
   def list
     @pages = Page.where(:group_id => params[:group_id]).order('position')
     render :layout => false
@@ -40,8 +42,36 @@ class PagesController < ApplicationController
   def update
     @page = Page.find(params[:id])
     params[:page][:short_name] = params[:page][:title].parameterize
-    @page.update_attributes(params[:page])
-    render :inline => params[:page][:title]
+    if @page.update_attributes(params[:page])
+      flash[:notice] = t :page_updated
+      respond_with do |format|
+        format.html do
+          if request.xhr?
+            json = {}
+            json[:id] = @page.id
+            json[:title] = @page.title
+            json[:short_name] = @page.short_name
+            json[:flash] = flash
+            render :json => json
+          else
+            redirect_to @page
+          end
+        end
+      end
+    else
+      flash[:error] = t :cant_update_page
+      respond_with do |format|
+        format.html do
+          if request.xhr?
+            json = {}
+            json[:flash] = flash
+            json[:errors] = @page.errors
+            render :json => json, :status => :unprocessable_entity
+          else
+            redirect_to @page
+          end
+        end
+      end
+    end
   end
-
 end

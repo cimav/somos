@@ -155,6 +155,7 @@ es:
       submit: 'Guardar %{model}'
 
   save: "Guardar"
+  save_wait: "Guardando..."
   edit: "Editar"
   delete: "Eliminar"
   cancel: "Cancelar"
@@ -195,4 +196,7 @@ es:
 
   pages: "Páginas"
   add_page: "Agregar página"
+  edit_this_page: "Editar esta página"
   edit_title: "Editar título"
+  page_updated: "Página actualizada"
+  cant_update_page: "No se puede actualizar la página"

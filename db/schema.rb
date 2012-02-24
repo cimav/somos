@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20111203200042) do
     t.string   "title",                       :null => false
     t.string   "short_name",                  :null => false
     t.integer  "position",   :default => 1,   :null => false
+    t.text     "content"
     t.string   "can_modify"
     t.string   "can_read",   :default => "*"
     t.integer  "status",     :default => 1,   :null => false

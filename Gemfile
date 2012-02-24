@@ -31,6 +31,8 @@ gem 'mini_magick'
 
 gem 'metainspector'
 
+gem 'tinymce-rails'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

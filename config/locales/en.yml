@@ -3,6 +3,7 @@
 
 en:
   save: "Save"
+  save_wait: "Saving..."
   edit: "Edit"
   delete: "Delete"
   cancel: "Cancel"
@@ -41,5 +42,7 @@ en:
   
   pages: "Pages"
   add_page: "Add page"
+  edit_this_page: "Edit this page"
   edit_title: "Edit title"
-
+  page_updated: "Page updated"
+  cant_update_page: "Can't update page"
