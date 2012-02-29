@@ -18,7 +18,7 @@ $('#edit_page_form')
       $("#page_link_" + res['id']).attr('short_name', res['short_name']);
       $("#page_link_" + res['id']).click();
       $('#edit-page').hide()
-      $('#group-page').show()
+      $('#group-page').fadeIn()
       $('#page-toolbar').show()
     )
     .live('ajax:complete', (evt, xhr, status) ->
