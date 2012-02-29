@@ -5,7 +5,7 @@ $('#edit-page-button')
   .live('click', () ->
     $('#group-page').hide()
     $('#page-toolbar').hide()
-    $('#edit-page').show()
+    $('#edit-page').fadeIn()
   )
 
 $('#edit_page_form')
