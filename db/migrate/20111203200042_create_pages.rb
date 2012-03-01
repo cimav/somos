@@ -7,8 +7,6 @@ class CreatePages < ActiveRecord::Migration
       t.string     "short_name", :null => false
       t.integer    "position",   :null => false, :default => 1
       t.text       "content"
-      t.string     "can_modify"
-      t.string     "can_read",   :default => "*"
       t.references :page
       t.integer    "status",     :null => false, :default => 1
       t.timestamps

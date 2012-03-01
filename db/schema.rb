@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111203200042) do
+ActiveRecord::Schema.define(:version => 20120301182032) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -83,14 +83,12 @@ ActiveRecord::Schema.define(:version => 20111203200042) do
     t.text     "content"
     t.string   "can_modify"
     t.string   "can_read",   :default => "*"
-    t.integer  "page_id"
     t.integer  "status",     :default => 1,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "pages", ["group_id"], :name => "index_pages_on_group_id"
-  add_index "pages", ["page_id"], :name => "index_pages_on_page_id"
   add_index "pages", ["user_id"], :name => "index_pages_on_user_id"
 
   create_table "post_events", :force => true do |t|
@@ -116,6 +114,16 @@ ActiveRecord::Schema.define(:version => 20111203200042) do
   end
 
   add_index "post_files", ["post_id"], :name => "index_post_files_on_post_id"
+
+  create_table "post_groups", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_groups", ["group_id"], :name => "index_post_groups_on_group_id"
+  add_index "post_groups", ["post_id"], :name => "index_post_groups_on_post_id"
 
   create_table "post_links", :force => true do |t|
     t.integer  "post_id"
@@ -152,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20111203200042) do
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
+    t.integer  "page_id",      :default => 0
     t.integer  "post_type_id"
     t.text     "content",                     :null => false
     t.integer  "position",     :default => 0, :null => false
@@ -161,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20111203200042) do
   end
 
   add_index "posts", ["group_id"], :name => "index_posts_on_group_id"
+  add_index "posts", ["page_id"], :name => "index_posts_on_page_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "user_badges", :force => true do |t|

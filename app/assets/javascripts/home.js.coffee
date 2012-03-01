@@ -262,6 +262,7 @@ getHome = () ->
   currentPost = 0
   currentUser = 0
   $("#main-content").html('')
+  $("#right-sidebar-content").html('')
   showRightSidebar()
   getGroupList()
   getShareForm()
