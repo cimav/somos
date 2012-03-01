@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PageGroupsTest < ActiveSupport::TestCase
+class PostGroupTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -10,6 +10,8 @@ class CreateUsers < ActiveRecord::Migration
       t.integer    :reports_to
       t.text       :bio
       t.date       :birth_date
+      t.date       :start_date
+      t.date       :end_date
       t.string     :address1
       t.string     :address2
       t.string     :city

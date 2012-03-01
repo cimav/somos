@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301223138) do
+ActiveRecord::Schema.define(:version => 20120301232157) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20120301223138) do
 
   add_index "pages", ["group_id"], :name => "index_pages_on_group_id"
   add_index "pages", ["page_id"], :name => "index_pages_on_page_id"
+  add_index "pages", ["short_name"], :name => "index_pages_on_short_name"
   add_index "pages", ["user_id"], :name => "index_pages_on_user_id"
 
   create_table "post_events", :force => true do |t|
@@ -117,6 +118,8 @@ ActiveRecord::Schema.define(:version => 20120301223138) do
     t.text     "information"
     t.string   "link"
     t.string   "image"
+    t.string   "lat",         :limit => 20
+    t.string   "long",        :limit => 20
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -172,6 +175,8 @@ ActiveRecord::Schema.define(:version => 20120301223138) do
     t.datetime "updated_at"
   end
 
+  add_index "post_types", ["short_name"], :name => "index_post_types_on_short_name"
+
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
@@ -217,6 +222,8 @@ ActiveRecord::Schema.define(:version => 20120301223138) do
     t.integer  "reports_to"
     t.text     "bio"
     t.date     "birth_date"
+    t.date     "start_date"
+    t.date     "end_date"
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
@@ -234,5 +241,10 @@ ActiveRecord::Schema.define(:version => 20120301223138) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["country_id"], :name => "index_users_on_country_id"
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["state_id"], :name => "index_users_on_state_id"
+  add_index "users", ["username"], :name => "index_users_on_username"
 
 end
