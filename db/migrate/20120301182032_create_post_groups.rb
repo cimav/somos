@@ -5,7 +5,7 @@ class CreatePostGroups < ActiveRecord::Migration
       t.references :group
       t.timestamps
     end
-    add_index("post_groups", "post_id")
-    add_index("post_groups", "group_id")
+    add_index(:post_groups, :post_id)
+    add_index(:post_groups, :group_id)
   end
 end

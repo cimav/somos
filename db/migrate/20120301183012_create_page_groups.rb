@@ -5,7 +5,7 @@ class CreatePageGroups < ActiveRecord::Migration
       t.references :group
       t.timestamps
     end
-    add_index("page_groups", "page_id")
-    add_index("page_groups", "group_id")
+    add_index(:page_groups, :page_id)
+    add_index(:page_groups, :group_id)
   end
 end

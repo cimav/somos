@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301182032) do
+ActiveRecord::Schema.define(:version => 20120301223138) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -33,13 +33,21 @@ ActiveRecord::Schema.define(:version => 20120301182032) do
   add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "lat",        :limit => 20
+    t.string   "long",       :limit => 20
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "group_types", :force => true do |t|
-    t.string   "name",                         :null => false
+    t.string   "name",                       :null => false
     t.string   "description"
     t.integer  "position"
-    t.integer  "obligatory",  :default => 1
-    t.integer  "can_publish", :default => 1
-    t.string   "can_read",    :default => "*"
+    t.integer  "required",    :default => 1
+    t.integer  "display",     :default => 1
     t.integer  "status",      :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -47,26 +55,25 @@ ActiveRecord::Schema.define(:version => 20120301182032) do
 
   create_table "groups", :force => true do |t|
     t.integer  "group_type_id"
-    t.string   "name",                           :null => false
-    t.string   "short_name",                     :null => false
+    t.string   "name",                         :null => false
+    t.string   "short_name",                   :null => false
     t.string   "description"
     t.integer  "position"
-    t.integer  "can_publish",   :default => 1
-    t.string   "can_read",      :default => "*"
     t.integer  "status",        :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "groups", ["group_type_id"], :name => "index_groups_on_group_type_id"
+  add_index "groups", ["short_name"], :name => "index_groups_on_short_name"
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.integer  "can_publish", :default => 1
-    t.integer  "can_read",    :default => 1
-    t.integer  "can_admin",   :default => 1
-    t.integer  "status",      :default => 1
+    t.integer  "can_publish",       :default => 1
+    t.integer  "can_modify_others", :default => 0
+    t.integer  "can_admin",         :default => 0
+    t.integer  "status",            :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,21 +81,31 @@ ActiveRecord::Schema.define(:version => 20120301182032) do
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
+  create_table "page_groups", :force => true do |t|
+    t.integer  "page_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "page_groups", ["group_id"], :name => "index_page_groups_on_group_id"
+  add_index "page_groups", ["page_id"], :name => "index_page_groups_on_page_id"
+
   create_table "pages", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.string   "title",                       :null => false
-    t.string   "short_name",                  :null => false
-    t.integer  "position",   :default => 1,   :null => false
+    t.string   "title",                     :null => false
+    t.string   "short_name",                :null => false
+    t.integer  "position",   :default => 1, :null => false
     t.text     "content"
-    t.string   "can_modify"
-    t.string   "can_read",   :default => "*"
-    t.integer  "status",     :default => 1,   :null => false
+    t.integer  "page_id"
+    t.integer  "status",     :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "pages", ["group_id"], :name => "index_pages_on_group_id"
+  add_index "pages", ["page_id"], :name => "index_pages_on_page_id"
   add_index "pages", ["user_id"], :name => "index_pages_on_user_id"
 
   create_table "post_events", :force => true do |t|
@@ -150,8 +167,6 @@ ActiveRecord::Schema.define(:version => 20120301182032) do
     t.string   "name",                       :null => false
     t.string   "short_name",                 :null => false
     t.string   "share_title",                :null => false
-    t.integer  "in_stream",   :default => 1
-    t.integer  "in_pages",    :default => 0
     t.integer  "status",      :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -160,7 +175,6 @@ ActiveRecord::Schema.define(:version => 20120301182032) do
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.integer  "page_id",      :default => 0
     t.integer  "post_type_id"
     t.text     "content",                     :null => false
     t.integer  "position",     :default => 0, :null => false
@@ -170,8 +184,16 @@ ActiveRecord::Schema.define(:version => 20120301182032) do
   end
 
   add_index "posts", ["group_id"], :name => "index_posts_on_group_id"
-  add_index "posts", ["page_id"], :name => "index_posts_on_page_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "lat",        :limit => 20
+    t.string   "long",       :limit => 20
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_badges", :force => true do |t|
     t.integer  "user_id"
@@ -186,19 +208,29 @@ ActiveRecord::Schema.define(:version => 20120301182032) do
   add_index "user_badges", ["user_id"], :name => "index_user_badges_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "username",                  :null => false
-    t.string   "first_name",                :null => false
-    t.string   "last_name",                 :null => false
+    t.string   "username",                                  :null => false
+    t.string   "first_name",                                :null => false
+    t.string   "last_name",                                 :null => false
     t.string   "occupation"
-    t.string   "email",                     :null => false
-    t.string   "phone1",                    :null => false
-    t.string   "phone2",                    :null => false
+    t.string   "email",                                     :null => false
     t.string   "location"
-    t.date     "birth_date"
-    t.text     "bio"
-    t.string   "image"
     t.integer  "reports_to"
-    t.integer  "status",     :default => 1, :null => false
+    t.text     "bio"
+    t.date     "birth_date"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.integer  "state_id"
+    t.string   "zip",          :limit => 20
+    t.integer  "country_id"
+    t.string   "mobile_phone", :limit => 20
+    t.string   "home_phone",   :limit => 20
+    t.string   "work_phone",   :limit => 20
+    t.string   "website"
+    t.string   "lat",          :limit => 20
+    t.string   "long",         :limit => 20
+    t.string   "image"
+    t.integer  "status",                     :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
