@@ -4,6 +4,7 @@ Somos::Application.routes.draw do
   match 'groups/list' => 'groups#list'
   match 'groups/:id/members' => 'groups#members'
   match 'groups/:id/page_list' => 'groups#page_list'
+  match 'groups/search' => 'groups#search'
   resources :groups
 
   match 'posts/recent/counter/g/:group_id(/:id(.:format))' => 'posts#recent_counter'
