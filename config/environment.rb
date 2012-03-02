@@ -6,9 +6,6 @@ GAPPS_REQUESTOR_ID = 'admin@your-domain.com'
 
 HOME_INITIAL_POSTS = 5
 
-SITE_NAME = 'SOMOS'
-
-
 # Load the rails application
 require File.expand_path('../application', __FILE__)
 
