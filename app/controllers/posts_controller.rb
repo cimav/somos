@@ -76,6 +76,13 @@ class PostsController < ApplicationController
             json = {}
             json[:id] = @post.id
             json[:flash] = flash
+            # Save groups to
+            params[:to_groups].split(',').each do |g|
+              pg = PostGroup.new
+              pg.post_id = @post.id
+              pg.group_id = g
+              pg.save
+            end
             render :json => json
           else
             @post_type = PostType.find(@post.post_type_id)

@@ -23,4 +23,18 @@ class GroupsController < ApplicationController
     render :layout => false
   end
 
+  def search 
+    @groups = Group.where("name LIKE :n", {:n => "%#{params[:q]}%"}).order("name")
+    respond_with do |format|
+      format.html do
+        if request.xhr?
+          render :json => @groups
+        end
+      end
+      format.json do
+        render :json => @groups
+      end
+    end
+  end
+
 end
