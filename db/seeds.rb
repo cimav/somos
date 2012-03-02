@@ -37,6 +37,22 @@ Group.create([
   {:group_type => GroupType.where(:name => 'Proyectos').first, :name => 'Test', :short_name => 'test', :position => 1 }
 ])
 
+Membership.create([
+  {:user => User.where('username' => 'ion').first, :group => Group.where(:short_name => 'tic').first, :can_publish => 1, :can_modify_others => 1 , :can_admin => 1}, 
+  {:user => User.where('username' => 'ion').first, :group => Group.where(:short_name => 'tic').first, :can_publish => 1, :can_modify_others => 1 , :can_admin => 1}, 
+  {:user => User.where('username' => 'claudia.lopez').first, :group => Group.where(:short_name => 'comunicacion').first, :can_publish => 1, :can_modify_others => 1 , :can_admin => 1}
+])
+
+puts "Post types..."
+PostType.create([
+  {:name => 'Mensaje', :short_name => 'message', :share_title => 'Mensaje'},
+  {:name => 'Link', :short_name => 'link', :share_title => 'Link'},
+  {:name => 'Foto', :short_name => 'photo', :share_title => 'Foto'},
+  {:name => 'Archivos', :short_name => 'files', :share_title => 'Archivo'},
+  {:name => 'Evento', :short_name => 'event', :share_title => 'Evento'}
+])
+
+
 puts "Populating Countries..."
 Country.delete_all
 open("db/seeds/countries.txt") do |countries|

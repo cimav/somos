@@ -15,8 +15,8 @@
       #share-as
         = t :share_as
         - share_as_options = "<option value=\"0\">#{session[:user].full_name}</option>"
-        - user.groups.where(:can_publish => 1).each do |group|
-          - share_as_options += "<option value=\"#{group.id}\">#{group.name}</option>" 
+        - user.memberships.where(:can_publish => 1).each do |membership|
+          - share_as_options += "<option value=\"#{membership.group.id}\">#{membership.group.name}</option>" 
         = f.select :group_id, share_as_options.html_safe
       #share-button
         = submit_tag (t :share), :disable_with => (t :share_wait), :id => "share-submit"

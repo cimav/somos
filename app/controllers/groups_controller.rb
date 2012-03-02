@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   respond_to :html, :json
 
   def list
-    @groups = GroupType.where(:can_publish => 1).order('position')
+    @groups = GroupType.where(:display => GroupType::STREAM).order('position')
     render :layout => false
   end
 
