@@ -7,12 +7,16 @@
     = csrf_meta_tags
   %body
     #topbar
-      #topbar-content
-        #brand Somos
+      #top-bar-full
+        #topbar-content
+          #brand= image_tag "logo.png"
+          #search-box
+            = form_tag '/search/', :id => 'live-search', :method => 'get', :remote => true do
+              = text_field_tag :q, nil, :id => 'search-input', :placeholder => 'Busqueda'
+          #user-area
+            #account= session[:user].email
+      #nav-full
         #nav 
-        #searchbox
-        #user-area
-          #account= session[:user].email
     #container
       #flash-notice
       = yield

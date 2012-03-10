@@ -1,40 +1,66 @@
 #topbar {
-  height: 34px;
+  height: 78px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10000;
   overflow: visible;
-  background-color: $top-gradient-from;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  @include gradient($top-gradient-from, $top-gradient-to);
+  background-color: #fcfcfc;
+  border-bottom: 1px solid $light-grey;
   @include shadow(4px,0px,0px,#999);
 
-  #topbar-content {
-    width: $container-width;
-    margin: 0 auto;
-    a {
-      color: $top-color;
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    }
-
-    #brand {
-      float: left;
-      font-size: 20px;
-      color: $top-color;
-      margin-top: 6px;
-      margin-left: 10px;
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-      cursor: pointer;
-    }
- 
-    #user-area {
-      float: right;
-      color: $top-color;
-      #account {
-        margin-top: 8px;
+  #top-bar-full {
+    height: 46px;
+    border-bottom: 1px solid $light-grey;
+    #topbar-content {
+      width: $container-width;
+      margin: 0 auto;
+      a {
+        color: $top-color;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
       }
+
+      #brand {
+        float: left;
+        font-size: 20px;
+        color: $top-color;
+        margin-top: 2px;
+        margin-left: 0px;
+        cursor: pointer;
+      }
+
+      #search-box {
+        width: $search-box-width;
+        float: left;
+        margin-top: 8px;
+        margin-left: 10px;
+        input {
+          background-color: rgba(255,255,255,0.5);
+          border: 1px solid rgba(0, 0, 0, 0.25);
+          height: 18px;
+          width: $search-box-width - 10;
+        }
+      }
+ 
+      #user-area {
+        float: right;
+        color: $top-color;
+        #account {
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+
+  #nav-full {
+    clear: both;
+    border-top: 1px solid #fff;
+    #nav {
+      height: 30px;
+      text-align: center;
+      width: $container-width;
+      margin: 0 auto;
     }
   }
 }
@@ -42,58 +68,5 @@
 #container {
   width: $container-width;
   margin: 0 auto;
-  margin-top: 40px;
-  #left-sidebar {
-   margin-top: 10px;
-   width: $left-sidebar-width;
-   position: relative;
-   float: left;
-   overflow: hidden;
-   #left-sidebar-content {
-     overflow: hidden;
-     width: $left-sidebar-width * 2;
-     position: absolute;
-     left: 0px;
-     #ls-left {
-       width: $left-sidebar-width;
-       float: left;
-     } 
-     #ls-right {
-       float: right;
-       width: $left-sidebar-width;
-     }
-   }
-  }
-  #main {
-   width: $main-width;
-   //min-width: $main-width;
-   //max-width: $main-width;
-   position: relative;
-   left: $left-sidebar-width + 10;
-   #main-content {
-     position: absolute;
-     width: $main-width;
-     //min-width: $main-width;
-     //max-width: $main-width;
-     border-left: 1px solid $line-color;
-     border-right: 1px solid $line-color;
-     padding: 20px;
-   }
-  }
-  #right-sidebar {
-   position: relative;
-   width: $right-sidebar-width;
-   #right-sidebar-content {
-     left: $left-sidebar-width + $main-width + 50;
-     width: $right-sidebar-width;
-     position: absolute;
-     padding: 10px;
-   }
-  }
+  margin-top: 80px;
 }
-
-.superwide {
-  width: ($main-width + $right-sidebar-width - 30) !important;
-  padding-right: 30px;
-}
-

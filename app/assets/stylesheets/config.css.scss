@@ -1,25 +1,23 @@
 $white: #fff;
 $black: #000;
 $grey: #777;
+$light-grey: #ddd;
 $red: #b01;
 $strong-color: #222;
 $strong-color2: #444;
 $light-bg: #f8f8f8;
 
-//$top-gradient-from: #09c;
-//$top-gradient-to: #06c;
-$top-gradient-from: #444;
-$top-gradient-to: #111;
 $top-color: #dadada;
 
 $container-width: 1000px;
-$left-sidebar-width: 200px;
-$right-sidebar-width: 220px;
-$main-width: $container-width - $left-sidebar-width - $right-sidebar-width;
+$search-box-width: 200px;
 
 $line-color: #ddd;
 $link-color: #06c;
 $nav-hover-color: #f0f0f0;
+
+$who-bg-color: #f4f4f4;
+$comments-bg-color: #f4f4f4;
 
 $group-type-color: #06c;
 $group-bg-color: $group-type-color;

@@ -72,21 +72,14 @@ getPost = (id) ->
 getShareForm = () ->
   url = '/posts/share_form'
   $.get(url, {}, (html) ->
-    $('<div id="share-area"></div>').prependTo("#main-content")
+    $('<div id="share-area"></div>').prependTo("#container")
     $('#share-area').prepend(html)
   )
 
 getGroupList = () ->
   url = '/groups/list'
   $.get(url, {}, (html) ->
-    $('#ls-left').html(html)
-    $lsb = $("#left-sidebar-content")
-    #if parseInt($lsb.css('left'),10) == 0
-    $lsb.animate({
-      left: 0
-    })
-    #end
-    adjustLeftSidebarHeight()
+    $('#nav').html(html)
   )
 
 getPosts = () -> 
@@ -94,7 +87,7 @@ getPosts = () ->
   if currentGroup > 0
     url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
-    $('<div id="posts-area"></div>').appendTo("#main-content")
+    $('<div id="posts-area"></div>').appendTo("#container")
     $('#posts-area').html(html)
   )
 
@@ -174,10 +167,10 @@ $('.get-group')
     window.location.hash = '#!/g/' + $(this).attr('short_name')
     $("#li_group_#{currentGroup}").removeClass('selected')
     currentGroup = $(this).attr('group_id')
-    $('#main-content').html(status);
+    $('#container').html(status);
     $("#li_group_#{currentGroup}").addClass('selected')
     getPosts()
-    getGroupSidebar(currentGroup)
+    getGroupBrick(currentGroup)
   )
 
 $('.get-page')
@@ -185,27 +178,27 @@ $('.get-page')
     window.location.hash = '#!/g/' + $(this).attr('group_name') + '/' + $(this).attr('short_name')
     #$("#li_group_#{currentGroup}").removeClass('selected')
     #currentGroup = $(this).attr('group_id')
-    $('#main-content').html(status);
+    $('#container').html(status);
     #$("#li_group_#{currentGroup}").addClass('selected')
   )
 
 
-getGroupSidebar = (group) ->
-  $("#right-sidebar-content").html('')
-  url = '/groups/' + group + '/members'
-  $.get(url, {}, (html) ->
-    $("#right-sidebar-content").append(html)
-    url = '/groups/' + group + '/page_list'
-    $.get(url, {}, (html) ->
-      $("#right-sidebar-content").append(html)
-    )
-  )
+getGroupBrick = (group) ->
+  #$("#right-sidebar-content").html('')
+  #url = '/groups/' + group + '/members'
+  #$.get(url, {}, (html) ->
+  #  $("#right-sidebar-content").append(html)
+  #  url = '/groups/' + group + '/page_list'
+  #  $.get(url, {}, (html) ->
+  #    $("#right-sidebar-content").append(html)
+  #  )
+  #)
 
 $('.get-post') 
   .live('ajax:success', (data, status, xhr) ->
     window.location.hash = '#!/p/' + $(this).attr('post_id')
     currentPost = $(this).attr('post_id')
-    $('#main-content').html(status);
+    $('#container').html(status);
   )
 
 $('.get-user')
@@ -213,19 +206,7 @@ $('.get-user')
     username =  $(this).attr('username')
     window.location.hash = '#!/' + username
     currentUsername = username
-    $('#main-content').html(status)
-    url = '/' + username + '/sidebar'
-    $.get(url, {}, (html) ->
-      hideRightSidebar()
-      $('#ls-right').html(html)
-      $lsb = $("#left-sidebar-content")
-      if parseInt($lsb.css('left'),10) == 0
-        $lsb.animate({
-          #left: if parseInt($lsb.css('left'),10) == 0 then -($lsb.outerWidth()/2) else 0
-          left: -($lsb.outerWidth()/2)
-        })
-      end
-    )
+    $('#container').html(status)
   )
 
 $('#get-home')
@@ -244,32 +225,19 @@ getUpcomingEvents = () ->
     $('#right-sidebar-content').append(html)
   )
 
-adjustLeftSidebarHeight = () ->
-  $('#left-sidebar').height($('#ls-left').height() + 50)
-
-hideRightSidebar = () ->
-  $('#main').addClass('superwide')
-  $('#main-content').addClass('superwide')
-  $('#right-sidebar').hide()
-
-showRightSidebar = () ->
-  $('#main').removeClass('superwide')
-  $('#main-content').removeClass('superwide')
-  $('#right-sidebar').show()
-
-
 getHome = () ->
   window.history.pushState('', document.title, window.location.pathname)
   currentGroup = 0
   currentPost = 0
   currentUser = 0
-  $("#main-content").html('')
-  $("#right-sidebar-content").html('')
-  showRightSidebar()
+  $("#container").html('')
   getGroupList()
   getShareForm()
   getPosts()
-  getUpcomingEvents()
+  $container = $('#posts')
+  $container.imagesLoaded = () ->
+    $container.masonry({ itemSelector : '.post', columnWidth : 330 })
+  #getUpcomingEvents()
 
 $ ->
   getHome()
