@@ -89,6 +89,10 @@ getPosts = () ->
   $.get(url, {}, (html) ->
     $('<div id="posts-area"></div>').appendTo("#container")
     $('#posts-area').html(html)
+    $container = $('#posts')
+    $container.imagesLoaded( () ->
+      $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
+    )
   )
 
 getComments = (post_id) ->
@@ -100,7 +104,8 @@ getComments = (post_id) ->
 
 $('.comment-textarea')
   .live('click', () ->
-    $(this).height('4em')
+    $(this).height('48px')
+    $('#posts').masonry('reload')
     $(this).autogrow()
     $("#comment_button_#{$(this).attr('post_id')}").show()
     $("#comment-cancel-#{$(this).attr('post_id')}").show()
@@ -142,7 +147,9 @@ $('.comment-cancel')
     url = url + latestPostId
   $.get(url, {}, (html) ->
     $('#new-posts-message').remove()
-    $(html).prependTo('#posts-area')
+    $container = $('#posts')
+    #$(html).prependTo('#posts-area')
+    $container.prepend(html).masonry('reload')
     $('.hide-me.post').fadeIn()
   )
 
@@ -225,6 +232,14 @@ getUpcomingEvents = () ->
     $('#right-sidebar-content').append(html)
   )
 
+getSidebar = () ->
+  url = '/groups/list'
+  $.get(url, {}, (html) ->
+    $('<div id="sidebar"></div>').appendTo("#container")
+    $('#sidebar').html(html)
+  )
+
+
 getHome = () ->
   window.history.pushState('', document.title, window.location.pathname)
   currentGroup = 0
@@ -234,9 +249,7 @@ getHome = () ->
   getGroupList()
   getShareForm()
   getPosts()
-  $container = $('#posts')
-  $container.imagesLoaded = () ->
-    $container.masonry({ itemSelector : '.post', columnWidth : 330 })
+  getSidebar()
   #getUpcomingEvents()
 
 $ ->

@@ -9,8 +9,8 @@
 
 puts "Creating 2 users..."
 User.create([
-  { :username => 'ion', :first_name => 'Jonathan', :last_name => 'Hernandez', :occupation => 'Coordinador y Desarrollador', :email => 'ion@cimav.edu.mx', :birth_date => '1977-10-23', :start_date => '2003-10-16'}, 
-  { :username => 'claudia.lopez', :first_name => 'Claudia', :last_name => 'Lopez', :occupation => 'Soporte Técnico', :email => 'claudia.lopez@cimav.edu.mx', :birth_date => '1977-03-15', :start_date => '2000-01-01'}
+  { :username => 'ion', :first_name => 'Jonathan', :last_name => 'Hernandez Montes', :occupation => 'Coordinador y Desarrollador', :email => 'ion@cimav.edu.mx', :birth_date => '1977-10-23', :start_date => '2003-10-16', :display_name => 'Jonathan Hernández'}, 
+  { :username => 'claudia.lopez', :first_name => 'Claudia', :last_name => 'Lopez', :occupation => 'Soporte Técnico', :email => 'claudia.lopez@cimav.edu.mx', :birth_date => '1977-03-15', :start_date => '2000-01-01', :display_name => 'Claudia López'}
 ])
 
 puts "Groups..."

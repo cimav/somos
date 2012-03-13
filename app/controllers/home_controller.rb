@@ -3,5 +3,6 @@ class HomeController < ApplicationController
   respond_to :html, :json
 
   def index
+    @user = User.find(session[:user].id)
   end
 end

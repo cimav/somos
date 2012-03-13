@@ -1,4 +1,6 @@
 .clearfix
+.post-text
+  = post.content
 .post-files
   - post.post_file.each do |f|
     - if File.extname(f.file.to_s) == ''

@@ -1,30 +1,27 @@
 #topbar {
-  height: 78px;
+  height: 46px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10000;
   overflow: visible;
-  background-color: #fcfcfc;
+  background-color: $bg-color;
   border-bottom: 1px solid $light-grey;
-  @include shadow(4px,0px,0px,#999);
+  @include shadow(8px,0px,0px,#ddd);
 
   #top-bar-full {
     height: 46px;
-    border-bottom: 1px solid $light-grey;
     #topbar-content {
       width: $container-width;
       margin: 0 auto;
       a {
-        color: $top-color;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
       }
 
       #brand {
         float: left;
         font-size: 20px;
-        color: $top-color;
         margin-top: 2px;
         margin-left: 0px;
         cursor: pointer;
@@ -32,9 +29,10 @@
 
       #search-box {
         width: $search-box-width;
-        float: left;
-        margin-top: 8px;
-        margin-left: 10px;
+        float: right;
+        border-right: 1px solid $line-color;
+        margin: 8px 10px;
+        padding-right: 10px;
         input {
           background-color: rgba(255,255,255,0.5);
           border: 1px solid rgba(0, 0, 0, 0.25);
@@ -44,23 +42,34 @@
       }
  
       #user-area {
+        margin-top: 4px;
         float: right;
-        color: $top-color;
-        #account {
-          margin-top: 8px;
+        #user-display {
+          float: left;
+        }
+        #user-name {
+          float:left;
+          margin: 8px 5px;
+        }
+        #user-arrow {
+          margin-left: 5px;
+          @include opacity(0.2);
         }
       }
     }
   }
 
-  #nav-full {
-    clear: both;
-    border-top: 1px solid #fff;
-    #nav {
-      height: 30px;
-      text-align: center;
-      width: $container-width;
-      margin: 0 auto;
+  #nav {
+    float: left;
+    width: $post-width;
+    margin: 12px 10px 0px 10px;;
+    #nav-title { 
+      color: $strong-color;
+      font-weight: bold;
+      font-size: 22px;
+      img { 
+        margin-bottom: 3px;
+      }
     }
   }
 }

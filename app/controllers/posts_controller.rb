@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_filter :auth_required
+  before_filter :auth_required, :set_global_vars
   respond_to :html, :json
+
 
   def share_form
     @post = Post.new
