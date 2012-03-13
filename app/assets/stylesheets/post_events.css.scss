@@ -1,6 +1,13 @@
 // Place all the styles related to the PostEvents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#upcoming-events {
+  #upcoming-events-inner {
+    margin: 10px;
+  }
+}
+
 .post-event {
   min-height: 60px;
   margin: 5px 0;

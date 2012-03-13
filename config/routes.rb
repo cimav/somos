@@ -21,6 +21,7 @@ Somos::Application.routes.draw do
 
   resources :comments
 
+  match 'users/upcoming_birthdays' => 'users#upcoming_birthdays'
   resources :users
 
   resources :pages

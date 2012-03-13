@@ -110,3 +110,23 @@
     }
   }
 }
+
+#upcoming-birthdays {
+  #upcoming-birthdays-inner {
+    margin: 10px;
+  }
+}
+
+.upcoming-birthday {
+  margin: 5px 0;
+  .birthday-display {
+    float: left;
+  }
+  .birthday-user {
+    margin-left: 44px;
+  }
+  .birthday-date {
+    margin-left: 44px;
+  }
+}
+

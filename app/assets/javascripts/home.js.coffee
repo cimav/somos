@@ -87,7 +87,7 @@ getPosts = () ->
   if currentGroup > 0
     url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
-    $('<div id="posts-area"></div>').appendTo("#container")
+    #$('<div id="posts-area"></div>').appendTo("#container")
     $('#posts-area').html(html)
     $container = $('#posts')
     $container.imagesLoaded( () ->
@@ -229,28 +229,32 @@ $('#brand')
 getUpcomingEvents = () ->
   url = '/events/upcoming'
   $.get(url, {}, (html) ->
-    $('#right-sidebar-content').append(html)
+    $('#upcoming-events').append(html)
   )
 
-getSidebar = () ->
-  url = '/groups/list'
+getUpcomingBirthdays = () ->
+  url = '/users/upcoming_birthdays'
   $.get(url, {}, (html) ->
-    $('<div id="sidebar"></div>').appendTo("#container")
-    $('#sidebar').html(html)
+    $('#upcoming-birthdays').append(html)
   )
 
+
+
+$('#share-block')
+  .live('click', () ->
+    getShareForm()
+  )
 
 getHome = () ->
   window.history.pushState('', document.title, window.location.pathname)
   currentGroup = 0
   currentPost = 0
   currentUser = 0
-  $("#container").html('')
+  #$("#container").html('')
   getGroupList()
-  getShareForm()
   getPosts()
-  getSidebar()
-  #getUpcomingEvents()
+  getUpcomingEvents()
+  getUpcomingBirthdays()
 
 $ ->
   getHome()

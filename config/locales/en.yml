@@ -2,6 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  date:
+    formats:
+      month_day: "%B %e"
   save: "Save"
   save_wait: "Saving..."
   edit: "Edit"
@@ -38,6 +41,9 @@ en:
   event_location: "Location"
   event_link: "Link"
   upcoming_events: "Upcoming Events"
+  no_events: "There are no upcoming events at this moment"
+
+  upcoming_birthdays: "Próximos cumpleaños"
 
   members: "Members"
   
