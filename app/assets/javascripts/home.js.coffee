@@ -2,6 +2,16 @@ currentGroup = 0
 currentPost = 0
 currentUser = 0
 
+$('#nav-title').live('click', (e) ->
+  $('#groups-area').toggle()
+)
+
+$('html').click( (e) ->
+  if e.target.id != 'nav-title'
+    $('#groups-area').hide()
+)
+
+
 $('#post_post_type_id')
   .live('change', () ->
     if $(this).val() > 1
