@@ -113,12 +113,12 @@
 
 #upcoming-birthdays {
   #upcoming-birthdays-inner {
-    margin: 10px;
+    margin: 10px 10px 20px 10px;
   }
 }
 
 .upcoming-birthday {
-  margin: 5px 0;
+  margin: 10px 0 0 0;
   .birthday-display {
     float: left;
   }
@@ -127,6 +127,22 @@
   }
   .birthday-date {
     margin-left: 44px;
+  }
+}
+
+.post-birthday {
+  margin: 10px;
+  .birthday-display {
+    float: right;
+    display: block;
+    width: 48px;
+    margin-bottom: 20px;
+  } 
+  .birthday-message {
+    float: left;
+    font-weight: bold;
+    font-size: 16px;
+    width: $post-width - 78;
   }
 }
 

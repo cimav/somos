@@ -47,11 +47,12 @@ Membership.create([
 
 puts "Post types..."
 PostType.create([
-  {:name => 'Mensaje', :short_name => 'message', :share_title => 'Mensaje'},
-  {:name => 'Link', :short_name => 'link', :share_title => 'Link'},
-  {:name => 'Foto', :short_name => 'photo', :share_title => 'Foto'},
-  {:name => 'Archivos', :short_name => 'file', :share_title => 'Archivo'},
-  {:name => 'Evento', :short_name => 'event', :share_title => 'Evento'}
+  {:name => 'Mensaje', :short_name => 'message', :share_title => 'Mensaje', :category => 0},
+  {:name => 'Link', :short_name => 'link', :share_title => 'Link', :category => 0},
+  {:name => 'Foto', :short_name => 'photo', :share_title => 'Foto', :category => 0},
+  {:name => 'Archivos', :short_name => 'file', :share_title => 'Archivo', :category => 0},
+  {:name => 'Evento', :short_name => 'event', :share_title => 'Evento', :category => 0},
+  {:name => 'Cumpleaños', :short_name => 'birthday', :share_title => 'Cumpleaños', :category => 1}
 ])
 
 
