@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $('#edit-page-button')
   .live('click', () ->
-    $('#group-page').hide()
+    $('#group-page-contents').hide()
     $('#page-toolbar').hide()
     $('#edit-page').fadeIn()
   )
@@ -13,9 +13,9 @@ $('#edit_page_form')
       # TODO: Display saving spinner
     )
     .live("ajax:success", (evt, data, status, xhr) ->
-      res = $.parseJSON(xhr.responseText);
-      $("#page_link_" + res['id']).html(res['title']);
-      $("#page_link_" + res['id']).attr('short_name', res['short_name']);
+      res = $.parseJSON(xhr.responseText)
+      $("#page_link_" + res['id']).html(res['title'])
+      $("#page_link_" + res['id']).attr('short_name', res['short_name'])
       $("#page_link_" + res['id']).click();
       $('#edit-page').hide()
       $('#group-page').show()
@@ -27,4 +27,3 @@ $('#edit_page_form')
     .live("ajax:error", (evt, xhr, status, error) ->
       # TODO: Display errors
     )
-

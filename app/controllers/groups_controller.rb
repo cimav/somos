@@ -19,7 +19,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
+    @group = Group.where(:short_name => params[:short_name]).first || not_found
+    @user = User.find(session[:user].id)
+    @members = Membership.where(:group_id => @group.id)
     render :layout => false
   end
 

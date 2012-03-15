@@ -4,6 +4,7 @@
 
 #edit-page {
   display: none;  
+  width: ($post-width * 2) - 20;
 }
 
 .edit-page-title {
@@ -20,7 +21,7 @@
     font-size: 18px;
     color: $black;
     font-weight: bold;
-    width: 100%;
+    width: ($post-width * 2) - 30;
   }
 }
 
@@ -29,8 +30,13 @@
 }
 
 #page-editor {
-  height: 480px;
+  height: 500px;
+  width: ($post-width * 2) - 30;
   padding: 10px;
+}
+
+#page-editor_tbl {
+  width: ($post-width * 2) - 30;
 }
 
 #page-toolbar {
@@ -52,5 +58,8 @@
 
 #save-page-button {
   float: right;
-  margin-top: 10px;
+  margin: 10px 0 40px 0;
 }
+
+
+

@@ -10,10 +10,9 @@
       .post-display
         = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
       .post-user
-        = link_to post.user.display_name, {:controller => "users", :action => "profile", :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}"
+        = link_to post.user.display_name, {:controller => 'users', :action => 'profile', :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}"
       - if post.group_id > 0 && params[:group_id].blank?
-        = link_to post.group, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :short_name => "#{post.group.short_name}", :group_id => "#{post.group.id}" do
-          .post-group= post.group.name
+        .post-group= link_to post.group.name, {:controller => 'groups', :action => 'show', :short_name => post.group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :short_name => "#{post.group.short_name}", :group_id => "#{post.group.id}"
       .post-footer
         = link_to post, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}" do
           = post_date(post.created_at)

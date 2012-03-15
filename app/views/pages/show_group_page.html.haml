@@ -1,33 +1,37 @@
-%h1= @page.group.name
-
 #group-page  
-  %h2= @page.title
-  .content
-    = raw(@page.content)
+  #group-page-inner
+    #group-page-contents
+      %h2= @page.title
+      .content
+        = raw(@page.content)
 
-- membership = @user.memberships.where(:group_id => @page.group.id).first
-- if !membership.blank?
-  #page-toolbar
-    %a#edit-page-button= image_tag "icons/edit.png", :title => (t :edit_this_page)
-  #edit-page
-    = form_for(@page, :remote => true, :html => {:id => 'edit_page_form',:multipart => true}) do |f|
-      .edit-page-title= f.text_field :title
-      = f.text_area :content, :id => "page-editor"
-      #save-page-button
-        = submit_tag (t :save), :disable_with => (t :save_wait), :id => "page-save-submit"
+    - membership = @user.memberships.where(:group_id => @page.group.id).first
+    - if !membership.blank?
+      #page-toolbar
+        %a#edit-page-button= image_tag "icons/edit.png", :title => (t :edit_this_page)
+      #edit-page
+        = form_for(@page, :remote => true, :html => {:id => 'edit_page_form',:multipart => true}) do |f|
+          .edit-page-title= f.text_field :title
+          = f.text_area :content, :id => "page-editor"
+          #save-page-button
+            = submit_tag (t :save), :disable_with => (t :save_wait), :id => "page-save-submit"
 
 :javascript
 $(function() {
   $('#page-editor').tinymce({
+    width: "604",
+    height: "400",
+    content_css: "assets/application.css",
     theme: 'advanced',
-    theme_advanced_buttons1 : "undo,redo,|,bold,italic,underline,strikethrough,|,sub,sup,|,link,unlink,|,numlist,bullist,justifyleft,justifycenter,justifyright,|,table,removeformat,code",
+    theme_advanced_font_sizes : "14px,16px,18px,20px,28px",
+    theme_advanced_buttons1 : "undo,redo,|,bold,italic,underline,strikethrough,|,sub,sup,|,link,unlink,|,numlist,bullist,justifyleft,justifycenter,justifyright,|,table",
     theme_advanced_buttons2 : "",
     theme_advanced_buttons3 : "",
     theme_advanced_buttons4 : "",
     theme_advanced_toolbar_location : "top",
     theme_advanced_toolbar_align : "left",
     theme_advanced_statusbar_location : "bottom",
-    theme_advanced_resizing : false
+    theme_advanced_resizing : false,
    });
 }
 

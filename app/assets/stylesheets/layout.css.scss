@@ -58,8 +58,8 @@
 
   #nav {
     float: left;
-    width: $post-width;
-    margin: 12px 10px 0px 10px;;
+    width: $container-width / 2;
+    margin: 12px 10px 0px 10px;
     #nav-title { 
       color: $strong-color;
       font-weight: bold;
@@ -71,6 +71,9 @@
       }
       &:hover img {
         @include opacity(1);
+      }
+      #nav-title-span {
+        white-space: nowrap;
       }
     }
   }

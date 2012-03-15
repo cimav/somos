@@ -4,5 +4,8 @@ class HomeController < ApplicationController
 
   def index
     @user = User.find(session[:user].id)
+    if request.xhr?
+      render :layout => false
+    end
   end
 end

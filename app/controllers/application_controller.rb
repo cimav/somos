@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   def set_global_vars 
     user = User.find(session[:user].id)
     @current_user_pic = user.image_url(:small).to_s

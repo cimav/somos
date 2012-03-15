@@ -36,7 +36,15 @@ class PagesController < ApplicationController
     page.group_id = params[:group_id]
     page.user_id = user.id
     page.save
-    render :inline => "TODO"
+    respond_with do |format|
+      format.html do
+        if request.xhr?
+          json = {}
+          json[:id] = page.id
+          render :json => json
+        end
+      end
+    end
   end
 
   def update

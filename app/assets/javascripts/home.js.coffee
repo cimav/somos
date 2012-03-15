@@ -33,7 +33,7 @@ $('#share-message')
       $('#share-button').show()
       $('#share-close').show()
       $('#post_content').autogrow()
-      $('#to_groups').tokenInput("/groups/search")
+      $('#to_groups').tokenInput("/g/search")
       $('#post_content').focus()
     )
   )
@@ -87,7 +87,7 @@ getShareForm = () ->
   )
 
 getGroupList = () ->
-  url = '/groups/list'
+  url = '/g/list'
   $.get(url, {}, (html) ->
     $('#nav').html(html)
   )
@@ -186,6 +186,14 @@ $('.get-group')
     currentGroup = $(this).attr('group_id')
     $('#container').html(status);
     $("#li_group_#{currentGroup}").addClass('selected')
+    title = $("#group_link_#{currentGroup}").html()
+    $('#nav-title-span').html(title)
+    $('#nav-title-span').removeClass('font-20')
+    $('#nav-title-span').removeClass('font-22')
+    if (title.length > 20) 
+      $('#nav-title-span').addClass('font-16')
+    else
+      $('#nav-title-span').addClass('font-22')
     getPosts()
     getGroupBrick(currentGroup)
   )
@@ -193,19 +201,41 @@ $('.get-group')
 $('.get-page')
   .live('ajax:success', (data, status, xhr) ->
     window.location.hash = '#!/g/' + $(this).attr('group_name') + '/' + $(this).attr('short_name')
-    #$("#li_group_#{currentGroup}").removeClass('selected')
-    #currentGroup = $(this).attr('group_id')
-    $('#container').html(status);
-    #$("#li_group_#{currentGroup}").addClass('selected')
+    $('.page-title').removeClass('selected')
+    $('#posts-area').html(status);
+    $('#li_page_' + $(this).attr('page_id')).addClass('selected')
   )
+
+$('#add_page')
+    .live("ajax:beforeSend", (evt, xhr, settings) ->
+      # TODO: Display spinner
+    )
+    .live("ajax:success", (evt, data, status, xhr) ->
+      res = $.parseJSON(xhr.responseText)
+      url = '/g/' + currentGroup + '/page_list'
+      $.get(url, {}, (html) ->
+        $("#pages-list").html(html)
+        $("#page_link_" + res['id']).click()
+      )
+      $('#edit-page').hide()
+      $('#group-page').show()
+      $('#page-toolbar').show()
+    )
+    .live('ajax:complete', (evt, xhr, status) ->
+      # Complete
+    )
+    .live("ajax:error", (evt, xhr, status, error) ->
+      # TODO: Display errors
+    )
+
 
 
 getGroupBrick = (group) ->
   #$("#right-sidebar-content").html('')
-  #url = '/groups/' + group + '/members'
+  #url = '/g/' + group + '/members'
   #$.get(url, {}, (html) ->
   #  $("#right-sidebar-content").append(html)
-  #  url = '/groups/' + group + '/page_list'
+  #  url = '/g/' + group + '/page_list'
   #  $.get(url, {}, (html) ->
   #    $("#right-sidebar-content").append(html)
   #  )
@@ -228,12 +258,12 @@ $('.get-user')
 
 $('#get-home')
   .live('click', () ->
-    getHome()  
+    getHome(true)  
   )
 
 $('#brand')
   .live('click', () ->
-    getHome()  
+    getHome(true)  
   )
 
 getUpcomingEvents = () ->
@@ -255,19 +285,32 @@ $('#share-block')
     getShareForm()
   )
 
-getHome = () ->
-  window.history.pushState('', document.title, window.location.pathname)
-  currentGroup = 0
-  currentPost = 0
-  currentUser = 0
-  #$("#container").html('')
-  getGroupList()
+
+populateHome = () ->
+  $('.group-title').removeClass('selected')
+  $('.home-link').addClass('selected')
+  $('#nav-title-span').html($('#get-home').html())
   getPosts()
   getUpcomingEvents()
   getUpcomingBirthdays()
 
+getHome = (reload) ->
+  #window.history.pushState('', document.title, window.location.pathname)
+  currentGroup = 0
+  currentPost = 0
+  currentUser = 0
+  if (reload) 
+    url = '/home/index'
+    $.get(url, {}, (html) ->
+      $("#container").html(html)
+      populateHome()
+    )
+  else
+    populateHome()
+
 $ ->
-  getHome()
+  getGroupList()
+  getHome(false)
 
 recentTimer = setInterval(getRecentPostsCounter, 10000)
 
