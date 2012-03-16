@@ -64,7 +64,6 @@
       color: $strong-color;
       font-weight: bold;
       font-size: 22px;
-      cursor: pointer;
       img { 
         margin-bottom: 3px;
         @include opacity(0.5);
@@ -74,6 +73,7 @@
       }
       #nav-title-span {
         white-space: nowrap;
+        cursor: pointer;
       }
     }
   }

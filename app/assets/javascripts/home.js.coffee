@@ -2,12 +2,12 @@ currentGroup = 0
 currentPost = 0
 currentUser = 0
 
-$('#nav-title').live('click', (e) ->
+$('#nav-title-span').live('click', (e) ->
   $('#groups-area').toggle()
 )
 
 $('html').click( (e) ->
-  if e.target.id != 'nav-title'
+  if e.target.id != 'nav-title-span'
     $('#groups-area').hide()
 )
 

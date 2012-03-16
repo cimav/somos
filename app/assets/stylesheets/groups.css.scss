@@ -3,11 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #groups-area {
-  z-index: 999999;
   display: none;
   background-color: $bg-color;
   border: 1px solid $line-color;
-  margin-top: 16px;
+  position: absolute;
+  top: 46px;
   padding: 10px;
   ul.group-types {
     li {
