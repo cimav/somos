@@ -11,7 +11,6 @@ $('html').click( (e) ->
     $('#groups-area').hide()
 )
 
-
 $('#post_post_type_id')
   .live('change', () ->
     if $(this).val() > 1
@@ -83,7 +82,9 @@ getShareForm = () ->
   url = '/posts/share_form'
   $.get(url, {}, (html) ->
     $('<div id="share-area"></div>').prependTo("#container")
-    $('#share-area').prepend(html)
+    $('#share-area').append(html)
+    $("#share-form").dialog({ autoOpen: false, width: 640, height: 450, modal:true })
+    $("#share-form").dialog('open')
   )
 
 getGroupList = () ->
@@ -313,5 +314,3 @@ $ ->
   getHome(false)
 
 recentTimer = setInterval(getRecentPostsCounter, 10000)
-
-

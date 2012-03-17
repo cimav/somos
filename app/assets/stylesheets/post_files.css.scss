@@ -2,19 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .post-files {
-   margin-top: 5px;
+   margin: 10px;
   .file-entry {
      height: 30px;
-     float: left; 
-     width: 40%;
      padding-left: 35px;
      padding-top: 5px;
      background: transparent url(/assets/mime/unknown.png) no-repeat;
      white-space: pre;
      overflow: hidden;
      margin-right: 5px;
-     &:hover {
-       background-color: $nav-hover-color;
-     }
   }
 }
