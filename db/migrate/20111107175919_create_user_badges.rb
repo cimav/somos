@@ -6,8 +6,8 @@ class CreateUserBadges < ActiveRecord::Migration
       t.references :post
       t.timestamps
     end
-    add_index("user_badges", "user_id")
-    add_index("user_badges", "badge_id")
-    add_index("user_badges", "post_id")
+    add_index(:user_badges, :user_id)
+    add_index(:user_badges, :badge_id)
+    add_index(:user_badges, :post_id)
   end
 end

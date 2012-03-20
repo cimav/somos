@@ -7,12 +7,19 @@
     = csrf_meta_tags
   %body
     #topbar
-      #topbar-content
-        #brand Somos
-        #nav 
-        #searchbox
-        #user-area
-          #account= session[:user].email
+      #top-bar-full
+        #topbar-content
+          #brand= image_tag "logo.png"
+          #nav
+          #user-area
+            - user = User.find(session[:user].id)
+            #user-display= image_tag user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
+            #user-name
+              = user.display_name 
+              = image_tag "down-arrow.png", :id => "user-arrow"
+          #search-box
+            = form_tag '/search/', :id => 'live-search', :method => 'get', :remote => true do
+              = text_field_tag :q, nil, :id => 'search-input', :placeholder => 'Busqueda'
     #container
       #flash-notice
       = yield

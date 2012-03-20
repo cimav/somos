@@ -78,6 +78,7 @@ es:
       default: "%d-%m-%Y"
       short: "%b %e"
       long: "%B %e, %Y"
+      month_day: "%e de %B"
 
     day_names: [Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado]
     abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
@@ -164,7 +165,8 @@ es:
   home_link: "Inicio"
   share: "Compartir"
   share_as: "Compartir como"
-  share_to_the_community: "Compartir a la comunidad..."
+  share_to: "Compartir a"
+  share_to_the_community: "Compartir con la comunidad..."
   share_wait: "Publicando..."
 
   posts: "Publicaciones"
@@ -191,6 +193,9 @@ es:
   event_location: "Ubicación"
   event_link: "Liga al evento"
   upcoming_events: "Próximos Eventos"
+  no_events: "No hay próximos eventos en este momento"
+
+  upcoming_birthdays: "Próximos Cumpleaños"
   
   members: "Miembros"
 
@@ -200,3 +205,5 @@ es:
   edit_title: "Editar título"
   page_updated: "Página actualizada"
   cant_update_page: "No se puede actualizar la página"
+
+  today: "Hoy"

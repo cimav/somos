@@ -1,7 +1,9 @@
 .post-photos{:id => "gallery-#{post.id}"}
   - post.post_photo.each do |f|
     %a{:href => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => 'large', :filename => File.basename(f.photo.to_s))}
-      %img{:src => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => 'square', :filename => File.basename(f.photo.to_s)), :width => 75, :height => 75}
+      %img{:src => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => 'small', :filename => File.basename(f.photo.to_s)), :width => '100%'}
+.post-text
+  = post.content
 
 :javascript
   $(function() {

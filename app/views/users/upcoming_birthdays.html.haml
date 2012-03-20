@@ -1,0 +1,14 @@
+.post
+  #upcoming-birthdays-inner
+    %h3= t :upcoming_birthdays
+    - @users.each do |user|
+      .upcoming-birthday
+        .birthday-display= image_tag user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
+        .birthday-user
+          = link_to user.display_name, {:controller => "users", :action => "profile", :username => "#{user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :username => "#{user.username}"
+        .birthday-date
+          - if user.birth_date.day == Date.today.day && user.birth_date.month == Date.today.month
+            .birthday-today= t :today
+          - else
+            = "#{l user.birth_date, :format => :month_day}"
+

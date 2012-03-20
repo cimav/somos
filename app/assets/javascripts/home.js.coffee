@@ -2,6 +2,15 @@ currentGroup = 0
 currentPost = 0
 currentUser = 0
 
+$('#nav-title-span').live('click', (e) ->
+  $('#groups-area').toggle()
+)
+
+$('html').click( (e) ->
+  if e.target.id != 'nav-title-span'
+    $('#groups-area').hide()
+)
+
 $('#post_post_type_id')
   .live('change', () ->
     if $(this).val() > 1
@@ -19,9 +28,11 @@ $('#share-message')
     $('#share-active').slideDown('fast', ->
       $('#share-type').show()
       $('#share-as').show()
+      $('#share-to').show()
       $('#share-button').show()
       $('#share-close').show()
       $('#post_content').autogrow()
+      $('#to_groups').tokenInput("/g/search")
       $('#post_content').focus()
     )
   )
@@ -70,21 +81,16 @@ getPost = (id) ->
 getShareForm = () ->
   url = '/posts/share_form'
   $.get(url, {}, (html) ->
-    $('<div id="share-area"></div>').prependTo("#main-content")
-    $('#share-area').prepend(html)
+    $('<div id="share-area"></div>').prependTo("#container")
+    $('#share-area').append(html)
+    $("#share-form").dialog({ autoOpen: false, width: 640, height: 450, modal:true })
+    $("#share-form").dialog('open')
   )
 
 getGroupList = () ->
-  url = '/groups/list'
+  url = '/g/list'
   $.get(url, {}, (html) ->
-    $('#ls-left').html(html)
-    $lsb = $("#left-sidebar-content")
-    #if parseInt($lsb.css('left'),10) == 0
-    $lsb.animate({
-      left: 0
-    })
-    #end
-    adjustLeftSidebarHeight()
+    $('#nav').html(html)
   )
 
 getPosts = () -> 
@@ -92,8 +98,12 @@ getPosts = () ->
   if currentGroup > 0
     url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
-    $('<div id="posts-area"></div>').appendTo("#main-content")
+    #$('<div id="posts-area"></div>').appendTo("#container")
     $('#posts-area').html(html)
+    $container = $('#posts')
+    $container.imagesLoaded( () ->
+      $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
+    )
   )
 
 getComments = (post_id) ->
@@ -105,7 +115,8 @@ getComments = (post_id) ->
 
 $('.comment-textarea')
   .live('click', () ->
-    $(this).height('4em')
+    $(this).height('48px')
+    $('#posts').masonry('reload')
     $(this).autogrow()
     $("#comment_button_#{$(this).attr('post_id')}").show()
     $("#comment-cancel-#{$(this).attr('post_id')}").show()
@@ -147,7 +158,9 @@ $('.comment-cancel')
     url = url + latestPostId
   $.get(url, {}, (html) ->
     $('#new-posts-message').remove()
-    $(html).prependTo('#posts-area')
+    $container = $('#posts')
+    #$(html).prependTo('#posts-area')
+    $container.prepend(html).masonry('reload')
     $('.hide-me.post').fadeIn()
   )
 
@@ -172,38 +185,68 @@ $('.get-group')
     window.location.hash = '#!/g/' + $(this).attr('short_name')
     $("#li_group_#{currentGroup}").removeClass('selected')
     currentGroup = $(this).attr('group_id')
-    $('#main-content').html(status);
+    $('#container').html(status);
     $("#li_group_#{currentGroup}").addClass('selected')
+    title = $("#group_link_#{currentGroup}").html()
+    $('#nav-title-span').html(title)
+    $('#nav-title-span').removeClass('font-20')
+    $('#nav-title-span').removeClass('font-22')
+    if (title.length > 20) 
+      $('#nav-title-span').addClass('font-16')
+    else
+      $('#nav-title-span').addClass('font-22')
     getPosts()
-    getGroupSidebar(currentGroup)
+    getGroupBrick(currentGroup)
   )
 
 $('.get-page')
   .live('ajax:success', (data, status, xhr) ->
     window.location.hash = '#!/g/' + $(this).attr('group_name') + '/' + $(this).attr('short_name')
-    #$("#li_group_#{currentGroup}").removeClass('selected')
-    #currentGroup = $(this).attr('group_id')
-    $('#main-content').html(status);
-    #$("#li_group_#{currentGroup}").addClass('selected')
+    $('.page-title').removeClass('selected')
+    $('#posts-area').html(status);
+    $('#li_page_' + $(this).attr('page_id')).addClass('selected')
   )
 
-
-getGroupSidebar = (group) ->
-  $("#right-sidebar-content").html('')
-  url = '/groups/' + group + '/members'
-  $.get(url, {}, (html) ->
-    $("#right-sidebar-content").append(html)
-    url = '/groups/' + group + '/page_list'
-    $.get(url, {}, (html) ->
-      $("#right-sidebar-content").append(html)
+$('#add_page')
+    .live("ajax:beforeSend", (evt, xhr, settings) ->
+      # TODO: Display spinner
     )
-  )
+    .live("ajax:success", (evt, data, status, xhr) ->
+      res = $.parseJSON(xhr.responseText)
+      url = '/g/' + currentGroup + '/page_list'
+      $.get(url, {}, (html) ->
+        $("#pages-list").html(html)
+        $("#page_link_" + res['id']).click()
+      )
+      $('#edit-page').hide()
+      $('#group-page').show()
+      $('#page-toolbar').show()
+    )
+    .live('ajax:complete', (evt, xhr, status) ->
+      # Complete
+    )
+    .live("ajax:error", (evt, xhr, status, error) ->
+      # TODO: Display errors
+    )
+
+
+
+getGroupBrick = (group) ->
+  #$("#right-sidebar-content").html('')
+  #url = '/g/' + group + '/members'
+  #$.get(url, {}, (html) ->
+  #  $("#right-sidebar-content").append(html)
+  #  url = '/g/' + group + '/page_list'
+  #  $.get(url, {}, (html) ->
+  #    $("#right-sidebar-content").append(html)
+  #  )
+  #)
 
 $('.get-post') 
   .live('ajax:success', (data, status, xhr) ->
     window.location.hash = '#!/p/' + $(this).attr('post_id')
     currentPost = $(this).attr('post_id')
-    $('#main-content').html(status);
+    $('#container').html(status);
   )
 
 $('.get-user')
@@ -211,66 +254,63 @@ $('.get-user')
     username =  $(this).attr('username')
     window.location.hash = '#!/' + username
     currentUsername = username
-    $('#main-content').html(status)
-    url = '/' + username + '/sidebar'
-    $.get(url, {}, (html) ->
-      hideRightSidebar()
-      $('#ls-right').html(html)
-      $lsb = $("#left-sidebar-content")
-      if parseInt($lsb.css('left'),10) == 0
-        $lsb.animate({
-          #left: if parseInt($lsb.css('left'),10) == 0 then -($lsb.outerWidth()/2) else 0
-          left: -($lsb.outerWidth()/2)
-        })
-      end
-    )
+    $('#container').html(status)
   )
 
 $('#get-home')
   .live('click', () ->
-    getHome()  
+    getHome(true)  
   )
 
 $('#brand')
   .live('click', () ->
-    getHome()  
+    getHome(true)  
   )
 
 getUpcomingEvents = () ->
   url = '/events/upcoming'
   $.get(url, {}, (html) ->
-    $('#right-sidebar-content').append(html)
+    $('#upcoming-events').append(html)
   )
 
-adjustLeftSidebarHeight = () ->
-  $('#left-sidebar').height($('#ls-left').height() + 50)
-
-hideRightSidebar = () ->
-  $('#main').addClass('superwide')
-  $('#main-content').addClass('superwide')
-  $('#right-sidebar').hide()
-
-showRightSidebar = () ->
-  $('#main').removeClass('superwide')
-  $('#main-content').removeClass('superwide')
-  $('#right-sidebar').show()
+getUpcomingBirthdays = () ->
+  url = '/users/upcoming_birthdays'
+  $.get(url, {}, (html) ->
+    $('#upcoming-birthdays').append(html)
+  )
 
 
-getHome = () ->
-  window.history.pushState('', document.title, window.location.pathname)
+
+$('#share-block')
+  .live('click', () ->
+    getShareForm()
+  )
+
+
+populateHome = () ->
+  $('.group-title').removeClass('selected')
+  $('.home-link').addClass('selected')
+  $('#nav-title-span').html($('#get-home').html())
+  getPosts()
+  getUpcomingEvents()
+  getUpcomingBirthdays()
+
+getHome = (reload) ->
+  #window.history.pushState('', document.title, window.location.pathname)
   currentGroup = 0
   currentPost = 0
   currentUser = 0
-  $("#main-content").html('')
-  showRightSidebar()
-  getGroupList()
-  getShareForm()
-  getPosts()
-  getUpcomingEvents()
+  if (reload) 
+    url = '/home/index'
+    $.get(url, {}, (html) ->
+      $("#container").html(html)
+      populateHome()
+    )
+  else
+    populateHome()
 
 $ ->
-  getHome()
+  getGroupList()
+  getHome(false)
 
 recentTimer = setInterval(getRecentPostsCounter, 10000)
-
-

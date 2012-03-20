@@ -1,39 +1,79 @@
 #topbar {
-  height: 34px;
+  height: 46px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10000;
   overflow: visible;
-  background-color: $top-gradient-from;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  @include gradient($top-gradient-from, $top-gradient-to);
-  @include shadow(4px,0px,0px,#999);
+  background-color: $bg-color;
+  border-bottom: 1px solid $light-grey;
+  @include shadow(8px,0px,0px,#ddd);
 
-  #topbar-content {
-    width: $container-width;
-    margin: 0 auto;
-    a {
-      color: $top-color;
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    }
+  #top-bar-full {
+    height: 46px;
+    #topbar-content {
+      width: $container-width;
+      margin: 0 auto;
 
-    #brand {
-      float: left;
-      font-size: 20px;
-      color: $top-color;
-      margin-top: 6px;
-      margin-left: 10px;
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-      cursor: pointer;
-    }
+      #brand {
+        float: left;
+        font-size: 20px;
+        margin-top: 2px;
+        margin-left: 0px;
+        cursor: pointer;
+      }
+
+      #search-box {
+        width: $search-box-width;
+        float: right;
+        border-right: 1px solid $line-color;
+        margin: 8px 10px;
+        padding-right: 10px;
+        input {
+          background-color: rgba(255,255,255,0.5);
+          border: 1px solid rgba(0, 0, 0, 0.25);
+          height: 18px;
+          width: $search-box-width - 10;
+        }
+      }
  
-    #user-area {
-      float: right;
-      color: $top-color;
-      #account {
-        margin-top: 8px;
+      #user-area {
+        margin-top: 4px;
+        float: right;
+        #user-display {
+          float: left;
+        }
+        #user-name {
+          float:left;
+          margin: 8px 5px;
+        }
+        #user-arrow {
+          margin-left: 5px;
+          @include opacity(0.2);
+        }
+      }
+    }
+  }
+
+  #nav {
+    float: left;
+    width: $container-width / 2;
+    margin: 12px 10px 0px 10px;
+    #nav-title { 
+      color: $strong-color;
+      font-weight: bold;
+      font-size: 22px;
+      img { 
+        margin-bottom: 3px;
+        @include opacity(0.5);
+      }
+      &:hover img {
+        @include opacity(1);
+      }
+      #nav-title-span {
+        white-space: nowrap;
+        cursor: pointer;
       }
     }
   }
@@ -42,58 +82,5 @@
 #container {
   width: $container-width;
   margin: 0 auto;
-  margin-top: 40px;
-  #left-sidebar {
-   margin-top: 10px;
-   width: $left-sidebar-width;
-   position: relative;
-   float: left;
-   overflow: hidden;
-   #left-sidebar-content {
-     overflow: hidden;
-     width: $left-sidebar-width * 2;
-     position: absolute;
-     left: 0px;
-     #ls-left {
-       width: $left-sidebar-width;
-       float: left;
-     } 
-     #ls-right {
-       float: right;
-       width: $left-sidebar-width;
-     }
-   }
-  }
-  #main {
-   width: $main-width;
-   //min-width: $main-width;
-   //max-width: $main-width;
-   position: relative;
-   left: $left-sidebar-width + 10;
-   #main-content {
-     position: absolute;
-     width: $main-width;
-     //min-width: $main-width;
-     //max-width: $main-width;
-     border-left: 1px solid $line-color;
-     border-right: 1px solid $line-color;
-     padding: 20px;
-   }
-  }
-  #right-sidebar {
-   position: relative;
-   width: $right-sidebar-width;
-   #right-sidebar-content {
-     left: $left-sidebar-width + $main-width + 50;
-     width: $right-sidebar-width;
-     position: absolute;
-     padding: 10px;
-   }
-  }
+  margin-top: 80px;
 }
-
-.superwide {
-  width: ($main-width + $right-sidebar-width - 30) !important;
-  padding-right: 30px;
-}
-

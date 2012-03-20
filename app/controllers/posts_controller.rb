@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_filter :auth_required
+  before_filter :auth_required, :set_global_vars
   respond_to :html, :json
+
 
   def share_form
     @post = Post.new
@@ -16,7 +17,7 @@ class PostsController < ApplicationController
   end
 
   def recent_query (group_id, id)
-    posts = Post.order("created_at DESC").where("status = 1 AND page_id = 0")
+    posts = Post.order("created_at DESC").where("status = 1")
 
     if !group_id.blank?
       posts = posts.where("group_id = :group_id", {:group_id => group_id})
@@ -76,6 +77,13 @@ class PostsController < ApplicationController
             json = {}
             json[:id] = @post.id
             json[:flash] = flash
+            # Save groups to
+            params[:to_groups].split(',').each do |g|
+              pg = PostGroup.new
+              pg.post_id = @post.id
+              pg.group_id = g
+              pg.save
+            end
             render :json => json
           else
             @post_type = PostType.find(@post.post_type_id)

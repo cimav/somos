@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   respond_to :html, :json
 
   def list
-    @groups = GroupType.where(:can_publish => 1).order('position')
+    @groups = GroupType.where(:display => GroupType::STREAM).order('position')
     render :layout => false
   end
 
@@ -19,8 +19,24 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
+    @group = Group.where(:short_name => params[:short_name]).first || not_found
+    @user = User.find(session[:user].id)
+    @members = Membership.where(:group_id => @group.id)
     render :layout => false
+  end
+
+  def search 
+    @groups = Group.where("name LIKE :n", {:n => "%#{params[:q]}%"}).order("name")
+    respond_with do |format|
+      format.html do
+        if request.xhr?
+          render :json => @groups
+        end
+      end
+      format.json do
+        render :json => @groups
+      end
+    end
   end
 
 end

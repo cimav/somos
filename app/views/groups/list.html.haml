@@ -1,3 +1,6 @@
+#nav-title
+  %span#nav-title-span= t :home_link 
+  = image_tag "down-arrow.png"
 #groups-area
   %ul.group-types
     %li
@@ -9,5 +12,4 @@
         %ul.groups 
           - group_type.group.order('position').each do |group|
             %li.group-title{:id => "li_group_#{group.id}"}
-              = link_to group, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}", :group_id => "#{group.id}" do
-                = group.name
+              = link_to group.name, {:controller => 'groups', :action => :show, :short_name => group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}", :group_id => "#{group.id}"

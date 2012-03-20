@@ -33,7 +33,6 @@
       color: $black;
       padding-bottom: 10px;
       #share-type {
-        width: ($main-width - 60);
         float: left;
         display: none;
       }
@@ -60,7 +59,11 @@
       #share-as {
         display: none;
         width: 80%;
-        float: left;
+      }
+      
+      #share-to {
+        display: none;
+        width: 80%;
       }
 
       #share-button {
@@ -107,3 +110,39 @@
     }
   }
 }
+
+#upcoming-birthdays {
+  #upcoming-birthdays-inner {
+    margin: 10px 10px 20px 10px;
+  }
+}
+
+.upcoming-birthday {
+  margin: 10px 0 0 0;
+  .birthday-display {
+    float: left;
+  }
+  .birthday-user {
+    margin-left: 44px;
+  }
+  .birthday-date {
+    margin-left: 44px;
+  }
+}
+
+.post-birthday {
+  margin: 10px;
+  .birthday-display {
+    float: right;
+    display: block;
+    width: 48px;
+    margin-bottom: 20px;
+  } 
+  .birthday-message {
+    float: left;
+    font-weight: bold;
+    font-size: 16px;
+    width: $post-width - 78;
+  }
+}
+

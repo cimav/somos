@@ -1,10 +1,13 @@
 Somos::Application.routes.draw do
   root :to => 'home#index'
+  match 'home/index' => 'home#index'
 
-  match 'groups/list' => 'groups#list'
-  match 'groups/:id/members' => 'groups#members'
-  match 'groups/:id/page_list' => 'groups#page_list'
-  resources :groups
+  match 'g/list' => 'groups#list'
+  match 'g/:short_name' => 'groups#show'
+  match 'g/:id/members' => 'groups#members'
+  match 'g/:id/page_list' => 'groups#page_list'
+  match 'g/search' => 'groups#search'
+  resources :g, :controller => "groups"
 
   match 'posts/recent/counter/g/:group_id(/:id(.:format))' => 'posts#recent_counter'
   match 'posts/recent/counter(/:id(.:format))' => 'posts#recent_counter'
@@ -20,11 +23,12 @@ Somos::Application.routes.draw do
 
   resources :comments
 
+  match 'users/upcoming_birthdays' => 'users#upcoming_birthdays'
   resources :users
 
   resources :pages
-  match 'groups/:group_id/page/add' => 'pages#add_page'
-  match 'groups/:group_id/page/:id' => 'pages#show_group_page'
+  match 'g/:group_id/p/add' => 'pages#add_page'
+  match 'g/:group_id/p/:id' => 'pages#show_group_page'
   match 'pages/:id/update_title' => 'pages#update'
 
   match 'events/upcoming' => 'post_events#upcoming'

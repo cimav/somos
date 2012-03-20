@@ -1,20 +1,21 @@
 .post{:id => "post-#{post.id}", :last_comment => "0"}
-  .post-display
-    = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
-
-  .post-user 
-    = link_to post.user.full_name, {:controller => "users", :action => "profile", :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}" 
-  - if post.group_id > 0 && params[:group_id].blank?
-    = link_to post.group, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :short_name => "#{post.group.short_name}", :group_id => "#{post.group.id}" do
-      .post-group= post.group.name
   .post-content
-    = post.content
     - if post.post_type_id > 1
       = render :partial => "posts/view_#{post.post_type.short_name}", :locals => {:post => post} 
-
-  .post-footer
-    = link_to post, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}" do
-      = post_date(post.created_at)
+    - else 
+      .post-text
+        = post.content
+  - if post.post_type.category == PostType::USER_POST
+    .post-who
+      .post-display
+        = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
+      .post-user
+        = link_to post.user.display_name, {:controller => 'users', :action => 'profile', :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}"
+      - if post.group_id > 0 && params[:group_id].blank?
+        .post-group= link_to post.group.name, {:controller => 'groups', :action => 'show', :short_name => post.group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :short_name => "#{post.group.short_name}", :group_id => "#{post.group.id}"
+      .post-footer
+        = link_to post, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}" do
+          = post_date(post.created_at)
 
 
   .post-comments{:id => "post-#{post.id}-comments"}
@@ -25,6 +26,8 @@
   .post-comment-form
     = form_for(@comment, :remote => true, :html => {:class => "comment-form", :id => "comment_form_#{post.id}"}) do |f|
       = f.hidden_field :post_id, {:value => post.id}
+      .comment-display
+        = image_tag @current_user_pic, :width => 32, :height => 32, :class => "profile-picture-small"
       .comment-area
         = f.text_area :content, :id => "comment_content_#{post.id}", :class => "comment-textarea", :post_id => post.id, :placeholder => (t :add_a_comment)
         %span.comment-cancel{:post_id => post.id, :id => "comment-cancel-#{post.id}"}
@@ -34,3 +37,5 @@
   .clearfix
 :javascript
   $("#post-#{post.id}").attr("last_comment", "#{last_comment}")
+
+
