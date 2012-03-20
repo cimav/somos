@@ -1,14 +1,11 @@
-#share-form
+#share-form{:title => (t :share_to_the_community)}
   = form_for(@post, :remote => true, :html => {:multipart => true}) do |f| 
     - user = User.find(session[:user].id)
-    #share-message= t :share_to_the_community
     #share-active
       #share-header
         #share-type
           = t :share 
           = f.select :post_type_id, options_from_collection_for_select(@post_types, "id", "share_title")
-        #share-close
-          = image_tag("close.png")
       #share-content 
         = f.text_area :content, :placeholder => (t :what_do_you_want_to_share)
         #share-add-ui
@@ -23,7 +20,5 @@
           = t :share_to
           = text_field_tag :to_groups
 
-
         #share-button
           = submit_tag (t :share), :disable_with => (t :share_wait), :id => "share-submit"
-    .clearfix

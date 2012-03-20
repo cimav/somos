@@ -31,26 +31,7 @@ $('#share-message')
       $('#share-to').show()
       $('#share-button').show()
       $('#share-close').show()
-      $('#post_content').autogrow()
-      $('#to_groups').tokenInput("/g/search")
-      $('#post_content').focus()
     )
-  )
-
-@resetShareArea = resetShareArea = () ->
-  $('#share-message').show()
-  $('#share-active').hide()
-  $('#share-type').hide()
-  $('#share-as').hide()
-  $('#share-button').hide()
-  $('#share-close').hide()
-  $('#post_content').val('')
-  $('#share-add-ui').html('')
-  $('#post_post_type_id').val(1)
-
-$('#share-close')
-  .live('click', () ->
-    resetShareArea()
   )
 
 $('#new_post')
@@ -60,8 +41,9 @@ $('#new_post')
     )
     .live("ajax:success", (evt, data, status, xhr) ->
       res = $.parseJSON(xhr.responseText);
-      resetShareArea()
       getRecentPosts()
+      $("#share-form").dialog('close')
+      $("#share-form").remove()
       recentTimer = setInterval(getRecentPostsCounter, 10000)
     )
     .live('ajax:complete', (evt, xhr, status) ->
@@ -81,10 +63,12 @@ getPost = (id) ->
 getShareForm = () ->
   url = '/posts/share_form'
   $.get(url, {}, (html) ->
-    $('<div id="share-area"></div>').prependTo("#container")
-    $('#share-area').append(html)
-    $("#share-form").dialog({ autoOpen: false, width: 640, height: 450, modal:true })
+    $('#container').append(html)
+    $("#share-form").dialog({ autoOpen: false, autoResize: true, width: 500, height: 300, modal: true, resizable: true })
     $("#share-form").dialog('open')
+    $('#post_content').autogrow()
+    $('#to_groups').tokenInput("/g/search")
+    $('#post_content').focus()
   )
 
 getGroupList = () ->

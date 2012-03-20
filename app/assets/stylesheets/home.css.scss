@@ -2,86 +2,60 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#share-area {
+#post_content {
+  resize: none; 
+  outline: none;
   border: 1px solid $line-color;
-  color: $grey;
-  #share-message {
-    padding: 10px;
+  overflow : hidden;
+  @include border-box();
+  width: 100%;
+  height: 4em;
+  &:focus {
+    outline: 0px none transparent;
+    -moz-appearance:none;
+  }
+} 
+
+#share-header {
+  height: 28px;
+  padding: 10px;
+  color: $black;
+  padding-bottom: 10px;
+  #share-type {
     float: left;
+  }
+}
+
+#share-content {
+  padding: 10px;
+}
+
+#share-footer {
+  padding: 10px;
+  height: 28px;
+  color: $black;
+  
+  #share-as {
     width: 80%;
   }
-  #share-active {
-    display: none;
+    
+  #share-to {
+    width: 80%;
+  }
 
-    #post_content {
-      resize: none; 
-      outline: none;
-      border: 1px solid $line-color;
-      overflow : hidden;
-      @include border-box();
-      width: 100%;
-      height: 4em;
-      &:focus {
-        outline: 0px none transparent;
-        -moz-appearance:none;
-      }
-    } 
-
-    #share-header {
-      height: 28px;
-      padding: 10px;
-      color: $black;
-      padding-bottom: 10px;
-      #share-type {
-        float: left;
-        display: none;
-      }
-      #share-close {
-        float: right;
-        padding-top: 8px;
-        display: none;
-        float: right;
-        img {
-          cursor: pointer;
-        }
-      }
-    }
-
-    #share-content {
-      padding: 10px;
-    }
-
-    #share-footer {
-      padding: 10px;
-      height: 28px;
-      color: $black;
-      
-      #share-as {
-        display: none;
-        width: 80%;
-      }
-      
-      #share-to {
-        display: none;
-        width: 80%;
-      }
-
-      #share-button {
-        display: none;
-        float: right;
-        width: 19%;
-        input[type=submit] {
-          float: right;
-          padding: 5px 10px;
-          @include gradient($share-button-gradient-from, $share-button-gradient-to);
-          border-style: solid;
-          border-width: 1px;
-          border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-          @include rounded(4px);
-          -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-          color: $white;
-        }
-      }
+  #share-button {
+    float: right;
+    width: 19%;
+    input[type=submit] {
+      float: right;
+      padding: 5px 10px;
+      @include gradient($share-button-gradient-from, $share-button-gradient-to);
+      border-style: solid;
+      border-width: 1px;
+      border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+      @include rounded(4px);
+      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+      color: $white;
     }
   }
 }
@@ -146,3 +120,6 @@
   }
 }
 
+#share-form {
+  display: none;
+}
