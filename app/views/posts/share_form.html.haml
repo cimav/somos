@@ -1,11 +1,19 @@
-#share-form{:title => (t :share_to_the_community)}
+#share-form{:title => (t :share)}
   = form_for(@post, :remote => true, :html => {:multipart => true}) do |f| 
     - user = User.find(session[:user].id)
     #share-active
-      #share-header
-        #share-type
-          = t :share 
-          = f.select :post_type_id, options_from_collection_for_select(@post_types, "id", "share_title")
+      #post-types
+        %ul
+          - post_type_first = 0
+          - klass = 'selected'
+          - @post_types.each do |post_type|
+            - post_type_first = post_type.id if post_type_first == 0
+            - klass = '' if post_type.id != post_type_first
+            %li
+              %a.post-type{:post_type => post_type.id, :class => klass} 
+                = image_tag "icons/#{post_type.short_name}.png"
+                = post_type.share_title
+      = hidden_field_tag 'post[post_type_id]', post_type_first
       #share-content 
         = f.text_area :content, :placeholder => (t :what_do_you_want_to_share)
         #share-add-ui

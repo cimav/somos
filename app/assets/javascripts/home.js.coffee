@@ -11,10 +11,11 @@ $('html').click( (e) ->
     $('#groups-area').hide()
 )
 
-$('#post_post_type_id')
-  .live('change', () ->
-    if $(this).val() > 1
-      url = "/posts/ui/#{$(this).val()}"
+$('.post-type')
+  .live('click', () ->
+    $('#post_post_type_id').val($(this).attr('post_type'))
+    if $(this).attr('post_type') > 1
+      url = "/posts/ui/#{$(this).attr('post_type')}"
       $.get(url, {}, (html) ->
         $('#share-add-ui').html(html)
       )
@@ -64,7 +65,7 @@ getShareForm = () ->
   url = '/posts/share_form'
   $.get(url, {}, (html) ->
     $('#container').append(html)
-    $("#share-form").dialog({ autoOpen: false, autoResize: true, width: 500, height: 300, modal: true, resizable: true })
+    $("#share-form").dialog({ autoOpen: false, autoResize: true, width: 500, height: 500, modal: true, resizable: true })
     $("#share-form").dialog('open')
     $('#post_content').autogrow()
     $('#to_groups').tokenInput("/g/search")

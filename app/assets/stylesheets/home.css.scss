@@ -16,13 +16,47 @@
   }
 } 
 
-#share-header {
-  height: 28px;
-  padding: 10px;
+#post-types {
+  height: 64px;
   color: $black;
+  background-color: $bg-color;
   padding-bottom: 10px;
-  #share-type {
-    float: left;
+  border-bottom: 1px solid $line-color;
+  ul {
+    margin-left: 10px;
+    height: 64px;
+    li {
+      float: left;
+      text-align: center;
+      width: 64px;
+      height: 64px;
+      &.selected {
+        background: $white;
+      }
+      a { 
+        cursor: pointer;
+        color: $grey;
+        text-decoration: none;
+        img {
+          @include opacity(0.5);
+          height: 32px;
+          width: 32px;
+        }
+        &:hover {
+          color: #000;
+          img {
+            @include opacity(1);
+          }
+        }
+        &.selected { 
+          color: #000;
+          font-weight: bold;
+          img {
+            @include opacity(1);
+          }
+        }
+      }
+    }
   }
 }
 
