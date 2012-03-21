@@ -167,16 +167,14 @@ ActiveRecord::Schema.define(:version => 20120301232157) do
   add_index "post_photos", ["post_id"], :name => "index_post_photos_on_post_id"
 
   create_table "post_types", :force => true do |t|
-    t.string   "name",                       :null => false
-    t.string   "short_name",                 :null => false
-    t.string   "share_title",                :null => false
-    t.integer  "category",    :default => 0
-    t.integer  "status",      :default => 1
+    t.string   "name",                      :null => false
+    t.integer  "category",   :default => 0
+    t.integer  "status",     :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "post_types", ["short_name"], :name => "index_post_types_on_short_name"
+  add_index "post_types", ["name"], :name => "index_post_types_on_name"
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
