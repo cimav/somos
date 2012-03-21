@@ -213,3 +213,6 @@ es:
   photo_share_message: "Unas imagenes"
   file_share_message: "Archivos"
   event_share_message: "Un evento" 
+
+  only_visible_by: "Solo puede ser visto por:"
+  lock: "Candado"

@@ -67,7 +67,7 @@ getShareForm = () ->
     })
     $("#share-form").dialog('open')
     $('#post_content').autogrow()
-    $('#to_groups').tokenInput("/g/search")
+    $('#to_groups').tokenInput("/g/search", {theme: "somos", zindex: 100005})
     $('#post_content').focus()
   )
 

@@ -5,6 +5,13 @@
     - else 
       .post-text
         = post.content
+  - if post.post_group.count > 0
+    - post_groups = Array.new
+    - post.post_group.each do |g|
+      - post_groups << g.group.name
+    - visible_by = "#{(t :only_visible_by)} #{(post_groups.join(', '))}"
+    .post-lock{:title => visible_by}= t :lock
+    .clearfix
   - if post.post_type.category == PostType::USER_POST
     .post-who
       .post-display

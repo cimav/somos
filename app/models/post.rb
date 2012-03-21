@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :post_type
 
   has_many :comments
+  has_many :post_group
 
   has_one :post_link
   accepts_nested_attributes_for :post_link

@@ -61,3 +61,6 @@ en:
   photo_share_message: "Some images"
   file_share_message: "Files"
   event_share_message: "An event"
+
+  only_visible_by: "Only visible by:"
+  lock: "Lock"

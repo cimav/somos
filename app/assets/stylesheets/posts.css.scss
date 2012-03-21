@@ -38,6 +38,16 @@
       margin: 10px;
     }
   }
+  .post-lock {
+    float: right;
+    display: block; 
+    text-indent: -99999px; 
+    width: 11px;
+    margin: 0 5px 5px 0;
+    overflow: hidden; 
+    background-repeat: no-repeat; 
+    background-image: url(/assets/icons/lock.png);
+  }
 
   .post-who {
     background: $who-bg-color;
