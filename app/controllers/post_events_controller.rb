@@ -3,6 +3,10 @@ class PostEventsController < ApplicationController
   respond_to :html, :json
   def upcoming
     @events = PostEvent.where("start_date > :date", {:date => Time.now.strftime("%Y-%m-%d")}).limit(10).order(:start_date)
-    render :layout => false
+    if @events.count > 0
+      render :layout => false
+    else
+      render :inline => ''
+    end
   end
 end
