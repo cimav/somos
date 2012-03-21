@@ -111,8 +111,8 @@ class PostsController < ApplicationController
   def ui
     @post_type = PostType.find(params[:id])
 
-    method = "build_post_#{@post_type.short_name}"
-    template = "ui_#{@post_type.short_name}"
+    method = "build_post_#{@post_type.name}"
+    template = "ui_#{@post_type.name}"
 
     @post = Post.new
     if @post.respond_to?(method)

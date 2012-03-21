@@ -1,7 +1,7 @@
 .post{:id => "post-#{post.id}", :last_comment => "0"}
   .post-content
     - if post.post_type_id > 1
-      = render :partial => "posts/view_#{post.post_type.short_name}", :locals => {:post => post} 
+      = render :partial => "posts/view_#{post.post_type.name}", :locals => {:post => post} 
     - else 
       .post-text
         = post.content
