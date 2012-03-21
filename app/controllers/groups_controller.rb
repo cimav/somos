@@ -31,6 +31,8 @@ class GroupsController < ApplicationController
       format.html do
         if request.xhr?
           render :json => @groups
+        else
+          render :inline => 'Only works via ajax'
         end
       end
       format.json do

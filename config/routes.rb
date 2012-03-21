@@ -3,10 +3,10 @@ Somos::Application.routes.draw do
   match 'home/index' => 'home#index'
 
   match 'g/list' => 'groups#list'
+  match 'g/search' => 'groups#search'
   match 'g/:short_name' => 'groups#show'
   match 'g/:id/members' => 'groups#members'
   match 'g/:id/page_list' => 'groups#page_list'
-  match 'g/search' => 'groups#search'
   resources :g, :controller => "groups"
 
   match 'posts/recent/counter/g/:group_id(/:id(.:format))' => 'posts#recent_counter'

@@ -14,6 +14,10 @@ $('html').click( (e) ->
 $('.post-type')
   .live('click', () ->
     $('#post_post_type_id').val($(this).attr('post_type'))
+    $('#post-types').slideUp('slow')
+    $('#share-form').dialog('option', 'title', $("#post-type-message-" + $(this).attr('post_type')).html())
+    $('#share-content').show()
+    $('#share-form').dialog('option', 'height', 400)
     if $(this).attr('post_type') > 1
       url = "/posts/ui/#{$(this).attr('post_type')}"
       $.get(url, {}, (html) ->
@@ -21,18 +25,6 @@ $('.post-type')
       )
     else
       $('#share-add-ui').html('')
-  )
-
-$('#share-message')
-  .live('click touchstart', () ->
-    $('#share-message').hide()
-    $('#share-active').slideDown('fast', ->
-      $('#share-type').show()
-      $('#share-as').show()
-      $('#share-to').show()
-      $('#share-button').show()
-      $('#share-close').show()
-    )
   )
 
 $('#new_post')
@@ -65,7 +57,14 @@ getShareForm = () ->
   url = '/posts/share_form'
   $.get(url, {}, (html) ->
     $('#container').append(html)
-    $("#share-form").dialog({ autoOpen: false, autoResize: true, width: 500, height: 500, modal: true, resizable: true })
+    $("#share-form").dialog({ 
+      autoOpen: false, 
+      width: 500, 
+      height: 300, 
+      modal: true, 
+      close: (ev, ui) -> 
+                $(this).remove()
+    })
     $("#share-form").dialog('open')
     $('#post_content').autogrow()
     $('#to_groups').tokenInput("/g/search")

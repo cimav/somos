@@ -207,3 +207,9 @@ es:
   cant_update_page: "No se puede actualizar la página"
 
   today: "Hoy"
+
+  message_share_message: "Un mensaje"
+  link_share_message: "Una liga a una página"
+  photo_share_message: "Unas imagenes"
+  file_share_message: "Archivos"
+  event_share_message: "Un evento" 

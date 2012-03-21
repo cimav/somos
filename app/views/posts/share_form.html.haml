@@ -1,23 +1,20 @@
-#share-form{:title => (t :share)}
+#share-form{:title => (t :what_do_you_want_to_share)}
   = form_for(@post, :remote => true, :html => {:multipart => true}) do |f| 
     - user = User.find(session[:user].id)
     #share-active
       #post-types
-        %ul
-          - post_type_first = 0
-          - klass = 'selected'
-          - @post_types.each do |post_type|
-            - post_type_first = post_type.id if post_type_first == 0
-            - klass = '' if post_type.id != post_type_first
-            %li
-              %a.post-type{:post_type => post_type.id, :class => klass} 
-                = image_tag "icons/#{post_type.short_name}.png"
-                = post_type.share_title
+        - post_type_first = 0
+        - @post_types.each do |post_type|
+          - post_type_first = post_type.id if post_type_first == 0
+          .post-type-block{:id => "post-type-block-#{post_type.id}"}
+            %a.post-type{:post_type => post_type.id}
+              = image_tag "icons/#{post_type.name}.png"
+              .post-type-message{:id => "post-type-message-#{post_type.id}"}= t "#{post_type.name}_share_message"
       = hidden_field_tag 'post[post_type_id]', post_type_first
       #share-content 
+        = hidden_field_tag 'post[post_type_id]', post_type_first
         = f.text_area :content, :placeholder => (t :what_do_you_want_to_share)
         #share-add-ui
-      #share-footer 
         #share-as
           = t :share_as
           - share_as_options = "<option value=\"0\">#{User.find(session[:user].id).display_name}</option>"

@@ -2,10 +2,11 @@
   position: absolute; 
   width: 300px; 
   overflow: hidden; 
-  background-color: $white;
-  @include shadow(8px,0,0,#222);
+  background-color: $bg-color;
+  @include shadow(4px,1px,1px,#aaa);
   .ui-dialog-titlebar { 
     background-color: $bg-color;
+    border-bottom: 1px solid $light-grey;
     position: relative;  
   }
   .ui-dialog-title { 
@@ -14,7 +15,7 @@
     padding: 10px 0 10px 10px;
     color: $grey;
     font-weight: bold;
-    margin: 8px 16px 0 0;
+    margin: 8px 16px 8px 0;
   }
   .ui-dialog-titlebar-close { 
     position: absolute; 
