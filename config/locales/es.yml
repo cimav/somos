@@ -164,8 +164,8 @@ es:
 
   home_link: "Inicio"
   share: "Compartir"
-  share_as: "Compartir como"
-  share_to: "Compartir a"
+  share_from: "De:"
+  share_to: "Para:"
   share_to_the_community: "Compartir con la comunidad..."
   share_wait: "Publicando..."
 

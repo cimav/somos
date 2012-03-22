@@ -14,8 +14,8 @@ en:
 
   home_link: "Home"
   share: "Share"
-  share_as: "Share as"
-  share_to: "Share to"
+  share_from: "From:"
+  share_to: "To:"
   share_to_the_community: "Share to the community..."
   share_wait: "Posting..."
 

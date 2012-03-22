@@ -21,6 +21,10 @@ $('.post-type')
     $.get(url, {}, (html) ->
       $('#share-add-ui').html(html)
       $('#share-form').dialog('option', 'height', $('#dialog-height').val())
+      $('#post_content').autogrow()
+      $('#post_group_id').selectmenu()
+      $('#to_groups').tokenInput("/g/search", {theme: "somos", zindex: 2000})
+      $('#post_content').focus()
     )
   )
 
@@ -63,9 +67,6 @@ getShareForm = () ->
                 $(this).remove()
     })
     $("#share-form").dialog('open')
-    $('#post_content').autogrow()
-    $('#to_groups').tokenInput("/g/search", {theme: "somos", zindex: 100005})
-    $('#post_content').focus()
   )
 
 getGroupList = () ->

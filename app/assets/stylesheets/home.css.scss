@@ -62,9 +62,13 @@
     width: 80%;
   }
     
-  #share-to {
-    width: 80%;
+  #share-to,
+  #share-from {
+    border: 1px solid #f90;
+    width: 300px;
+    float: left;
   }
+
 
   #share-button {
     float: right;
