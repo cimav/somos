@@ -18,13 +18,10 @@ $('.post-type')
     $('#share-form').dialog('option', 'title', $("#post-type-message-" + $(this).attr('post_type')).html())
     $('#share-content').show()
     $('#share-form').dialog('option', 'height', 400)
-    if $(this).attr('post_type') > 1
-      url = "/posts/ui/#{$(this).attr('post_type')}"
-      $.get(url, {}, (html) ->
-        $('#share-add-ui').html(html)
-      )
-    else
-      $('#share-add-ui').html('')
+    url = "/posts/ui/#{$(this).attr('post_type')}"
+    $.get(url, {}, (html) ->
+      $('#share-add-ui').html(html)
+    )
   )
 
 $('#new_post')

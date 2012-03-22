@@ -4,7 +4,6 @@ class PostsController < ApplicationController
 
   def share_form
     @post = Post.new
-    #@post.send('build_post_link')
     @post_types = PostType.where(:category => PostType::USER_POST)
     render :layout => false
   end
