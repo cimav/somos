@@ -14,13 +14,13 @@ $('html').click( (e) ->
 $('.post-type')
   .live('click', () ->
     $('#post_post_type_id').val($(this).attr('post_type'))
-    $('#post-types').slideUp('slow')
+    $('#post-types').hide()
     $('#share-form').dialog('option', 'title', $("#post-type-message-" + $(this).attr('post_type')).html())
     $('#share-content').show()
-    $('#share-form').dialog('option', 'height', 400)
     url = "/posts/ui/#{$(this).attr('post_type')}"
     $.get(url, {}, (html) ->
       $('#share-add-ui').html(html)
+      $('#share-form').dialog('option', 'height', $('#dialog-height').val())
     )
   )
 

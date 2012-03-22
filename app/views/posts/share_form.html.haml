@@ -10,7 +10,6 @@
             %a.post-type{:post_type => post_type.id}
               = image_tag "icons/#{post_type.name}.png"
               .post-type-message{:id => "post-type-message-#{post_type.id}"}= t "#{post_type.name}_share_message"
-      = hidden_field_tag 'post[post_type_id]', post_type_first
       #share-content 
         = hidden_field_tag 'post[post_type_id]', post_type_first
         #share-add-ui

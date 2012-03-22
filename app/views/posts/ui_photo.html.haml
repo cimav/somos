@@ -1,4 +1,5 @@
 #share-photos
+  = hidden_field_tag 'dialog-height', '200'
   %input{:id=>"post_post_photo_attributes_file", :multiple=>"multiple", :name=>"post[post_photo_attributes][photo][]", :type=>"file"}
   %iframe#post-iframe{:width => 0, :height => 0, :scrolling => "no", :frameborder => "0", :name => "post-iframe"}
   :javascript

@@ -1,5 +1,5 @@
 #share-link
   = fields_for @post do |f|
+    = hidden_field_tag 'dialog-height', '200'
     = f.fields_for :post_link do |link_fields|
       = link_fields.text_field :link, :placeholder => (t :type_or_paste_link)
-
