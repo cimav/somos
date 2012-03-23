@@ -3,7 +3,7 @@
   width: 300px; 
   overflow: hidden; 
   background-color: $bg-color;
-  @include shadow(4px,1px,1px,#aaa);
+  @include shadow(4px,1px,1px,#333);
   .ui-dialog-titlebar { 
     background-color: $bg-color;
     border-bottom: 1px solid $light-grey;
@@ -13,17 +13,16 @@
     float: left; 
     font-size: 18px;
     padding: 10px 0 10px 10px;
-    color: $grey;
+    color: $black;
     font-weight: bold;
     margin: 8px 16px 8px 0;
   }
   .ui-dialog-titlebar-close { 
     position: absolute; 
-    right: 14px; 
-    top: 14px; 
+    right: 24px; 
+    top: 18px; 
     width: 9px; 
     height: 9px; 
-    background: transparent url(/assets/close.png) no-repeat;
   }
   .ui-dialog-titlebar-close span { 
     display: block; 

@@ -61,16 +61,53 @@
   #share-as {
     width: 80%;
   }
+
+  #share-add-ui {
+    margin-bottom: 20px;
+  }
     
   #share-to,
   #share-from {
-    border: 1px solid #f90;
-    width: 300px;
+    width: 480px;
     float: left;
+    height: 35px;
+    padding: 0px;
+  }
+
+  #share-to-label, 
+  #share-from-label {
+    height: 25px;
+    padding: 8px 10px 5px 10px;
+    width: 30px;
+    display: block;
+    float: left;
+  }
+
+  #share-to-field,
+  #share-from-field {
+    height: 25px;
+    width: 410px;
+    display: block;
+    float: left;
+    width: 80px;
+  }
+
+  #share-from-field {
+    .ui-selectmenu { 
+      border: 1px solid $line-color;
+      background: $white;
+    }
+  }
+
+  #share-to-field {
+    #share-tokens {
+      display: none;
+    }
   }
 
 
   #share-button {
+    margin: 10px 0;
     float: right;
     width: 19%;
     input[type=submit] {
@@ -149,4 +186,8 @@
 
 #share-form {
   display: none;
+}
+
+.ui-selectmenu-item-focus a {
+  background-color: $bg-selected;
 }

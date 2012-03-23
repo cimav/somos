@@ -104,7 +104,7 @@ ul.page-list {
 }
 
 #group-page {
-  @include shadow(4px,1px,1px,#aaa);
+  @include shadow(4px,1px,1px,#333);
   width: ($post-width * 2) + 20;
   margin: 10px;
   background: #fff;

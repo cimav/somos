@@ -28,6 +28,13 @@ $('.post-type')
     )
   )
 
+$('#token-everyone span')
+  .live('click', () ->
+    $('#token-everyone').hide()
+    $('#share-tokens').show()
+    $('#token-input-to_groups').focus()
+  )
+
 $('#new_post')
     .live("ajax:beforeSend", (evt, xhr, settings) ->
       # TODO: Display geting spinner
