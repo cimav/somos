@@ -1,6 +1,7 @@
 currentGroup = 0
 currentPost = 0
 currentUser = 0
+postContentHeight = 0
 
 $('#nav-title-span').live('click', (e) ->
   $('#groups-area').toggle()
@@ -21,11 +22,19 @@ $('.post-type')
     $.get(url, {}, (html) ->
       $('#share-add-ui').html(html)
       $('#share-form').dialog('option', 'height', $('#dialog-height').val())
+      
       $('#post_content').autogrow()
+      postContentHeight = parseInt($('#post_content').css('height'))
       $('#post_group_id').selectmenu()
       $('#to_groups').tokenInput("/g/search", {theme: "somos", zindex: 2000})
       $('#post_content').focus()
     )
+  )
+
+$('#post_content')
+  .live('resized', () ->
+    grow = parseInt($('#post_content').css('height')) - postContentHeight
+    $('#share-form').dialog('option', 'height', parseInt($('#dialog-height').val()) + grow)
   )
 
 $('#token-everyone span')
