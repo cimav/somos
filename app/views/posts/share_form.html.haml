@@ -22,11 +22,16 @@
               - if membership.group.group_type.display_in == GroupType::STREAM
                 - share_as_options += "<option value=\"#{membership.group.id}\">#{membership.group.name}</option>" 
             = f.select :group_id, share_as_options.html_safe
+        .clearfix
         #share-to
           #share-to-label
             = t :share_to
           #share-to-field
-            = text_field_tag :to_groups, :placeholder => "Algo"
-
+            #token-everyone
+              %p= t :everyone
+              %span.token-input-delete-token-somos= "×"
+            #share-tokens
+              = text_field_tag :to_groups
+        .clearfix
         #share-button
           = submit_tag (t :share), :disable_with => (t :share_wait), :id => "share-submit"
