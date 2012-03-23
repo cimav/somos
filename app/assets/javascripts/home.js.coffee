@@ -99,16 +99,22 @@ getComments = (post_id) ->
   url = "/posts/#{post_id}/comments/#{$("#post-#{post_id}").attr('last_comment')}"
   $.get(url, {}, (html) ->
     $(html).appendTo("#post-#{post_id}-comments")
+    $('#posts').masonry('reload')
   )
 
 
 $('.comment-textarea')
   .live('click', () ->
     $(this).height('48px')
-    $('#posts').masonry('reload')
     $(this).autogrow()
     $("#comment_button_#{$(this).attr('post_id')}").show()
     $("#comment-cancel-#{$(this).attr('post_id')}").show()
+    $('#posts').masonry('reload')
+  )
+
+$('.comment-textarea')
+  .live('resized', () ->
+    $('#posts').masonry('reload')
   )
 
 $('.comment-form')
@@ -132,6 +138,7 @@ resetCommentArea = (post_id) ->
   $("#comment_content_#{post_id}").val('')
   $("#comment_button_#{post_id}").hide()
   $("#comment-cancel-#{post_id}").hide()
+  $('#posts').masonry('reload')
 
 $('.comment-cancel')
   .live("click", () ->
