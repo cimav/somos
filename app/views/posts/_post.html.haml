@@ -41,6 +41,7 @@
           = image_tag("close.png")
       .comment-button{:id => "comment_button_#{post.id}"}
         = submit_tag (t :post_comment), :class=> 'post-comment-button', :disable_with => (t :posting_comment)
+      .clearfix
   .clearfix
 :javascript
   $("#post-#{post.id}").attr("last_comment", "#{last_comment}")
