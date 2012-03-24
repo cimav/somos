@@ -1,7 +1,21 @@
 .post-photos{:id => "gallery-#{post.id}"}
-  - post.post_photo.each do |f|
-    %a{:href => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => 'large', :filename => File.basename(f.photo.to_s))}
-      %img{:src => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => 'small', :filename => File.basename(f.photo.to_s)), :width => '100%'}
+  - c = post.post_photo.count
+  - if c == 1
+    - photo1 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[0].id, :version => 'small', :filename => File.basename(post.post_photo[0].to_s))
+    %img{:src => photo1, :width => '100%'}
+  - if c == 2 
+    - photo1 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[0].id, :version => 'small', :filename => File.basename(post.post_photo[0].to_s))
+    - photo2 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[1].id, :version => 'small', :filename => File.basename(post.post_photo[1].to_s))
+    %img{:src => photo1, :width => '50%'}
+    %img{:src => photo2, :width => '50%'}
+  - if c >= 3 
+    - photo1 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[0].id, :version => 'small', :filename => File.basename(post.post_photo[0].to_s))
+    - photo2 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[1].id, :version => 'small', :filename => File.basename(post.post_photo[1].to_s))
+    - photo3 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[2].id, :version => 'small', :filename => File.basename(post.post_photo[2].to_s))
+    %img{:src => photo1, :width => '34%'}
+    %img{:src => photo2, :width => '33%'}
+    %img{:src => photo3, :width => '33%'}
+  .clearfix
 .post-text
   = post.content
 

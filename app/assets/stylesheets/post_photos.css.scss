@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .post-photos {
    margin: 0;
+   img {
+     float: left;
+   }
 }
 
 #photos-dnd-area {
