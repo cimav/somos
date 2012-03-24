@@ -15,11 +15,11 @@ User.create([
 
 puts "Groups..."
 gt = GroupType.create([
-  {:name => 'Tipo', :description => 'Tipo de persona (empleado, estudiante, honorarios, etc)', :position => 0, :required => 1, :display => 0 },
-  {:name => 'Sede', :description => 'Sede donde se encuentra la persona', :position => 0, :required => 1, :display => 0 },
-  {:name => 'Departamento', :description => 'Departamentos del CIMAV', :position => 1, :required => 1, :display => 1 },
-  {:name => 'Equipos/Grupos', :description => 'Grupos de trabajo del CIMAV', :position => 2, :required => 0, :display => 1 },
-  {:name => 'Proyectos', :description => 'Proyectos del CIMAV', :position => 3, :required => 0, :display => 1 }
+  {:name => 'Tipo', :description => 'Tipo de persona (empleado, estudiante, honorarios, etc)', :position => 0, :required => 1, :display_in => 0 },
+  {:name => 'Sede', :description => 'Sede donde se encuentra la persona', :position => 0, :required => 1, :display_in => 0 },
+  {:name => 'Departamento', :description => 'Departamentos del CIMAV', :position => 1, :required => 1, :display_in => 1 },
+  {:name => 'Equipos/Grupos', :description => 'Grupos de trabajo del CIMAV', :position => 2, :required => 0, :display_in => 1 },
+  {:name => 'Proyectos', :description => 'Proyectos del CIMAV', :position => 3, :required => 0, :display_in => 1 }
 ])
 
 Group.create([
@@ -29,20 +29,9 @@ Group.create([
   {:group_type => GroupType.where(:name => 'Tipo').first, :name => 'Honorarios', :short_name => 'honorarios', :position => 4 },
   {:group_type => GroupType.where(:name => 'Sede').first, :name => 'Chihuahua', :short_name => 'chihuahua', :position => 1 },
   {:group_type => GroupType.where(:name => 'Sede').first, :name => 'Monterrey', :short_name => 'monterrey', :position => 2 },
-  {:group_type => GroupType.where(:name => 'Departamento').first, :name => 'Recursos Humanos', :short_name => 'rh', :position => 1 },
-  {:group_type => GroupType.where(:name => 'Departamento').first, :name => 'Tecnologías de Información y Comunicación', :short_name => 'tic', :position => 2 },
   {:group_type => GroupType.where(:name => 'Equipos/Grupos').first, :name => 'Seguridad e Higiene', :short_name => 'seguridad-higiene', :position => 1 },
   {:group_type => GroupType.where(:name => 'Equipos/Grupos').first, :name => 'Calidad', :short_name => 'calidad', :position => 2 },
   {:group_type => GroupType.where(:name => 'Equipos/Grupos').first, :name => 'Comunicación', :short_name => 'comunicacion', :position => 3 },
-  {:group_type => GroupType.where(:name => 'Proyectos').first, :name => 'Test', :short_name => 'test', :position => 1 }
-])
-
-Membership.create([
-  {:user => User.where('username' => 'ion').first, :group => Group.where(:short_name => 'empleado').first, :can_publish => 1, :can_modify_others => 1 , :can_admin => 1}, 
-  {:user => User.where('username' => 'claudia.lopez').first, :group => Group.where(:short_name => 'empleado').first, :can_publish => 1, :can_modify_others => 1 , :can_admin => 1}, 
-  {:user => User.where('username' => 'ion').first, :group => Group.where(:short_name => 'tic').first, :can_publish => 1, :can_modify_others => 1 , :can_admin => 1}, 
-  {:user => User.where('username' => 'claudia.lopez').first, :group => Group.where(:short_name => 'tic').first, :can_publish => 1, :can_modify_others => 1 , :can_admin => 1}, 
-  {:user => User.where('username' => 'ion').first, :group => Group.where(:short_name => 'comunicacion').first, :can_publish => 1, :can_modify_others => 1 , :can_admin => 1}
 ])
 
 puts "Post types..."
@@ -52,7 +41,9 @@ PostType.create([
   {:name => 'photo', :category => 0},
   {:name => 'file',  :category => 0},
   {:name => 'event', :category => 0},
-  {:name => 'birthday', :category => 1}
+  {:name => 'birthday', :category => 1},
+  {:name => 'badge', :category => 1},
+  {:name => 'productivity', :category => 1}
 ])
 
 

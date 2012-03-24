@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.references :group
       t.references :post_type
       t.text       :content,  :null => false
-      t.integer    :position, :null => false, :default => 0
+      t.string     :limited
       t.integer    :status,   :null => false, :default => 1
       t.timestamps
     end

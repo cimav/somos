@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20120301232157) do
     t.string   "description"
     t.integer  "position"
     t.integer  "required",    :default => 1
-    t.integer  "display",     :default => 1
+    t.integer  "display_in",  :default => 1
     t.integer  "status",      :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(:version => 20120301232157) do
     t.integer  "group_id"
     t.integer  "post_type_id"
     t.text     "content",                     :null => false
-    t.integer  "position",     :default => 0, :null => false
+    t.string   "limited"
     t.integer  "status",       :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
