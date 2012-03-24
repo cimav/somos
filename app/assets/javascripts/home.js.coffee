@@ -176,8 +176,10 @@ getRecentPostsCounter = () ->
     url = url + 'g/' + currentGroup + '/'
   url = url + latestPostId
   $.get(url, {}, (html) ->
-    $('<div id="new-posts-message"></div>').prependTo("#posts-area") if $('#new-posts-message').length == 0
-    $('#new-posts-message').html(html).show() if (html != '0')
+    if $('#new-posts-message').length == 0
+      $('<div id="new-posts-message" class="post"></div>').prependTo("#posts") 
+      $('#posts').masonry('reload')
+    $('#new-posts-message').html(html).show() if (parseInt(html) != 0)
   )
 
 $('#new-posts-message')

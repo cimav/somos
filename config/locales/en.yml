@@ -65,3 +65,6 @@ en:
   only_visible_by: "Only visible by:"
   lock: "Lock"
   everyone: "Everyone"
+
+  attach_images: "Attach images by dragging and dropping them here or choose them manually..."
+  attach_files: "Attach files by dragging and dropping them here or choose them manually..."

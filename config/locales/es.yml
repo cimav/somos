@@ -217,3 +217,6 @@ es:
   only_visible_by: "Solo puede ser visto por:"
   lock: "Candado"
   everyone: "Todos"
+
+  attach_images: "Adjunta las imagenes arrastrandolas y soltandolas aqui o escogelas manualmente..."
+  attach_files: "Adjunta los archivos arrastrandolos y soltandolos aqui o escogelas manualmente..."

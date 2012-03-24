@@ -3,7 +3,36 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .post-photos {
    margin: 0;
+}
+
+#photos-dnd-area {
+  min-height: 64px;
+  width: 100%;
+  background: #fff;
+  border: 1px dashed $line-color;
+  margin-bottom: 20px;
+}
+
+#dnd-message {
+  text-align: center;
+  margin: 10px 0;
+  color: $grey;
+}
+
+#photos-file-input input[type="file"] {
+  cursor: pointer;
+  height: 64px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  @include opacity(0);
+  font-size: 100px;
+}
+
+#photos-file-list {
   img {
-    background-color: $line-color;
+    width: 80px;
+    margin: 4px;
+    border: 4px solid $light-grey;
   }
 }
