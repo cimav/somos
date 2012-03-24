@@ -1,7 +1,10 @@
-%h1= "#{@u.first_name} #{@u.last_name}"
-.user-data
-  .user-bio= @u.bio
-
-.posts
-  - @u.posts.each do |post|
-    = render :partial => 'posts/post', :locals => {:post => post}
+.wide-block
+  #profile-picture
+    = image_tag @u.image_url(:profile).to_s, :width => '100', :height => '100', :class => "profile-picture", :title => "#{@u.display_name}"
+  #profile-data
+    .user-display-name= @u.display_name
+    .user-bio= @u.bio
+#posts-wide
+  .posts
+    - @u.posts.each do |post|
+      = render :partial => 'posts/post', :locals => {:post => post}

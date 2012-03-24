@@ -86,3 +86,15 @@
   background: transparent url(/assets/white.png);
   padding: 60px 10px;
 }
+
+.wide-block {
+  @include shadow(4px,1px,1px,#333);
+  margin: 10px;
+  background: #fff;
+  min-height: 48px;
+  padding: 0;
+  img {
+    display: block;
+  }
+}
+

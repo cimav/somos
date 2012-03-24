@@ -263,6 +263,10 @@ $('.get-user')
     window.location.hash = '#!/' + username
     currentUsername = username
     $('#container').html(status)
+    $container = $('#posts-wide')
+    $container.imagesLoaded( () ->
+      $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
+    )
   )
 
 $('#get-home')
