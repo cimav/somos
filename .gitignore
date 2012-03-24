@@ -3,4 +3,5 @@ db/*.sqlite3
 log/*.log
 tmp/
 private/
+/app/assets/images/profile_images/
 .sass-cache/
