@@ -13,20 +13,18 @@ class PagesController < ApplicationController
 
   def show_group_page
     # TODO: Validate group
-    @user = User.find(session[:user].id)
     @page = Page.find(params[:id])
     render :layout => false
   end
 
   def add_page
-    user = User.find(session[:user].id)
     if !params[:group_id].blank?
-      membership = user.memberships.where(:group_id => params[:group_id]).first
+      membership = current_user.memberships.where(:group_id => params[:group_id]).first
       if membership.blank?
-        raise "User #{user.username} doesn't belongs to group #{params[:group_id]}"
+        raise "User #{current_user.username} doesn't belongs to group #{params[:group_id]}"
       end
       if membership.can_publish != 1
-        raise "User #{user.username} doesn't have sufficient permissions to do this action"
+        raise "User #{current_user.username} doesn't have sufficient permissions to do this action"
       end
 
     end
@@ -34,7 +32,7 @@ class PagesController < ApplicationController
     page.title = t :untitled
     page.short_name = (t :untitled).parameterize
     page.group_id = params[:group_id]
-    page.user_id = user.id
+    page.user_id = current_user.id
     page.save
     respond_with do |format|
       format.html do

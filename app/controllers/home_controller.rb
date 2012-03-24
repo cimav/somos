@@ -3,9 +3,9 @@ class HomeController < ApplicationController
   respond_to :html, :json
 
   def index
-    @user = User.find(session[:user].id)
     if request.xhr?
       render :layout => false
     end
   end
+
 end

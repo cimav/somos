@@ -14,13 +14,11 @@ class GroupsController < ApplicationController
 
   def page_list
     @group = Group.find(params[:id])
-    @user = User.find(session[:user].id)
     render :layout => false
   end
 
   def show
     @group = Group.where(:short_name => params[:short_name]).first || not_found
-    @user = User.find(session[:user].id)
     @members = Membership.where(:group_id => @group.id)
     render :layout => false
   end

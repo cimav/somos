@@ -60,7 +60,7 @@ class PostsController < ApplicationController
     end
 
     # User ID
-    params[:post][:user_id] = session[:user].id 
+    params[:post][:user_id] = current_user.id
 
     @post = Post.new(params[:post])
 

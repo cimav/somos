@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     # User ID
-    params[:comment][:user_id] = session[:user].id 
+    params[:comment][:user_id] = current_user.id
 
     @comment = Comment.new(params[:comment])
 

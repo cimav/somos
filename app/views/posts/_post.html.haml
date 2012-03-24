@@ -34,7 +34,7 @@
     = form_for(@comment, :remote => true, :html => {:class => "comment-form", :id => "comment_form_#{post.id}"}) do |f|
       = f.hidden_field :post_id, {:value => post.id}
       .comment-display
-        = image_tag @current_user_pic, :width => 32, :height => 32, :class => "profile-picture-small"
+        = image_tag current_user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
       .comment-area
         = f.text_area :content, :id => "comment_content_#{post.id}", :class => "comment-textarea", :post_id => post.id, :placeholder => (t :add_a_comment)
         %span.comment-cancel{:post_id => post.id, :id => "comment-cancel-#{post.id}"}
