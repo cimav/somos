@@ -17,6 +17,15 @@ class PostsController < ApplicationController
   def recent_query (group_id, id)
     posts = Post.order("created_at DESC").where("status = 1")
 
+    posts = posts.where("( 
+                           (limited = '0') OR 
+                           (user_id = :user_id) OR
+                           (id IN (
+                                    SELECT post_id FROM post_groups 
+                                    WHERE group_id IN (SELECT group_id FROM memberships 
+                                                        WHERE user_id = :user_id)
+                                  )) )", {:user_id => current_user.id})
+
     if !group_id.blank?
       posts = posts.where("group_id = :group_id", {:group_id => group_id})
     end
@@ -64,7 +73,11 @@ class PostsController < ApplicationController
 
     @post = Post.new(params[:post])
 
-    
+    if params[:to_groups].blank?
+      @post.limited = '0'
+    else
+      @post.limited = params[:to_groups]
+    end
 
     if @post.save
       flash[:notice] = t :post_created
