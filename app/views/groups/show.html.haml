@@ -1,6 +1,6 @@
 #posts-area
 #sidebar
-  - membership = @user.memberships.where(:group_id => @group.id).first
+  - membership = current_user.memberships.where(:group_id => @group.id).first
   - if membership && membership.can_publish?
     .post
       #share-block
