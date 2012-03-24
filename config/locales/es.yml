@@ -220,3 +220,7 @@ es:
 
   attach_images: "Adjunta las imagenes arrastrandolas y soltandolas aqui o escogelas manualmente..."
   attach_files: "Adjunta los archivos arrastrandolos y soltandolos aqui o escogelas manualmente..."
+
+  to_groups_hint_message: "Teclea un grupo"
+  to_groups_searching_message: "Buscando grupos..."
+  to_groups_no_results_message: "No se encontraron grupos"

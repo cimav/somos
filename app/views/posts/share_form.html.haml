@@ -30,7 +30,7 @@
               %p= t :everyone
               %span.token-input-delete-token-somos= "×"
             #share-tokens
-              = text_field_tag :to_groups
+              = text_field_tag :to_groups, '', :hintMessage => (t :to_groups_hint_message), :searchingMessage => (t :to_groups_searching_message), :noResultsMessage => (t :to_groups_no_results_message)
         .clearfix
         #share-button
           = submit_tag (t :share), :disable_with => (t :share_wait), :id => "share-submit"

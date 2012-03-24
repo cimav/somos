@@ -68,3 +68,7 @@ en:
 
   attach_images: "Attach images by dragging and dropping them here or choose them manually..."
   attach_files: "Attach files by dragging and dropping them here or choose them manually..."
+
+  to_groups_hint_message: "Type in a group"
+  to_groups_searching_message: "Searching groups..."
+  to_groups_no_results_message: "No groups found"
