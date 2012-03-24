@@ -3,9 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #new-posts-message {
-  text-align: center;
   cursor: pointer;
   display: none;
+  #new-posts-message-inner {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+    color: $grey;
+  }
 }
 
 #posts-area {
