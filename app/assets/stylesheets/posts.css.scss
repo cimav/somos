@@ -61,7 +61,6 @@
     .post-user {
       margin-left: 60px;
       a {
-        color: $black;
         text-decoration: none;
         font-weight: bold;
       }
@@ -92,14 +91,11 @@
     }
   }
 
-  &:hover {
-    .post-user,
-    .post-footer {
-      a {
-        color: $link-color;
-        &:hover {
-          text-decoration: underline;
-        }
+  .post-user,
+  .post-footer {
+    a {
+      &:hover {
+        text-decoration: underline;
       }
     }
   }
@@ -117,6 +113,9 @@
       }
       .comment-content {
         margin-left: 44px;
+        .comment-user a {
+          font-weight: bold;
+        }
       }
       .comment-footer {
         margin-left: 44px;
