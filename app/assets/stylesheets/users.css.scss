@@ -4,3 +4,52 @@
 .user-data {
   margin-bottom: 10px;
 }
+
+#user-profile {
+  padding: 10px;
+  min-height: 200px;
+}
+
+#profile-picture {
+  float: left;
+  img {
+  }
+}
+
+#profile-data {
+  width: $container-width - 400;
+  float: left;
+  font-size: 15px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  .user-display-name {
+  }
+  .user-occupation {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: $grey;
+  }
+  .user-bio {
+    margin-bottom: 20px;
+  }
+  .user-data {
+    width: 100%;
+    display: block;
+    height: 1em;
+    padding: 0;
+    .user-data-label {
+      font-weight: bold;
+      width: 160px;
+      float: left;
+    }
+    .user-data-content {
+      float: left;
+    }
+  }
+}
+
+#profile-bagdes {
+  width: 200px;
+  float: left;
+  padding-left: 10px;
+}
