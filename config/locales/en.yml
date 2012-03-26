@@ -72,3 +72,16 @@ en:
   to_groups_hint_message: "Type in a group"
   to_groups_searching_message: "Searching groups..."
   to_groups_no_results_message: "No groups found"
+
+  email: 'Email'
+  work_phone: 'Work phone'
+  home_phone: 'Home phone'
+  mobile_phone: 'Mobile phone'
+  address: 'Address'
+  birth_date: 'Birthday'
+  years_of_service: 'Years of service'
+  reports_to: 'Reports to'
+
+  years: 'years'
+  months: 'months'
+

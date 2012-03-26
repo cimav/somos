@@ -224,3 +224,15 @@ es:
   to_groups_hint_message: "Teclea un grupo"
   to_groups_searching_message: "Buscando grupos..."
   to_groups_no_results_message: "No se encontraron grupos"
+ 
+  email: 'Correo Electrónico'
+  work_phone: 'Tel. Oficina'
+  home_phone: 'Tel. Casa'
+  mobile_phone: 'Tel. Celular'
+  address: 'Dirección'
+  birth_date: 'Cumpleaños'
+  years_of_service: 'Antigüedad laboral'
+  reports_to: 'Reporta a'
+
+  years: 'años'
+  months: 'meses'
