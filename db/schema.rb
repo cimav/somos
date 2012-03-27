@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301232157) do
+ActiveRecord::Schema.define(:version => 20120326193627) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20120301232157) do
     t.integer  "user_id"
     t.integer  "badge_id"
     t.integer  "post_id"
+    t.integer  "status",     :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -246,5 +247,16 @@ ActiveRecord::Schema.define(:version => 20120301232157) do
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["state_id"], :name => "index_users_on_state_id"
   add_index "users", ["username"], :name => "index_users_on_username"
+
+  create_table "xxx", :id => false, :force => true do |t|
+    t.string   "empleado"
+    t.datetime "alta",     :null => false
+  end
+
+  create_table "xxxx", :id => false, :force => true do |t|
+    t.string   "empleado"
+    t.datetime "alta1",                   :null => false
+    t.integer  "alta",     :default => 0
+  end
 
 end

@@ -46,6 +46,10 @@
               = @u.reports_to_user.display_name
     #profile-badges
       %h2= t :badges
+      - @u.user_badges.each do |b|
+        .user-badge
+          = link_to url_for(:controller => "posts", :action => "show", :id => "#{b.post_id}"), :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{b.post_id}" do
+            = image_tag b.badge.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-badge-small", :title => b.badge.name
     .clearfix
 #posts-wide
   .posts

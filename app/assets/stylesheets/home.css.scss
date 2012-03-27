@@ -172,18 +172,50 @@
 }
 
 .post-birthday {
-  margin: 10px;
+  padding: 10px;
+  background: transparent url(/assets/birthday-bg.png) bottom left no-repeat;
   .birthday-display {
     float: right;
     display: block;
-    width: 48px;
+    width: 128px;
     margin-bottom: 20px;
+    img {
+      border: 5px solid $white;
+      border-bottom: 15px solid $white;
+      @include rotate(3deg);
+      @include shadow(4px,1px,1px,#333);
+    }
   } 
   .birthday-message {
     float: left;
+    position: absolute;
+    color: #fff;
+    text-shadow: black 0.1em 0.1em 0.2em;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 26px;
+    margin-top: 20px;
+    line-height: 1.2em;
     width: $post-width - 78;
+  }
+}
+
+.post-badge {
+  padding: 10px;
+  .badge-display {
+    float: left;
+    display: block;
+    img.badge-small {
+    }
+  } 
+  .badge-message {
+    color: #000;
+    float: left;
+    margin: 10px 0 10px 10px;
+    line-height: 1.2em;
+    width: $post-width - 78;
+    .new-badge-message {
+      margin-top: 5px;
+    }
   }
 }
 

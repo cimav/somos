@@ -18,5 +18,6 @@ class Post < ActiveRecord::Base
   has_one :post_event
   accepts_nested_attributes_for :post_event
 
+  has_one :user_badge
 
 end

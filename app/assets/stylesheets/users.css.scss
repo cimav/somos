@@ -17,7 +17,7 @@
 }
 
 #profile-data {
-  width: $container-width - 400;
+  width: $container-width - 420;
   float: left;
   font-size: 15px;
   margin-left: 20px;
@@ -48,8 +48,16 @@
   }
 }
 
-#profile-bagdes {
+#profile-badges {
   width: 200px;
-  float: left;
+  float: right;
   padding-left: 10px;
+  h2 {
+    margin-bottom: 10px;
+  }
+  .user-badge {
+    float: left;
+    width: 48px; 
+    margin-right: 5px;
+  }
 }

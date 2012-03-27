@@ -236,3 +236,6 @@ es:
 
   years: 'años'
   months: 'meses'
+
+  badges: "Distintivos"
+  i_have_earned_new_badge: "He obtenido un nuevo distintivo"

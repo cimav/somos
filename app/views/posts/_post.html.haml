@@ -4,7 +4,7 @@
       = render :partial => "posts/view_#{post.post_type.name}", :locals => {:post => post} 
     - else 
       .post-text
-        = post.content
+        = simple_format(post.content)
   - if post.post_group.count > 0
     - post_groups = Array.new
     - post.post_group.each do |g|
@@ -12,7 +12,7 @@
     - visible_by = "#{(t :only_visible_by)} #{(post_groups.join(', '))}"
     .post-lock{:title => visible_by}= t :lock
     .clearfix
-  - if post.post_type.category == PostType::USER_POST
+  - if post.post_type.category == PostType::USER_POST || post.post_type.category == PostType::UNDELETABLE_POST
     .post-who
       .post-display
         = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
