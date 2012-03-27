@@ -4,4 +4,5 @@ log/*.log
 tmp/
 private/
 /app/assets/images/profile_images/
+/app/assets/images/badges/
 .sass-cache/
