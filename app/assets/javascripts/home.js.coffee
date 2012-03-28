@@ -19,7 +19,7 @@ $('.post-type')
     $('#post-types').hide()
     $('#share-form').dialog('option', 'title', $("#post-type-message-" + $(this).attr('post_type')).html())
     $('#share-content').show()
-    url = "/posts/ui/#{$(this).attr('post_type')}"
+    url = "/p/ui/#{$(this).attr('post_type')}"
     $.get(url, {}, (html) ->
       $('#share-add-ui').html(html)
       $('#share-form').dialog('option', 'height', $('#dialog-height').val())
@@ -65,14 +65,14 @@ $('#new_post')
     )
 
 getPost = (id) ->
-  url = '/posts/' + id
+  url = '/p/' + id
   $.get(url, {}, (html) ->
     $(html).prependTo('#posts-area')
     $("#post-" + id).delay(200).fadeIn('slow')
   )
 
 getShareForm = () ->
-  url = '/posts/share_form'
+  url = '/p/share_form'
   $.get(url, {}, (html) ->
     $('#container').append(html)
     $("#share-form").dialog({ 
@@ -93,7 +93,7 @@ getGroupList = () ->
   )
 
 getPosts = () -> 
-  url = '/posts/recent'
+  url = '/p/recent'
   if currentGroup > 0
     url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
@@ -106,7 +106,7 @@ getPosts = () ->
   )
 
 getComments = (post_id) ->
-  url = "/posts/#{post_id}/comments/#{$("#post-#{post_id}").attr('last_comment')}"
+  url = "/p/#{post_id}/comments/#{$("#post-#{post_id}").attr('last_comment')}"
   $.get(url, {}, (html) ->
     $(html).appendTo("#post-#{post_id}-comments")
     $('#posts').masonry('reload')
@@ -157,7 +157,7 @@ $('.comment-cancel')
 
 
 @getRecentPosts = getRecentPosts = () ->
-  url = '/posts/recent/'
+  url = '/p/recent/'
   if currentGroup > 0
     url = url + 'g/' + currentGroup + '/'
   if latestPostId?
@@ -172,7 +172,7 @@ $('.comment-cancel')
 
 
 getRecentPostsCounter = () ->
-  url = '/posts/recent/counter/'
+  url = '/p/recent/counter/'
   if (currentGroup > 0)
     url = url + 'g/' + currentGroup + '/'
   url = url + latestPostId
