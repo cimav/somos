@@ -28,7 +28,7 @@ Somos::Application.routes.draw do
 
   resources :pages
   match 'g/:group_id/p/add' => 'pages#add_page'
-  match 'g/:group_id/p/:id' => 'pages#show_group_page'
+  match 'g/:group_short_name/:page_short_name' => 'pages#show_group_page'
   match 'pages/:id/update_title' => 'pages#update'
 
   match 'events/upcoming' => 'post_events#upcoming'
