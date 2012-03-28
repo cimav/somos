@@ -2,6 +2,7 @@ currentGroup = 0
 currentPost = 0
 currentUser = 0
 postContentHeight = 0
+hash = false
 
 $('#nav-title-span').live('click', (e) ->
   $('#groups-area').toggle()
@@ -190,30 +191,35 @@ $('#new-posts-message')
 
 $('.get-group')
   .live('ajax:success', (data, status, xhr) ->
-    window.location.hash = '#!/g/' + $(this).attr('short_name')
-    $("#li_group_#{currentGroup}").removeClass('selected')
-    currentGroup = $(this).attr('group_id')
+    setHash('#!/g/' + $(this).attr('short_name'))
     $('#container').html(status);
-    $("#li_group_#{currentGroup}").addClass('selected')
-    title = $("#group_link_#{currentGroup}").html()
-    $('#nav-title-span').html(title)
-    $('#nav-title-span').removeClass('font-20')
-    $('#nav-title-span').removeClass('font-22')
-    if (title.length > 20) 
-      $('#nav-title-span').addClass('font-16')
-    else
-      $('#nav-title-span').addClass('font-22')
-    getPosts()
-    getGroupBrick(currentGroup)
+    afterGetGroup($(this).attr('group_id'))
   )
+
+@afterGetGroup = afterGetGroup = (g) ->
+  $("#li_group_#{currentGroup}").removeClass('selected')
+  currentGroup = g
+  $("#li_group_#{currentGroup}").addClass('selected')
+  title = $("#group_link_#{currentGroup}").html()
+  $('#nav-title-span').html(title)
+  $('#nav-title-span').removeClass('font-20')
+  $('#nav-title-span').removeClass('font-22')
+  if (title.length > 20) 
+    $('#nav-title-span').addClass('font-16')
+  else
+    $('#nav-title-span').addClass('font-22')
+  getPosts()
 
 $('.get-page')
   .live('ajax:success', (data, status, xhr) ->
-    window.location.hash = '#!/g/' + $(this).attr('group_name') + '/' + $(this).attr('short_name')
-    $('.page-title').removeClass('selected')
+    setHash('#!/g/' + $(this).attr('group_name') + '/' + $(this).attr('short_name'))
     $('#posts-area').html(status);
-    $('#li_page_' + $(this).attr('page_id')).addClass('selected')
+    afterGetPage($(this).attr('page_id'))
   )
+
+@afterGetPage = afterGetPage = (p) -> 
+  $('.page-title').removeClass('selected')
+  $('#li_page_' + p).addClass('selected')
 
 $('#add_page')
     .live("ajax:beforeSend", (evt, xhr, settings) ->
@@ -237,19 +243,6 @@ $('#add_page')
       # TODO: Display errors
     )
 
-
-
-getGroupBrick = (group) ->
-  #$("#right-sidebar-content").html('')
-  #url = '/g/' + group + '/members'
-  #$.get(url, {}, (html) ->
-  #  $("#right-sidebar-content").append(html)
-  #  url = '/g/' + group + '/page_list'
-  #  $.get(url, {}, (html) ->
-  #    $("#right-sidebar-content").append(html)
-  #  )
-  #)
-
 $('.get-post') 
   .live('ajax:success', (data, status, xhr) ->
     window.location.hash = '#!/p/' + $(this).attr('post_id')
@@ -260,13 +253,16 @@ $('.get-post')
 $('.get-user')
   .live('ajax:success', (data, status, xhr) ->
     username =  $(this).attr('username')
-    window.location.hash = '#!/' + username
-    currentUsername = username
+    setHash('#!/' + username)
     $('#container').html(status)
-    $container = $('#posts-wide')
-    $container.imagesLoaded( () ->
-      $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
-    )
+    afterGetUser(username)
+  )
+
+@afterGetUser = afterGetUser = (username) ->
+  currentUsername = username
+  $container = $('#posts-wide')
+  $container.imagesLoaded( () ->
+    $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
   )
 
 $('#get-home')
@@ -308,11 +304,11 @@ populateHome = () ->
   getUpcomingBirthdays()
 
 getHome = (reload) ->
-  #window.history.pushState('', document.title, window.location.pathname)
   currentGroup = 0
   currentPost = 0
   currentUser = 0
   if (reload) 
+    window.history.pushState('', document.title, window.location.pathname)
     url = '/home/index'
     $.get(url, {}, (html) ->
       $("#container").html(html)
@@ -321,8 +317,25 @@ getHome = (reload) ->
   else
     populateHome()
 
+setHash = (h) ->
+  hash = h
+  window.location.hash = hash
+
+checkHash = () ->
+  if window.location.hash != hash
+    hash = window.location.hash
+    if (hash.slice(0, 2) == '#!') 
+      url = hash.slice(2 - hash.length) + '?__from__=url'
+      $.get(url, {}, (html) ->
+        $('#container').html(html)
+      )
+
+
+
 $ ->
   getGroupList()
-  getHome(false)
+  if window.location.hash.slice(0, 2) != '#!' 
+    getHome(false)
 
 recentTimer = setInterval(getRecentPostsCounter, 10000)
+hashTimer = setInterval(checkHash, 1000)
