@@ -235,7 +235,9 @@ es:
   reports_to: 'Reporta a'
 
   years: 'años'
+  year: 'año'
   months: 'meses'
+  month: 'mes'
 
   badges: "Distintivos"
   i_have_earned_new_badge: "He obtenido un nuevo distintivo"

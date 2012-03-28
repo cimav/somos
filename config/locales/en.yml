@@ -83,7 +83,9 @@ en:
   reports_to: 'Reports to'
 
   years: 'years'
+  year: 'years'
   months: 'months'
+  month: 'month'
 
   badges: "Distintivos"
   i_have_earned_new_badge: "He obtenido un nuevo distintivo"
