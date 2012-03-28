@@ -324,7 +324,7 @@ setHash = (h) ->
 checkHash = () ->
   if window.location.hash != hash
     hash = window.location.hash
-    if (hash.slice(0, 2) == '#!') 
+    if (hash.slice(0, 2) == '#!' && hash.length > 3) 
       url = hash.slice(2 - hash.length) + '?__from__=url'
       $.get(url, {}, (html) ->
         $('#container').html(html)
