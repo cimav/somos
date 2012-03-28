@@ -97,7 +97,6 @@ getPosts = () ->
   if currentGroup > 0
     url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
-    #$('<div id="posts-area"></div>').appendTo("#container")
     $('#posts-area').html(html)
     $container = $('#posts')
     $container.imagesLoaded( () ->
@@ -334,7 +333,7 @@ checkHash = () ->
 
 $ ->
   getGroupList()
-  if window.location.hash.slice(0, 2) != '#!' 
+  if window.location.hash.length <= 2 || window.location.hash.slice(0, 2) != '#!' 
     getHome(false)
 
 recentTimer = setInterval(getRecentPostsCounter, 10000)
