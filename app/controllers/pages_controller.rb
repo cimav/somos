@@ -12,8 +12,8 @@ class PagesController < ApplicationController
   end
 
   def show_group_page
-    # TODO: Validate group
-    @page = Page.find(params[:id])
+    @group = Group.where(:short_name => params[:group_short_name]).first || not_found
+    @page = @group.pages.where(:short_name => params[:page_short_name]).first || not_found 
     render :layout => false
   end
 
