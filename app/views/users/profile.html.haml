@@ -55,3 +55,8 @@
   .posts
     - @u.posts.each do |post|
       = render :partial => 'posts/post', :locals => {:post => post}
+
+- if params['__from__'] == 'url'
+  :javascript
+    afterGetUser('#{@u.username}')
+

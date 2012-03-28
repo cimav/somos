@@ -13,3 +13,6 @@
         = render :partial => 'page_list', :locals => {:group => @group }
   = render :partial => 'members', :locals => {:members => @members }
 
+- if params['__from__'] == 'url'
+  :javascript
+    afterGetGroup(#{@group.id})

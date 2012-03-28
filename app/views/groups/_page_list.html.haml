@@ -4,7 +4,7 @@
     = link_to home_link, {:controller => 'groups', :action => 'show', :short_name => group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}", :group_id => "#{group.id}"
   - group.pages.where(:status => Page::PUBLISHED).order('position').each do |page|
     %li.page-title{:id => "li_page_#{page.id}"}
-      = link_to url_for(:controller => "pages", :action => "show_group_page", :group_id => group.id, :id => page.id), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{page.id}", :group_name => "#{group.short_name}", :short_name => "#{page.short_name}", :page_id => "#{page.id}" do
+      = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => group.short_name, :page_short_name => page.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{page.id}", :group_name => "#{group.short_name}", :short_name => "#{page.short_name}", :page_id => "#{page.id}" do
         = page.title
   - membership = current_user.memberships.where(:group_id => group.id).first
   - if !membership.blank?
