@@ -19,7 +19,6 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.where(:short_name => params[:short_name]).first || not_found
-    @members = Membership.where(:group_id => @group.id)
     render :layout => false
   end
 

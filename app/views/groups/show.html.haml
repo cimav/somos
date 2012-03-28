@@ -1,17 +1,5 @@
 #posts-area
-#sidebar
-  - membership = current_user.memberships.where(:group_id => @group.id).first
-  - if membership && membership.can_publish?
-    .post
-      #share-block
-        %span.share-plus +
-        = t :share_to_the_community
-  .post
-    #group-pages
-      %h3= t :pages
-      #pages-list
-        = render :partial => 'page_list', :locals => {:group => @group }
-  = render :partial => 'members', :locals => {:members => @members }
+= render :partial => 'sidebar', :locals => {:group => @group }
 
 - if params['__from__'] == 'url'
   :javascript

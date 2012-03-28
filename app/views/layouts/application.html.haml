@@ -19,7 +19,7 @@
           #search-box
             = form_tag '/search/', :id => 'live-search', :method => 'get', :remote => true do
               = text_field_tag :q, nil, :id => 'search-input', :placeholder => 'Busqueda'
+    #flash-notice
     #container
-      #flash-notice
       = yield
       .clearfix

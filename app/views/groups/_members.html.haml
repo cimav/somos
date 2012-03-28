@@ -1,5 +1,6 @@
 .post
   #group-members
+    - members = group.memberships
     %h3= "#{t :members} (#{members.count})"
     - members.each do |member|
       %span.member
