@@ -21,8 +21,7 @@
       - if post.group_id > 0 && params[:group_id].blank?
         .post-group= link_to post.group.name, {:controller => 'groups', :action => 'show', :short_name => post.group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :short_name => "#{post.group.short_name}", :group_id => "#{post.group.id}"
       .post-footer
-        = link_to post, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}" do
-          = post_date(post.created_at)
+        = link_to post_date(post.created_at), {:controller => 'posts', :action => 'show', :id => post.id}, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}"
 
 
   .post-comments{:id => "post-#{post.id}-comments"}

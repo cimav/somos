@@ -9,16 +9,17 @@ Somos::Application.routes.draw do
   match 'g/:id/page_list' => 'groups#page_list'
   resources :g, :controller => "groups"
 
-  match 'posts/recent/counter/g/:group_id(/:id(.:format))' => 'posts#recent_counter'
-  match 'posts/recent/counter(/:id(.:format))' => 'posts#recent_counter'
-  match 'posts/recent/g/:group_id(/:id(.:format))' => 'posts#recent'
-  match 'posts/recent(.:format)' => 'posts#recent'
-  match 'posts/recent(/:id(.:format))' => 'posts#recent'
-  match 'posts/share_form(/:id(.:format))' => 'posts#share_form'
-  match 'posts/ui(/:id(.:format))' => 'posts#ui'
-  match 'posts/:id/f/:file_id/:filename' => 'post_files#file', :constraints => { :filename => /[^\/]*/ }
-  match 'posts/:id/photo/:photo_id/:version/:filename' => 'post_photos#photo', :constraints => { :filename => /[^\/]*/ }
-  match 'posts/:id/comments/:last' => 'posts#comments'
+  match 'p/recent/counter/g/:group_id(/:id(.:format))' => 'posts#recent_counter'
+  match 'p/recent/counter(/:id(.:format))' => 'posts#recent_counter'
+  match 'p/recent/g/:group_id(/:id(.:format))' => 'posts#recent'
+  match 'p/recent(.:format)' => 'posts#recent'
+  match 'p/recent(/:id(.:format))' => 'posts#recent'
+  match 'p/share_form(/:id(.:format))' => 'posts#share_form'
+  match 'p/ui(/:id(.:format))' => 'posts#ui'
+  match 'p/:id/f/:file_id/:filename' => 'post_files#file', :constraints => { :filename => /[^\/]*/ }
+  match 'p/:id/photo/:photo_id/:version/:filename' => 'post_photos#photo', :constraints => { :filename => /[^\/]*/ }
+  match 'p/:id/comments/:last' => 'posts#comments'
+  match 'p/:id' => 'posts#show'
   resources :posts
 
   resources :comments
