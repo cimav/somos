@@ -2,6 +2,8 @@ Somos::Application.routes.draw do
   root :to => 'home#index'
   match 'home/index' => 'home#index'
 
+  match 'search' => 'search#search'
+
   match 'g/list' => 'groups#list'
   match 'g/search' => 'groups#search'
   match 'g/:short_name' => 'groups#show'
