@@ -8,9 +8,15 @@ $('#nav-title-span').live('click', (e) ->
   $('#groups-area').toggle()
 )
 
+$('#user-info').live('click', (e) ->
+  $('#user-nav').toggle()
+)
+
 $('html').click( (e) ->
   if e.target.id != 'nav-title-span'
     $('#groups-area').hide()
+  if e.target.id != 'user-info'
+    $('#user-nav').hide()
 )
 
 $('.post-type')
@@ -91,6 +97,14 @@ getGroupList = () ->
   $.get(url, {}, (html) ->
     $('#nav').html(html)
   )
+
+getUserMenu = () ->
+  url = '/u/menu'
+  $.get(url, {}, (html) ->
+    $('#user-area').html(html)
+  )
+
+
 
 getPosts = () -> 
   url = '/p/recent'
@@ -333,6 +347,7 @@ checkHash = () ->
 
 $ ->
   getGroupList()
+  getUserMenu()
   if window.location.hash.length <= 2 || window.location.hash.slice(0, 2) != '#!' 
     getHome(false)
 

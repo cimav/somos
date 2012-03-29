@@ -39,8 +39,12 @@
       }
  
       #user-area {
+        width: $user-area-width;
         margin-top: 4px;
         float: right;
+        #user-info {
+          cursor: pointer;
+        }
         #user-display {
           float: left;
         }
@@ -52,13 +56,22 @@
           margin-left: 5px;
           @include opacity(0.2);
         }
+        #user-nav {
+          display: none;
+          background-color: $bg-color;
+          border: 1px solid $line-color;
+          position: absolute;
+          width: $user-area-width;
+          top: 46px;
+          padding: 10px;
+        }
       }
     }
   }
 
   #nav {
     float: left;
-    width: $container-width / 2;
+    width: $container-width / 2 - 40;
     margin: 12px 10px 0px 10px;
     #nav-title { 
       color: $strong-color;

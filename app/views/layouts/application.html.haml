@@ -12,10 +12,6 @@
           #brand= image_tag "logo.png"
           #nav
           #user-area
-            #user-display= image_tag current_user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
-            #user-name
-              = current_user.display_name 
-              = image_tag "down-arrow.png", :id => "user-arrow"
           #search-box
             = form_tag '/search/', :id => 'live-search', :method => 'get', :remote => true do
               = text_field_tag :q, nil, :id => 'search-input', :placeholder => 'Busqueda'

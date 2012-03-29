@@ -12,8 +12,12 @@ class UsersController < ApplicationController
     render :layout => false
   end
  
-  def sidebar
-    @u = User.where(:username => params[:username]).first
+  def menu
     render :layout => false
   end
+
+ def logout
+   render :inline => "FIXME: Implement Me"
+ end
+
 end
