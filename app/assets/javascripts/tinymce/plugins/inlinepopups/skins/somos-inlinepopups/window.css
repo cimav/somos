@@ -1,0 +1,141 @@
+/* Somos */
+
+/* Reset */
+.somos-inlinepopups, 
+.somos-inlinepopups div, 
+.somos-inlinepopups span, 
+.somos-inlinepopups a {
+  vertical-align: baseline; 
+  text-align: left; 
+  position: absolute; 
+  border: 0; 
+  padding: 0; 
+  margin: 0; 
+  background: transparent; 
+  font-size: 11px; 
+  color: #000; 
+  text-decoration: none; 
+  font-weight: normal; 
+  width: auto; 
+  height: auto; 
+  overflow: hidden; 
+  display: block;
+}
+
+/* General */
+.somos-inlinepopups {
+  position:absolute; 
+  direction:ltr;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  moz-box-shadow: 1px 1px 4px #333;
+  -webkit-box-shadow: 1px 1px 4px #333;
+  box-shadow: 1px 1px 4px #333;
+}
+.somos-inlinepopups .mceWrapper {
+  position: static;
+}
+.mceEventBlocker {
+  position:fixed; 
+  left:0; 
+  top:0; 
+  background: #000;
+  opacity:0.6; -ms-filter:'alpha(opacity=60)'; filter:alpha(opacity=60);
+  width: 100%; 
+  height: 100%;
+}
+.somos-inlinepopups .mcePlaceHolder {
+  border: 1px solid #000; 
+  background: #fff; 
+  top: 0; 
+  left: 0; 
+  opacity:0.6; -ms-filter:'alpha(opacity=60)'; filter:alpha(opacity=60);
+}
+.somos-inlinepopups_modalBlocker {
+  position:fixed; 
+  left:0; 
+  top:0; 
+  width:100%; 
+  height:100%; 
+  background:#000; 
+  opacity:0.6; -ms-filter:'alpha(opacity=60)'; filter:alpha(opacity=60); 
+  display:none;
+}
+
+/* Top */
+.somos-inlinepopups .mceTop, 
+.somos-inlinepopups .mceTop div {
+  top:0; 
+  width:100%; 
+  height:50px;
+  background-color: #fafafa;
+}
+.somos-inlinepopups .mceTop .mceRight {
+  right:10px; 
+  width:9px; 
+  height:9px; 
+  top: 10px;
+  background: transparent url(/assets/close.png) 0 0;
+}
+.somos-inlinepopups .mceTop span {
+  width: 100%; 
+  text-align: left; 
+  vertical-align: middle; 
+  font-size: 20px;
+  color: #777;
+  padding: 10px;
+  font-weight: bold;
+}
+.somos-inlinepopups .mceFocus .mceTop span {
+  color: #777;
+}
+
+/* Middle */
+.somos-inlinepopups .mceMiddle, 
+.somos-inlinepopups .mceMiddle div {
+  top: 0;
+}
+.somos-inlinepopups .mceMiddle {
+  width:100%; 
+  height:100%; 
+  clip:rect(23px auto auto auto);
+}
+.somos-inlinepopups .mceMiddle .mceLeft {left:0; width:5px; height:100%; background:url(img/vertical.gif) -5px 0}
+.somos-inlinepopups .mceMiddle span { top:50px; left:5px; width:100%; height:100%; background:#FFF}
+.somos-inlinepopups .mceMiddle .mceRight {right:0; width:5px; height:100%; background:url(img/vertical.gif)}
+
+/* Actions */
+.somos-inlinepopups a {width:29px; height:16px; top:3px;}
+.somos-inlinepopups .mceClose {right:6px; background:url(img/buttons.gif) -87px 0}
+.somos-inlinepopups .mceMin {display:none; right:68px; background:url(img/buttons.gif) 0 0}
+.somos-inlinepopups .mceMed {display:none; right:37px; background:url(img/buttons.gif) -29px 0}
+.somos-inlinepopups .mceMax {display:none; right:37px; background:url(img/buttons.gif) -58px 0}
+.somos-inlinepopups .mceMove {display:none;width:100%;cursor:move;background:url(img/corners.gif) no-repeat -100px -100px}
+.somos-inlinepopups .mceMovable .mceMove {display:block}
+.somos-inlinepopups .mceFocus .mceClose {right:6px; background:url(img/buttons.gif) -87px -16px}
+.somos-inlinepopups .mceFocus .mceMin {right:68px; background:url(img/buttons.gif) 0 -16px}
+.somos-inlinepopups .mceFocus .mceMed {right:37px; background:url(img/buttons.gif) -29px -16px}
+.somos-inlinepopups .mceFocus .mceMax {right:37px; background:url(img/buttons.gif) -58px -16px}
+.somos-inlinepopups .mceFocus .mceClose:hover {right:6px; background:url(img/buttons.gif) -87px -32px}
+.somos-inlinepopups .mceFocus .mceClose:hover {right:6px; background:url(img/buttons.gif) -87px -32px}
+.somos-inlinepopups .mceFocus .mceMin:hover {right:68px; background:url(img/buttons.gif) 0 -32px}
+.somos-inlinepopups .mceFocus .mceMed:hover {right:37px; background:url(img/buttons.gif) -29px -32px}
+.somos-inlinepopups .mceFocus .mceMax:hover {right:37px; background:url(img/buttons.gif) -58px -32px}
+
+/* Resize */
+.somos-inlinepopups .mceResize {top:auto; left:auto; display:none; width:5px; height:5px; }
+.somos-inlinepopups .mceResizable .mceResize {display:block}
+.somos-inlinepopups .mceResizable .mceMin, .somos-inlinepopups .mceMax {display:none}
+.somos-inlinepopups .mceMinimizable .mceMin {display:block}
+.somos-inlinepopups .mceMaximizable .mceMax {display:block}
+.somos-inlinepopups .mceMaximized .mceMed {display:block}
+.somos-inlinepopups .mceMaximized .mceMax {display:none}
+.somos-inlinepopups a.mceResizeN {top:0; left:0; width:100%; cursor:n-resize}
+.somos-inlinepopups a.mceResizeNW {top:0; left:0; cursor:nw-resize}
+.somos-inlinepopups a.mceResizeNE {top:0; right:0; cursor:ne-resize}
+.somos-inlinepopups a.mceResizeW {top:0; left:0; height:100%; cursor:w-resize;}
+.somos-inlinepopups a.mceResizeE {top:0; right:0; height:100%; cursor:e-resize}
+.somos-inlinepopups a.mceResizeS {bottom:0; left:0; width:100%; cursor:s-resize}
+.somos-inlinepopups a.mceResizeSW {bottom:0; left:0; cursor:sw-resize}
+.somos-inlinepopups a.mceResizeSE {bottom:0; right:0; cursor:se-resize}
+

@@ -15,7 +15,6 @@ $('#user-info').live('click', (e) ->
 $('html').click( (e) ->
   if e.target.id != 'nav-title-span'
     $('#groups-area').hide()
-  if e.target.id != 'user-info'
     $('#user-nav').hide()
 )
 
@@ -75,6 +74,7 @@ getPost = (id) ->
   $.get(url, {}, (html) ->
     $(html).prependTo('#posts-area')
     $("#post-" + id).delay(200).fadeIn('slow')
+    clearInterval(recentTimer)
   )
 
 getShareForm = () ->
@@ -115,6 +115,7 @@ getPosts = () ->
     $container = $('#posts')
     $container.imagesLoaded( () ->
       $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
+      $('<div class="clearfix"></div>').appendTo("#container")
     )
   )
 
@@ -226,6 +227,7 @@ $('.get-group')
 $('.get-page')
   .live('ajax:success', (data, status, xhr) ->
     setHash('#!/g/' + $(this).attr('group_name') + '/' + $(this).attr('short_name'))
+    clearInterval(recentTimer)
     $('#posts-area').html(status);
     afterGetPage($(this).attr('page_id'))
   )

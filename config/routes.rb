@@ -41,7 +41,10 @@ Somos::Application.routes.draw do
   match '/auth/admin/callback', :to => 'sessions#authenticate'
   match '/auth/failure', :to => 'sessions#failure'
 
+  match 'editor/link_dialog' => 'editor#link_dialog'
+
   match ':username' => 'users#profile', :constraints => { :username => /[^\/]*/ }
   match ':username/sidebar' => 'users#sidebar', :constraints => { :username => /[^\/]*/ }
+
 
 end
