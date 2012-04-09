@@ -1,6 +1,8 @@
-require 'openid/store/filesystem'
+#require 'openid/store/filesystem'
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_apps, OpenID::Store::Filesystem.new('/tmp'), :domain => GAPPS_DOMAIN, :name => 'admin'
+  puts ENV['GOOGLE_KEY']
+  puts "Chido"
+  puts ENV.inspect
+  provider :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], {approval_prompt: ''}
 end
-

@@ -38,8 +38,9 @@ Somos::Application.routes.draw do
 
   match 'events/upcoming' => 'post_events#upcoming'
 
-  match '/auth/admin/callback', :to => 'sessions#authenticate'
+  match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure'
+  match "/logout", to: "sessions#destroy", :as => "logout"
 
   match 'editor/link_dialog' => 'editor#link_dialog'
 
