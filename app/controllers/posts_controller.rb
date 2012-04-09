@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     if !id.blank?
       posts = posts.where("id > :id", {:id => id})
     else
-      posts = posts.limit(HOME_INITIAL_POSTS)
+      posts = posts.limit(10)
     end
   end
 
