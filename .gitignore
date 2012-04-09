@@ -7,3 +7,4 @@ private/
 /app/assets/images/profile_images/
 /app/assets/images/badges/
 .sass-cache/
+run.sh
