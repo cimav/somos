@@ -16,8 +16,4 @@ class UsersController < ApplicationController
     render :layout => false
   end
 
- def logout
-   render :inline => "FIXME: Implement Me"
- end
-
 end

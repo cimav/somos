@@ -11,10 +11,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    session[:user_email] = nil
-    session[:user_auth] = nil
-    redirect_to root_url
+    reset_session
+    redirect_to '/login'
   end
 
   def failure
