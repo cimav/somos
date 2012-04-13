@@ -6,7 +6,8 @@
   right: 0;
   z-index: 10000;
   overflow: visible;
-  background-color: $bg-color;
+  background-color: $white;
+  @include opacity(.9);
   border-bottom: 1px solid $light-grey;
   @include shadow(8px,0px,0px,#333);
 
