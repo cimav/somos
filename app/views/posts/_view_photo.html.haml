@@ -19,16 +19,3 @@
 .post-text
   = post.content
 
-:javascript
-  $(function() {
-    $("#gallery-#{post.id} a").lightBox({
-      imageLoading: '/assets/loader.gif',
-      imageBtnClose: '/assets/close.png',
-      imageBtnPrev: '/assets/lb-prev.png',
-      imageBtnNext: '/assets/lb-next.png',
-      imageBlank: '/assets/blank.gif',
-      containerResizeSpeed: 350,
-      txtImage: "#{(t :image).capitalize}",
-      txtOf: '#{t :of}'
-    });
-  });
