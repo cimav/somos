@@ -15,7 +15,11 @@ $('#user-info').live('click', (e) ->
 $('html').click( (e) ->
   if e.target.id != 'nav-title-span'
     $('#groups-area').hide()
+  if e.target.id != 'user-info'
     $('#user-nav').hide()
+  if e.target.id != 'search-results'
+    $('#search-input').val('')
+    $('#search-results').hide()
 )
 
 $('.post-type')

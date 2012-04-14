@@ -1,0 +1,12 @@
+.search-section= t :persons
+%ul
+  - @users.each do |u|
+    %li= u.full_name
+.search-section= t :groups
+%ul
+  - @groups.each do |g|
+    %li= g.name
+.search-section= t :pages
+%ul
+  - @pages.each do |p|
+    %li= p.title

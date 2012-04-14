@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 liveSearch = () -> 
+  return false if $("#search-input").val().length < 3
   form = $("#live-search")
   url = "/search"
   formData = form.serialize()
