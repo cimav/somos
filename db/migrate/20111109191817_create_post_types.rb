@@ -6,6 +6,6 @@ class CreatePostTypes < ActiveRecord::Migration
       t.integer :status,      :default => 1
       t.timestamps
     end
-    add_index (:post_types, :name)
+    add_index(:post_types, :name)
   end
 end

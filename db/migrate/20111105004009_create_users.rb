@@ -29,9 +29,9 @@ class CreateUsers < ActiveRecord::Migration
       t.integer    :status,     :null => false, :default => 1
       t.timestamps
     end
-    add_index (:users, :username)
-    add_index (:users, :email)
-    add_index (:users, :country_id)
-    add_index (:users, :state_id)
+    add_index(:users, :username)
+    add_index(:users, :email)
+    add_index(:users, :country_id)
+    add_index(:users, :state_id)
   end
 end
