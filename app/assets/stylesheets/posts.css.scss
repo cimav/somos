@@ -23,7 +23,6 @@
 
 
 .post {
-  @include shadow(4px,1px,1px,#333);
   width: $post-width;
   margin: 10px;
   background: #fff;

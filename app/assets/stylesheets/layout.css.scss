@@ -6,10 +6,8 @@
   right: 0;
   z-index: 10000;
   overflow: visible;
-  background-color: $white;
-  @include opacity(.9);
+  background: transparent url('/assets/bg.png');
   border-bottom: 1px solid $light-grey;
-  @include shadow(8px,0px,0px,#333);
 
   #top-bar-full {
     height: 46px;
