@@ -1,12 +1,43 @@
-.search-section= t :persons
-%ul
-  - @users.each do |u|
-    %li= u.full_name
-.search-section= t :groups
-%ul
-  - @groups.each do |g|
-    %li= g.name
-.search-section= t :pages
-%ul
-  - @pages.each do |p|
-    %li= p.title
+- if @users.count > 0
+  .search-section= t :persons
+  %ul
+    - @users.each do |u|
+      %li
+        = link_to url_for(:controller => "users", :action => "profile", :username => "#{u.username}"), :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "search_user_#{u.id}", :username => "#{u.username}" do
+          .search-item-display=  image_tag u.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small", :title => "#{u.display_name}"
+          .search-item-title= u.display_name
+          .search-item-desc
+            .search-item-email= u.email
+            .search-item-phone= u.work_phone
+            .search-item-groups
+              - user_groups = Array.new
+              - u.groups.each do |g|
+                - if g.group_type.display_in > 0 
+                  - user_groups << g.name
+              = user_groups.join(',')
+        .clearfix
+- if @groups.count > 0
+  .search-section= t :groups
+  %ul
+    - @groups.each do |g|
+      %li
+        = link_to url_for(:controller => "groups", :action => "show", :short_name => "#{g.short_name}"), :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "search_group_#{g.id}", :short_name => "#{g.short_name}", :group_id => g.id do
+          .search-item-display
+            = image_tag '/assets/icons/group.png', :width => 32, :height => 32, :class => "profile-picture-small"
+          .search-item-title= g.name
+          .search-item-desc= g.description
+        .clearfix
+- if @pages.count > 0
+  .search-section= t :pages
+  %ul
+    - @pages.each do |p|
+      %li
+        = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => p.group.short_name, :page_short_name => p.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{p.id}", :group_name => "#{p.group.short_name}", :short_name => "#{p.short_name}", :page_id => "#{p.id}" do
+          .search-item-display
+            = image_tag '/assets/icons/page.png', :width => 32, :height => 32, :class => "profile-picture-small"
+          .search-item-title= p.title
+          .search-item-desc= p.group.name
+        .clearfix
+
+
+

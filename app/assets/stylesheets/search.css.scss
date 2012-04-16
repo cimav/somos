@@ -1,3 +1,59 @@
 // Place all the styles related to the Search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#search-results {
+  display: none;
+  background-color: $bg-color;
+  border: 1px solid $line-color;
+  position: absolute;
+  width: $user-area-width + $search-box-width;
+  top: 46px;
+  .search-section {
+    background: $light-grey;
+    font-size: 90%;
+    padding: 3px 10px;
+  }
+  ul {
+    li { 
+      padding: 5px 10px;
+      border-top: 1px solid $white;
+      border-bottom: 1px solid $line-color;
+      a {
+        text-decoration: none;
+        color: $black;
+      }
+      &:hover {
+        background-color: $nav-hover-color;
+      }
+    }
+  }
+  .search-item-display {
+    float: left;
+  }
+  .search-item-title {
+    width:  $user-area-width + $search-box-width - 70;
+    float: left;
+    margin-left: 10px;
+    font-weight: bold;   
+    &:hover { cursor: pointer; }
+  }
+  .search-item-desc {
+    margin: 4px 0;
+    width:  $user-area-width + $search-box-width - 70;
+    float: left;
+    margin-left: 10px;
+    font-size: 90%;
+    margin-bottom: 10px;
+    .search-item-phone,
+    .search-item-email,
+    .search-item-department {
+      margin: 4px 0;
+      &:hover { cursor: pointer; }
+    }
+    .search-item-email { margin: 0; }
+  }
+}
+
+
+

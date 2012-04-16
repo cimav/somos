@@ -35,15 +35,6 @@
           height: 18px;
           width: $search-box-width - 10;
         }
-        #search-results {
-          display: none;
-          background-color: $bg-color;
-          border: 1px solid $line-color;
-          position: absolute;
-          width: $user-area-width + $search-box-width;
-          top: 46px;
-          padding: 10px;
-        }
       }
  
       #user-area {
