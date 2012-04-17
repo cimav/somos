@@ -90,6 +90,7 @@ getShareForm = () ->
       width: 500, 
       height: 300, 
       modal: true, 
+      resizable: false,
       close: (ev, ui) -> 
                 $(this).remove()
     })
