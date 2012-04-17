@@ -14,7 +14,7 @@
     .clearfix
   - if post.user_id == current_user.id
     .post-delete-link
-      = link_to image_tag("/assets/icons/delete.png"), {:controller => "posts", :action => "mark_as_deleted", :id => post.id}, :method => :post, :remote => true, :class => 'delete-post', :'data-type' => 'html', :post_entry_id => "post-#{post.id}"
+      = link_to image_tag("/assets/icons/delete.png"), {:controller => "posts", :action => "mark_as_deleted", :id => post.id}, :method => :post, :remote => true, :class => 'delete-post', :'data-type' => 'html', :post_entry_id => "post-#{post.id}", :title => (t :delete)
   - if post.post_type.category == PostType::USER_POST || post.post_type.category == PostType::UNDELETABLE_POST
     .post-who
       .post-display

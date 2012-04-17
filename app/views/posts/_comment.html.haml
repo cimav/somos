@@ -3,7 +3,7 @@
     = image_tag comment.user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
   - if comment.user_id == current_user.id
     .comment-delete-link
-      = link_to image_tag("/assets/icons/delete.png"), {:controller => "comments", :action => "mark_as_deleted", :id => comment.id}, :method => :post, :remote => true, :class => 'delete-comment', :'data-type' => 'html', :comment_entry_id => "comment_#{comment.id}"
+      = link_to image_tag("/assets/icons/delete.png"), {:controller => "comments", :action => "mark_as_deleted", :id => comment.id}, :method => :post, :remote => true, :class => 'delete-comment', :'data-type' => 'html', :comment_entry_id => "comment_#{comment.id}", :title => (t :delete)
   .comment-content
     %span.comment-user= link_to comment.user.display_name, {:controller => "users", :action => "profile", :username => "#{comment.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :username => "#{comment.user.username}"
     %span.separator= "-"
