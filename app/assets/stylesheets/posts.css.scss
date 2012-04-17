@@ -110,6 +110,22 @@
       .comment-display {
         float: left;
       }
+
+      .comment-delete-link {
+        float: right;
+        display: block;
+        width: 11px;
+        margin: 0 5px 5px 0;
+        display: none;
+      }
+
+      &:hover {
+        .comment-delete-link {
+          display: block;
+        }
+      }
+      
+
       .comment-content {
         margin-left: 44px;
         .comment-user a {

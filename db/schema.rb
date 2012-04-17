@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326193627) do
+ActiveRecord::Schema.define(:version => 20120417185759) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -19,16 +19,17 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.string   "earn_script"
     t.string   "image"
     t.integer  "status",      :default => 1
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
     t.integer  "user_id"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "status",     :default => 1
   end
 
   add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
@@ -39,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.string   "code"
     t.string   "lat",        :limit => 20
     t.string   "long",       :limit => 20
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "group_types", :force => true do |t|
@@ -50,8 +51,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.integer  "required",    :default => 1
     t.integer  "display_in",  :default => 1
     t.integer  "status",      :default => 1
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "groups", :force => true do |t|
@@ -61,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.string   "description"
     t.integer  "position"
     t.integer  "status",        :default => 1
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "groups", ["group_type_id"], :name => "index_groups_on_group_type_id"
@@ -75,8 +76,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.integer  "can_modify_others", :default => 0
     t.integer  "can_admin",         :default => 0
     t.integer  "status",            :default => 1
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
@@ -85,8 +86,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
   create_table "page_groups", :force => true do |t|
     t.integer  "page_id"
     t.integer  "group_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "page_groups", ["group_id"], :name => "index_page_groups_on_group_id"
@@ -101,8 +102,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.text     "content"
     t.integer  "page_id"
     t.integer  "status",     :default => 1, :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "pages", ["group_id"], :name => "index_pages_on_group_id"
@@ -121,8 +122,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.string   "image"
     t.string   "lat",         :limit => 20
     t.string   "long",        :limit => 20
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "post_events", ["post_id"], :name => "index_post_events_on_post_id"
@@ -130,8 +131,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
   create_table "post_files", :force => true do |t|
     t.integer  "post_id"
     t.string   "file"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "post_files", ["post_id"], :name => "index_post_files_on_post_id"
@@ -139,8 +140,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
   create_table "post_groups", :force => true do |t|
     t.integer  "post_id"
     t.integer  "group_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "post_groups", ["group_id"], :name => "index_post_groups_on_group_id"
@@ -151,8 +152,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.string   "link"
     t.text     "description"
     t.string   "image"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "post_links", ["post_id"], :name => "index_post_links_on_post_id"
@@ -161,8 +162,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.integer  "post_id"
     t.string   "photo"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "post_photos", ["post_id"], :name => "index_post_photos_on_post_id"
@@ -171,8 +172,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.string   "name",                      :null => false
     t.integer  "category",   :default => 0
     t.integer  "status",     :default => 1
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "post_types", ["name"], :name => "index_post_types_on_name"
@@ -184,8 +185,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.text     "content",                     :null => false
     t.string   "limited"
     t.integer  "status",       :default => 1, :null => false
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "posts", ["group_id"], :name => "index_posts_on_group_id"
@@ -196,8 +197,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.string   "code"
     t.string   "lat",        :limit => 20
     t.string   "long",       :limit => 20
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_badges", :force => true do |t|
@@ -205,8 +206,8 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.integer  "badge_id"
     t.integer  "post_id"
     t.integer  "status",     :default => 1
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "user_badges", ["badge_id"], :name => "index_user_badges_on_badge_id"
@@ -240,13 +241,34 @@ ActiveRecord::Schema.define(:version => 20120326193627) do
     t.string   "long",         :limit => 20
     t.string   "image"
     t.integer  "status",                     :default => 1, :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["country_id"], :name => "index_users_on_country_id"
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["state_id"], :name => "index_users_on_state_id"
   add_index "users", ["username"], :name => "index_users_on_username"
+
+  create_table "xg", :id => false, :force => true do |t|
+    t.integer "id",  :default => 0, :null => false
+    t.integer "nid", :default => 0
+  end
+
+  create_table "xu", :id => false, :force => true do |t|
+    t.integer "id",  :default => 0, :null => false
+    t.integer "nid", :default => 0
+  end
+
+  create_table "xxx", :id => false, :force => true do |t|
+    t.string   "empleado"
+    t.datetime "alta",     :null => false
+  end
+
+  create_table "xxxx", :id => false, :force => true do |t|
+    t.string   "empleado"
+    t.datetime "alta1",                   :null => false
+    t.integer  "alta",     :default => 0
+  end
 
 end

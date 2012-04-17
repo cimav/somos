@@ -20,4 +20,7 @@ class Post < ActiveRecord::Base
 
   has_one :user_badge
 
+  ACTIVE = 1
+  DELETED = 2
+
 end

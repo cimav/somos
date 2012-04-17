@@ -24,6 +24,7 @@ Somos::Application.routes.draw do
   match 'p/:id' => 'posts#show'
   resources :posts
 
+  match 'comments/delete/:id' => 'comments#mark_as_deleted'
   resources :comments
 
   match 'users/upcoming_birthdays' => 'users#upcoming_birthdays'

@@ -285,6 +285,12 @@ $('.get-user')
     $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
   )
 
+$('.delete-comment')
+  .live('ajax:success', (data, status, xhr) ->
+    $("#" + $(this).attr('comment_entry_id')).fadeOut()
+  )
+
+
 $('#get-home')
   .live('click', () ->
     getHome(true)  

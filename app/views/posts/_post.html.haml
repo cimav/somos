@@ -26,7 +26,7 @@
 
   .post-comments{:id => "post-#{post.id}-comments"}
     - last_comment = 0 
-    - post.comments.each do |comment|
+    - post.comments.where(:status => Comment::ACTIVE).each do |comment|
       - last_comment = comment.id
       = render :partial => 'posts/comment', :locals => {:comment => comment }
   .post-comment-form

@@ -40,4 +40,15 @@ class CommentsController < ApplicationController
       end
     end
   end
+
+  def mark_as_deleted
+    @comment = Comment.find(params[:id])
+    if current_user.id != @comment.user_id
+      raise "The current user is not the owner of the comment"
+    end
+    @comment.status = Comment::DELETED
+    @comment.save
+    render :inline => 'true'
+  end
+
 end
