@@ -1,5 +1,5 @@
 - last_comment = 0 
-- @post.comments.where("id > :i", {:i => @last}).each do |comment|
+- @post.comments.where("status = :active AND id > :i", {:active => Comment::ACTIVE,:i => @last}).each do |comment|
   - last_comment = comment.id
   = render :partial => 'comment', :locals => {:comment => comment }
 :javascript

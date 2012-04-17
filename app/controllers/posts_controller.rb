@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def recent_query (group_id, id)
-    posts = Post.order("created_at DESC").where("status = 1")
+    posts = Post.order("created_at DESC").where("status = #{Post::ACTIVE}")
 
     posts = posts.where("( 
                            (limited = '0') OR 
@@ -138,5 +138,16 @@ class PostsController < ApplicationController
     @last = params[:last]
     render :layout => false
   end
+
+  def mark_as_deleted
+    @post = Post.find(params[:id])
+    if current_user.id != @post.user_id
+      raise "The current user is not the post owner"
+    end
+    @post.status = Post::DELETED
+    @post.save
+    render :inline => 'true'
+  end
+
 
 end

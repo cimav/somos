@@ -117,12 +117,16 @@ getPosts = () ->
     url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
     $('#posts-area').html(html)
-    $container = $('#posts')
-    $container.imagesLoaded( () ->
-      $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
-      $('<div class="clearfix"></div>').appendTo("#container")
-    )
+    buildWall()
   )
+
+buildWall = () ->
+  $container = $('#posts')
+  $container.imagesLoaded( () ->
+    $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
+    $('<div class="clearfix"></div>').appendTo("#container")
+  )
+
 
 getComments = (post_id) ->
   url = "/p/#{post_id}/comments/#{$("#post-#{post_id}").attr('last_comment')}"
@@ -187,6 +191,14 @@ $('.comment-cancel')
     #$(html).prependTo('#posts-area')
     $container.prepend(html).masonry('reload')
     $('.hide-me.post').fadeIn()
+  )
+
+$('.delete-post')
+  .live('ajax:success', (data, status, xhr) ->
+    $("#" + $(this).attr('post_entry_id')).fadeOut('fast', () -> 
+      $(this).empty().remove()
+      buildWall()
+    )
   )
 
 
@@ -287,7 +299,10 @@ $('.get-user')
 
 $('.delete-comment')
   .live('ajax:success', (data, status, xhr) ->
-    $("#" + $(this).attr('comment_entry_id')).fadeOut()
+    $("#" + $(this).attr('comment_entry_id')).fadeOut('fast', () -> 
+      $(this).empty().remove()
+      buildWall()
+    )
   )
 
 

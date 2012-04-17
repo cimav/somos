@@ -32,6 +32,21 @@
   img {
     display: block;
   }
+
+  .post-delete-link {
+    float: right;
+    display: block;
+    width: 11px;
+    margin: 10px 5px 5px 0;
+    display: none;
+  }
+
+  &:hover {
+    .post-delete-link {
+      display: block;
+    }
+  }
+
   .post-content {
     margin: 0;
     .post-text {
