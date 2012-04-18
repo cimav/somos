@@ -98,7 +98,7 @@ class PostsController < ApplicationController
             render :json => json
           else
             @post_type = PostType.find(@post.post_type_id)
-            template = "create_#{@post_type.short_name}"
+            template = "create_#{@post_type.name}"
             render template, :layout => false
           end
         end
