@@ -1,6 +1,8 @@
-%script{:type => "text/javascript", :src => "/assets/dialog.js"}
-%script{:type => "text/javascript", :src => "/assets/tinymce/tiny_mce_popup.js"}
-%script{:type => "text/javascript", :src => "/assets/tinymce/plugins/somoslink/js/dialog.js"}
+= javascript_include_tag "/assets/jquery.js"
+= javascript_include_tag "/assets/jquery-ui.js"
+= javascript_include_tag "/assets/jquery_ujs.js"
+= javascript_include_tag "/assets/tinymce/tiny_mce_popup.js"
+= javascript_include_tag "/assets/tinymce/plugins/somoslink/js/dialog.js"
 
 = hidden_field_tag 'link_type', 'URL'
 #dialog-link-options

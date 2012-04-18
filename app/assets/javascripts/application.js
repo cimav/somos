@@ -8,4 +8,13 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require tinymce-jquery
-//= require_tree .
+//= require jquery.autogrow-textarea
+//= require jquery.fittext
+//= require jquery.jeditable
+//= require jquery.masonry
+//= require jquery.tokeninput
+//= require jquery.ui.selectmenu
+//= require home
+//= require pages
+//= require search
+
