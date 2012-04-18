@@ -45,6 +45,8 @@ Somos::Application.routes.draw do
   match '/login' => 'login#index'
 
   match 'editor/link_dialog' => 'editor#link_dialog'
+  match 'editor/pages_combo/:id' => 'editor#pages_combo'
+  match 'editor/page_files/:id' => 'editor#page_files'
 
   match ':username' => 'users#profile', :constraints => { :username => /[^\/]*/ }
   match ':username/sidebar' => 'users#sidebar', :constraints => { :username => /[^\/]*/ }

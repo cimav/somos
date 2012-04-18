@@ -1,4 +1,53 @@
+%script{:type => "text/javascript", :src => "/assets/dialog.js"}
 %script{:type => "text/javascript", :src => "/assets/tinymce/tiny_mce_popup.js"}
 %script{:type => "text/javascript", :src => "/assets/tinymce/plugins/somoslink/js/dialog.js"}
 
-%h1 TODO
+= hidden_field_tag 'link_type', 'URL'
+#dialog-link-options
+  #link-url.link-option-selected= t(:web_address)
+  #link-page= t(:page)
+  #link-file= t(:file)
+
+#dialog-link-workarea
+  #url-area
+    = text_field_tag 'url', nil, :placeholder => t(:web_address)
+  #page-area
+  #file-area
+
+:javascript
+  page_id = $('#page_id', window.parent.document).val();
+
+  $('#link-url')
+    .live('click', function() {
+      $('#page-area').hide();
+      $('#file-area').hide();
+      $('#url-area').show();
+    });
+  $('#link-page')
+    .live('click', function() {
+      $('#url-area').hide();
+      $('#file-area').hide();
+      getPagesCombo();
+      $('#page-area').show();
+    });
+  $('#link-file')
+    .live('click', function() {
+      $('#url-area').hide();
+      $('#page-area').hide();
+      getFileArea();
+      $('#file-area').show();
+    });
+
+  function getPagesCombo() {
+    url = '/editor/pages_combo/' + page_id;
+    $.get(url, {}, function (html) {
+      $('#page-area').html(html);
+    });
+  }
+
+  function getFileArea() {
+    url = '/editor/page_files/' + page_id;
+    $.get(url, {}, function (html) {
+      $('#file-area').html(html);
+    });
+  }

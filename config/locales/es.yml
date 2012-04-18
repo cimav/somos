@@ -200,6 +200,7 @@ es:
   members: "Miembros"
 
   pages: "Páginas"
+  page: "Página"
   add_page: "Agregar página"
   edit_this_page: "Editar esta página"
   edit_title: "Editar título"
@@ -248,3 +249,7 @@ es:
   groups: "Grupos"
 
   sign_in_with_your_existing_account: "Iniciar sesión con tu cuenta existente"
+
+  web_address: "Dirección Web"
+  file: "Archivo"
+  select_page: "Selecciona una página"

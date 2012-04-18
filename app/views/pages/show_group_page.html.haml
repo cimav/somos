@@ -1,4 +1,3 @@
-
 #group-page  
   #group-page-inner
     #group-page-contents
@@ -12,6 +11,7 @@
         %a#edit-page-button= image_tag "icons/edit.png", :title => (t :edit_this_page)
       #edit-page
         = form_for(@page, :remote => true, :html => {:id => 'edit_page_form',:multipart => true}) do |f|
+          = f.hidden_field :id
           .edit-page-title= f.text_field :title
           = f.text_area :content, :id => "page-editor"
           #save-page-button

@@ -2,6 +2,7 @@ currentGroup = 0
 currentPost = 0
 currentUser = 0
 postContentHeight = 0
+latestPostId = 0
 hash = false
 
 $('#nav-title-span').live('click', (e) ->

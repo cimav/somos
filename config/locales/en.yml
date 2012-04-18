@@ -48,6 +48,7 @@ en:
   members: "Members"
   
   pages: "Pages"
+  page: "Page"
   add_page: "Add page"
   edit_this_page: "Edit this page"
   edit_title: "Edit title"
@@ -96,3 +97,7 @@ en:
   groups: "Groups"
 
   sign_in_with_your_existing_account: "Sign in with your existing account"
+
+  web_address: "Web address"
+  file: "File"
+  select_page: "Select a page"
