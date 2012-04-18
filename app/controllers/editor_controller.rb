@@ -6,7 +6,7 @@ class EditorController < ApplicationController
 
   def pages_combo
     page = Page.find(params[:id]) 
-    @pages = page.group.pages
+    @pages = page.group.pages.where(:status => Page::PUBLISHED).order('title')
     render :layout => false
   end
 

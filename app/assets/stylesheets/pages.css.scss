@@ -61,5 +61,35 @@
   margin: 10px 0 40px 0;
 }
 
+#dialog-link-options {
+  padding-top: 10px;
+  background-color: $line-color;
+  float: left;
+  width: 180px;
+  height: 300px;
+  div {
+    padding: 5px 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .link-option-selected {
+    background-color: $white;
+    font-weight: bold;
+  }
+}
 
 
+#dialog-link-workarea {
+  padding: 10px;
+  float: left;
+  width: 380px;
+
+  #url {
+    width: 370px;
+  }
+}
+
+#dialog-buttons {
+  float: right;
+}

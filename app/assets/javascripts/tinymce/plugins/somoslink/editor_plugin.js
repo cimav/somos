@@ -8,8 +8,8 @@
         ed.windowManager.open({
           //file : url + '/dialog.html',
           file : '/editor/link_dialog',
-          width : 320 + ed.getLang('somoslink.delta_width', 0),
-          height : 120 + ed.getLang('somoslink.delta_height', 0),
+          width : 620 + ed.getLang('somoslink.delta_width', 0),
+          height : 320 + ed.getLang('somoslink.delta_height', 0),
           inline : 1
         }, {
           plugin_url : url, // Plugin absolute URL

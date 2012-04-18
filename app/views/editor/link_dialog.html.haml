@@ -5,6 +5,7 @@
 = javascript_include_tag "/assets/tinymce/plugins/somoslink/js/dialog.js"
 
 = hidden_field_tag 'link_type', 'URL'
+= hidden_field_tag 'selected_value', ''
 #dialog-link-options
   #link-url.link-option-selected= t(:web_address)
   #link-page= t(:page)
@@ -16,17 +17,31 @@
   #page-area
   #file-area
 
+#dialog-buttons
+  %input{:type => 'button', :id => 'insert-button', :value => t(:insert)}
+
 :javascript
   page_id = $('#page_id', window.parent.document).val();
 
+  $("#insert-button")
+    .live('click', function() {
+      SomosLinkDialog.insert();
+    })
+
   $('#link-url')
     .live('click', function() {
+      $('#dialog-link-options div').removeClass('link-option-selected')
+      $('#link-url').addClass('link-option-selected')
+      $('#link_type').val('URL');
       $('#page-area').hide();
       $('#file-area').hide();
       $('#url-area').show();
     });
   $('#link-page')
     .live('click', function() {
+      $('#dialog-link-options div').removeClass('link-option-selected')
+      $('#link-page').addClass('link-option-selected')
+      $('#link_type').val('PAGE');
       $('#url-area').hide();
       $('#file-area').hide();
       getPagesCombo();
@@ -34,6 +49,9 @@
     });
   $('#link-file')
     .live('click', function() {
+      $('#dialog-link-options div').removeClass('link-option-selected')
+      $('#link-file').addClass('link-option-selected')
+      $('#link_type').val('FILE');
       $('#url-area').hide();
       $('#page-area').hide();
       getFileArea();

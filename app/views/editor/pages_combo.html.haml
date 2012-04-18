@@ -1,2 +1,6 @@
-= select_tag "page_id", options_from_collection_for_select(@pages, "id", "title"), :prompt => t(:select_page)
+- options = '<option value="0">' + t(:select_page) + '</option>'
+- @pages.each do |p|
+  - url = '/#!' + url_for(:controller => "pages", :action => "show_group_page", :group_short_name => p.group.short_name, :page_short_name => p.short_name)
+  - options += "<option value=\"#{url}\">#{p.title}</option>" 
+= select_tag "page_url", options.html_safe
 
