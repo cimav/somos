@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417185759) do
+ActiveRecord::Schema.define(:version => 20120419004936) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(:version => 20120417185759) do
 
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
+
+  create_table "page_files", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "file"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "page_files", ["page_id"], :name => "index_page_files_on_page_id"
 
   create_table "page_groups", :force => true do |t|
     t.integer  "page_id"

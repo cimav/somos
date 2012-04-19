@@ -1,6 +1,8 @@
 class Page < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
+  has_many :page_file
+  accepts_nested_attributes_for :page_file
 
   after_create :check_short_name
   after_update :check_short_name

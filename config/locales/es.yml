@@ -24,8 +24,7 @@ es:
         odd: " debe de ser non"
         even: " debe de ser par"
         record_invalid: "La validación falló: {{errors}}"
-  
-    number:
+  number:
     percentage:
       format:
         delimiter: ","
@@ -35,7 +34,7 @@ es:
         unit: "$"
         separator: "."
         delimiter: ","
-        precision: 2
+        precision: 2 
         significant: false
         strip_insignificant_zeros: false
     format:
@@ -255,3 +254,5 @@ es:
   select_page: "Selecciona una página"
 
   insert: "Insertar"
+  select_a_file: "Selecciona un archivo"
+  size: "Tamaño"

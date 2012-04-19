@@ -11,7 +11,7 @@ class EditorController < ApplicationController
   end
 
   def page_files
-    page = Page.find(params[:id]) 
+    @page = Page.find(params[:id]) 
     render :layout => false
   end
 

@@ -1,1 +1,16 @@
-%h1 TODO
+%p= t :select_a_file
+%table
+  %tr
+    %th= " "
+    %th= t :file
+    %th= t :size
+
+  - @page.page_file.each do |f|
+    %tr
+      - if File.extname(f.file.to_s) == ''
+        - ext = 'unknown'
+      - else 
+        - ext = File.extname(f.file.to_s)[1..-1]
+      %td= ext.upcase
+      %td= File.basename(f.file.to_s)
+      %td= number_to_human_size(File.size(f.file.to_s))

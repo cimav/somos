@@ -103,3 +103,5 @@ en:
   select_page: "Select a page"
 
   insert: "Insert"
+  select_a_file: "Select a file"
+  size: "Size"
