@@ -13,7 +13,7 @@ class Page < ActiveRecord::Base
   DELETED   = 4
 
   def check_short_name
-    if self.status == Page::PUBLISHED && Page.where(:group_id => self.group_id, :short_name => self.short_name).count > 1
+    if self.status == Page::PUBLISHED && Page.where(:status => Page::PUBLISHED,:group_id => self.group_id, :short_name => self.short_name).count > 1
       self.short_name = "#{self.short_name}-#{self.id}"
       self.save
     end
