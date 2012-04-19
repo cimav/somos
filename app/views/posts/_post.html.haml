@@ -1,17 +1,4 @@
 .post{:id => "post-#{post.id}", :last_comment => "0"}
-  .post-content
-    - if post.post_type_id > 1
-      = render :partial => "posts/view_#{post.post_type.name}", :locals => {:post => post} 
-    - else 
-      .post-text
-        = simple_format(post.content)
-  - if post.post_group.count > 0
-    - post_groups = Array.new
-    - post.post_group.each do |g|
-      - post_groups << g.group.name
-    - visible_by = "#{(t :only_visible_by)} #{(post_groups.join(', '))}"
-    .post-lock{:title => visible_by}= t :lock
-    .clearfix
   - if post.user_id == current_user.id
     .post-delete-link
       = link_to image_tag("/assets/icons/delete.png"), {:controller => "posts", :action => "mark_as_deleted", :id => post.id}, :method => :post, :remote => true, :class => 'delete-post', :'data-type' => 'html', :post_entry_id => "post-#{post.id}", :title => (t :delete)
@@ -26,6 +13,19 @@
       .post-footer
         = link_to post_date(post.created_at), {:controller => 'posts', :action => 'show', :id => post.id}, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}"
 
+  .post-content
+    - if post.post_type_id > 1
+      = render :partial => "posts/view_#{post.post_type.name}", :locals => {:post => post} 
+    - else 
+      .post-text
+        = simple_format(post.content)
+  - if post.post_group.count > 0
+    - post_groups = Array.new
+    - post.post_group.each do |g|
+      - post_groups << g.group.name
+    - visible_by = "#{(t :only_visible_by)} #{(post_groups.join(', '))}"
+    .post-lock{:title => visible_by}= t :lock
+    .clearfix
 
   .post-comments{:id => "post-#{post.id}-comments"}
     - last_comment = 0 
