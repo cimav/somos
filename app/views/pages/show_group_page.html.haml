@@ -4,6 +4,14 @@
       %h2= @page.title
       .content
         = raw(@page.content)
+    #group-page-files
+      - @page.page_file_section.each do |fs|
+        %h3= fs.title
+        %table
+        - fs.page_file.each do |f|
+          %tr
+            %td= f.title
+      
 
     - membership = current_user.memberships.where(:group_id => @page.group.id).first
     - if !membership.blank?

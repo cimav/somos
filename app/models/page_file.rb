@@ -1,5 +1,5 @@
 class PageFile < ActiveRecord::Base
-  belongs_to :page
+  belongs_to :page_file_section
   mount_uploader :file, PageFileUploader
 
   before_destroy :delete_linked_file
