@@ -245,8 +245,9 @@ $('.get-page')
   .live('ajax:success', (data, status, xhr) ->
     setHash('#!/g/' + $(this).attr('group_name') + '/' + $(this).attr('short_name'))
     clearInterval(recentTimer)
+    $('#group-page').remove()
     if ($('#posts-area').length == 0) 
-      $('#container').html('<div id="#posts-area"></div>')
+      $('#container').prepend('<div id="posts-area"></div>')
     $('#posts-area').html(status);
     afterGetPage($(this).attr('page_id'))
   )
