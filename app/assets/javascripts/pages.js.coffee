@@ -4,6 +4,7 @@
 $('#edit-page-button')
   .live('click', () ->
     $('#group-page-contents').hide()
+    $('#group-page-files').hide()
     $('#page-toolbar').hide()
     $('#edit-page').fadeIn()
   )

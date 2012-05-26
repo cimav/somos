@@ -1,22 +1,19 @@
+- membership = current_user.memberships.where(:group_id => @page.group.id).first
 #group-page  
   #group-page-inner
     #group-page-contents
       %h2= @page.title
       .content
         = raw(@page.content)
-    #group-page-files
-      - @page.page_file_section.each do |fs|
-        %h3= fs.title
-        %table
-        - fs.page_file.each do |f|
-          %tr
-            %td= f.title
-      
-
-    - membership = current_user.memberships.where(:group_id => @page.group.id).first
     - if !membership.blank?
       #page-toolbar
         %a#edit-page-button= image_tag "icons/edit.png", :title => (t :edit_this_page)
+      .clearfix
+
+    #group-page-files
+      = render :partial => "page_files", :locals => {:page => @page, :membership => membership}
+
+    - if !membership.blank?
       #edit-page
         = form_for(@page, :remote => true, :html => {:id => 'edit_page_form',:multipart => true}) do |f|
           = f.hidden_field :id
@@ -31,5 +28,4 @@
 
 - if params['__from__'] == 'url'
   :javascript
-    afterGetPage(#{@page.id});
-
+    afterGetPage(#{@page.id}, #{@page.group_id});

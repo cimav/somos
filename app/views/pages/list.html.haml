@@ -5,5 +5,5 @@
       = link_to t :home_link, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}", :group_id => "#{group.id}" do
     - @pages.each do |page|
       %li.page-title{:id => "li_page_#{page.id}"}
-        = link_to page, :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{page.id}", :short_name => "#{page.short_name}", :page_id => "#{page.id}" do
+        = link_to page, :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{page.id}", :short_name => "#{page.short_name}", :page_id => "#{page.id}", :group_id => "#{page.group_id}" do
           = page.title

@@ -1,0 +1,23 @@
+- @page.page_file_section.each do |fs|
+  .group-page-section
+    %h3= fs.title
+    - if !membership.blank?
+      .file-section-actions
+        %a.add-file-to-section{:fs_id => fs.id}= t :add_file
+        %a.edit-section{:fs_id=> fs.id}= t :edit
+           
+    %table
+      - fs.page_file.each do |f|
+        %tr
+          %td= f.title
+          - if !membership.blank?
+            %td
+              %a.edit-file-description{:f_id => f.id}= t :edit_description
+            %td
+              %a.delete-file{:f_id => f.id}= t :edit_description
+    .clearfix
+
+- if !membership.blank?
+  = link_to url_for(:controller => "pages", :action => "add_file_section", :id => @page.id), :method => :post, :remote => true, :id => 'add-file-section', :'data-type' => 'html', :id => "add-file-section" do
+    %span.share-plus +
+    = t :add_section

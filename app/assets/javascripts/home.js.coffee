@@ -249,10 +249,11 @@ $('.get-page')
     if ($('#posts-area').length == 0) 
       $('#container').prepend('<div id="posts-area"></div>')
     $('#posts-area').html(status);
-    afterGetPage($(this).attr('page_id'))
+    afterGetPage($(this).attr('page_id'), $(this).attr('group_id'))
   )
 
-@afterGetPage = afterGetPage = (p) -> 
+@afterGetPage = afterGetPage = (p, g) -> 
+  currentGroup = g
   $('.page-title').removeClass('selected')
   $('#li_page_' + p).addClass('selected')
 
@@ -277,6 +278,26 @@ $('#add_page')
     .live("ajax:error", (evt, xhr, status, error) ->
       # TODO: Display errors
     )
+
+$('#add-file-section')
+    .live("ajax:beforeSend", (evt, xhr, settings) ->
+      # TODO: Display spinner
+    )
+    .live("ajax:success", (evt, data, status, xhr) ->
+      res = $.parseJSON(xhr.responseText)
+      url = '/pages/' + res['page_id'] + '/files_section'
+      $.get(url, {}, (html) ->
+        $("#group-page-files").html(html)
+        # TODO: Click on edit section
+      )
+    )
+    .live('ajax:complete', (evt, xhr, status) ->
+      # Complete
+    )
+    .live("ajax:error", (evt, xhr, status, error) ->
+      # TODO: Display errors
+    )
+
 
 $('.get-post') 
   .live('ajax:success', (data, status, xhr) ->

@@ -80,4 +80,45 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  def add_file_section
+    @fs = PageFileSection.new
+    @fs.page_id = params[:id]
+    @fs.title = t :untitled
+    if @fs.save 
+      flash[:notice] = t :page_file_section_created
+      respond_with do |format|
+        format.html do
+          if request.xhr?
+            json = {}
+            json[:id] = @fs.id
+            json[:page_id] = @fs.page.id
+            json[:flash] = flash
+            render :json => json
+          else
+            redirect_to @fs.page
+          end
+        end
+      end
+    else
+      flash[:error] = t :cant_create_page_file_section
+      respond_with do |format|
+        format.html do
+          if request.xhr?
+            json = {}
+            json[:flash] = flash
+            json[:errors] = @fs.errors
+            render :json => json, :status => :unprocessable_entity
+          else
+            redirect_to @fs.page
+          end
+        end
+      end
+    end
+  end
+
+  def files_section
+    @page = Page.find(params[:id])
+    render :layout => false
+  end
 end
