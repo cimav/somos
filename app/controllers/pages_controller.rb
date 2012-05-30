@@ -121,4 +121,11 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     render :layout => false
   end
+
+  def edit_section
+    @page = Page.find(params[:id])
+    @pfs = @page.page_file_section.find(params[:section_id])
+    render :layout => false
+  end
+
 end

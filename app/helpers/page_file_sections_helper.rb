@@ -1,0 +1,2 @@
+module PageFileSectionsHelper
+end

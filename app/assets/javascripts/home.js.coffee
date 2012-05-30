@@ -1,3 +1,6 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 currentGroup = 0
 currentPost = 0
 currentUser = 0
@@ -287,8 +290,8 @@ $('#add-file-section')
       res = $.parseJSON(xhr.responseText)
       url = '/pages/' + res['page_id'] + '/files_section'
       $.get(url, {}, (html) ->
-        $("#group-page-files").html(html)
-        # TODO: Click on edit section
+        $('#group-page-files').html(html)
+        $('#edit_section_' + res['id']).click()
       )
     )
     .live('ajax:complete', (evt, xhr, status) ->

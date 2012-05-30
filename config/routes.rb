@@ -38,6 +38,10 @@ Somos::Application.routes.draw do
   match 'pages/:id/update_title' => 'pages#update'
   match 'pages/:id/add_file_section' => 'pages#add_file_section'
   match 'pages/:id/files_section' => 'pages#files_section'
+  match 'pages/:id/edit_section/:section_id' => 'pages#edit_section'
+
+  resources :page_file_sections
+  resources :page_files
 
   match 'events/upcoming' => 'post_events#upcoming'
 

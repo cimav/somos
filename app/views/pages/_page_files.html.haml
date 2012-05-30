@@ -1,12 +1,16 @@
 - @page.page_file_section.each do |fs|
   .group-page-section
-    %h3= fs.title
-    - if !membership.blank?
-      .file-section-actions
-        %a.add-file-to-section{:fs_id => fs.id}= t :add_file
-        %a.edit-section{:fs_id=> fs.id}= t :edit
+    .fs-header{:id => "fs_header_#{fs.id}"}
+      .fs-data 
+        %h3= fs.title
+        .fs-description
+          = raw(fs.description)
+      - if !membership.blank?
+        .file-section-actions
+          %a.edit-section{:id => "edit_section_#{fs.id}", :fs_id => fs.id, :page_id => fs.page_id}= t :edit
+    .edit-section{:id => "fs_edit_#{fs.id}"}
            
-    %table
+    %table.files-table
       - fs.page_file.each do |f|
         %tr
           %td= f.title
@@ -15,9 +19,19 @@
               %a.edit-file-description{:f_id => f.id}= t :edit_description
             %td
               %a.delete-file{:f_id => f.id}= t :edit_description
+      - if !membership.blank?
+        %tr
+          %td{:colspan => 3}
+            = form_for(PageFile.new, :remote => true, :html => {:id => "add-files-form-#{fs.id}",:multipart => true, :target => 'files-iframe'}) do |f|
+              = f.hidden_field :page_id, { :value => fs.page_id }
+              = f.hidden_field :page_file_section_id, {:value => fs.id }
+              %input{:class => 'pfs-file-input', :pfs_id => fs.id,:id => 'post_post_file_attributes_file', :multiple=>"multiple", :name=>"page_file[file][]", :type=>"file"}
     .clearfix
 
 - if !membership.blank?
+  %iframe#files-iframe{:width => 0, :height => 0, :scrolling => "no", :frameborder => "0", :name => "files-iframe"}
   = link_to url_for(:controller => "pages", :action => "add_file_section", :id => @page.id), :method => :post, :remote => true, :id => 'add-file-section', :'data-type' => 'html', :id => "add-file-section" do
     %span.share-plus +
     = t :add_section
+
+  #edit-section-area

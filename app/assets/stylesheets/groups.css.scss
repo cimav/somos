@@ -132,7 +132,6 @@ ul.page-list {
 
   h3 {
     font-size: 14px;
-    float: left;
     border-bottom: none;
   }
 
@@ -142,6 +141,10 @@ ul.page-list {
         display: block;
       }
     }
+  }
+
+  .fs-data {
+    float: left;
   }
 
   .file-section-actions {
@@ -159,4 +162,8 @@ ul.page-list {
       border-left: 1px solid $line-color;
     }
   }
+}
+
+.pfs-file-input {
+  border: 1px solid #F90;
 }
