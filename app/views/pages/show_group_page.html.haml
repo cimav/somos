@@ -3,11 +3,11 @@
   #group-page-inner
     #group-page-contents
       %h2= @page.title
+      - if !membership.blank?
+        #page-toolbar
+          %a#edit-page-button= t :edit_this_page
       .content
         = raw(@page.content)
-    - if !membership.blank?
-      #page-toolbar
-        %a#edit-page-button= image_tag "icons/edit.png", :title => (t :edit_this_page)
       .clearfix
 
     #group-page-files

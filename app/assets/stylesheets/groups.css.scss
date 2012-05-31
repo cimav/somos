@@ -124,8 +124,10 @@ ul.page-list {
 }
 
 
-#group-page-files {
-  margin-top: 20px;
+.group-page-section {
+  margin: 20px 0 10px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $line-color;
   a {
     cursor: pointer;
   }
@@ -135,35 +137,117 @@ ul.page-list {
     border-bottom: none;
   }
 
-  .group-page-section {
-    &:hover {
-      .file-section-actions {
-        display: block;
-      }
-    }
-  }
-
   .fs-data {
     float: left;
   }
 
+  .fs-description {
+    clear: both;
+    margin-bottom: 20px;
+  }
+
   .file-section-actions {
-    display: none;
-    padding-top: 5px;
-    float: right;
-    width: 150px;
-    .add-file-to-section {
-      float: left;
-    }
-    .edit-section {
-      float: left;
-      margin-left: 10px; 
-      padding-left: 10px;
-      border-left: 1px solid $line-color;
+    font-size: 11px;
+    display: inline;
+    margin-left: 10px;
+  }
+
+  ul.file-list {
+    li {
+      margin-bottom: 10px;
+      height: 32px;
+      img {
+        float: left;
+        margin-right: 5px;
+        &.can-move {
+          cursor: move;
+        }
+      }
+      .file-extra {
+        color: $grey;
+        font-size: 11px;
+        margin-top: 4px;
+        .delete-file, .edit-file-description {
+          border-left: 1px solid $line-color;
+          margin-left: 5px;
+          padding-left: 5px;
+        }
+      }
     }
   }
 }
 
-.pfs-file-input {
-  border: 1px solid #F90;
+.add-files-form {
+  position: relative;
+  &:hover {
+    .add-files-link {
+      text-decoration: underline;
+    }
+  }
+  input[type="file"].pfs-file-input {
+    cursor: pointer;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    @include opacity(0);
+    border: 1px solid #0b0;
+    z-index: 999;
+    cursor: pointer;
+  }
+
+  .add-files-link {
+    cursor: pointer;
+    z-index: 10;
+    height: 20px;
+    padding-top: 5px;
+    position: absolute;
+    color: $link-color;
+    left: 0;
+    top: 0;
+  }
 }
+
+.files-table {
+  td {
+    &:hover .file-actions {
+      display: block;
+    }
+  }
+}
+
+
+.edit-pfs-title {
+  display: block;
+  font-size: 16px;
+  color: $strong-color2;
+  font-weight: bold;
+  margin-bottom: 10px;
+  input {
+    margin: 0;
+    padding: 4px;
+    border: 1px solid $line-color;
+    outline: none;
+    font-size: 16px;
+    color: $black;
+    font-weight: bold;
+    width: ($post-width * 2) - 30;
+  }
+}
+
+#pfs-editor {
+  height: 200px;
+  width: ($post-width * 2) - 30;
+  padding: 10px;
+}
+
+#pfs-editor_tbl {
+  width: ($post-width * 2) - 30;
+}
+
+#save-pfs-button {
+  float: right;
+  margin: 10px 0 40px 0;
+  clear: both;
+}
+

@@ -3,29 +3,42 @@
     .fs-header{:id => "fs_header_#{fs.id}"}
       .fs-data 
         %h3= fs.title
-        .fs-description
-          = raw(fs.description)
       - if !membership.blank?
         .file-section-actions
           %a.edit-section{:id => "edit_section_#{fs.id}", :fs_id => fs.id, :page_id => fs.page_id}= t :edit
+      - if !fs.description.blank?
+        .fs-description
+          = raw(fs.description)
+      .clearfix
     .edit-section{:id => "fs_edit_#{fs.id}"}
            
-    %table.files-table
+    %ul.file-list
       - fs.page_file.each do |f|
-        %tr
-          %td= f.title
+        - if File.extname(f.file.to_s) == ''
+          - ext = 'unknown'
+        - else 
+          - ext = File.extname(f.file.to_s)[1..-1]
+        %li{"title" => File.basename(f.file.to_s)}
           - if !membership.blank?
-            %td
+            - can_move = 'can-move'
+          - else 
+            - can_move = ''
+          = image_tag "/assets/mime/unknown.png", :class => can_move
+          %a{'href' => "/page_files/#{f.id}/file"}
+            = f.title
+          - if !membership.blank?
+            .file-extra
+              = ext.upcase + ", " + number_to_human_size(File.size(f.file.to_s))
               %a.edit-file-description{:f_id => f.id}= t :edit_description
-            %td
-              %a.delete-file{:f_id => f.id}= t :edit_description
+              %a.delete-file{:f_id => f.id}= t :delete
       - if !membership.blank?
-        %tr
-          %td{:colspan => 3}
-            = form_for(PageFile.new, :remote => true, :html => {:id => "add-files-form-#{fs.id}",:multipart => true, :target => 'files-iframe'}) do |f|
-              = f.hidden_field :page_id, { :value => fs.page_id }
-              = f.hidden_field :page_file_section_id, {:value => fs.id }
-              %input{:class => 'pfs-file-input', :pfs_id => fs.id,:id => 'post_post_file_attributes_file', :multiple=>"multiple", :name=>"page_file[file][]", :type=>"file"}
+        %li
+          = form_for(PageFile.new, :remote => true, :html => {:id => "add-files-form-#{fs.id}",:multipart => true, :target => 'files-iframe', :class => 'add-files-form'}) do |f|
+            = f.hidden_field :page_id, { :value => fs.page_id }
+            = f.hidden_field :page_file_section_id, {:value => fs.id }
+            %input{:class => 'pfs-file-input', :pfs_id => fs.id,:id => 'post_post_file_attributes_file', :multiple=>"multiple", :name=>"page_file[file][]", :type=>"file"}
+            .add-files-link
+              = t :add_files
     .clearfix
 
 - if !membership.blank?

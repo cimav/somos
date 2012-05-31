@@ -2,6 +2,7 @@
   = f.hidden_field :id
   .edit-pfs-title= f.text_field :title
   = f.text_area :description, :class => "tinymce", :id => "pfs-editor"
-  = tinymce
+  = tinymce :height => '200'
   #save-pfs-button
-  = submit_tag (t :save), :disable_with => (t :save_wait), :id => "page-save-submit"
+    = submit_tag (t :save), :disable_with => (t :save_wait), :id => "page-save-submit"
+  .clearfix
