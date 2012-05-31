@@ -56,6 +56,7 @@ class PagesController < ApplicationController
             json = {}
             json[:id] = @page.id
             json[:title] = @page.title
+            json[:group_id] = @page.group_id
             json[:short_name] = @page.short_name
             json[:flash] = flash
             render :json => json

@@ -15,9 +15,11 @@ $('#edit_page_form')
   )
   .live("ajax:success", (evt, data, status, xhr) ->
     res = $.parseJSON(xhr.responseText)
-    $("#page_link_" + res['id']).html(res['title'])
-    $("#page_link_" + res['id']).attr('short_name', res['short_name'])
-    $("#page_link_" + res['id']).click();
+    url = '/g/' + res['group_id'] + '/page_list'
+    $.get(url, {}, (html) ->
+      $("#pages-list").html(html)
+      $("#page_link_" + res['id']).click()
+    )
     $('#edit-page').hide()
     $('#group-page').fadeIn()
     $('#page-toolbar').show()
