@@ -2,9 +2,17 @@ class PageFile < ActiveRecord::Base
   belongs_to :page_file_section
   mount_uploader :file, PageFileUploader
 
-  before_destroy :delete_linked_file
+  after_create :set_position
 
-  def delete_linked_file
-    self.remove_file!
+  def set_position
+    pos = PageFile.where(:page_file_section_id => self.page_file_section_id).maximum('position')
+    if pos.nil?
+      pos = 1
+    else
+      pos += 1
+    end
+    self.position = pos
+    self.save
   end
+
 end

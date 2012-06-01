@@ -96,6 +96,17 @@ class PageFilesController < ApplicationController
     end
   end
 
+  def reorder
+    pos = 0
+    params[:page_file_id].each do |f|
+      pos += 1
+      pf = PageFile.find(f)
+      pf.position = pos
+      pf.save
+    end
+    render :inline => 'OK'
+  end
+
   def file
     s = PageFile.find(params[:id])
     send_file s.file.to_s, :x_sendfile=>true

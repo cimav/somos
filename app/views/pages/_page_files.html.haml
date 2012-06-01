@@ -12,33 +12,35 @@
       .clearfix
     .edit-section{:id => "fs_edit_#{fs.id}"}
            
-    %ul.file-list
-      - fs.page_file.each do |f|
-        - if File.extname(f.file.to_s) == ''
-          - ext = 'unknown'
-        - else 
-          - ext = File.extname(f.file.to_s)[1..-1]
-        %li{"title" => File.basename(f.file.to_s)}
-          - if !membership.blank?
-            - can_move = 'can-move'
+    = form_tag '/page_files/reorder', :method => 'post', :remote => true, :id => "order-files-form-#{fs.id}" do |f|
+      = hidden_field_tag 'page_file_section_id', fs.id
+      %ul.file-list{:fs_id => fs.id}
+        - fs.page_file.order('position').each do |f|
+          - if File.extname(f.file.to_s) == ''
+            - ext = 'unknown'
           - else 
-            - can_move = ''
-          = image_tag "/assets/mime/unknown.png", :class => can_move
-          %a{'href' => "/page_files/#{f.id}/file"}
-            = f.title
-          - if !membership.blank?
-            .file-extra
-              = ext.upcase + ", " + number_to_human_size(File.size(f.file.to_s))
-              %a.edit-file-description{:f_id => f.id}= t :edit_description
-              %a.delete-file{:f_id => f.id}= t :delete
-      - if !membership.blank?
-        %li
-          = form_for(PageFile.new, :remote => true, :html => {:id => "add-files-form-#{fs.id}",:multipart => true, :target => 'files-iframe', :class => 'add-files-form'}) do |f|
-            = f.hidden_field :page_id, { :value => fs.page_id }
-            = f.hidden_field :page_file_section_id, {:value => fs.id }
-            %input{:class => 'pfs-file-input', :pfs_id => fs.id,:id => 'post_post_file_attributes_file', :multiple=>"multiple", :name=>"page_file[file][]", :type=>"file"}
-            .add-files-link
-              = t :add_files
+            - ext = File.extname(f.file.to_s)[1..-1]
+          %li{"title" => File.basename(f.file.to_s)}
+            - if !membership.blank?
+              - can_move = 'can-move'
+            - else 
+              - can_move = ''
+            = hidden_field_tag 'page_file_id[]', f.id
+            = image_tag "/assets/mime/unknown.png", :class => can_move
+            %a{'href' => "/page_files/#{f.id}/file"}
+              = f.title
+            - if !membership.blank?
+              .file-extra
+                = ext.upcase + ", " + number_to_human_size(File.size(f.file.to_s))
+                %a.edit-file-description{:f_id => f.id}= t :edit_description
+                %a.delete-file{:f_id => f.id}= t :delete
+    - if !membership.blank?
+      = form_for(PageFile.new, :remote => true, :html => {:id => "add-files-form-#{fs.id}",:multipart => true, :target => 'files-iframe', :class => 'add-files-form'}) do |f|
+        = f.hidden_field :page_id, { :value => fs.page_id }
+        = f.hidden_field :page_file_section_id, {:value => fs.id }
+        %input{:class => 'pfs-file-input', :pfs_id => fs.id,:id => 'post_post_file_attributes_file', :multiple=>"multiple", :name=>"page_file[file][]", :type=>"file"}
+        .add-files-link
+          = t :add_files
     .clearfix
 
 - if !membership.blank?

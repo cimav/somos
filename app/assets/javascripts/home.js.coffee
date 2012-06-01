@@ -259,6 +259,13 @@ $('.get-page')
   currentGroup = g
   $('.page-title').removeClass('selected')
   $('#li_page_' + p).addClass('selected')
+  $('.file-list').sortable()
+
+$('.file-list')
+  .live('sortupdate', () ->
+    fs_id = $(this).attr('fs_id')
+    $('#order-files-form-' + fs_id).submit()
+  )
 
 $('#add_page')
     .live("ajax:beforeSend", (evt, xhr, settings) ->

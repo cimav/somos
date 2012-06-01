@@ -41,6 +41,8 @@ Somos::Application.routes.draw do
   match 'pages/:id/edit_section/:section_id' => 'pages#edit_section'
 
   resources :page_file_sections
+  match 'page_files/reorder' => 'page_files#reorder'
+  match 'page_files/:id/file' => 'page_files#file'
   resources :page_files
 
   match 'events/upcoming' => 'post_events#upcoming'

@@ -46,6 +46,7 @@ $('.edit-section')
   url = '/pages/' + pid + '/files_section'
   $.get(url, {}, (html) ->
     $("#group-page-files").html(html)
+    $('.file-list').sortable()
   )
   
 
