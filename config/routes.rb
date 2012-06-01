@@ -43,6 +43,7 @@ Somos::Application.routes.draw do
   resources :page_file_sections
   match 'page_files/reorder' => 'page_files#reorder'
   match 'page_files/:id/file' => 'page_files#file'
+  match 'page_files/:id/edit_details' => 'page_files#edit_details'
   resources :page_files
 
   match 'events/upcoming' => 'post_events#upcoming'

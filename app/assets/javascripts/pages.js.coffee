@@ -70,3 +70,34 @@ $('.pfs-file-input')
   .live('change', () ->
     $("#add-files-form-" + $(this).attr('pfs_id')).submit()
   )
+
+$('.edit-file-description') 
+  .live('click', () ->
+    f_id = $(this).attr('f_id')
+    fs_id = $(this).attr('fs_id')
+    url = '/page_files/' + f_id + '/edit_details/' 
+    $.get(url, {}, (html) ->
+      $('#order-files-form-' + fs_id).hide()
+      $('#file-edit-item').html(html)
+      $('#page_file_title').focus()
+    )
+  )
+
+$('#edit_pf_form')
+  .live("ajax:beforeSend", (evt, xhr, settings) ->
+    # TODO: Display saving spinner
+  )
+  .live("ajax:success", (evt, data, status, xhr) ->
+    res = $.parseJSON(xhr.responseText)
+    $('#edit_pf_form').remove()
+    $('#order-files-form-' + res['fs_id']).show()
+    $('#file-item-' + res['id'] + ' .file-title').html(res['newtitle'])
+    $('#file-item-' + res['id'] + ' .file-description').html(res['newdesc'])
+  )
+  .live('ajax:complete', (evt, xhr, status) ->
+    # Complete
+  )
+  .live("ajax:error", (evt, xhr, status, error) ->
+    # TODO: Display errors
+  )
+

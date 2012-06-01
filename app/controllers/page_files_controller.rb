@@ -68,8 +68,10 @@ class PageFilesController < ApplicationController
             json = {}
             json[:flash] = flash
             json[:id] = params[:id]
+            json[:fs_id] = @page_file.page_file_section_id
+            json[:page_id] = @page_file.page_file_section.page_id
+            json[:newtitle] = params[:page_file][:title]
             json[:newdesc] = params[:page_file][:description]
-            json[:newtype] = params[:page_file][:file_type]
             render :json => json
           else
             redirect_to @page_file
@@ -84,8 +86,10 @@ class PageFilesController < ApplicationController
             json = {}
             json[:flash] = flash
             json[:id] = params[:id]
+            json[:fs_id] = @page_file.page_file_section_id
+            json[:page_id] = @page_file.page_file_section.page_id
+            json[:newtitle] = params[:page_file][:title]
             json[:newdesc] = params[:page_file][:description]
-            json[:newtype] = params[:page_file][:file_type]
             json[:errors] = @page_file.errors
             render :json => json, :status => :unprocessable_entity
           else
@@ -111,5 +115,10 @@ class PageFilesController < ApplicationController
     s = PageFile.find(params[:id])
     send_file s.file.to_s, :x_sendfile=>true
   end 
+
+  def edit_details
+    @pf = PageFile.find(params[:id])
+    render :layout => false
+  end
 
 end

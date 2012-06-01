@@ -1,0 +1,10 @@
+= form_for(@pf, :remote => true, :html => {:id => 'edit_pf_form'}) do |f|
+  %h3= t :edit_file
+  = f.hidden_field :id
+  .edit-pfs-title= f.text_field :title
+  = f.text_area :description, :class => "tinymce", :id => "pfs-editor"
+  = tinymce :height => '50'
+  #save-pfs-button
+    = submit_tag (t :save), :disable_with => (t :save_wait), :id => "page-save-submit"
+  .clearfix
+.clearfid

@@ -154,8 +154,7 @@ ul.page-list {
 
   ul.file-list {
     li {
-      margin-bottom: 10px;
-      height: 32px;
+      margin-bottom: 20px;
       img {
         float: left;
         margin-right: 5px;
@@ -163,10 +162,18 @@ ul.page-list {
           cursor: move;
         }
       }
+      .file-title {
+        font-weight: bold;
+      }
+      .file-description {
+        margin-left: 36px;
+        font-size: 90%;
+      }
       .file-extra {
         color: $grey;
         font-size: 11px;
         margin-top: 4px;
+        margin-left: 36px;
         .delete-file, .edit-file-description {
           border-left: 1px solid $line-color;
           margin-left: 5px;
@@ -179,6 +186,8 @@ ul.page-list {
 
 .add-files-form {
   position: relative;
+  clear: both;
+  height: 24px;
   &:hover {
     .add-files-link {
       text-decoration: underline;
