@@ -1,6 +1,7 @@
 #topbar {
-  height: 46px;
+  height: 55px;
   position: fixed;
+  border-top: 5px solid $red;
   top: 0;
   left: 0;
   right: 0;
@@ -10,9 +11,11 @@
   border-bottom: 1px solid $light-grey;
 
   #top-bar-full {
-    height: 46px;
+    margin-top: 5px;
+    height: 55px;
     #topbar-content {
-      width: $container-width;
+      width: $wrapper-width;
+      height: 45px;
       margin: 0 auto;
 
       #brand {
@@ -67,36 +70,42 @@
       }
     }
   }
-
-  #nav {
-    float: left;
-    width: $container-width / 2 - 40;
-    margin: 12px 10px 0px 10px;
-    #nav-title { 
-      color: $strong-color;
-      font-weight: bold;
-      font-size: 22px;
-      img { 
-        margin-bottom: 3px;
-        @include opacity(0.5);
-      }
-      &:hover img {
-        @include opacity(1);
-      }
-      #nav-title-span {
-        white-space: nowrap;
-        cursor: pointer;
-      }
-    }
-  }
 }
 
-#container {
-  width: $container-width;
+#wrapper {
+  width: $wrapper-width;
   margin: 0 auto;
   min-height: 100%;
   background: transparent url(/assets/white.png);
   padding: 60px 10px;
+}
+
+#nav {
+  float: left;
+  margin-top: 20px;
+  width: $nav-width;
+  #nav-title { 
+    color: $strong-color;
+    font-weight: bold;
+    font-size: 22px;
+    img { 
+      margin-bottom: 3px;
+      @include opacity(0.5);
+    }
+    &:hover img {
+      @include opacity(1);
+    }
+    #nav-title-span {
+      white-space: nowrap;
+      cursor: pointer;
+    }
+  }
+} 
+
+
+#container {
+  float: right;
+  width: $container-width;
 }
 
 .wide-block {

@@ -3,47 +3,51 @@
     .post-delete-link
       = link_to image_tag("/assets/icons/delete.png"), {:controller => "posts", :action => "mark_as_deleted", :id => post.id}, :method => :post, :remote => true, :class => 'delete-post', :'data-type' => 'html', :post_entry_id => "post-#{post.id}", :title => (t :delete)
   - if post.post_type.category == PostType::USER_POST || post.post_type.category == PostType::UNDELETABLE_POST
-    .post-who
-      .post-display
-        = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
-      .post-user
-        = link_to post.user.display_name, {:controller => 'users', :action => 'profile', :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}"
-      - if post.group_id > 0 && params[:group_id].blank?
-        .post-group= link_to post.group.name, {:controller => 'groups', :action => 'show', :short_name => post.group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :short_name => "#{post.group.short_name}", :group_id => "#{post.group.id}"
-      .post-footer
-        = link_to post_date(post.created_at), {:controller => 'posts', :action => 'show', :id => post.id}, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}"
+    .post-display
+      = image_tag post.user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
 
   .post-content
+   
+    - if post.post_type.category == PostType::USER_POST || post.post_type.category == PostType::UNDELETABLE_POST
+      .post-who
+        .post-user
+          = link_to post.user.display_name, {:controller => 'users', :action => 'profile', :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}"
+        - if post.group_id > 0 && params[:group_id].blank?
+          .post-group= link_to post.group.name, {:controller => 'groups', :action => 'show', :short_name => post.group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :short_name => "#{post.group.short_name}", :group_id => "#{post.group.id}"
+        .post-footer
+          = link_to post_date(post.created_at), {:controller => 'posts', :action => 'show', :id => post.id}, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}"
+
+
     - if post.post_type_id > 1
       = render :partial => "posts/view_#{post.post_type.name}", :locals => {:post => post} 
     - else 
       .post-text
         = simple_format(post.content)
-  - if post.post_group.count > 0
-    - post_groups = Array.new
-    - post.post_group.each do |g|
-      - post_groups << g.group.name
-    - visible_by = "#{(t :only_visible_by)} #{(post_groups.join(', '))}"
-    .post-lock{:title => visible_by}= t :lock
-    .clearfix
-
-  .post-comments{:id => "post-#{post.id}-comments"}
-    - last_comment = 0 
-    - post.comments.where(:status => Comment::ACTIVE).each do |comment|
-      - last_comment = comment.id
-      = render :partial => 'posts/comment', :locals => {:comment => comment }
-  .post-comment-form
-    = form_for(@comment, :remote => true, :html => {:class => "comment-form", :id => "comment_form_#{post.id}"}) do |f|
-      = f.hidden_field :post_id, {:value => post.id}
-      .comment-display
-        = image_tag current_user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
-      .comment-area
-        = f.text_area :content, :id => "comment_content_#{post.id}", :class => "comment-textarea", :post_id => post.id, :placeholder => (t :add_a_comment)
-        %span.comment-cancel{:post_id => post.id, :id => "comment-cancel-#{post.id}"}
-          = image_tag("close.png")
-      .comment-button{:id => "comment_button_#{post.id}"}
-        = submit_tag (t :post_comment), :class=> 'post-comment-button', :disable_with => (t :posting_comment)
+    - if post.post_group.count > 0
+      - post_groups = Array.new
+      - post.post_group.each do |g|
+        - post_groups << g.group.name
+      - visible_by = "#{(t :only_visible_by)} #{(post_groups.join(', '))}"
+      .post-lock{:title => visible_by}= t :lock
       .clearfix
-  .clearfix
+
+    .post-comments{:id => "post-#{post.id}-comments"}
+      - last_comment = 0 
+      - post.comments.where(:status => Comment::ACTIVE).each do |comment|
+        - last_comment = comment.id
+        = render :partial => 'posts/comment', :locals => {:comment => comment }
+    .post-comment-form
+      = form_for(@comment, :remote => true, :html => {:class => "comment-form", :id => "comment_form_#{post.id}"}) do |f|
+        = f.hidden_field :post_id, {:value => post.id}
+        .comment-display
+          = image_tag current_user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
+        .comment-area
+          = f.text_area :content, :id => "comment_content_#{post.id}", :class => "comment-textarea", :post_id => post.id, :placeholder => (t :add_a_comment)
+          %span.comment-cancel{:post_id => post.id, :id => "comment-cancel-#{post.id}"}
+            = image_tag("close.png")
+        .comment-button{:id => "comment_button_#{post.id}"}
+          = submit_tag (t :post_comment), :class=> 'post-comment-button', :disable_with => (t :posting_comment)
+        .clearfix
+    .clearfix
 :javascript
   $("#post-#{post.id}").attr("last_comment", "#{last_comment}")

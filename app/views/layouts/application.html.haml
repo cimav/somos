@@ -10,13 +10,14 @@
       #top-bar-full
         #topbar-content
           #brand= image_tag "logo.png"
-          #nav
           #user-area
           #search-box
             = form_tag '/search/', :id => 'live-search', :method => 'get', :remote => true do
               = text_field_tag :q, nil, :id => 'search-input', :placeholder => 'Busqueda'
             #search-results
     #flash-notice
-    #container
-      = yield
-      .clearfix
+    #wrapper
+      #nav
+      #container
+        = yield
+        .clearfix

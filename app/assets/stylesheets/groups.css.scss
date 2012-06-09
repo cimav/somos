@@ -3,12 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #groups-area {
-  display: none;
-  background-color: $bg-color;
-  border: 1px solid $line-color;
-  position: absolute;
-  top: 46px;
-  padding: 10px;
+  border-right: 1px solid $line-color;
   ul.group-types {
     li {
        font-weight: bold;

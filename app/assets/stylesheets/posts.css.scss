@@ -17,16 +17,15 @@
 }
 
 #posts {
-   width: ($post-width * 2) + 40;
+   width: $post-width + 20;
    float: left;
 }
 
 
 .post {
   width: $post-width;
-  margin: 10px;
+  margin: 25px 10px;
   background: #fff;
-  float: left;
   min-height: 48px;
   padding: 0;
   img {
@@ -49,7 +48,9 @@
 
   .post-content {
     margin: 0;
-    border-bottom: 1px solid $light-grey;
+    border: 1px solid $line-color;
+    @include rounded(4px);
+    margin-left: 61px;
     .post-text {
       margin: 20px 10px;
     }
@@ -68,16 +69,18 @@
     background-image: url(/assets/icons/lock.png);
   }
 
+  .post-display {
+    background: transparent url(/assets/balloon.png) no-repeat right 16px;
+    float: left;
+    width: 64px;
+  }
+
   .post-who {
-    background: $who-bg-color;
-    border-bottom: 1px solid $light-grey;
-    padding: 10px;
     height: 48px;
-    .post-display {
-      float: left;
-    }
+    border-bottom: 1px solid $line-color;
     .post-user {
-      margin-left: 60px;
+      padding-top: 5px;
+      padding-left: 10px;
       a {
         text-decoration: none;
         font-weight: bold;
@@ -99,8 +102,8 @@
   }
 
   .post-footer {
-    margin-left: 60px;
     font-size: 11px;
+    padding-left: 10px;
     a {
       color: $grey;
     }
@@ -120,6 +123,7 @@
 
   .post-comments {
     background: $comments-bg-color;
+    border-top: 1px solid $light-grey;
  
     .comment-entry {
       padding: 10px;
@@ -182,7 +186,7 @@
         outline: none;
         overflow : hidden;
         @include border-box();
-        width: $post-width - 85px;
+        width: $post-width - 155px;
         height: 2em;
         &:focus {
           outline: 0px none transparent;
@@ -228,7 +232,7 @@
 }
 
 #sidebar {
-   width: $post-width + 20;
+   width: $sidebar-block-width + 20;
    float: right;
 }
 

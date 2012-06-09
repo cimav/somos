@@ -16,8 +16,6 @@ $('#user-info').live('click', (e) ->
 )
 
 $('html').click( (e) ->
-  if e.target.id != 'nav-title-span'
-    $('#groups-area').hide()
   if e.target.id != 'user-info'
     $('#user-nav').hide()
   if e.target.id != 'search-results'
@@ -120,7 +118,6 @@ getPosts = () ->
     url = url + '/g/' + currentGroup
   $.get(url, {}, (html) ->
     $('#posts-area').html(html)
-    buildWall()
   )
 
 buildWall = () ->
@@ -135,7 +132,7 @@ getComments = (post_id) ->
   url = "/p/#{post_id}/comments/#{$("#post-#{post_id}").attr('last_comment')}"
   $.get(url, {}, (html) ->
     $(html).appendTo("#post-#{post_id}-comments")
-    $('#posts').masonry('reload')
+    #$('#posts').masonry('reload')
   )
 
 
@@ -145,12 +142,12 @@ $('.comment-textarea')
     $(this).autogrow()
     $("#comment_button_#{$(this).attr('post_id')}").show()
     $("#comment-cancel-#{$(this).attr('post_id')}").show()
-    $('#posts').masonry('reload')
+    #$('#posts').masonry('reload')
   )
 
 $('.comment-textarea')
   .live('resized', () ->
-    $('#posts').masonry('reload')
+    #$('#posts').masonry('reload')
   )
 
 $('.comment-form')
@@ -174,7 +171,7 @@ resetCommentArea = (post_id) ->
   $("#comment_content_#{post_id}").val('')
   $("#comment_button_#{post_id}").hide()
   $("#comment-cancel-#{post_id}").hide()
-  $('#posts').masonry('reload')
+  #$('#posts').masonry('reload')
 
 $('.comment-cancel')
   .live("click", () ->
@@ -191,8 +188,7 @@ $('.comment-cancel')
   $.get(url, {}, (html) ->
     $('#new-posts-message').remove()
     $container = $('#posts')
-    #$(html).prependTo('#posts-area')
-    $container.prepend(html).masonry('reload')
+    #$container.prepend(html).masonry('reload')
     $('.hide-me.post').fadeIn()
   )
 
@@ -200,7 +196,6 @@ $('.delete-post')
   .live('ajax:success', (data, status, xhr) ->
     $("#" + $(this).attr('post_entry_id')).fadeOut('fast', () -> 
       $(this).empty().remove()
-      buildWall()
     )
   )
 
@@ -215,7 +210,7 @@ getRecentPostsCounter = () ->
       if $('#new-posts-message').length == 0
         $('<div id="new-posts-message" class="post"></div>').prependTo("#posts") 
       $('#new-posts-message').html('<div id="new-posts-message-inner">' + html + '</div>').show()
-      $('#posts').masonry('reload')
+      #$('#posts').masonry('reload')
   )
 
 $('#new-posts-message')
@@ -327,15 +322,14 @@ $('.get-user')
 @afterGetUser = afterGetUser = (username) ->
   currentUsername = username
   $container = $('#posts-wide')
-  $container.imagesLoaded( () ->
-    $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
-  )
+  #$container.imagesLoaded( () ->
+  #  $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
+  #)
 
 $('.delete-comment')
   .live('ajax:success', (data, status, xhr) ->
     $("#" + $(this).attr('comment_entry_id')).fadeOut('fast', () -> 
       $(this).empty().remove()
-      buildWall()
     )
   )
 
