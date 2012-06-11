@@ -407,5 +407,14 @@ $ ->
   if window.location.hash.length <= 2 || window.location.hash.slice(0, 2) != '#!' 
     getHome(false)
 
+$(window).scroll( (e) ->
+  h = $('#topbar')
+  if h.offset().top != 0
+    if !h.hasClass('shadow')
+      h.addClass('shadow')
+  else
+    h.removeClass('shadow')
+)
+
 recentTimer = setInterval(getRecentPostsCounter, 10000)
 hashTimer = setInterval(checkHash, 1000)

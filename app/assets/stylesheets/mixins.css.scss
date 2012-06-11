@@ -10,13 +10,13 @@
   -webkit-border-#{$side}-radius: $radius;
 }
 
-@mixin shadow($blur: 4px, $top: 1px, $left: 0px, $color: #999) {
+@mixin shadow($blur: 4px, $top: 1px, $left: 0px, $color: #ddd) {
   moz-box-shadow: $left $top $blur $color;
   -webkit-box-shadow: $left $top $blur $color;
   box-shadow: $left $top $blur $color;
 }
 
-@mixin shadow-inset($blur: 4px, $top: 1px, $left: 0px, $color: #999) {
+@mixin shadow-inset($blur: 4px, $top: 1px, $left: 0px, $color: #ddd) {
   moz-box-shadow: inset $left $top $blur $color;
   -webkit-box-shadow: inset $left $top $blur $color;
   box-shadow: inset $left $top $blur $color;

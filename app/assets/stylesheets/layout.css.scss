@@ -10,6 +10,10 @@
   background: transparent url('/assets/bg.png');
   border-bottom: 1px solid $light-grey;
 
+  &.shadow {
+    @include shadow(10px);
+  }
+
   #top-bar-full {
     margin-top: 5px;
     height: 55px;
