@@ -6,8 +6,12 @@
         %h1= @u.display_name
       .user-occupation= @u.occupation
       .user-bio= @u.bio
-  - @u.posts.each do |post|
-    = render :partial => 'posts/post', :locals => {:post => post}
+  - if @u.posts.count > 0
+    - @u.posts.each do |post|
+      = render :partial => 'posts/post', :locals => {:post => post}
+  - else
+    #no-user-posts
+      = t :no_posts_yet
 
 #sidebar
 

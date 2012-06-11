@@ -256,3 +256,5 @@ es:
   insert: "Insertar"
   select_a_file: "Selecciona un archivo"
   size: "Tamaño"
+
+  no_posts_yet: "No hay publicaciones aún"

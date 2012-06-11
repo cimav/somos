@@ -105,3 +105,5 @@ en:
   insert: "Insert"
   select_a_file: "Select a file"
   size: "Size"
+
+  no_posts_yet: "No posts yet"
