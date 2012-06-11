@@ -1,60 +1,64 @@
-.wide-block
-  #user-profile 
-    #profile-picture
-      = image_tag @u.image_url(:profile).to_s, :width => '128', :height => '128', :class => "profile-picture", :title => "#{@u.display_name}"
+#posts-area
+#posts
+  .post
     #profile-data
       .user-display-name
         %h1= @u.display_name
       .user-occupation= @u.occupation
       .user-bio= @u.bio
-      .user-data#user-email
-        .user-data-label= t :email
-        .user-data-content= link_to @u.email, "mailto: #{@u.email}"
-      - if !@u.work_phone.blank?
-        .user-data#user-work-phone
-          .user-data-label= t :work_phone
-          .user-data-content= @u.work_phone
-      - if !@u.home_phone.blank?
-        .user-data#user-home-phone
-          .user-data-label= t :home_phone
-          .user-data-content= @u.work_phone
-      - if !@u.mobile_phone.blank?
-        .user-data#user-mobile-phone
-          .user-data-label= t :mobile_phone
-          .user-data-content= @u.work_phone
-      .user-data#user-years-of-service
-        .user-data-label= t :years_of_service
-        .user-data-content{:title => @u.start_date}
-          - service_total = (DateTime.now.year*12+DateTime.now.month) - (@u.start_date.year*12+@u.start_date.month)
-          - service_years = service_total / 12
-          - service_months = service_total % 12
-          - if service_years > 0
-            - if service_years == 1
-              = "1 #{(t :year)}"
-            - else
-              = "#{service_years} #{(t :years)}"
-          - if service_months > 0
-            - if service_months == 1 
-              = "1 #{(t :month)}"
-            - else
-              = "#{service_months} #{(t :months)}"
-      - if !@u.reports_to.blank? && @u.reports_to != @u.id
-        .user-data#user-reports_to
-          .user-data-label= t :reports_to
-          .user-data-content
-            = link_to url_for(:controller => "users", :action => "profile", :username => "#{@u.reports_to_user.username}"), :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "member_user_#{@u.reports_to_user.id}", :username => "#{@u.reports_to_user.username}" do
-              = @u.reports_to_user.display_name
-    #profile-badges
+  - @u.posts.each do |post|
+    = render :partial => 'posts/post', :locals => {:post => post}
+
+#sidebar
+
+  #user-profile-data.sidebar-block
+    #profile-picture
+      = image_tag @u.image_url(:profile).to_s, :width => '128', :height => '128', :class => "profile-picture", :title => "#{@u.display_name}"
+    .user-data#user-email
+      .user-data-label= t :email
+      .user-data-content= link_to @u.email, "mailto: #{@u.email}"
+    - if !@u.work_phone.blank?
+      .user-data#user-work-phone
+        .user-data-label= t :work_phone
+        .user-data-content= @u.work_phone
+    - if !@u.home_phone.blank?
+      .user-data#user-home-phone
+        .user-data-label= t :home_phone
+        .user-data-content= @u.work_phone
+    - if !@u.mobile_phone.blank?
+      .user-data#user-mobile-phone
+        .user-data-label= t :mobile_phone
+        .user-data-content= @u.work_phone
+    .user-data#user-years-of-service
+      .user-data-label= t :years_of_service
+      .user-data-content{:title => @u.start_date}
+      - service_total = (DateTime.now.year*12+DateTime.now.month) - (@u.start_date.year*12+@u.start_date.month)
+      - service_years = service_total / 12
+      - service_months = service_total % 12
+      - if service_years > 0
+        - if service_years == 1
+          = "1 #{(t :year)}"
+        - else
+          = "#{service_years} #{(t :years)}"
+      - if service_months > 0
+        - if service_months == 1 
+          = "1 #{(t :month)}"
+        - else
+          = "#{service_months} #{(t :months)}"
+    - if !@u.reports_to.blank? && @u.reports_to != @u.id
+      .user-data#user-reports_to
+        .user-data-label= t :reports_to
+        .user-data-content
+          = link_to url_for(:controller => "users", :action => "profile", :username => "#{@u.reports_to_user.username}"), :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "member_user_#{@u.reports_to_user.id}", :username => "#{@u.reports_to_user.username}" do
+            = @u.reports_to_user.display_name
+  - if @u.user_badges.count > 0 
+    #profile-badges.sidebar-block
       %h2= t :badges
       - @u.user_badges.each do |b|
         .user-badge
           = link_to url_for(:controller => "posts", :action => "show", :id => "#{b.post_id}"), :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{b.post_id}" do
             = image_tag b.badge.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-badge-small", :title => b.badge.name
     .clearfix
-#posts-wide
-  .posts
-    - @u.posts.each do |post|
-      = render :partial => 'posts/post', :locals => {:post => post}
 
 - if params['__from__'] == 'url'
   :javascript

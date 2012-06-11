@@ -113,7 +113,6 @@
 }
 
 .wide-block {
-  @include shadow(4px,1px,1px,#333);
   margin: 10px;
   background: #fff;
   min-height: 48px;

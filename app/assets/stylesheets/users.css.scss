@@ -6,21 +6,22 @@
 }
 
 #user-profile {
+  width: $post-width;
   padding: 10px;
   min-height: 200px;
 }
 
 #profile-picture {
-  float: left;
+  margin-bottom: 20px;
   img {
+    @include rounded(6px);
+    width: $sidebar-block-width;
+    height: $sidebar-block-width;
   }
 }
 
 #profile-data {
-  width: $container-width - 420;
-  float: left;
   font-size: 15px;
-  margin-left: 20px;
   margin-bottom: 20px;
   .user-display-name {
   }
@@ -31,20 +32,6 @@
   }
   .user-bio {
     margin-bottom: 20px;
-  }
-  .user-data {
-    width: 100%;
-    display: block;
-    height: 1em;
-    padding: 0;
-    .user-data-label {
-      font-weight: bold;
-      width: 160px;
-      float: left;
-    }
-    .user-data-content {
-      float: left;
-    }
   }
 }
 
@@ -59,5 +46,19 @@
     float: left;
     width: 48px; 
     margin-right: 5px;
+  }
+}
+
+#user-profile-data {
+  margin-top: 20px;
+  .user-data {
+    width: 100%;
+    display: block;
+    padding: 0;
+    .user-data-label {
+      font-weight: bold;
+    }
+    .user-data-content {
+    }
   }
 }
