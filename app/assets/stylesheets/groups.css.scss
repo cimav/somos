@@ -99,9 +99,8 @@ ul.page-list {
 }
 
 #group-page {
-  @include shadow(4px,1px,1px,#333);
-  width: ($post-width * 2) + 20;
-  margin: 10px;
+  width: $post-width;
+  margin: 25px 10px;
   background: #fff;
   float: left;
   min-height: 48px;
@@ -241,12 +240,12 @@ ul.page-list {
 
 #pfs-editor {
   height: 200px;
-  width: ($post-width * 2) - 30;
+  width: $post-width - 30;
   padding: 10px;
 }
 
 #pfs-editor_tbl {
-  width: ($post-width * 2) - 30;
+  width: $post-width - 30;
 }
 
 #save-pfs-button {

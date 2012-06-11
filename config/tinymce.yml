@@ -1,6 +1,6 @@
 skin: 'somos'
 content_css: 'assets/application.css'
-width: '604'
+width: '530'
 height: '400'
 theme: 'advanced'
 inlinepopups_skin : 'somos-inlinepopups'

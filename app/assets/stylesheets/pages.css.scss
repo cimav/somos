@@ -4,7 +4,7 @@
 
 #edit-page {
   display: none;  
-  width: ($post-width * 2) - 20;
+  width: $post-width - 20;
 }
 
 .edit-page-title {
@@ -21,7 +21,7 @@
     font-size: 18px;
     color: $black;
     font-weight: bold;
-    width: ($post-width * 2) - 30;
+    width: $post-width - 30;
   }
 }
 
@@ -31,12 +31,12 @@
 
 #page-editor {
   height: 500px;
-  width: ($post-width * 2) - 30;
+  width: $post-width - 30;
   padding: 10px;
 }
 
 #page-editor_tbl {
-  width: ($post-width * 2) - 30;
+  width: $post-width - 30;
 }
 
 #page-toolbar {
