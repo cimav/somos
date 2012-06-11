@@ -1,8 +1,12 @@
 - latest = 0
 #posts
-  - @posts.each do |post|
-    = render :partial => 'post', :locals => {:post => post }
-    - latest = post.id if latest < post.id
+  - if @posts.count > 0  
+    - @posts.each do |post|
+      = render :partial => 'post', :locals => {:post => post }
+      - latest = post.id if latest < post.id
+  - else
+    #no-user-posts
+      = t :no_posts_yet
 - if latest > 0
   :javascript
     latestPostId = #{latest};
