@@ -39,6 +39,7 @@ class PostsController < ApplicationController
 
   def recent
     @posts = recent_query(params[:group_id], params[:id])
+    @is_home = params[:group_id].blank?
     @comment = Comment.new
     render :layout => false
   end

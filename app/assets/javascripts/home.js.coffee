@@ -85,17 +85,7 @@ getPost = (id) ->
 getShareForm = () ->
   url = '/p/share_form'
   $.get(url, {}, (html) ->
-    $('#container').append(html)
-    $("#share-form").dialog({ 
-      autoOpen: false, 
-      width: 500, 
-      height: 300, 
-      modal: true, 
-      resizable: false,
-      close: (ev, ui) -> 
-                $(this).remove()
-    })
-    $("#share-form").dialog('open')
+    $('#share-workarea').html(html)
   )
 
 getGroupList = () ->
