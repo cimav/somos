@@ -39,12 +39,6 @@ $('.post-type')
     )
   )
 
-$('#post_content')
-  .live('resized', () ->
-    grow = parseInt($('#post_content').css('height')) - postContentHeight
-    $('#share-form').dialog('option', 'height', parseInt($('#dialog-height').val()) + grow)
-  )
-
 $('#token-everyone span')
   .live('click', () ->
     $('#token-everyone').hide()
@@ -52,24 +46,28 @@ $('#token-everyone span')
     $('#token-input-to_groups').focus()
   )
 
+@hideShareForm = hideShareForm = () ->
+  getRecentPosts()
+  $("#share-form").fadeOut('fast', () ->
+    $("#share-form").remove()
+  )
+
 $('#new_post')
-    .live("ajax:beforeSend", (evt, xhr, settings) ->
-      # TODO: Display geting spinner
-      clearInterval(recentTimer)
-    )
-    .live("ajax:success", (evt, data, status, xhr) ->
-      res = $.parseJSON(xhr.responseText);
-      getRecentPosts()
-      $("#share-form").dialog('close')
-      $("#share-form").remove()
-      recentTimer = setInterval(getRecentPostsCounter, 10000)
-    )
-    .live('ajax:complete', (evt, xhr, status) ->
-      # Complete
-    )
-    .live("ajax:error", (evt, xhr, status, error) ->
-      # TODO: Display errors
-    )
+  .live("ajax:beforeSend", (evt, xhr, settings) ->
+    # TODO: Display geting spinner
+    clearInterval(recentTimer)
+  )
+  .live("ajax:success", (evt, data, status, xhr) ->
+    res = $.parseJSON(xhr.responseText)
+    hideShareForm()
+    recentTimer = setInterval(getRecentPostsCounter, 10000)
+  )
+  .live('ajax:complete', (evt, xhr, status) ->
+    # Complete
+  )
+  .live("ajax:error", (evt, xhr, status, error) ->
+    # TODO: Display errors
+  )
 
 getPost = (id) ->
   url = '/p/' + id

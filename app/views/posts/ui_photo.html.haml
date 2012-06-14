@@ -1,57 +1,7 @@
 #share-photos
   = fields_for @post do |f|
-    #photos-dnd-area
-      #dnd-message= t :attach_images
-      #photos-file-input
-        %input{:id=>"post_post_photo_attributes_file", :multiple=>"multiple", :name=>"post[post_photo_attributes][photo][]", :type=>"file"}
-      #photos-file-list
-        .clearfix
-      .clearfix
     = f.text_area :content, :placeholder => (t :write_here_your_message)
+    %input{:id=>"post_post_photo_attributes_file", :multiple=>"multiple", :name=>"post[post_photo_attributes][photo][]", :type=>"file"}
     %iframe#post-iframe{:width => 0, :height => 0, :scrolling => "no", :frameborder => "0", :name => "post-iframe"}
 :javascript
   $("#new_post").attr("target", "post-iframe");
-  var c = 0;
-  var photoFileListHeight = parseInt($('#photos-file-list').css('height'));
-  function handleFileSelect(evt) {
-    var f1 = $('#post_post_photo_attributes_file');
-    var f2 = f1.clone(true);
-    f1.attr('id', f1.attr('id') + '-' + c).hide();
-    c++;
-    $('#photos-file-input').append(f2);
-    document.getElementById('post_post_photo_attributes_file').addEventListener('change', handleFileSelect, false);
-    
-    var files = evt.target.files; // FileList object
-
-    // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
-
-      // Only process image files.
-      if (!f.type.match('image.*')) {
-        continue;
-      }
-
-      var reader = new FileReader();
-
-      // Closure to capture the file information.
-      reader.onload = (function(theFile) {
-        return function(e) {
-          // Render thumbnail.
-          var span = document.createElement('span');
-          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                            '" title="', escape(theFile.name), '"/>'].join('');
-          $('#photos-file-list').append(span);
-        };
-      })(f);
-
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(f);
-    }
-    // Resize dialog
-    grow = parseInt($('#photos-file-list').css('height')) - photoFileListHeight;
-    $('#share-form').dialog('option', 'height', parseInt($('#dialog-height').val()) + grow);
-
-  }
-  $(function() {
-    document.getElementById('post_post_photo_attributes_file').addEventListener('change', handleFileSelect, false);
-  });
