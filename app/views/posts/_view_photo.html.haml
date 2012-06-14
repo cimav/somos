@@ -1,21 +1,43 @@
 .post-photos{:id => "gallery-#{post.id}"}
   - c = post.post_photo.count
-  - if c == 1
-    - photo1 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[0].id, :version => 'small', :filename => File.basename(post.post_photo[0].to_s))
-    %img{:src => photo1, :width => '100%'}
-  - if c == 2 
-    - photo1 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[0].id, :version => 'small', :filename => File.basename(post.post_photo[0].to_s))
-    - photo2 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[1].id, :version => 'small', :filename => File.basename(post.post_photo[1].to_s))
-    %img{:src => photo1, :width => '50%'}
-    %img{:src => photo2, :width => '50%'}
-  - if c >= 3 
-    - photo1 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[0].id, :version => 'small', :filename => File.basename(post.post_photo[0].to_s))
-    - photo2 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[1].id, :version => 'small', :filename => File.basename(post.post_photo[1].to_s))
-    - photo3 = url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => post.post_photo[2].id, :version => 'small', :filename => File.basename(post.post_photo[2].to_s))
-    %img{:src => photo1, :width => '34%'}
-    %img{:src => photo2, :width => '33%'}
-    %img{:src => photo3, :width => '33%'}
+  - post.post_photo.each do |f|
+
+    - if c == 1
+      - img_version = 'medium'
+      - img_width = '100%'
+    - else
+      - img_version = 'square'
+
+    - if c == 2 || c == 4
+      - img_width = '50%'
+
+    - if c == 3 || c == 5 || c == 6
+      - img_width = '33.333%'
+
+    - if c > 6
+      -  img_width = '20%'
+
+    - if c > 15 
+      - img_width = '16.666%'
+
+    %a{:href => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => 'large', :filename => File.basename(f.photo.to_s))}
+      %img{:src => url_for(:controller => "post_photos", :action => "photo", :id => post.id, :photo_id => f.id, :version => img_version, :filename => File.basename(f.photo.to_s)), :width => img_width}
   .clearfix
+
 .post-text
   = post.content
+
+:javascript
+  $(function() {
+    $("#gallery-#{post.id} a").lightBox({
+      imageLoading: '/assets/loader.gif',
+      imageBtnClose: '/assets/close.png',
+      imageBtnPrev: '/assets/lb-prev.png',
+      imageBtnNext: '/assets/lb-next.png',
+      imageBlank: '/assets/blank.gif',
+      containerResizeSpeed: 350,
+      txtImage: "#{(t :image).capitalize}",
+      txtOf: '#{t :of}'
+    });
+  });
 

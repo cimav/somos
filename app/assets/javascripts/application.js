@@ -9,9 +9,9 @@
 //= require jquery_ujs
 //= require tinymce-jquery
 //= require jquery.autogrow-textarea
+//= require jquery.lightbox
 //= require jquery.fittext
 //= require jquery.jeditable
-//= require jquery.masonry
 //= require jquery.tokeninput
 //= require jquery.ui.selectmenu
 //= require home

@@ -36,7 +36,7 @@ class PostPhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :square do
-    process :resize_to_fill => [60, 60]
+    process :resize_to_fill => [300, 300]
   end
 
 
