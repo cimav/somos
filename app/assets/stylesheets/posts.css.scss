@@ -19,11 +19,15 @@
 }
 
 #posts {
+  width: $post-width + 20;
+  float: left;
 }
 
-#top-section {
+#group-header {
+  width: $post-width;
+  float: left;
+  padding: 10px 10px 15px 10px;
 }
-
 
 .post {
   width: $post-width;
