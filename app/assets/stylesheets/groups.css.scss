@@ -106,17 +106,17 @@ ul.page-list {
 
 #group-page {
   width: $post-width;
-  margin: 25px 10px;
+  margin: 10px 10px 25px 10px;
   background: #fff;
   float: left;
   min-height: 48px;
   h2 {
-    margin: 20px 0;
+    margin-bottom: 20px;
   }
 }
 
 #group-page-inner {
-  margin: 20px 20px 40px 20px;
+  margin: 0 0 40px 0;
 }
 
 #group-page-contents {

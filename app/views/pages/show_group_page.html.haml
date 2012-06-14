@@ -1,5 +1,8 @@
 - membership = current_user.memberships.where(:group_id => @page.group.id).first
+
 #group-page  
+  #group-header
+    %h1= @group.name
   #group-page-inner
     #group-page-contents
       %h2= @page.title

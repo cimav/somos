@@ -2,6 +2,9 @@
 #top-section
   - if @is_home
     = render :partial => 'share_link'
+  - if @is_group
+    #group-header
+      %h1= @group.name
 #posts
   - if @posts.count > 0  
     - @posts.each do |post|
