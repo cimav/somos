@@ -178,7 +178,7 @@ $('.comment-cancel')
   $.get(url, {}, (html) ->
     $('#new-posts-message').remove()
     $container = $('#posts')
-    #$container.prepend(html).masonry('reload')
+    $container.prepend(html)
     $('.hide-me.post').fadeIn()
   )
 

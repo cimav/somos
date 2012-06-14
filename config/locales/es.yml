@@ -208,15 +208,16 @@ es:
 
   today: "Hoy"
 
-  message_share_message: "Un mensaje"
-  link_share_message: "Una liga a una página"
-  photo_share_message: "Unas imagenes"
+  message_share_message: "Mensaje"
+  link_share_message: "Enlace"
+  photo_share_message: "Fotos"
   file_share_message: "Archivos"
-  event_share_message: "Un evento" 
+  event_share_message: "Evento"
 
   only_visible_by: "Solo puede ser visto por:"
-  lock: "Candado"
   everyone: "Todos"
+  public: "Público"
+  published_by: "Publicado por "
 
   attach_images: "Adjunta las imagenes arrastrandolas y soltandolas aqui o escogelas manualmente..."
   attach_files: "Adjunta los archivos arrastrandolos y soltandolos aqui o escogelas manualmente..."

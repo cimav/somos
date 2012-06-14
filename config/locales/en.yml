@@ -57,15 +57,16 @@ en:
 
   today: "Today"
 
-  message_share_message: "A message"
-  link_share_message: "A link to page"
-  photo_share_message: "Some images"
+  message_share_message: "Message"
+  link_share_message: "Link"
+  photo_share_message: "Photos"
   file_share_message: "Files"
-  event_share_message: "An event"
+  event_share_message: "Event"
 
   only_visible_by: "Only visible by:"
-  lock: "Lock"
   everyone: "Everyone"
+  public: "Public"
+  published_by: "Published by "
 
   attach_images: "Attach images by dragging and dropping them here or choose them manually..."
   attach_files: "Attach files by dragging and dropping them here or choose them manually..."

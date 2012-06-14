@@ -20,33 +20,32 @@
   color: $black;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  min-height: 48px;
   .post-type-block {
     font-size: 12px; 
     display: block;
-    width: ($post-width / 2) - 50;
+    width: 110px;
     padding: 5px;
     float: left;
-    &:hover {
-      background-color: $bg-color;
-    }
     a { 
       float: left;
       display: block;
       width: 100%;
       cursor: pointer;
-      color: $grey;
-      text-decoration: none;
+      color: $link-color;
+      margin-top: 5px;
+      margin-left: 5px; 
       .post-type-message {
-        margin: 6px 0 0 10px;
+        float: left;
+        margin: 8px 0 0 4px;
       }
       img {
         float: left;
-        @include opacity(0.5);
-        height: 16px;
-        width: 16px;
+        @include opacity(0.9);
+        height: 32px;
+        width: 32px;
       }
       &:hover {
-        color: #000;
         img {
           @include opacity(1);
         }

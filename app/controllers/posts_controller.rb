@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def share_form
     @post = Post.new
-    @post_types = PostType.where(:category => PostType::USER_POST)
+    @post_types = PostType.where(:category => PostType::USER_POST, :status => PostType::ACTIVE)
     render :layout => false
   end
 
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   def recent
     @posts = recent_query(params[:group_id], params[:id])
-    @is_home = params[:group_id].blank?
+    @is_home = params[:group_id].blank? && params[:id].blank?
     @comment = Comment.new
     render :layout => false
   end

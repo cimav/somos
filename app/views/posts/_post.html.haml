@@ -9,27 +9,41 @@
   .post-content
    
     - if post.post_type.category == PostType::USER_POST || post.post_type.category == PostType::UNDELETABLE_POST
-      .post-who
-        .post-user
-          = link_to post.user.display_name, {:controller => 'users', :action => 'profile', :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}"
-        - if post.group_id > 0 && params[:group_id].blank?
-          .post-group= link_to post.group.name, {:controller => 'groups', :action => 'show', :short_name => post.group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :short_name => "#{post.group.short_name}", :group_id => "#{post.group.id}"
-        .post-footer
-          = link_to post_date(post.created_at), {:controller => 'posts', :action => 'show', :id => post.id}, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}"
+      .post-header
+        .post-header-top-line
+          .post-user
+            - if post.group_id > 0 && params[:group_id].blank?
+ 
+              = link_to post.group.name, {:controller => 'groups', :action => 'show', :short_name => post.group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :short_name => "#{post.group.short_name}", :group_id => "#{post.group.id}"
 
+            - else
+              = link_to post.user.display_name, {:controller => 'users', :action => 'profile', :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}"
+
+          .post-date
+            = link_to post_date(post.created_at), {:controller => 'posts', :action => 'show', :id => post.id}, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{post.id}", :post_id => "#{post.id}"
+
+
+        - if post.group_id > 0 && params[:group_id].blank?
+          .post-published-by 
+            = "#{t :published_by} "
+            = link_to post.user.display_name, {:controller => 'users', :action => 'profile', :username => "#{post.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "post_user_#{post.id}", :username => "#{post.user.username}"
+         
+
+        - if post.post_group.count > 0
+          - post_groups = Array.new
+          - post.post_group.each do |g|
+            - post_groups << g.group.name
+          - visible_by = "#{(t :only_visible_by)} #{(post_groups.join(', '))}"
+        - else 
+          - visible_by = t :public
+        .post-visibility= visible_by
+    .clearfix
 
     - if post.post_type_id > 1
       = render :partial => "posts/view_#{post.post_type.name}", :locals => {:post => post} 
     - else 
       .post-text
         = simple_format(post.content)
-    - if post.post_group.count > 0
-      - post_groups = Array.new
-      - post.post_group.each do |g|
-        - post_groups << g.group.name
-      - visible_by = "#{(t :only_visible_by)} #{(post_groups.join(', '))}"
-      .post-lock{:title => visible_by}= t :lock
-      .clearfix
 
     .post-comments{:id => "post-#{post.id}-comments"}
       - last_comment = 0 
