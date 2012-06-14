@@ -1,7 +1,6 @@
 #share-event
   = fields_for @post do |f|
     = f.fields_for :post_event do |event_fields|
-      = hidden_field_tag 'dialog-height', '200'
       %table.fields-table
         %tr
           %td.label= t :event_title

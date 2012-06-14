@@ -26,15 +26,12 @@ $('html').click( (e) ->
 $('.post-type')
   .live('click', () ->
     $('#post_post_type_id').val($(this).attr('post_type'))
-    $('#post-types').hide()
-    $('#share-form').dialog('option', 'title', $("#post-type-message-" + $(this).attr('post_type')).html())
-    $('#share-content').show()
     url = "/p/ui/#{$(this).attr('post_type')}"
     $.get(url, {}, (html) ->
       $('#share-add-ui').html(html)
-      $('#share-form').dialog('option', 'height', $('#dialog-height').val())
-      
       $('#post_content').autogrow()
+      $('#post-types').hide()
+      $('#share-content').fadeIn()
       postContentHeight = parseInt($('#post_content').css('height'))
       $('#post_group_id').selectmenu()
       $('#to_groups').tokenInput("/g/search", {theme: "somos", zindex: 2000, hintText: $('#to_groups').attr('hintMessage'), noResultsText: $('#to_groups').attr('noResultsMessage'), searchingText: $('#to_groups').attr('searchingMessage')})

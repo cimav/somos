@@ -1,7 +1,6 @@
 #share-files
   = fields_for @post do |f|
-    = hidden_field_tag 'dialog-height', '340'
-    = f.text_area :content, :placeholder => (t :what_do_you_want_to_share)
+    = f.text_area :content, :placeholder => (t :write_here_your_message)
     %input{:id=>"post_post_file_attributes_file", :multiple=>"multiple", :name=>"post[post_file_attributes][file][]", :type=>"file"}
     %iframe#post-iframe{:width => 0, :height => 0, :scrolling => "no", :frameborder => "0", :name => "post-iframe"}
     :javascript

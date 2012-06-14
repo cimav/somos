@@ -1,16 +1,22 @@
 - latest = 0
-#top-section
-  - if @is_home
+- if @is_home
+  #top-section
     = render :partial => 'share_link'
-  - if @is_group
+- if @is_group
+  #top-section
     #group-header
       %h1= @group.name
-#posts
-  - if @posts.count > 0  
+- if @posts.count > 0  
+  - if params[:id].blank?
+    - div_id = 'posts'
+  - else 
+    - div_id = "posts_#{Time.now.to_i}"
+  %div{:id => div_id}
     - @posts.each do |post|
       = render :partial => 'post', :locals => {:post => post }
       - latest = post.id if latest < post.id
-  - else
+- else
+  #posts
     #no-user-posts
       = t :no_posts_yet
 - if latest > 0

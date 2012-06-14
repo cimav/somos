@@ -1,6 +1,5 @@
 #share-photos
   = fields_for @post do |f|
-    = hidden_field_tag 'dialog-height', '400'
     #photos-dnd-area
       #dnd-message= t :attach_images
       #photos-file-input
@@ -8,7 +7,7 @@
       #photos-file-list
         .clearfix
       .clearfix
-    = f.text_area :content, :placeholder => (t :what_do_you_want_to_share)
+    = f.text_area :content, :placeholder => (t :write_here_your_message)
     %iframe#post-iframe{:width => 0, :height => 0, :scrolling => "no", :frameborder => "0", :name => "post-iframe"}
 :javascript
   $("#new_post").attr("target", "post-iframe");
