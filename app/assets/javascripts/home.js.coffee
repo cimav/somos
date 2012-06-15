@@ -6,6 +6,7 @@ currentPost = 0
 currentUser = 0
 postContentHeight = 0
 hash = false
+lastBlockTop = 0
 
 $('#nav-title-span').live('click', (e) ->
   $('#groups-area').toggle()
@@ -404,6 +405,7 @@ checkHash = () ->
 $ ->
   getGroupList()
   getUserMenu()
+  lastBlockTop = $('.sidebar-block:last-child').position().top
   if window.location.hash.length <= 2 || window.location.hash.slice(0, 2) != '#!' 
     getHome(false)
 
@@ -414,6 +416,12 @@ $(window).scroll( (e) ->
       h.addClass('shadow')
   else
     h.removeClass('shadow')
+
+  last_block = $('.sidebar-block:last-child')
+  if $(window).scrollTop() > lastBlockTop - 40
+    last_block.attr('style', 'position: fixed; top: ' + (h.height() + 10) + 'px;')
+  else 
+    last_block.attr('style', 'position: relative;')
 
   if $(window).scrollTop() == $(document).height() - $(window).height()
     getPastPosts()

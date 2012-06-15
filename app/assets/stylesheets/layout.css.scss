@@ -108,6 +108,8 @@
 
 
 #container {
+  border-left: 1px solid $line-color;
+  padding-left: 5px;
   float: right;
   width: $container-width;
 }
