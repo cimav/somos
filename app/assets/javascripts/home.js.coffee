@@ -163,6 +163,19 @@ $('.comment-cancel')
     resetCommentArea($(this).attr('post_id'))
   )
 
+getPastPosts = () ->
+  url = '/p/past/'
+  if currentGroup > 0
+    url = url + 'g/' + currentGroup + '/'
+  if firstBlockPostId?
+    url = url + firstBlockPostId
+  $.get(url, {}, (html) ->
+    $('#new-posts-message').remove()
+    $container = $('#posts')
+    $container.append(html)
+    $('.hide-me.post').fadeIn()
+  )
+
 
 @getRecentPosts = getRecentPosts = () ->
   url = '/p/recent/'
@@ -401,6 +414,11 @@ $(window).scroll( (e) ->
       h.addClass('shadow')
   else
     h.removeClass('shadow')
+
+  if $(window).scrollTop() == $(document).height() - $(window).height()
+    getPastPosts()
+
+
 )
 
 recentTimer = setInterval(getRecentPostsCounter, 10000)

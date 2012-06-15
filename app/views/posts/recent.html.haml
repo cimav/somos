@@ -1,4 +1,5 @@
 - latest = 0
+- first = 0
 - if @is_home
   #top-section
     = render :partial => 'share_link'
@@ -15,13 +16,22 @@
     - @posts.each do |post|
       = render :partial => 'post', :locals => {:post => post }
       - latest = post.id if latest < post.id
+      - first = post.id if first > post.id || first == 0
 - else
   #posts
     #no-user-posts
       = t :no_posts_yet
+
+- if @is_home || @is_group
+  :javascript
+      firstBlockPostId = #{first};
+
 - if latest > 0
   :javascript
     latestPostId = #{latest};
+    if (firstBlockPostId > #{first}) {
+      firstBlockPostId = #{first};
+    }
 - if !params[:id].blank?
   :javascript
     previousLatestPostId = #{params[:id]};

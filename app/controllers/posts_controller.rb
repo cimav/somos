@@ -33,8 +33,36 @@ class PostsController < ApplicationController
     if !id.blank?
       posts = posts.where("id > :id", {:id => id})
     else
-      posts = posts.limit(10)
+      posts = posts.limit(20)
     end
+  end
+
+  def past
+ 
+    id = params[:id]
+    group_id = params[:group_id]
+
+    @posts = Post.order("created_at DESC").where("status = #{Post::ACTIVE}")
+
+    @posts = @posts.where("( 
+                           (limited = '0') OR 
+                           (user_id = :user_id) OR
+                           (id IN (
+                                    SELECT post_id FROM post_groups 
+                                    WHERE group_id IN (SELECT group_id FROM memberships 
+                                                        WHERE user_id = :user_id)
+                                  )) )", {:user_id => current_user.id})
+
+    if !group_id.blank?
+      @posts = @posts.where("group_id = :group_id", {:group_id => group_id})
+    end
+
+    @posts = @posts.where("id < :id", {:id => id}).limit(20)
+
+    @comment = Comment.new
+
+    render :layout => false
+  
   end
 
   def recent

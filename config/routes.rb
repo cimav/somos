@@ -16,6 +16,8 @@ Somos::Application.routes.draw do
   match 'p/recent/g/:group_id(/:id(.:format))' => 'posts#recent'
   match 'p/recent(.:format)' => 'posts#recent'
   match 'p/recent(/:id(.:format))' => 'posts#recent'
+  match 'p/past/g/:group_id(/:id(.:format))' => 'posts#past'
+  match 'p/past(/:id(.:format))' => 'posts#past'
   match 'p/share_form(/:id(.:format))' => 'posts#share_form'
   match 'p/ui(/:id(.:format))' => 'posts#ui'
   match 'p/:id/f/:file_id/:filename' => 'post_files#file', :constraints => { :filename => /[^\/]*/ }
