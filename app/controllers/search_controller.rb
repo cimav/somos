@@ -7,6 +7,8 @@ class SearchController < ApplicationController
       @groups = @groups.where("(name LIKE :q OR short_name LIKE :q OR description LIKE :q)", {:q => "%#{params[:q]}%"})
       @pages = Page.order('title').where('page_id IS NULL')
       @pages = @pages.where("(short_name LIKE :q OR title LIKE :q OR content LIKE :q)", {:q => "%#{params[:q]}%"})
+      @posts = Post.order('created_at DESC').where('status = :s', {:s => Post::ACTIVE})
+      @posts = @posts.where("(content LIKE :q)", {:q => "%#{params[:q]}%"})
       render :layout => false
     else 
       render :inline => ''

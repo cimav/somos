@@ -40,6 +40,7 @@
   }
   .search-item-desc {
     margin: 4px 0;
+    cursor: pointer;
     width:  $user-area-width + $search-box-width - 70;
     float: left;
     margin-left: 10px;
@@ -47,9 +48,9 @@
     margin-bottom: 10px;
     .search-item-phone,
     .search-item-email,
-    .search-item-department {
+    .search-item-department,
+    .search-item-date {
       margin: 4px 0;
-      &:hover { cursor: pointer; }
     }
     .search-item-email { margin: 0; }
   }

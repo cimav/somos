@@ -1,7 +1,9 @@
+- c_items = 0
 - if @users.count > 0
   .search-section= t :persons
   %ul
     - @users.each do |u|
+      - c_items += 1
       %li
         = link_to url_for(:controller => "users", :action => "profile", :username => "#{u.username}"), :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :id => "search_user_#{u.id}", :username => "#{u.username}" do
           .search-item-display=  image_tag u.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small", :title => "#{u.display_name}"
@@ -16,10 +18,12 @@
                   - user_groups << g.name
               = user_groups.join(',')
         .clearfix
+
 - if @groups.count > 0
   .search-section= t :groups
   %ul
     - @groups.each do |g|
+      - c_items += 1
       %li
         = link_to url_for(:controller => "groups", :action => "show", :short_name => "#{g.short_name}"), :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "search_group_#{g.id}", :short_name => "#{g.short_name}", :group_id => g.id do
           .search-item-display
@@ -27,6 +31,7 @@
           .search-item-title= g.name
           .search-item-desc= g.description
         .clearfix
+
 - if @pages.count > 0
   .search-section= t :pages
   %ul
@@ -39,5 +44,19 @@
           .search-item-desc= p.group.name
         .clearfix
 
+- if @posts.count > 0
+  .search-section= t :posts
+  %ul
+    - @posts.each do |p|
+      - c_items += 1
+      %li
+        = link_to url_for(:controller => 'posts', :action => 'show', :id => p.id), :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_search_#{p.id}", :post_id => "#{p.id}" do
+          .search-item-display=  image_tag p.user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small", :title => "#{p.user.display_name}"
+          .search-item-desc
+            = p.content
+            .search-item-date= post_date(p.created_at)
+        .clearfix
 
-
+- if c_items == 0
+  %ul
+    %li= t :no_results_found
