@@ -293,12 +293,14 @@ $('.get-post')
   .live('ajax:success', (data, status, xhr) ->
     window.location.hash = '#!/p/' + $(this).attr('post_id')
     currentPost = $(this).attr('post_id')
+    $('.group-title').removeClass('selected')
     $('#container').html(status);
   )
 
 $('.get-user')
   .live('ajax:success', (data, status, xhr) ->
     username =  $(this).attr('username')
+    $('.group-title').removeClass('selected')
     setHash('#!/' + username)
     $('#container').html(status)
     afterGetUser(username)
