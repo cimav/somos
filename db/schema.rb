@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517175110) do
+ActiveRecord::Schema.define(:version => 20120615001611) do
+
+  create_table "applications", :force => true do |t|
+    t.string   "short_name", :limit => 20
+    t.string   "name"
+    t.string   "icon"
+    t.string   "url"
+    t.integer  "app_type",                 :default => 1
+    t.integer  "status",                   :default => 1, :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+  end
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -215,6 +226,16 @@ ActiveRecord::Schema.define(:version => 20120517175110) do
   add_index "posts", ["group_id"], :name => "index_posts_on_group_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
+  create_table "sidebar_items", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "position"
+    t.integer  "sidebar_type", :default => 1
+    t.integer  "status",       :default => 1, :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
   create_table "states", :force => true do |t|
     t.string   "name"
     t.string   "code"
@@ -223,6 +244,16 @@ ActiveRecord::Schema.define(:version => 20120517175110) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  create_table "user_applications", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "application_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "user_applications", ["application_id"], :name => "index_user_applications_on_application_id"
+  add_index "user_applications", ["user_id"], :name => "index_user_applications_on_user_id"
 
   create_table "user_badges", :force => true do |t|
     t.integer  "user_id"
