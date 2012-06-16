@@ -1,5 +1,10 @@
 - @page_title = t :home_link
 #posts-area
 #sidebar
-  #upcoming-events.sidebar-block 
-  #upcoming-birthdays.sidebar-block
+
+- SidebarItem.order(:position).each do |item|
+  :javascript
+    url = "#{item.url}";
+    $.get(url, {}, function (html) {
+      $('#sidebar').append(html);
+    })

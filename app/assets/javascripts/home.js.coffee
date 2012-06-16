@@ -99,6 +99,7 @@ getUserMenu = () ->
 
 
 getPosts = () -> 
+  alert('cool')
   url = '/p/recent'
   if currentGroup > 0
     url = url + '/g/' + currentGroup
@@ -366,12 +367,11 @@ $('#share-block')
 
 
 populateHome = () ->
+  alert('popul')
   $('.group-title').removeClass('selected')
   $('.home-link').addClass('selected')
   $('#nav-title-span').html($('#get-home').html())
   getPosts()
-  getUpcomingEvents()
-  getUpcomingBirthdays()
 
 getHome = (reload) ->
   currentGroup = 0

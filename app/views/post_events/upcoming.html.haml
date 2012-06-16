@@ -1,10 +1,11 @@
-#upcoming-events-inner
-  %h3= t :upcoming_events
-  - @events.each do |event|
-    .upcoming-event
-      .sheet
-        .month= event.start_date.strftime("%b")
-        .day= event.start_date.day
-      .event-title
-        = link_to event.title, {:controller => 'posts', :action => 'show', :id => event.post.id}, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{event.post.id}", :post_id => "#{event.post.id}"
-      .event-date=  "#{event.start_date.strftime "%l:%M %p"} - #{event.end_date.strftime "%l:%M %p"}"
+#upcoming-events.sidebar-block
+  #upcoming-events-inner
+    %h3= t :upcoming_events
+    - @events.each do |event|
+      .upcoming-event
+        .sheet
+          .month= event.start_date.strftime("%b")
+          .day= event.start_date.day
+        .event-title
+          = link_to event.title, {:controller => 'posts', :action => 'show', :id => event.post.id}, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{event.post.id}", :post_id => "#{event.post.id}"
+        .event-date=  "#{event.start_date.strftime "%l:%M %p"} - #{event.end_date.strftime "%l:%M %p"}"
