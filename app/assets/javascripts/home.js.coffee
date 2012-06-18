@@ -99,7 +99,6 @@ getUserMenu = () ->
 
 
 getPosts = () -> 
-  alert('cool')
   url = '/p/recent'
   if currentGroup > 0
     url = url + '/g/' + currentGroup
