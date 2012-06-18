@@ -367,7 +367,6 @@ $('#share-block')
 
 
 populateHome = () ->
-  alert('popul')
   $('.group-title').removeClass('selected')
   $('.home-link').addClass('selected')
   $('#nav-title-span').html($('#get-home').html())
@@ -405,7 +404,6 @@ checkHash = () ->
 $ ->
   getGroupList()
   getUserMenu()
-  lastBlockTop = $('.sidebar-block:last-child').position().top
   if window.location.hash.length <= 2 || window.location.hash.slice(0, 2) != '#!' 
     getHome(false)
 
@@ -418,7 +416,10 @@ $(window).scroll( (e) ->
     h.removeClass('shadow')
 
   last_block = $('.sidebar-block:last-child')
-  if $(window).scrollTop() > lastBlockTop - 40
+  if lastBlockTop == 0
+    lastBlockTop = $('.sidebar-block:last-child').position().top - h.height() - 10
+ 
+  if $(window).scrollTop() > lastBlockTop
     last_block.attr('style', 'position: fixed; top: ' + (h.height() + 10) + 'px;')
   else 
     last_block.attr('style', 'position: relative;')
