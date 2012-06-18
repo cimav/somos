@@ -106,19 +106,11 @@ getPosts = () ->
     $('#posts-area').html(html)
   )
 
-buildWall = () ->
-  $container = $('#posts')
-  $container.imagesLoaded( () ->
-    $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
-    $('<div class="clearfix"></div>').appendTo("#container")
-  )
-
 
 getComments = (post_id) ->
   url = "/p/#{post_id}/comments/#{$("#post-#{post_id}").attr('last_comment')}"
   $.get(url, {}, (html) ->
     $(html).appendTo("#post-#{post_id}-comments")
-    #$('#posts').masonry('reload')
   )
 
 
@@ -128,12 +120,10 @@ $('.comment-textarea')
     $(this).autogrow()
     $("#comment_button_#{$(this).attr('post_id')}").show()
     $("#comment-cancel-#{$(this).attr('post_id')}").show()
-    #$('#posts').masonry('reload')
   )
 
 $('.comment-textarea')
   .live('resized', () ->
-    #$('#posts').masonry('reload')
   )
 
 $('.comment-form')
@@ -157,7 +147,6 @@ resetCommentArea = (post_id) ->
   $("#comment_content_#{post_id}").val('')
   $("#comment_button_#{post_id}").hide()
   $("#comment-cancel-#{post_id}").hide()
-  #$('#posts').masonry('reload')
 
 $('.comment-cancel')
   .live("click", () ->
@@ -209,7 +198,6 @@ getRecentPostsCounter = () ->
       if $('#new-posts-message').length == 0
         $('<div id="new-posts-message" class="post"></div>').prependTo("#posts") 
       $('#new-posts-message').html('<div id="new-posts-message-inner">' + html + '</div>').show()
-      #$('#posts').masonry('reload')
   )
 
 $('#new-posts-message')
@@ -219,6 +207,7 @@ $('#new-posts-message')
 
 $('.get-group')
   .live('ajax:success', (data, status, xhr) ->
+    lastBlockTop == 0
     setHash('#!/g/' + $(this).attr('short_name'))
     $('#container').html(status);
     afterGetGroup($(this).attr('group_id'))
@@ -323,9 +312,6 @@ $('.get-user')
 @afterGetUser = afterGetUser = (username) ->
   currentUsername = username
   $container = $('#posts-wide')
-  #$container.imagesLoaded( () ->
-  #  $container.masonry({ itemSelector: '.post', columnWidth: $('.post').width() + 20 })
-  #)
 
 $('.delete-comment')
   .live('ajax:success', (data, status, xhr) ->

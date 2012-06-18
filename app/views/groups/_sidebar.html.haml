@@ -1,10 +1,4 @@
 #sidebar
-  - membership = current_user.memberships.where(:group_id => group.id).first
-  - if membership && membership.can_publish?
-    .sidebar-block
-      #share-block
-        %span.share-plus +
-        = t :share_to_the_community
   .sidebar-block
     #group-pages
       %h3= t :pages
