@@ -62,3 +62,21 @@
     }
   }
 }
+
+ul.user-menu {
+  li {
+    color: $black;
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    &:hover {
+    }
+    a {
+      color: $black;  
+      cursor: pointer;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

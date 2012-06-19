@@ -7,6 +7,8 @@ currentUser = 0
 postContentHeight = 0
 hash = false
 lastBlockTop = 0
+in_ext_app = false
+
 
 $('#nav-title-span').live('click', (e) ->
   $('#groups-area').toggle()
@@ -51,6 +53,11 @@ $('#token-everyone span')
   getRecentPosts()
   $("#share-form").fadeOut('fast', () ->
     $("#share-form").remove()
+  )
+
+$('#share-submit')
+  .live('click', () ->
+    $(this).attr('value', $(this).attr('data-disable-with'))
   )
 
 $('#new_post')
@@ -189,6 +196,8 @@ $('.delete-post')
 
 
 getRecentPostsCounter = () ->
+  if in_ext_app 
+    return false
   url = '/p/recent/counter/'
   if (currentGroup > 0)
     url = url + 'g/' + currentGroup + '/'
@@ -214,6 +223,10 @@ $('.get-group')
   )
 
 @afterGetGroup = afterGetGroup = (g) ->
+  if in_ext_app
+    $('#wrapper-iframe').hide()
+    $('#wrapper').show()
+    in_ext_app = false
   $("#li_group_#{currentGroup}").removeClass('selected')
   currentGroup = g
   $("#li_group_#{currentGroup}").addClass('selected')
@@ -239,6 +252,10 @@ $('.get-page')
   )
 
 @afterGetPage = afterGetPage = (p, g) -> 
+  if in_ext_app
+    $('#wrapper-iframe').hide()
+    $('#wrapper').show()
+    in_ext_app = false
   currentGroup = g
   $('.page-title').removeClass('selected')
   $('#li_page_' + p).addClass('selected')
@@ -298,6 +315,10 @@ $('.get-post')
     currentPost = $(this).attr('post_id')
     $('.group-title').removeClass('selected')
     $('#container').html(status);
+    if in_ext_app
+      $('#wrapper-iframe').hide()
+      $('#wrapper').show()
+      in_ext_app = false
   )
 
 $('.get-user')
@@ -311,6 +332,10 @@ $('.get-user')
 
 @afterGetUser = afterGetUser = (username) ->
   currentUsername = username
+  if in_ext_app
+    $('#wrapper-iframe').hide()
+    $('#wrapper').show()
+    in_ext_app = false
   $container = $('#posts-wide')
 
 $('.delete-comment')
@@ -331,23 +356,17 @@ $('#brand')
     getHome(true)  
   )
 
-getUpcomingEvents = () ->
-  url = '/events/upcoming'
-  $.get(url, {}, (html) ->
-    $('#upcoming-events').append(html)
-  )
-
-getUpcomingBirthdays = () ->
-  url = '/users/upcoming_birthdays'
-  $.get(url, {}, (html) ->
-    $('#upcoming-birthdays').append(html)
-  )
-
-
-
 $('#share-block')
   .live('click', () ->
     getShareForm()
+  )
+
+$('.get-external-app') 
+  .live('click', () ->
+    in_ext_app = true
+    $('#wrapper').hide()
+    $('#wrapper-iframe').show()
+    $('#ext-iframe').attr('src', ($(this).attr('app_url')))
   )
 
 
@@ -356,6 +375,10 @@ populateHome = () ->
   $('.home-link').addClass('selected')
   $('#nav-title-span').html($('#get-home').html())
   getPosts()
+  if in_ext_app
+    in_ext_app = false
+    $('#wrapper-iframe').hide()
+    $('#wrapper').show()
 
 getHome = (reload) ->
   currentGroup = 0
@@ -384,6 +407,9 @@ checkHash = () ->
         $('#container').html(html)
       )
 
+resizeIframe = () ->
+  calcFrameHeight('ext-iframe')
+
 
 
 $ ->
@@ -401,15 +427,15 @@ $(window).scroll( (e) ->
     h.removeClass('shadow')
 
   last_block = $('.sidebar-block:last-child')
-  if lastBlockTop == 0
+  if lastBlockTop == 0 && !in_ext_app
     lastBlockTop = $('.sidebar-block:last-child').position().top - h.height() - 10
  
-  if $(window).scrollTop() > lastBlockTop
+  if $(window).scrollTop() > lastBlockTop && !in_ext_app
     last_block.attr('style', 'position: fixed; top: ' + (h.height() + 10) + 'px;')
   else 
     last_block.attr('style', 'position: relative;')
 
-  if $(window).scrollTop() == $(document).height() - $(window).height()
+  if $(window).scrollTop() == $(document).height() - $(window).height()  && !in_ext_app
     getPastPosts()
 
 
@@ -417,3 +443,27 @@ $(window).scroll( (e) ->
 
 recentTimer = setInterval(getRecentPostsCounter, 10000)
 hashTimer = setInterval(checkHash, 1000)
+#iframeTimer = setInterval(resizeIframe, 2000)
+
+
+@calcFrameHeight = calcFrameHeight = (id) ->
+
+  iframe = $('#' + id)
+
+  try
+     
+    if iframe.contentDocument
+      innerDoc = iframe.contentDocument
+    else
+      innerDoc = iframe.contentWindow.document
+
+    if innerDoc.body.offsetHeight
+      iframe.height = innerDoc.body.offsetHeight + 32
+    else 
+      if iframe.Document && iframe.Document.body.scrollHeight
+        iframe.height = iframe.Document.body.scrollHeight
+    console.log(iframe.height)
+
+  catch err
+    #console.error(err.message)
+    

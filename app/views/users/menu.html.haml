@@ -5,5 +5,13 @@
     = image_tag "down-arrow.png", :id => "user-arrow"
 #user-nav
   %ul.user-menu
+    %li= link_to (t :home_link), "/"
+    - current_user.applications.order(:name).each do |app|
+      - if app.app_type == Application::APP_EXTERNAL
+        %li{:class => 'get-external-app', :app_url => app.url}= app.name
+      - else
+        %li= app.name 
+
+
     %li= link_to (t :logout), "/logout"
 

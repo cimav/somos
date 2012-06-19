@@ -171,3 +171,11 @@ input[type=submit] {
 .profile-picture-small {
   @include rounded(4px);
 }
+
+#flash-notice {
+  position: absolute;
+  top: 100px;
+  border: 1px solid #b00;
+  background: #fff;
+  
+}

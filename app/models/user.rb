@@ -5,9 +5,13 @@ class User < ActiveRecord::Base
   has_many :badges
 
   has_many :memberships
-  has_many :user_badges
   has_many :groups, :through => :memberships
+
+  has_many :user_badges
   has_many :badges, :through => :user_badges
+
+  has_many :user_applications
+  has_many :applications, :through => :user_applications
 
   belongs_to :reports_to_user, :class_name => "User", :foreign_key => "reports_to"
 
