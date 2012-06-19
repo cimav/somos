@@ -8,7 +8,12 @@
     %li= link_to (t :home_link), "/"
     - current_user.applications.order(:name).each do |app|
       - if app.app_type == Application::APP_EXTERNAL
-        %li{:class => 'get-external-app', :app_url => app.url}= app.name
+        - if app.url.to_s.index("?") 
+          - sep = "&";
+        - else
+          - sep = "?";
+        - url = "#{app.url}#{sep}username=#{current_user.username}&token=#{current_user.token}&app=#{app.short_name}"
+        %li{:class => 'get-external-app', :app_url => url}= app.name
       - else
         %li= app.name 
 

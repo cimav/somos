@@ -2,6 +2,8 @@ Somos::Application.routes.draw do
   root :to => 'home#index'
   match 'home/index' => 'home#index'
 
+  match 'api/auth/:username/:token/:app' => 'api#auth'
+
   match 'search' => 'search#search'
 
   match 'g/list' => 'groups#list'
@@ -61,6 +63,5 @@ Somos::Application.routes.draw do
 
   match ':username' => 'users#profile', :constraints => { :username => /[^\/]*/ }
   match ':username/sidebar' => 'users#sidebar', :constraints => { :username => /[^\/]*/ }
-
 
 end
