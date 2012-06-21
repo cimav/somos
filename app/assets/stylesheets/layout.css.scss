@@ -69,7 +69,8 @@
           position: absolute;
           width: $user-area-width;
           top: 46px;
-          padding: 10px;
+          padding: 5px 0;
+          @include shadow(4px,2px,2px,#ddd);
         }
       }
     }

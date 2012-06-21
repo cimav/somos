@@ -68,7 +68,7 @@ ul.user-menu {
     color: $black;
     display: block;
     cursor: pointer;
-    padding: 5px;
+    padding: 1px;
     &:hover {
     }
     a {
@@ -76,6 +76,22 @@ ul.user-menu {
       cursor: pointer;
       &:hover {
         text-decoration: none;
+      }
+    }
+    .app-item {
+      height: 24px;
+      padding: 3px;
+      .app-icon { 
+        float: left;
+      }
+      .app-name {
+        float: left;
+        padding-top: 6px;
+        margin-left: 5px;
+      }
+      &:hover {
+        background: $link-color;
+        color: $white;
       }
     }
   }
