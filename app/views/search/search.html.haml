@@ -17,7 +17,7 @@
                 - if g.group_type.display_in > 0 
                   - user_groups << g.name
               = user_groups.join(',')
-        .clearfix
+          .clearfix
 
 - if @groups.count > 0
   .search-section= t :groups
@@ -30,7 +30,7 @@
             = image_tag '/assets/icons/group.png', :width => 32, :height => 32, :class => "profile-picture-small"
           .search-item-title= g.name
           .search-item-desc= g.description
-        .clearfix
+          .clearfix
 
 - if @pages.count > 0
   .search-section= t :pages
@@ -42,7 +42,7 @@
             = image_tag '/assets/icons/page.png', :width => 32, :height => 32, :class => "profile-picture-small"
           .search-item-title= p.title
           .search-item-desc= p.group.name
-        .clearfix
+          .clearfix
 
 - if @posts.count > 0
   .search-section= t :posts
@@ -59,4 +59,4 @@
 
 - if c_items == 0
   %ul
-    %li= t :no_results_found
+    %li.no-results= t :no_results_found
