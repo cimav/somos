@@ -26,6 +26,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string     :lat,          :limit => 20
       t.string     :long,         :limit => 20
       t.string     :image
+      t.string     :token
       t.integer    :status,     :null => false, :default => 1
       t.timestamps
     end
