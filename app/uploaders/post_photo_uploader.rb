@@ -20,7 +20,7 @@ class PostPhotoUploader < CarrierWave::Uploader::Base
   #  process :scale => [640, 480]
   #end
   version :large do
-    process :resize_to_fit => [1024, 768]
+    process :resize_to_fit => [800, 600]
   end
 
   version :medium do
