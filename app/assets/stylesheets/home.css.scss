@@ -134,13 +134,25 @@
   margin-top: 20px;
 }
 
+#post_post_event_attributes_start_date_3i,
+#post_post_event_attributes_start_date_2i,
+#post_post_event_attributes_start_date_1i,
+#post_post_event_attributes_start_date_4i,
+#post_post_event_attributes_start_date_5i,
+#post_post_event_attributes_end_date_3i,
+#post_post_event_attributes_end_date_2i,
+#post_post_event_attributes_end_date_1i,
+#post_post_event_attributes_end_date_4i,
+#post_post_event_attributes_end_date_5i {
+  font-size: 11px;
+}
+
 .fields-table {
   width: 90%;
   td {
     vertical-align: top;
     padding-bottom: 5px;  
     &.label {
-      text-align: right;
       padding-right: 5px;
     }
     input, textarea {

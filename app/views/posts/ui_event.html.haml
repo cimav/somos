@@ -7,10 +7,10 @@
           %td= event_fields.text_field :title
         %tr
           %td.label= t :event_start_date
-          %td= event_fields.datetime_select :start_date
+          %td= event_fields.datetime_select :start_date, {:minute_step => 5}
         %tr
           %td.label= t :event_end_date
-          %td= event_fields.datetime_select :end_date
+          %td= event_fields.datetime_select :end_date, {:minute_step => 5}
         %tr
           %td.label= t :event_location
           %td= event_fields.text_field :location
