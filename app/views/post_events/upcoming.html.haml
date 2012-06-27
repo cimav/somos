@@ -1,11 +1,18 @@
 #upcoming-events.sidebar-block
   #upcoming-events-inner
     %h3= t :upcoming_events
+    - d_today = Time.new.strftime "%Y%m%d"
     - @events.each do |event|
-      .upcoming-event
+      - klass = ''
+      - klass = 'event-now' if Time.new.strftime("%Y%m%d") >= event.start_date.strftime("%Y%m%d")
+      .upcoming-event{:class => klass}
         .sheet
           .month= event.start_date.strftime("%b")
           .day= event.start_date.day
         .event-title
           = link_to event.title, {:controller => 'posts', :action => 'show', :id => event.post.id}, :method => :get, :remote => true, :class => 'get-post', :'data-type' => 'html', :id => "post_link_#{event.post.id}", :post_id => "#{event.post.id}"
-        .event-date=  "#{event.start_date.strftime "%l:%M %p"} - #{event.end_date.strftime "%l:%M %p"}"
+        - if event.start_date.strftime("%Y%m%d") == event.end_date.strftime("%Y%m%d")
+          .event-date=  "#{event.start_date.strftime "%l:%M %p"} - #{event.end_date.strftime "%l:%M %p"}"
+        - else
+          .event-date=  "#{event.start_date.strftime "%l:%M %p"}"
+          .event-date= "#{event.end_date.strftime "%b %d, %Y %l:%M %p"}"
