@@ -53,6 +53,6 @@
   %iframe#files-iframe{:width => 0, :height => 0, :scrolling => "no", :frameborder => "0", :name => "files-iframe"}
   = link_to url_for(:controller => "pages", :action => "add_file_section", :id => @page.id), :method => :post, :remote => true, :id => 'add-file-section', :'data-type' => 'html', :id => "add-file-section" do
     %span.share-plus +
-    = t :add_section
+    = t :add_files_section
 
   #edit-section-area
