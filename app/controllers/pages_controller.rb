@@ -140,7 +140,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
 
     if !current_user_is_admin
-      if current_user.id != @post.user_id
+      if current_user.id != @page.user_id
         raise "The current user is not the page owner"
       end
     end
