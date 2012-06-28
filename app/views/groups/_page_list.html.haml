@@ -1,3 +1,8 @@
+- membership = current_user.memberships.where(:group_id => group.id).first
+- can_publish = membership.can_publish == 1 rescue false
+- can_admin = membership.can_admin == 1 rescue false
+- can_modify_others = membership.can_admin == 1 rescue false
+
 %ul.page-list
   %li.page-title{:id => "li_page_posts"}
     - home_link = t :home_link
@@ -6,8 +11,7 @@
     %li.page-title{:id => "li_page_#{page.id}"}
       = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => group.short_name, :page_short_name => page.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{page.id}", :group_name => "#{group.short_name}", :short_name => "#{page.short_name}", :page_id => page.id, :group_id => group.id do
         = page.title
-  - membership = current_user.memberships.where(:group_id => group.id).first
-  - if !membership.blank?
+  - if can_publish || current_user_is_admin
     %li.page-title{:id => "li_add_page"}
       = link_to url_for(:controller => "pages", :action => "add_page", :group_id => group.id), :method => :post, :remote => true, :id => 'add-page', :'data-type' => 'html', :id => "add_page", :group_name => group.short_name, :group_id => group.id do
         %span.share-plus +

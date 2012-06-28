@@ -1,3 +1,7 @@
+- can_publish = membership.can_publish == 1 rescue false
+- can_admin = membership.can_admin == 1 rescue false
+- can_modify_others = membership.can_admin == 1 rescue false
+
 - @page.page_file_section.each do |fs|
   .group-page-section
     .fs-header{:id => "fs_header_#{fs.id}"}
@@ -22,7 +26,7 @@
             - ext = File.extname(f.file.to_s)[1..-1]
           %li{"title" => File.basename(f.file.to_s)}
             .file-item{:id => "file-item-#{f.id}"}
-              - if !membership.blank?
+              - if can_publish || current_user_is_admin
                 - can_move = 'can-move'
               - else 
                 - can_move = ''
@@ -31,11 +35,11 @@
               %a.file-title{'href' => "/page_files/#{f.id}/file"}
                 = f.title
               .file-description= raw(f.description)
-              - if !membership.blank?
+              - if can_publish || current_user_is_admin
                 .file-extra
                   = ext.upcase + ", " + number_to_human_size(File.size(f.file.to_s))
                   %a.edit-file-description{:f_id => f.id, :fs_id => fs.id}= t :edit
-    - if !membership.blank?
+    - if can_publish || current_user_is_admin
       #file-edit-item
       = form_for(PageFile.new, :remote => true, :html => {:id => "add-files-form-#{fs.id}",:multipart => true, :target => 'files-iframe', :class => 'add-files-form'}) do |f|
         = f.hidden_field :page_id, { :value => fs.page_id }
@@ -45,7 +49,7 @@
           = t :add_files
     .clearfix
 
-- if !membership.blank?
+- if can_publish || current_user_is_admin
   %iframe#files-iframe{:width => 0, :height => 0, :scrolling => "no", :frameborder => "0", :name => "files-iframe"}
   = link_to url_for(:controller => "pages", :action => "add_file_section", :id => @page.id), :method => :post, :remote => true, :id => 'add-file-section', :'data-type' => 'html', :id => "add-file-section" do
     %span.share-plus +

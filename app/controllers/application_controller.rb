@@ -29,4 +29,11 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  helper_method :current_user_is_admin
+
+  private
+  def current_user_is_admin
+    @current_user_is_admin ||= current_user.memberships.includes(:group).where('groups.short_name' => 'admin').first.can_admin == 1 rescue false
+  end
+
 end

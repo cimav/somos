@@ -1,4 +1,7 @@
 - membership = current_user.memberships.where(:group_id => @page.group.id).first
+- can_publish = membership.can_publish == 1 rescue false
+- can_admin = membership.can_admin == 1 rescue false
+- can_modify_others = membership.can_admin == 1 rescue false
 
 #group-page  
   #group-header
@@ -6,7 +9,7 @@
   #group-page-inner
     #group-page-contents
       %h2= @page.title
-      - if !membership.blank?
+      - if can_publish || current_user_is_admin
         #page-toolbar
           %a#edit-page-button= t :edit_this_page
       .content
@@ -16,7 +19,7 @@
     #group-page-files
       = render :partial => "page_files", :locals => {:page => @page, :membership => membership}
 
-    - if !membership.blank?
+    - if can_publish || current_user_is_admin
       #edit-page
         = form_for(@page, :remote => true, :html => {:id => 'edit_page_form',:multipart => true}) do |f|
           = f.hidden_field :id

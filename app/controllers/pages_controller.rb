@@ -20,12 +20,19 @@ class PagesController < ApplicationController
   def add_page
     if !params[:group_id].blank?
       membership = current_user.memberships.where(:group_id => params[:group_id]).first
-      if membership.blank?
-        raise "User #{current_user.username} doesn't belongs to group #{params[:group_id]}"
-      end
-      if membership.can_publish != 1
-        raise "User #{current_user.username} doesn't have sufficient permissions to do this action"
-      end
+      can_publish = membership.can_publish == 1 rescue false
+      can_admin = membership.can_admin == 1 rescue false
+      can_modify_others = membership.can_admin == 1 rescue false
+
+      if !current_user_is_admin
+        if membership.blank?
+          raise "User #{current_user.username} doesn't belongs to group #{params[:group_id]}"
+        end
+
+        if !can_publish
+          raise "User #{current_user.username} doesn't have sufficient permissions to do this action"
+        end
+      end 
 
     end
     page = Page.new
