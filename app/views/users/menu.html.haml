@@ -24,8 +24,9 @@
       - else
         %li
           .app-item
-            .app-icon= image_tag app.icon, :width => '24', :height => '24'
-            .app-name= app.name
+            = link_to app.url, :target => '_blank'  do
+              .app-icon= image_tag app.icon, :width => '24', :height => '24'
+              .app-name= app.name
 
 
     %li

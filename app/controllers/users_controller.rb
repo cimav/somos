@@ -3,6 +3,15 @@ class UsersController < ApplicationController
 
   def profile
     @u = User.where(:username => params[:username]).first
+    @posts = @u.posts.order("created_at DESC").where("status = #{Post::ACTIVE}")
+    @posts = @posts.where("( 
+                           (limited = '0') OR 
+                           (user_id = :user_id) OR
+                           (id IN (
+                                    SELECT post_id FROM post_groups 
+                                    WHERE group_id IN (SELECT group_id FROM memberships 
+                                                        WHERE user_id = :user_id)
+                                  )) )", {:user_id => current_user.id})
     @comment = Comment.new
     render :layout => false
   end
