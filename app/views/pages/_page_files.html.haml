@@ -7,7 +7,7 @@
     .fs-header{:id => "fs_header_#{fs.id}"}
       .fs-data 
         %h3= fs.title
-      - if !membership.blank?
+      - if can_publish || current_user_is_admin
         .file-section-actions
           %a.edit-section{:id => "edit_section_#{fs.id}", :fs_id => fs.id, :page_id => fs.page_id}= t :edit
       - if !fs.description.blank?
