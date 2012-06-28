@@ -31,6 +31,22 @@ $('#edit_page_form')
     # TODO: Display errors
   )
 
+$('#page-delete-link-a') 
+  .live('ajax:success', (evt, data, status, xhr) ->
+    res = $.parseJSON(xhr.responseText)
+    url = '/g/' + res['group_id'] + '/page_list'
+    $.get(url, {}, (html) ->
+      $("#group_link_" + res['group_id']).click()
+    )
+  )
+
+$('.delete-post')
+  .live('ajax:success', (data, status, xhr) ->
+    $("#" + $(this).attr('post_entry_id')).fadeOut('fast', () ->
+      $(this).empty().remove()
+    )
+  )
+
 $('.edit-section') 
   .live('click', () ->
     pid = $(this).attr('page_id')

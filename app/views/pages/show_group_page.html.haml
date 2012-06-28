@@ -26,6 +26,8 @@
           .edit-page-title= f.text_field :title
           = f.text_area :content, :class => "tinymce", :id => "page-editor"
           = tinymce
+          #page-delete-link
+            = link_to (t :delete), {:controller => "pages", :action => "mark_as_deleted", :id => @page.id}, :method => :post, :remote => true, :class => 'delete-page', :'data-type' => 'html', :title => (t :delete), :id => "page-delete-link-a"
           #save-page-button
             = submit_tag (t :save), :disable_with => (t :save_wait), :id => "page-save-submit"
 

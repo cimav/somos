@@ -136,4 +136,27 @@ class PagesController < ApplicationController
     render :layout => false
   end
 
+  def mark_as_deleted
+    @page = Page.find(params[:id])
+
+    if !current_user_is_admin
+      if current_user.id != @post.user_id
+        raise "The current user is not the page owner"
+      end
+    end
+
+    @page.status = Page::DELETED
+    if @page.save
+      respond_with do |format|
+        format.html do
+          if request.xhr?
+            json = {}
+            json[:group_id] = @page.group_id
+            render :json => json
+          end
+        end
+      end
+    end
+  end
+
 end
