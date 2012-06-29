@@ -6,8 +6,8 @@
         %h1= @u.display_name
       .user-occupation= @u.occupation
       .user-bio= @u.bio
-  - if @u.posts.count > 0
-    - @u.posts.order('created_at DESC').each do |post|
+  - if @posts.count > 0
+    - @posts.each do |post|
       = render :partial => 'posts/post', :locals => {:post => post}
   - else
     #no-user-posts
