@@ -3,6 +3,8 @@
   .edit-pfs-title= f.text_field :title
   = f.text_area :description, :class => "tinymce", :id => "pfs-editor"
   = tinymce :height => '200'
+  #pfs-delete-link
+    = link_to (t :delete), {:controller => "page_file_sections", :action => "mark_as_deleted", :id => @pfs.id}, :method => :post, :remote => true, :class => 'delete-pfs', :'data-type' => 'html', :title => (t :delete), :pfs_id => @pfs.id
   #save-pfs-button
     = submit_tag (t :save), :disable_with => (t :save_wait), :id => "page-save-submit"
   .clearfix

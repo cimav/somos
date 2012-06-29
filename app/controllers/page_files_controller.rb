@@ -121,4 +121,27 @@ class PageFilesController < ApplicationController
     render :layout => false
   end
 
+  def mark_as_deleted
+    @f = PageFile.find(params[:id])
+
+    if !current_user_is_admin
+      if current_user.id != @f.user_id
+        raise "The current user is not the file owner"
+      end
+    end
+
+    @f.status = PageFile::DELETED
+    if @f.save
+      respond_with do |format|
+        format.html do
+          if request.xhr?
+            json = {}
+            json[:id] = @f.id
+            render :json => json
+          end
+        end
+      end
+    end
+  end
+
 end

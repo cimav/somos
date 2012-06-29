@@ -47,7 +47,21 @@ $('.delete-post')
     )
   )
 
-$('.edit-section') 
+$('.delete-pfs')
+  .live('ajax:success', (data, status, xhr) ->
+    $("#group-page-section-" + $(this).attr('pfs_id')).fadeOut('fast', () ->
+      $(this).empty().remove()
+    )
+  )
+
+$('.delete-file')
+  .live('ajax:success', (data, status, xhr) ->
+    $("#file-" + $(this).attr('f_id')).fadeOut('fast', () ->
+      $(this).empty().remove()
+    )
+  )
+
+$('.edit-section-a') 
   .live('click', () ->
     pid = $(this).attr('page_id')
     pfs = $(this).attr('fs_id')

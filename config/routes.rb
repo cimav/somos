@@ -45,10 +45,14 @@ Somos::Application.routes.draw do
   match 'pages/:id/edit_section/:section_id' => 'pages#edit_section'
   match 'pages/delete/:id' => 'pages#mark_as_deleted'
 
+  match 'pages_file_sections/delete/:id' => 'page_file_sections#mark_as_deleted'
   resources :page_file_sections
+
   match 'page_files/reorder' => 'page_files#reorder'
   match 'page_files/:id/file' => 'page_files#file'
   match 'page_files/:id/edit_details' => 'page_files#edit_details'
+  match 'pages_files/delete/:id' => 'page_files#mark_as_deleted'
+  resources :page_file_sections
   resources :page_files
 
   match 'events/upcoming' => 'post_events#upcoming'

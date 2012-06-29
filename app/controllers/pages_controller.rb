@@ -92,6 +92,7 @@ class PagesController < ApplicationController
   def add_file_section
     @fs = PageFileSection.new
     @fs.page_id = params[:id]
+    @fs.status = PageFileSection::PUBLISHED
     @fs.title = t :untitled
     if @fs.save 
       flash[:notice] = t :page_file_section_created

@@ -4,6 +4,9 @@ class PageFileSection < ActiveRecord::Base
   has_many :page_file
   after_create :set_position
 
+  PUBLISHED = 1
+  DELETED   = 2
+
   def set_position
     pos = PageFileSection.where(:page_id => self.page_id).maximum('position')
     if pos.nil?

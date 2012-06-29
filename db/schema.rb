@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120615001611) do
+ActiveRecord::Schema.define(:version => 20120629004014) do
 
   create_table "applications", :force => true do |t|
     t.string   "short_name", :limit => 20
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20120615001611) do
     t.integer  "position"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "status"
   end
 
   add_index "page_file_sections", ["page_id"], :name => "index_page_file_sections_on_page_id"
@@ -113,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20120615001611) do
     t.integer  "position"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.integer  "status"
   end
 
   add_index "page_files", ["page_file_section_id"], :name => "index_page_files_on_page_file_section_id"
@@ -297,6 +299,7 @@ ActiveRecord::Schema.define(:version => 20120615001611) do
     t.integer  "status",                     :default => 1, :null => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.string   "token"
   end
 
   add_index "users", ["country_id"], :name => "index_users_on_country_id"
