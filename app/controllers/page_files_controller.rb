@@ -11,6 +11,8 @@ class PageFilesController < ApplicationController
       @page_file.page_file_section_id = params[:page_file]['page_file_section_id']
       @page_file.file = f
       @page_file.title = f.original_filename
+      @page_file.status = PageFile::PUBLISHED
+
       if @page_file.save
         flash[:notice] = "Archivo subido exitosamente."
       else
