@@ -57,6 +57,37 @@
             .search-item-date= post_date(p.created_at)
         .clearfix
 
+- has_files = false
+- if @page_file_sections.count > 0
+  - has_files = true
+  - c_items += 1
+  .search-section= t :files
+  %ul
+    - @page_file_sections.each do |f|
+      %li
+        = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => f.page.group.short_name, :page_short_name => f.page.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{f.page.id}", :group_name => "#{f.page.group.short_name}", :short_name => "#{f.page.short_name}", :page_id => "#{f.page.id}" do
+          .search-item-display
+            = image_tag '/assets/icons/page.png', :width => 32, :height => 32, :class => "profile-picture-small"
+          .search-item-title= f.page.title
+          .search-item-desc= "#{f.title}: #{f.description}"
+          .clearfix
+
+- if @page_files.count > 0
+  - c_items += 1
+  - if !has_files
+    .search-section= t :files
+  - has_files = true
+  %ul
+    - @page_files.each do |f|
+      %li
+        = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => f.page_file_section.page.group.short_name, :page_short_name => f.page_file_section.page.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{f.page_file_section.page.id}", :group_name => "#{f.page_file_section.page.group.short_name}", :short_name => "#{f.page_file_section.page.short_name}", :page_id => "#{f.page_file_section.page.id}" do
+          .search-item-display
+            = image_tag '/assets/icons/page.png', :width => 32, :height => 32, :class => "profile-picture-small"
+          .search-item-title= f.page_file_section.page.title
+          .search-item-desc= "#{f.title}: #{f.description}"
+          .clearfix
+
+
 - if c_items == 0
   %ul
     %li.no-results= t :no_results_found
