@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629004014) do
+ActiveRecord::Schema.define(:version => 20120704010800) do
 
   create_table "applications", :force => true do |t|
     t.string   "short_name", :limit => 20
@@ -236,6 +236,7 @@ ActiveRecord::Schema.define(:version => 20120629004014) do
     t.integer  "status",       :default => 1, :null => false
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "height"
   end
 
   create_table "states", :force => true do |t|

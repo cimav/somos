@@ -1,10 +1,17 @@
 - @page_title = t :home_link
 #posts-area
 #sidebar
+  - c = 0
+  - SidebarItem.order(:position).each do |item|
+    - c += 1
+    %div{:id => "sidebar-item-#{c}"}
+      - if item.sidebar_type == SidebarItem::INTERNAL
+        :javascript
+          url = "#{item.url}";
+          $.get(url, {}, function (html) {
+            $("#sidebar-item-#{c}").html(html);
+          })
 
-- SidebarItem.order(:position).each do |item|
-  :javascript
-    url = "#{item.url}";
-    $.get(url, {}, function (html) {
-      $('#sidebar').append(html);
-    })
+      - if item.sidebar_type == SidebarItem::EXTERNAL
+        .sidebar-block
+          %iframe{:id => "sidebar-iframe-#{c}", :src => item.url, :style => "width: 100%; height: #{item.height}; border: 0;", :scrolling => "no"}
