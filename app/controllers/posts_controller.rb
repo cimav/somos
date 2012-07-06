@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def recent_query (group_id, id)
-    posts = Post.order("created_at DESC").where("status = #{Post::ACTIVE}")
+    posts = Post.order("created_at DESC").where(:status => Post::ACTIVE)
 
     posts = posts.where("( 
                            (limited = '0') OR 
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     id = params[:id]
     group_id = params[:group_id]
 
-    @posts = Post.order("created_at DESC").where("status = #{Post::ACTIVE}")
+    @posts = Post.order("created_at DESC").where(:status => Post::ACTIVE)
 
     @posts = @posts.where("( 
                            (limited = '0') OR 
