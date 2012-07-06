@@ -1,2 +1,7 @@
-#single-post
-  = render :partial => 'post', :locals => {:post => @post}
+- if @post.status == Post::ACTIVE
+  #single-post
+    = render :partial => 'post', :locals => {:post => @post}
+- else
+  #deleted-post
+    = t :deleted_post
+  

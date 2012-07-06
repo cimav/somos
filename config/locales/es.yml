@@ -264,3 +264,5 @@ es:
 
   add_files: "Agregar archivos"
   add_files_section: "Agregar sección de archivos"
+
+  deleted_post: "Publicación eliminada"
