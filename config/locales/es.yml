@@ -266,3 +266,5 @@ es:
   add_files_section: "Agregar sección de archivos"
 
   deleted_post: "Publicación eliminada"
+
+  happy_birthday: "¡Feliz cumpleaños %{name}!"

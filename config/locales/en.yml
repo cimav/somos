@@ -115,3 +115,5 @@ en:
   add_files_section: "Add files section"
 
   deleted_post: "Deleted post"
+
+  happy_birthday: "Happy Birthday %{name}!"
