@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710002453) do
+ActiveRecord::Schema.define(:version => 20120710014345) do
 
   create_table "applications", :force => true do |t|
     t.string   "short_name", :limit => 20
@@ -229,6 +229,16 @@ ActiveRecord::Schema.define(:version => 20120710002453) do
   add_index "posts", ["group_id"], :name => "index_posts_on_group_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
+  create_table "sidebar_item_groups", :force => true do |t|
+    t.integer  "sidebar_item_id"
+    t.integer  "group_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "sidebar_item_groups", ["group_id"], :name => "index_sidebar_item_groups_on_group_id"
+  add_index "sidebar_item_groups", ["sidebar_item_id"], :name => "index_sidebar_item_groups_on_sidebar_item_id"
+
   create_table "sidebar_items", :force => true do |t|
     t.string   "name"
     t.string   "url"
@@ -238,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20120710002453) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.string   "height"
+    t.string   "limited"
   end
 
   create_table "states", :force => true do |t|

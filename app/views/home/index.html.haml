@@ -2,7 +2,7 @@
 #posts-area
 #sidebar
   - c = 0
-  - SidebarItem.order(:position).each do |item|
+  - @sidebar_items.each do |item|
     - c += 1
     %div{:id => "sidebar-item-#{c}"}
       - if item.sidebar_type == SidebarItem::INTERNAL
