@@ -219,26 +219,22 @@ $('.get-group')
     lastBlockTop == 0
     setHash('#!/g/' + $(this).attr('short_name'))
     $('#container').html(status);
-    afterGetGroup($(this).attr('group_id'))
+    afterGetGroup($(this).attr('group_id'), $(this).attr('default_page'))
   )
 
-@afterGetGroup = afterGetGroup = (g) ->
+@afterGetGroup = afterGetGroup = (group_id, default_page) ->
   if in_ext_app
     $('#wrapper-iframe').hide()
     $('#wrapper').show()
     in_ext_app = false
   $("#li_group_#{currentGroup}").removeClass('selected')
-  currentGroup = g
+  currentGroup = group_id
   $("#li_group_#{currentGroup}").addClass('selected')
   title = $("#group_link_#{currentGroup}").html()
-  $('#nav-title-span').html(title)
-  $('#nav-title-span').removeClass('font-20')
-  $('#nav-title-span').removeClass('font-22')
-  if (title.length > 20) 
-    $('#nav-title-span').addClass('font-16')
+  if default_page == '0'
+    getPosts()
   else
-    $('#nav-title-span').addClass('font-22')
-  getPosts()
+    $("#page_link_#{default_page}").click()
 
 $('.get-page')
   .live('ajax:success', (data, status, xhr) ->

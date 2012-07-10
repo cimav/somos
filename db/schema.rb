@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704010800) do
+ActiveRecord::Schema.define(:version => 20120710002453) do
 
   create_table "applications", :force => true do |t|
     t.string   "short_name", :limit => 20
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20120704010800) do
     t.integer  "status",        :default => 1
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.integer  "default_page"
   end
 
   add_index "groups", ["group_type_id"], :name => "index_groups_on_group_type_id"

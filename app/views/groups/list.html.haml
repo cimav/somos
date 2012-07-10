@@ -9,4 +9,4 @@
         %ul.groups 
           - group_type.group.order('position').each do |group|
             %li.group-title{:id => "li_group_#{group.id}"}
-              = link_to group.name, {:controller => 'groups', :action => :show, :short_name => group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}", :group_id => "#{group.id}"
+              = link_to group.name, {:controller => 'groups', :action => :show, :short_name => group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}", :group_id => "#{group.id}", :default_page => "#{group.default_page}"
