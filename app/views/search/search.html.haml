@@ -36,6 +36,7 @@
   .search-section= t :pages
   %ul
     - @pages.each do |p|
+      - c_items += 1
       %li
         = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => p.group.short_name, :page_short_name => p.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{p.id}", :group_name => "#{p.group.short_name}", :short_name => "#{p.short_name}", :page_id => "#{p.id}" do
           .search-item-display
@@ -60,10 +61,10 @@
 - has_files = false
 - if @page_file_sections.count > 0
   - has_files = true
-  - c_items += 1
   .search-section= t :files
   %ul
     - @page_file_sections.each do |f|
+      - c_items += 1
       %li
         = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => f.page.group.short_name, :page_short_name => f.page.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{f.page.id}", :group_name => "#{f.page.group.short_name}", :short_name => "#{f.page.short_name}", :page_id => "#{f.page.id}" do
           .search-item-display
@@ -73,12 +74,12 @@
           .clearfix
 
 - if @page_files.count > 0
-  - c_items += 1
   - if !has_files
     .search-section= t :files
   - has_files = true
   %ul
     - @page_files.each do |f|
+      - c_items += 1
       %li
         = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => f.page_file_section.page.group.short_name, :page_short_name => f.page_file_section.page.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{f.page_file_section.page.id}", :group_name => "#{f.page_file_section.page.group.short_name}", :short_name => "#{f.page_file_section.page.short_name}", :page_id => "#{f.page_file_section.page.id}" do
           .search-item-display
@@ -87,6 +88,28 @@
           .search-item-desc= "#{f.title}: #{f.description}"
           .clearfix
 
+- if @apps.count > 0
+  .search-section= t :applications
+  %ul
+    - @apps.each do |app|
+      - c_items += 1
+      - if app.app_type == Application::APP_EXTERNAL
+        - if app.url.to_s.index("?")
+          - sep = "&";
+        - else
+          - sep = "?";
+        - url = "#{app.url}#{sep}username=#{current_user.username}&token=#{current_user.token}&app=#{app.short_name}"
+        %li
+          %a{:class => 'get-external-app', :app_url => url}
+            .search-item-display= image_tag app.icon, :width => '32', :height => '32'
+            .search-item-title= app.name
+            .clearfix
+      - else
+        %li
+          = link_to app.url, :target => '_blank'  do
+            .search-item-display= image_tag app.icon, :width => '32', :height => '32'
+            .search-item-title= app.name
+            .clearfix
 
 - if c_items == 0
   %ul

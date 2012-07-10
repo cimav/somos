@@ -20,6 +20,8 @@ class SearchController < ApplicationController
       @page_file_sections = PageFileSection.order('created_at DESC').where('status = :s', {:s => PageFileSection::PUBLISHED})
       @page_file_sections = @page_file_sections.where("(title LIKE :q OR description LIKE :q)", {:q => "%#{params[:q]}%"})
 
+      @apps = current_user.applications.order('name').where("name LIKE :q", {:q => "%#{params[:q]}%"})
+
       render :layout => false
     else 
       render :inline => ''
