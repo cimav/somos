@@ -25,7 +25,7 @@
     - @groups.each do |g|
       - c_items += 1
       %li
-        = link_to url_for(:controller => "groups", :action => "show", :short_name => "#{g.short_name}"), :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "search_group_#{g.id}", :short_name => "#{g.short_name}", :group_id => g.id do
+        = link_to url_for(:controller => "groups", :action => "show", :short_name => "#{g.short_name}"), :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "search_group_#{g.id}", :short_name => "#{g.short_name}", :group_id => g.id, :default_page => g.default_page do
           .search-item-display
             = image_tag '/assets/icons/group.png', :width => 32, :height => 32, :class => "profile-picture-small"
           .search-item-title= g.name
