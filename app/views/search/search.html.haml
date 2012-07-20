@@ -10,7 +10,12 @@
           .search-item-title= u.display_name
           .search-item-desc
             .search-item-email= u.email
-            .search-item-phone= u.work_phone
+            - if !u.phone1.blank?
+              .search-item-phone= "#{u.phone1_desc}: #{u.phone1}"
+            - if !u.phone2.blank?
+              .search-item-phone= "#{u.phone2_desc}: #{u.phone2}"
+            - if !u.phone3.blank?
+              .search-item-phone= "#{u.phone3_desc}: #{u.phone3}"
             .search-item-groups
               - user_groups = Array.new
               - u.groups.each do |g|

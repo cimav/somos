@@ -21,18 +21,18 @@
     .user-data#user-email
       .user-data-label= t :email
       .user-data-content= link_to @u.email, "mailto: #{@u.email}"
-    - if !@u.work_phone.blank?
-      .user-data#user-work-phone
-        .user-data-label= t :work_phone
-        .user-data-content= @u.work_phone
-    - if !@u.home_phone.blank?
-      .user-data#user-home-phone
-        .user-data-label= t :home_phone
-        .user-data-content= @u.work_phone
-    - if !@u.mobile_phone.blank?
-      .user-data#user-mobile-phone
-        .user-data-label= t :mobile_phone
-        .user-data-content= @u.work_phone
+    - if !@u.phone1.blank?
+      .user-data
+        .user-data-label= @u.phone1_desc
+        .user-data-content= @u.phone1
+    - if !@u.phone2.blank?
+      .user-data
+        .user-data-label= @u.phone2_desc
+        .user-data-content= @u.phone2
+    - if !@u.phone3.blank?
+      .user-data
+        .user-data-label= @u.phone3_desc
+        .user-data-content= @u.phone3
     .user-data#user-years-of-service
       .user-data-label= t :years_of_service
       .user-data-content{:title => @u.start_date}

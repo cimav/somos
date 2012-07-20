@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710014345) do
+ActiveRecord::Schema.define(:version => 20120720000214) do
 
   create_table "applications", :force => true do |t|
     t.string   "short_name", :limit => 20
@@ -302,9 +302,9 @@ ActiveRecord::Schema.define(:version => 20120710014345) do
     t.integer  "state_id"
     t.string   "zip",          :limit => 20
     t.integer  "country_id"
-    t.string   "mobile_phone", :limit => 20
-    t.string   "home_phone",   :limit => 20
-    t.string   "work_phone",   :limit => 20
+    t.string   "phone2",       :limit => 20
+    t.string   "phone3",       :limit => 20
+    t.string   "phone1",       :limit => 20
     t.string   "website"
     t.string   "lat",          :limit => 20
     t.string   "long",         :limit => 20
@@ -313,6 +313,9 @@ ActiveRecord::Schema.define(:version => 20120710014345) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "token"
+    t.string   "phone1_desc"
+    t.string   "phone2_desc"
+    t.string   "phone3_desc"
   end
 
   add_index "users", ["country_id"], :name => "index_users_on_country_id"
