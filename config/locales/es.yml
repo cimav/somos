@@ -271,3 +271,9 @@ es:
   happy_birthday: "¡Feliz cumpleaños %{name}!"
 
   like: "Me gusta"
+  unlike: "Ya no me gusta"
+  you_like_this: "A ti te gusta esto"
+  you_and_other_like_this: "A ti y a otra persona les gusta esto"
+  you_and_people_like_this: "A ti y a %{qty} personas les gusta esto"
+  people_like_this: "A %{qty} personas les gusta esto"
+  person_like_this: "A 1 persona le gusta esto"

@@ -46,7 +46,39 @@
         = simple_format(post.content)
 
     .post-likes{:id => "post-#{post.id}-likes"}
-      = link_to (t :like), {:controller => 'posts', :action => 'like', :id => "#{post.id}"}, :method => :post, :remote => true, :class => 'like-post', :'data-type' => 'html', :id => "post_like_#{post.id}", :post_id => "#{post.id}"
+      - if post.likes.where(:user_id => current_user.id).count == 1
+        - link_like = t(:unlike)
+        - you_like = true
+      - else
+        - link_like = t(:like)
+        - you_like = false
+
+      - like_msg = ''
+      - if post.likes.count == 1
+        - if you_like 
+          - like_msg = t(:you_like_this)
+        - else 
+          - like_msg = t(:person_like_this)
+      - else 
+        - if post.likes.count > 1
+          - if you_like 
+            - if post.likes.count == 2
+              - like_msg = t(:you_and_other_like_this)
+            - else
+              - like_msg = t(:you_and_people_like_this, :qty => post.likes.count)
+          - else 
+            - like_msg = t(:people_like_this, :qty => post.likes.count)
+
+      - if post.likes.count > 0
+        - style = "display: block;"
+      - else
+        - style = "display: none;"
+
+      .post-like-message{:id => "post-like-message-#{post.id}", :style => style}
+        = image_tag("icons/like.png") 
+        %span{:id => "post-like-message-span-#{post.id}"}= like_msg
+
+      = link_to link_like, {:controller => 'posts', :action => 'like', :id => "#{post.id}"}, :method => :post, :remote => true, :class => 'like-post', :'data-type' => 'html', :id => "post-like-#{post.id}", :post_id => "#{post.id}"
     .post-comments{:id => "post-#{post.id}-comments"}
       - last_comment = 0 
       - post.comments.where(:status => Comment::ACTIVE).each do |comment|

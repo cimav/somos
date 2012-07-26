@@ -120,3 +120,11 @@ en:
   happy_birthday: "Happy Birthday %{name}!"
   
   like: "Like"
+  unlike: "Unlike"
+  you_like_this: "You like this"
+  you_and_other_like_this: "You and other person like this"
+  you_and_people_like_this: "You and %{qty} people like this"
+  people_like_this: "%{qty} people like this"
+  person_like_this: "1 person like this"
+
+

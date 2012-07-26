@@ -131,6 +131,30 @@
     }
   }
 
+  .post-likes {
+    height: 24px;
+    border-top: 1px solid $line-color;
+    background-color: $bg-color;
+
+    .post-like-message {
+      height: 21px;
+      padding: 3px 0 0 5px;
+      float: left;
+      width: 300px;
+      img {
+        height: 16px;
+        margin-right: 5px;
+        float: left;
+      }
+    }
+
+    .like-post {
+      height: 18px;
+      padding: 6px 5px 0 5px;
+      float: right;
+    }
+  }
+
   .post-comments {
     background: $comments-bg-color;
     border-top: 1px solid $light-grey;

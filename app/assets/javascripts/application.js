@@ -17,4 +17,5 @@
 //= require home
 //= require pages
 //= require search
+//= require posts
 

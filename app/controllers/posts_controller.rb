@@ -199,6 +199,41 @@ class PostsController < ApplicationController
         if request.xhr?
           json = {}
           json[:liked] = response
+
+          if response
+            link_like = t(:unlike)
+            you_like = true
+          else
+            link_like = t(:like)
+            you_like = false
+          end
+
+          like_msg = ''
+
+          if post.likes.count == 1
+            if you_like
+              like_msg = t(:you_like_this)
+            else
+              like_msg = t(:person_like_this)
+            end
+          else
+            if post.likes.count > 1
+              if you_like
+                if post.likes.count == 2
+                  like_msg = t(:you_and_other_like_this)
+                else
+                  like_msg = t(:you_and_people_like_this, :qty => post.likes.count)
+                end
+              else
+                like_msg = t(:people_like_this, :qty => post.likes.count)
+              end
+            end
+          end
+
+          json[:link_like] = link_like
+          json[:like_msg] = like_msg
+
+
           render :json => json
         else
           render :inline => response  
