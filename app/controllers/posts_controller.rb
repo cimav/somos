@@ -222,7 +222,7 @@ class PostsController < ApplicationController
                 if post.likes.count == 2
                   like_msg = t(:you_and_other_like_this)
                 else
-                  like_msg = t(:you_and_people_like_this, :qty => post.likes.count)
+                  like_msg = t(:you_and_people_like_this, :qty => (post.likes.count - 1))
                 end
               else
                 like_msg = t(:people_like_this, :qty => post.likes.count)
@@ -241,6 +241,11 @@ class PostsController < ApplicationController
       end
     end
 
+  end
+
+  def likers 
+    @post = Post.find(params[:id])
+    render :layout => false
   end
 
 

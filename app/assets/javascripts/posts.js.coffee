@@ -4,6 +4,8 @@
 
 $('.like-post')
   .live("ajax:beforeSend", (evt, xhr, settings) ->
+    post_id = $(this).attr('post_id')
+    $("#post-likers-#{post_id}").hide()
   )
   .live("ajax:success", (evt, data, status, xhr) ->
     res = $.parseJSON(xhr.responseText)
@@ -21,4 +23,14 @@ $('.like-post')
   )
   .live("ajax:error", (evt, xhr, status, error) ->
     alert('Error')
+  )
+
+$('.post-like-message')
+  .live('click', () ->
+    post_id = $(this).attr('post_id')
+    url = "/p/#{post_id}/likers"
+    $.get(url, {}, (html) ->
+      $("#post-likers-#{post_id}").html(html)
+      $("#post-likers-#{post_id}").fadeIn()
+    )
   )
