@@ -45,6 +45,8 @@
       .post-text
         = simple_format(post.content)
 
+    .post-likes{:id => "post-#{post.id}-likes"}
+      = link_to (t :like), {:controller => 'posts', :action => 'like', :id => "#{post.id}"}, :method => :post, :remote => true, :class => 'like-post', :'data-type' => 'html', :id => "post_like_#{post.id}", :post_id => "#{post.id}"
     .post-comments{:id => "post-#{post.id}-comments"}
       - last_comment = 0 
       - post.comments.where(:status => Comment::ACTIVE).each do |comment|

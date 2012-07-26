@@ -25,6 +25,7 @@ Somos::Application.routes.draw do
   match 'p/:id/f/:file_id/:filename' => 'post_files#file', :constraints => { :filename => /[^\/]*/ }
   match 'p/:id/photo/:photo_id/:version/:filename' => 'post_photos#photo', :constraints => { :filename => /[^\/]*/ }
   match 'p/:id/comments/:last' => 'posts#comments'
+  match 'p/:id/like' => 'posts#like'
   match 'p/:id' => 'posts#show'
   match 'p/delete/:id' => 'posts#mark_as_deleted'
   resources :posts

@@ -20,6 +20,9 @@ class Post < ActiveRecord::Base
 
   has_one :user_badge
 
+  has_many :likes, :as => :attachable
+  accepts_nested_attributes_for :likes
+
   ACTIVE = 1
   DELETED = 2
 

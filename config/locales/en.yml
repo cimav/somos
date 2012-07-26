@@ -118,3 +118,5 @@ en:
   deleted_post: "Deleted post"
 
   happy_birthday: "Happy Birthday %{name}!"
+  
+  like: "Like"

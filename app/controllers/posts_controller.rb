@@ -182,5 +182,31 @@ class PostsController < ApplicationController
     render :inline => 'true'
   end
 
+  def like
+    post = Post.find(params[:id])
+    user_like = post.likes.where(:user_id => current_user.id).first
+
+    if user_like
+      user_like.destroy
+      response = false
+    else
+      post.likes.create(:user_id => current_user.id)
+      response = true
+    end
+
+    respond_with do |format|
+      format.html do
+        if request.xhr?
+          json = {}
+          json[:liked] = response
+          render :json => json
+        else
+          render :inline => response  
+        end
+      end
+    end
+
+  end
+
 
 end
