@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725232811) do
+ActiveRecord::Schema.define(:version => 20120815161756) do
 
   create_table "applications", :force => true do |t|
     t.string   "short_name", :limit => 20
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(:version => 20120725232811) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  create_table "group_limitations", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "by_group_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "group_limitations", ["by_group_id"], :name => "index_group_limitations_on_by_group_id"
+  add_index "group_limitations", ["group_id"], :name => "index_group_limitations_on_group_id"
 
   create_table "group_types", :force => true do |t|
     t.string   "name",                       :null => false
