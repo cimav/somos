@@ -127,4 +127,4 @@ en:
   people_like_this: "%{qty} people like this"
   person_like_this: "1 person like this"
 
-
+  group_need_permissions: "You don't have enough permissions to view this group"

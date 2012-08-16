@@ -1,12 +1,12 @@
 #groups-area
-  %ul.group-types
-    %li
-      .home-link
-        = link_to (t :home_link), "#!", :id => "get-home"
-    - @groups.each do |group_type|
-      %li
-        .group-type-title= group_type.name
-        %ul.groups 
-          - group_type.group.order('position').each do |group|
-            %li.group-title{:id => "li_group_#{group.id}"}
-              = link_to group.name, {:controller => 'groups', :action => :show, :short_name => group.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{group.id}", :short_name => "#{group.short_name}", :group_id => "#{group.id}", :default_page => "#{group.default_page}"
+  %ul.group-list
+    %li.home-link= link_to (t :home_link), "#!", :id => "get-home"
+    - group_type = '';
+    - @groups.each do |g|
+      - if g.group_type.name != group_type
+        - group_type = g.group_type.name
+        %li.group-type-title= group_type
+      %li.group-title{:id => "li_group_#{g.id}"}
+        = link_to g.name, {:controller => 'groups', :action => :show, :short_name => g.short_name}, :method => :get, :remote => true, :class => 'get-group', :'data-type' => 'html', :id => "group_link_#{g.id}", :short_name => "#{g.short_name}", :group_id => "#{g.id}", :default_page => "#{g.default_page}"
+
+

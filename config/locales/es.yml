@@ -277,3 +277,5 @@ es:
   you_and_people_like_this: "A ti y a %{qty} personas les gusta esto"
   people_like_this: "A %{qty} personas les gusta esto"
   person_like_this: "A 1 persona le gusta esto"
+
+  group_need_permissions: "No tienes los suficientes permisos para ver este grupo"
