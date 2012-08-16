@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
   end
 
   def members
-    @members = Membership.where(:group_id => params[:id])
+    @members = Membership.includes(:user).where('group_id = :group_id AND users.status <> :status', {:group_id => params[:id], User::STATUS_ACTIVE})
     render :layout => false
   end
 
