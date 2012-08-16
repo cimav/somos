@@ -3,7 +3,7 @@ class SearchController < ApplicationController
     if params[:q].length > 2 
 
       @users = User.order('first_name, last_name')
-      @users = @users.where("(CONCAT(first_name,' ',last_name) LIKE :q OR display_name LIKE :q)", {:q => "%#{params[:q]}%"})
+      @users = @users.where("status = :status AND (CONCAT(first_name,' ',last_name) LIKE :q OR display_name LIKE :q OR phone1_desc LIKE :q OR phone2_desc LIKE :q OR phone3_desc LIKE :q)", {:q => "%#{params[:q]}%", :status => User::STATUS_ACTIVE})
 
       @groups = Group.order('name')
       @groups = @groups.where("(name LIKE :q OR short_name LIKE :q OR description LIKE :q)", {:q => "%#{params[:q]}%"})
