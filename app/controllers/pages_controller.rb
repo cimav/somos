@@ -140,7 +140,12 @@ class PagesController < ApplicationController
   def mark_as_deleted
     @page = Page.find(params[:id])
 
-    if !current_user_is_admin
+    membership = current_user.memberships.where(:group_id => @page.group.id).first
+    can_publish = membership.can_publish == 1 rescue false
+    can_admin = membership.can_admin == 1 rescue false
+    can_modify_others = membership.can_admin == 1 rescue false
+
+    if !(current_user_is_admin || can_admin || can_modify_others)
       if current_user.id != @page.user_id
         raise "The current user is not the page owner"
       end
