@@ -39,8 +39,13 @@ class PageFileSectionsController < ApplicationController
 
   def mark_as_deleted
     @pfs = PageFileSection.find(params[:id])
+  
+    membership = current_user.memberships.where(:group_id => @pfs.page.group.id).first
+    can_publish = membership.can_publish == 1 rescue false
+    can_admin = membership.can_admin == 1 rescue false
+    can_modify_others = membership.can_admin == 1 rescue false
 
-    if !current_user_is_admin
+    if !(current_user_is_admin || can_admin || can_modify_others)
       if current_user.id != @pfs.user_id
         raise "The current user is not the pfs owner"
       end

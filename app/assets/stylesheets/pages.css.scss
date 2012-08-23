@@ -97,3 +97,12 @@
 #dialog-buttons {
   float: right;
 }
+
+#pfs-delete-link {
+  float: left;
+  margin-top: 20px;
+  margin-left: 10px;
+  a {
+    cursor: pointer;
+  }
+}

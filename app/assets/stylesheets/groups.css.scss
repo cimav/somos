@@ -225,7 +225,7 @@ ul.page-list {
 
 .edit-pfs-title {
   display: block;
-  font-size: 16px;
+  font-size: 18px;
   color: $strong-color2;
   font-weight: bold;
   margin-bottom: 10px;
@@ -234,10 +234,10 @@ ul.page-list {
     padding: 4px;
     border: 1px solid $line-color;
     outline: none;
-    font-size: 16px;
+    font-size: 18px;
     color: $black;
     font-weight: bold;
-    width: ($post-width * 2) - 30;
+    width: $post-width - 30;
   }
 }
 
@@ -254,7 +254,6 @@ ul.page-list {
 #save-pfs-button {
   float: right;
   margin: 10px 0 40px 0;
-  clear: both;
 }
 
 #group_need_permissions {
