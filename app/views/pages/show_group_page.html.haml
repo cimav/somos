@@ -9,9 +9,15 @@
   #group-page-inner
     #group-page-contents
       %h2= @page.title
-      - if can_publish || current_user_is_admin
+      - if can_publish || can_admin || can_modify_others || current_user_is_admin
         #page-toolbar
-          %a#edit-page-button= t :edit_this_page
+          .tool.first-tool
+            %a#edit-page-button= t :edit_this_page
+          .tool.last-tool
+            - if @page.group.default_page == @page.id
+              #default-page-marker= t :default_page
+            - else
+              = link_to (t :set_as_default_page), {:controller => "pages", :action => "mark_as_default", :id => @page.id}, :method => :post, :remote => true, :class => 'mark-default-page', :'data-type' => 'html', :title => (t :set_as_default_page), :id => "mark-default-page-button"
       .content
         = raw(@page.content)
       .clearfix
