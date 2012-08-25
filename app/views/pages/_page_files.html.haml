@@ -16,9 +16,13 @@
       .clearfix
     .edit-section{:id => "fs_edit_#{fs.id}"}
            
+    - if can_publish || can_modify_others || can_admin || current_user_is_admin
+      - list_class = 'file-list-sortable'
+    - else
+      - list_class = 'file-list'
     = form_tag '/page_files/reorder', :method => 'post', :remote => true, :id => "order-files-form-#{fs.id}" do |f|
       = hidden_field_tag 'page_file_section_id', fs.id
-      %ul.file-list{:fs_id => fs.id, :id => "file-list-#{fs.id}"}
+      %ul{:class=> list_class, :fs_id => fs.id, :id => "file-list-#{fs.id}"}
         - fs.page_file.where(:status => PageFile::PUBLISHED).order('position').each do |f|
           - if File.extname(f.file.to_s) == ''
             - ext = 'unknown'
@@ -26,7 +30,7 @@
             - ext = File.extname(f.file.to_s)[1..-1]
           %li{"title" => File.basename(f.file.to_s), :id => "file-#{f.id}"}
             .file-item{:id => "file-item-#{f.id}"}
-              - if can_publish || current_user_is_admin
+              - if can_publish || can_modify_others || can_admin || current_user_is_admin
                 - can_move = 'can-move'
               - else 
                 - can_move = ''

@@ -82,7 +82,7 @@ $('.edit-section-a')
   url = '/pages/' + pid + '/files_section'
   $.get(url, {}, (html) ->
     $("#group-page-files").html(html)
-    $('.file-list').sortable()
+    $('.file-list-sortable').sortable()
   )
   
 
