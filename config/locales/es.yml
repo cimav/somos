@@ -279,3 +279,6 @@ es:
   person_like_this: "A 1 persona le gusta esto"
 
   group_need_permissions: "No tienes los suficientes permisos para ver este grupo"
+  
+  default_page: "Página Inicial"
+  set_as_default_page: "Marcar esta página como inicial"

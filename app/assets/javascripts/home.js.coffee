@@ -255,7 +255,7 @@ $('.get-page')
   currentGroup = g
   $('.page-title').removeClass('selected')
   $('#li_page_' + p).addClass('selected')
-  $('.file-list').sortable()
+  $('.file-list-sortable').sortable()
 
 $('.file-list')
   .live('sortupdate', () ->

@@ -128,3 +128,6 @@ en:
   person_like_this: "1 person like this"
 
   group_need_permissions: "You don't have enough permissions to view this group"
+
+  default_page: "Default Page"
+  set_as_default_page: "Set as default page"

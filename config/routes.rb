@@ -46,6 +46,7 @@ Somos::Application.routes.draw do
   match 'pages/:id/files_section' => 'pages#files_section'
   match 'pages/:id/edit_section/:section_id' => 'pages#edit_section'
   match 'pages/delete/:id' => 'pages#mark_as_deleted'
+  match 'pages/mark_as_default/:id' => 'pages#mark_as_default'
 
   match 'pages_file_sections/delete/:id' => 'page_file_sections#mark_as_deleted'
   resources :page_file_sections

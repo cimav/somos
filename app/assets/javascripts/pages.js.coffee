@@ -9,6 +9,12 @@ $('#edit-page-button')
     $('#edit-page').fadeIn()
   )
 
+$('#mark-default-page-button')
+  .live("ajax:success", (evt, data, status, xhr) ->
+    res = $.parseJSON(xhr.responseText)
+    $('#mark-default-page-button').html(res['default_msg'])
+  )
+
 $('#edit_page_form')
   .live("ajax:beforeSend", (evt, xhr, settings) ->
     # TODO: Display saving spinner
@@ -76,7 +82,7 @@ $('.edit-section-a')
   url = '/pages/' + pid + '/files_section'
   $.get(url, {}, (html) ->
     $("#group-page-files").html(html)
-    $('.file-list').sortable()
+    $('.file-list-sortable').sortable()
   )
   
 

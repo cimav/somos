@@ -165,4 +165,37 @@ class PagesController < ApplicationController
     end
   end
 
+  def mark_as_default
+    page = Page.find(params[:id])
+
+    membership = current_user.memberships.where(:group_id => page.group.id).first
+    can_publish = membership.can_publish == 1 rescue false
+    can_admin = membership.can_admin == 1 rescue false
+    can_modify_others = membership.can_admin == 1 rescue false
+
+    if !(current_user_is_admin || can_admin || can_modify_others)
+      if current_user.id != @page.user_id
+        raise "The current user is not the page owner"
+      end
+    end
+
+    group = Group.find(page.group.id)
+    group.default_page = page.id
+
+    if group.save
+      respond_with do |format|
+        format.html do
+          if request.xhr?
+            json = {}
+            json[:default_msg] = t(:default_page)
+            render :json => json
+          end
+        end
+      end
+    end
+
+
+    
+  end
+
 end
