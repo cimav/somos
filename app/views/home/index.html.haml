@@ -15,3 +15,6 @@
       - if item.sidebar_type == SidebarItem::EXTERNAL
         .sidebar-block
           %iframe{:id => "sidebar-iframe-#{c}", :src => item.url, :style => "width: 100%; height: #{item.height}; border: 0;", :scrolling => "no"}
+      - if item.sidebar_type == SidebarItem::TEXT
+        = item.content.html_safe
+
