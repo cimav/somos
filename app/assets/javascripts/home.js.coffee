@@ -257,7 +257,7 @@ $('.get-page')
   $('#li_page_' + p).addClass('selected')
   $('.file-list-sortable').sortable()
 
-$('.file-list')
+$('.file-list-sortable')
   .live('sortupdate', () ->
     fs_id = $(this).attr('fs_id')
     $('#order-files-form-' + fs_id).submit()
