@@ -4,4 +4,5 @@ class SidebarItem < ActiveRecord::Base
   INTERNAL = 1
   EXTERNAL = 2
   TEXT = 3
+  GET = 4
 end
