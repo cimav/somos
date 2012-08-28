@@ -16,5 +16,13 @@
         .sidebar-block
           %iframe{:id => "sidebar-iframe-#{c}", :src => item.url, :style => "width: 100%; height: #{item.height}; border: 0;", :scrolling => "no"}
       - if item.sidebar_type == SidebarItem::TEXT
-        = item.content.html_safe
+        .sidebar-block
+          = item.content.html_safe
+      - if item.sidebar_type == SidebarItem::GET
+        .sidebar-block
+          :javascript
+            url = "/sidebar_items/#{item.id}";
+            $.get(url, {}, function (html) {
+              $("#sidebar-item-#{c}").html(html);
+            })
 

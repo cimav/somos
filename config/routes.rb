@@ -6,6 +6,8 @@ Somos::Application.routes.draw do
 
   match 'search' => 'search#search'
 
+  resources :sidebar_items
+
   match 'g/list' => 'groups#list'
   match 'g/search' => 'groups#search'
   match 'g/:short_name' => 'groups#show'
