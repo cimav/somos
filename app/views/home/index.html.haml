@@ -4,7 +4,7 @@
   - c = 0
   - @sidebar_items.each do |item|
     - c += 1
-    %div{:id => "sidebar-item-#{c}"}
+    %div{:id => "sidebar-item-#{c}", :class => 'sidebar-block'}
       - if item.sidebar_type == SidebarItem::INTERNAL
         :javascript
           url = "#{item.url}";
