@@ -1,4 +1,6 @@
 #encoding: utf-8
+require 'net/http'
+
 class SidebarItemsController < ApplicationController
   before_filter :auth_required
   respond_to :html, :json
