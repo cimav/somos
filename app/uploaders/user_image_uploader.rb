@@ -6,7 +6,7 @@ class UserImageUploader < CarrierWave::Uploader::Base
   storage :file
 
   def store_dir
-    "assets/profile_images/#{model.id}"
+    "#{Rails.root}/private/profile_images/#{model.id}"
   end
 
   def default_url

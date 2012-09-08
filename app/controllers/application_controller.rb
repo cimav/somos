@@ -36,4 +36,11 @@ class ApplicationController < ActionController::Base
     @current_user_is_admin ||= current_user.memberships.includes(:group).where('groups.short_name' => 'admin').first.can_admin == 1 rescue false
   end
 
+  helper_method :user_image
+
+  private 
+  def user_image(id, size)
+    url_for(:action => 'image', :controller => 'users', :id => 94, :size => 'profile')
+  end
+
 end

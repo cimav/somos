@@ -38,6 +38,7 @@ Somos::Application.routes.draw do
 
   match 'users/upcoming_birthdays' => 'users#upcoming_birthdays'
   match 'u/menu' => 'users#menu'
+  match 'u/image/:size/:id' => 'users#image'
   resources :users
 
   resources :pages
