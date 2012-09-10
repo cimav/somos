@@ -43,7 +43,7 @@ class UsersController < ApplicationController
             json[:username] = @user.username
             render :json => json
           else
-            render :inline => "TODO UPDATE RENDER"
+            render :user_updated
           end
         end
       end

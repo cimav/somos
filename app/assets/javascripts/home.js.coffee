@@ -390,11 +390,11 @@ getHome = (reload) ->
   else
     populateHome()
 
-setHash = (h) ->
+@setHash = setHash = (h) ->
   hash = h
   window.location.hash = hash
 
-checkHash = () ->
+@checkHash = checkHash = () ->
   if window.location.hash != hash
     hash = window.location.hash
     if (hash.slice(0, 2) == '#!' && hash.length > 3) 

@@ -23,7 +23,7 @@
           = form_for(@u, :remote => true, :html => {:id => "profile-picture-form-#{@u.id}", :target => 'profile-picture-iframe', :class => 'profile-picture-form'}) do |f|
             = f.hidden_field :id, { :value => @u.id }
             = f.file_field :image, {:class => 'profile-picture-file-input', :user_id => @u.id}
-            = t :edit_profile_picture
+            %button= t :edit_profile_picture
             %iframe#profile-picture-iframe{:width => 0, :height => 0, :scrolling => "no", :frameborder => "0", :name => "profile-picture-iframe"}
     .user-data#user-email
       .user-data-label= t :email
