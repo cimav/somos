@@ -18,7 +18,7 @@
   #user-profile-data.sidebar-block
     #profile-picture
       = image_tag user_image(@u.id, 'profile'), :width => '128', :height => '128', :class => "profile-picture", :title => "#{@u.display_name}"
-      - if current_user.id == @u.id 
+      - if current_user.id == @u.id || current_user_is_admin
         .change-display
           = form_for(@u, :remote => true, :html => {:id => "profile-picture-form-#{@u.id}", :target => 'profile-picture-iframe', :class => 'profile-picture-form'}) do |f|
             = f.hidden_field :id, { :value => @u.id }
