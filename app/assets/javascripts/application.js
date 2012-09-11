@@ -18,4 +18,5 @@
 //= require pages
 //= require search
 //= require posts
+//= require users
 

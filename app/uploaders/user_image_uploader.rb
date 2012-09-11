@@ -6,11 +6,11 @@ class UserImageUploader < CarrierWave::Uploader::Base
   storage :file
 
   def store_dir
-    "assets/profile_images/#{model.id}"
+    "#{Rails.root}/private/profile_images/#{model.id}"
   end
 
   def default_url
-     "/assets/" + [version_name, "user_default.jpg"].compact.join('_')
+     "#{Rails.root}/app/assets/images/" + [version_name, "user_default.jpg"].compact.join('_')
   end
 
   # Create different versions of your uploaded files:

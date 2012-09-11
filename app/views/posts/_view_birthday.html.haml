@@ -1,5 +1,5 @@
 .post-birthday
-  .birthday-display= image_tag post.user.image_url(:profile).to_s, :width => 128, :height => 128, :class => "profile-picture-small"
+  .birthday_display= image_tag user_image(post.user.id, :profile).to_s, :width => 128, :height => 128, :class => "profile-picture-small"
   .birthday-message= post.content
   .clearfix
 .clearfix

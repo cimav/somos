@@ -20,6 +20,27 @@
   }
 }
 
+
+.change-display {
+  position: relative;
+  text-align: center;
+  input[type="file"].profile-picture-file-input {
+    cursor: pointer;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    @include opacity(0);
+    z-index: 999;
+    cursor: pointer;
+  }
+  button { 
+    cursor: pointer;
+    font-size: 90%;
+  }
+}
+
+
 #profile-data {
   font-size: 15px;
   margin-bottom: 20px;

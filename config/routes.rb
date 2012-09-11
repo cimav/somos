@@ -38,6 +38,7 @@ Somos::Application.routes.draw do
 
   match 'users/upcoming_birthdays' => 'users#upcoming_birthdays'
   match 'u/menu' => 'users#menu'
+  match 'u/image/:size/:id' => 'users#image'
   resources :users
 
   resources :pages
@@ -72,6 +73,5 @@ Somos::Application.routes.draw do
   match 'editor/page_files/:id' => 'editor#page_files'
 
   match ':username' => 'users#profile', :constraints => { :username => /[^\/]*/ }
-  match ':username/sidebar' => 'users#sidebar', :constraints => { :username => /[^\/]*/ }
 
 end
