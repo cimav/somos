@@ -1,6 +1,6 @@
 .post
   .post-display
-    = image_tag current_user.image_url(:small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
+    = image_tag user_image(current_user.id, :small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
   .post-content
     #share-block
       = t :share_to_the_community

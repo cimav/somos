@@ -1,5 +1,5 @@
 #user-info
-  #user-display= image_tag current_user.image_url(:small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
+  #user-display= image_tag user_image(current_user.id, 'small'), :width => 32, :height => 32, :class => "profile-picture-small"
   #user-name
     = current_user.display_name
     = image_tag "down-arrow.png", :id => "user-arrow"
@@ -12,7 +12,7 @@
           .app-name= t :home_link
       = link_to "/#!/#{current_user.username}" do
         .app-item
-          .app-icon= image_tag current_user.image_url(:small).to_s, :width => 24, :height => 24
+          .app-icon= image_tag user_image(current_user.id, 'small'), :width => 24, :height => 24, :class => "profile-picture-small"
           .app-name= t :my_profile
     - current_user.applications.order(:name).each do |app|
       - if app.app_type == Application::APP_EXTERNAL

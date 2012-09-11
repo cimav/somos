@@ -10,7 +10,7 @@ class UserImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-     "/assets/" + [version_name, "user_default.jpg"].compact.join('_')
+     "#{Rails.root}/app/assets/images/" + [version_name, "user_default.jpg"].compact.join('_')
   end
 
   # Create different versions of your uploaded files:

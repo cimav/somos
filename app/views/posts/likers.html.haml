@@ -1,6 +1,6 @@
 %ul.post-likers-list
   - @post.likes.each do |like|
     %li
-      = image_tag like.user.image_url(:small).to_s, :width => 24, :height => 24, :class => "profile-picture-small"
+      = image_tag user_image(like.user.id, 'small'), :width => 24, :height => 24, :class => "profile-picture-small"
       %span= like.user.display_name
 .clearfix

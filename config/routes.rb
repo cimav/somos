@@ -73,6 +73,5 @@ Somos::Application.routes.draw do
   match 'editor/page_files/:id' => 'editor#page_files'
 
   match ':username' => 'users#profile', :constraints => { :username => /[^\/]*/ }
-  match ':username/sidebar' => 'users#sidebar', :constraints => { :username => /[^\/]*/ }
 
 end

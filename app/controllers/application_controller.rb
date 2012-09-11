@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
 
   private 
   def user_image(id, size)
-    url_for(:action => 'image', :controller => 'users', :id => 94, :size => 'profile')
+    url_for(:action => 'image', :controller => 'users', :id => id, :size => size)
   end
 
 end
