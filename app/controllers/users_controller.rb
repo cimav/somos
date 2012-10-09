@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def upcoming_birthdays
-    @users = User.where("CONCAT(YEAR(NOW()), '-', SUBSTR(birth_date, 6, 2), '-', SUBSTR(birth_date,9,2)) >= CURDATE()").order("SUBSTR(birth_date,6,2), SUBSTR(birth_date, 9,2)").limit(5) 
+    @users = User.where("CONCAT(YEAR(NOW()), '-', SUBSTR(birth_date, 6, 2), '-', SUBSTR(birth_date,9,2)) >= CURDATE() AND status = :s", {:s => User::STATUS_ACTIVE}).order("SUBSTR(birth_date,6,2), SUBSTR(birth_date, 9,2)").limit(5) 
     render :layout => false
   end
  

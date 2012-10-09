@@ -1,5 +1,5 @@
 task :birthday => :environment do
-  users = User.where('DAY(birth_date) = :d AND MONTH(birth_date) = :m', :d => Time.now.day,:m => Time.now.month)
+  users = User.where('status = :s AND DAY(birth_date) = :d AND MONTH(birth_date) = :m', :s => User::STATUS_ACTIVE, :d => Time.now.day,:m => Time.now.month)
   post_type = PostType.where(:name => 'birthday').first
   
   users.each do |u|
