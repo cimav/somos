@@ -42,7 +42,11 @@ class GroupsController < ApplicationController
                                     WHERE by_group_id IN (SELECT group_id FROM memberships 
                                                         WHERE user_id = :user_id)
                                     )", {:user_id => current_user.id}) 
-      render :layout => 'group_need_permissions'
+      if group_l.count > 0
+        render :layout => false
+      else 
+        render :layout => 'group_need_permissions'
+      end
     else
       render :layout => false
     end
