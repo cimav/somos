@@ -43,7 +43,7 @@
       = render :partial => "posts/view_#{post.post_type.name}", :locals => {:post => post} 
     - else 
       .post-text
-        = simple_format(post.content)
+        = auto_link(simple_format(post.content), :html => { :target => '_blank' })
 
     .post-likes{:id => "post-#{post.id}-likes"}
       - if post.likes.where(:user_id => current_user.id).count == 1
