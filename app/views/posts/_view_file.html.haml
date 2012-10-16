@@ -1,6 +1,6 @@
 .clearfix
 .post-text
-  = post.content
+  = auto_link(post.content, :html => { :target => '_blank' })
 .post-files
   - post.post_file.each do |f|
     - if File.extname(f.file.to_s) == ''

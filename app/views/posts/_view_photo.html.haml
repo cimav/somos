@@ -25,7 +25,7 @@
   .clearfix
 
 .post-text
-  = post.content
+  = auto_link(post.content, :html => { :target => '_blank' })
 
 :javascript
   $(function() {

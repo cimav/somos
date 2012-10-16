@@ -8,6 +8,6 @@
   .comment-content
     %span.comment-user= link_to comment.user.display_name, {:controller => "users", :action => "profile", :username => "#{comment.user.username}"}, :method => :get, :remote => true, :class => 'get-user', :'data-type' => 'html', :username => "#{comment.user.username}"
     %span.separator= "-"
-    = comment.content
+    = auto_link(comment.content, :html => { :target => '_blank' })
   .comment-footer
     .comment-date= post_date(comment.created_at)
