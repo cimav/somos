@@ -186,6 +186,7 @@ es:
   image: "imagen"
   photo: "foto"
   of: "de"
+  download_image: "Descargar imagen"
 
   event_title: "Titulo"
   event_start_date: "Fecha y hora"

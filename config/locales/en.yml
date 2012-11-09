@@ -35,6 +35,7 @@ en:
   image: "image"
   photo: "photo"
   of: "of"
+  download_image: "Download image"
 
   event_title: "Title"
   event_start_date: "Date and time"
