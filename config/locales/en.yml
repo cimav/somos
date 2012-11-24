@@ -44,6 +44,9 @@ en:
   event_link: "Link"
   upcoming_events: "Upcoming Events"
   no_events: "There are no upcoming events at this moment"
+  year_calendar: "%{year} Calendario"
+  full_calendar: "Full calendar"
+  no_events_for_this_month: "No events for this month"
 
   upcoming_birthdays: "Próximos cumpleaños"
 

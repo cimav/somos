@@ -9,4 +9,10 @@ class PostEventsController < ApplicationController
       render :inline => ''
     end
   end
+
+  def calendar
+    @year = params[:year]
+    @events = PostEvent.includes(:post).where("posts.status = :status AND ((start_date >= :date1) AND (start_date <= :date2))", {:status => Post::ACTIVE,  :date1 => "#{@year}-1-1", :date2 => "#{@year}-12-31"}).order(:start_date)
+    render :layout => false
+  end
 end

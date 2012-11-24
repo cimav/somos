@@ -62,6 +62,7 @@ Somos::Application.routes.draw do
   resources :page_files
 
   match 'events/upcoming' => 'post_events#upcoming'
+  match 'events/calendar/:year' => 'post_events#calendar'
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'sessions#failure'

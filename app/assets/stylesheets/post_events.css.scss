@@ -5,6 +5,11 @@
 #upcoming-events {
   margin-bottom: 20px;
   #upcoming-events-inner {
+    #full-calendar-link {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 90%;
+    }
   }
 }
 
@@ -52,7 +57,8 @@
   }
 }
 
-.upcoming-event {
+.upcoming-event, 
+.calendar-event {
   min-height: 38px;
   margin-top: 5px;
 
@@ -95,3 +101,43 @@
     }
   }
 }
+
+#calendar-events {
+  padding: 10px;
+  h1 {
+    width: 400px; 
+    float: left;
+  }
+  #calendar-nav {
+    width: 100px;
+    float: right;
+    .calendar-nav-left {
+      float: left;
+    }
+    .calendar-nav-right {
+      margin-left: 10px;
+      float: left;
+    }
+  }
+}
+
+
+.calendar-month {
+  font-size: 20px;
+  color: $grey;
+  border-top: 1px solid $light-grey;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
+.calendar-month-empty {
+  width: 100px;
+}
+
+.calendar-event {
+  margin-left: 120px;
+  &.no-event {
+    color: $light-grey;
+  }
+}
+
