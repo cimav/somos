@@ -16,3 +16,5 @@
         - else
           .event-date=  "#{event.start_date.strftime "%l:%M %p"}"
           .event-date= "#{event.end_date.strftime "%b %d, %Y %l:%M %p"}"
+    #full-calendar-link
+      = link_to (t :full_calendar), "#!/events/calendar/#{Time.new.year}"

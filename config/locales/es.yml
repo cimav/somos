@@ -195,6 +195,9 @@ es:
   event_link: "Liga al evento"
   upcoming_events: "Próximos Eventos"
   no_events: "No hay próximos eventos en este momento"
+  year_calendar: "Calendario %{year}"
+  full_calendar: "Ver calendario completo"
+  no_events_for_this_month: "No hay eventos para este mes"
 
   upcoming_birthdays: "Próximos Cumpleaños"
   
