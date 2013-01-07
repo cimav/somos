@@ -5,6 +5,9 @@ en:
   date:
     formats:
       month_day: "%B %e"
+  time:
+    formats:
+      month_day: "%B %e"
   save: "Save"
   save_wait: "Saving..."
   edit: "Edit"

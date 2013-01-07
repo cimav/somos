@@ -92,6 +92,8 @@ es:
       default: "%a, %e %b %Y %H:%M:%S %z"
       short: "%b %e, %l:%M %p"
       long: "%B %e, %Y %l:%M %p"
+      month_day: "%e de %B"
+
     am: "AM"
     pm: "PM"
 

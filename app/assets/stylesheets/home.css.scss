@@ -209,6 +209,12 @@
     line-height: 1.2em;
     width: $post-width - 150;
   }
+  .birthday-date {
+    font-weight: bold;
+    color: $white;
+    font-size: 14px;
+    text-shadow: black 0.1em 0.1em 0.2em;
+  }
 }
 
 .post-badge {
