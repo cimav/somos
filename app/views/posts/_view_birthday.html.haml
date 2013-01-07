@@ -1,5 +1,13 @@
 .post-birthday
   .birthday-display= image_tag user_image(post.user.id, :profile).to_s, :width => 128, :height => 128, :class => "profile-picture-small"
   .birthday-message= post.content
+  - date = post.created_at
+  - if "#{date.year}#{date.month}#{date.day}" == "#{Time.now.year}#{Time.now.month}#{Time.now.day}"
+    - r_date = t :today
+  - elsif "#{date.year}#{date.month}#{date.day}" == "#{Time.now.year}#{Time.now.month}#{Time.now.day - 1}"
+    - r_date = t :yesterday
+  - else
+    - r_date = l date, :format => :month_day
+  .birthday-date= r_date
   .clearfix
 .clearfix
