@@ -406,8 +406,6 @@ getHome = (reload) ->
 resizeIframe = () ->
   calcFrameHeight('ext-iframe')
 
-
-
 $ ->
   getGroupList()
   getUserMenu()
