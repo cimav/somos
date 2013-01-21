@@ -363,6 +363,7 @@ $('.get-external-app')
     $('#wrapper').hide()
     $('#wrapper-iframe').show()
     $('#ext-iframe').attr('src', ($(this).attr('app_url')))
+    window.scrollTo(0, 0);
   )
 
 
