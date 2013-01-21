@@ -2,7 +2,7 @@
 - can_admin = membership.can_admin == 1 rescue false
 - can_modify_others = membership.can_admin == 1 rescue false
 
-- @page.page_file_section.where(:status => PageFileSection::PUBLISHED).each do |fs|
+- @page.page_file_section.where(:status => PageFileSection::PUBLISHED).order('position').each do |fs|
   .group-page-section{:id => "group-page-section-#{fs.id}"}
     .fs-header{:id => "fs_header_#{fs.id}"}
       .fs-data 
