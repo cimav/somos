@@ -1,0 +1,18 @@
+// Place all the styles related to the admin/users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.users-table {
+  tr.Inactivo {
+    color: #999;
+  }
+  tr {
+    td {
+      cursor: pointer;
+    }
+    
+    &.Eliminado {
+      color: #b00;
+    }
+  }
+}

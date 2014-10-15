@@ -2,6 +2,16 @@ Somos::Application.routes.draw do
   root :to => 'home#index'
   match 'home/index' => 'home#index'
 
+  namespace :admin do
+    root :to => 'users#index'
+    resources :users
+    resources :groups
+    resources :applications
+    resources :memberships
+    resources :user_applications
+    match 'users/image/:size/:id' => 'users#image'
+  end
+
   match 'api/auth/:username/:token/:app' => 'api#auth'
 
   match 'search' => 'search#search'
@@ -39,7 +49,7 @@ Somos::Application.routes.draw do
   match 'users/upcoming_birthdays' => 'users#upcoming_birthdays'
   match 'u/menu' => 'users#menu'
   match 'u/image/:size/:id' => 'users#image'
-  resources :users
+  #resources :users
 
   resources :pages
   match 'g/:group_id/p/add' => 'pages#add_page'
@@ -74,5 +84,6 @@ Somos::Application.routes.draw do
   match 'editor/page_files/:id' => 'editor#page_files'
 
   match ':username' => 'users#profile', :constraints => { :username => /[^\/]*/ }
+
 
 end

@@ -1,0 +1,23 @@
+%h1= "Grupos"
+.pull-right
+  = link_to "Crear grupo", controller: "groups", action: "new"
+%table.table.table-striped.groups-table
+  %thead
+    %tr
+      %th ID
+      %th Tipo
+      %th Nombre
+      %th Nombre Corto
+      %th Descripción
+      %th Posición
+      %th Limitado
+  %tbody
+    - @groups.each do |g|
+      %tr.admin-group-link{'data-id' => g.id}
+        %td= g.id
+        %td= g.group_type.name
+        %td= g.name
+        %td= g.short_name
+        %td= g.description
+        %td= g.position
+        %td= g.limited

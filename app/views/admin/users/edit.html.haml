@@ -1,0 +1,142 @@
+%h1.user-edit-header
+  = image_tag user_image(@user.id, :small).to_s, :width => 48, :height => 48, :class => "profile-picture-small"
+  = @user.full_name
+
+%ul.nav.nav-tabs{"role" => "tablist"}
+  %li.active 
+    %a{:href => '#datos', "data-toggle" => "tab"} Datos
+  %li
+    %a{:href => '#grupos', "data-toggle" => "tab"} Grupos
+
+.tab-content
+  #datos.tab-pane.active
+    = form_for [:admin, @user] do |f|
+      %h3 Datos Generales
+      .form-group
+        = f.label :first_name, 'Usuario'
+        = f.text_field :username, :class => 'form-control'
+      .form-group
+        = f.label :first_name, 'Nombre(s)'
+        = f.text_field :first_name, :class => 'form-control'
+      .form-group
+        = f.label :last_name, 'Apellidos'
+        = f.text_field :last_name, :class => 'form-control'
+      .form-group
+        = f.label :display_name, 'Nombre a desplegar'
+        = f.text_field :display_name, :class => 'form-control'
+      .form-group
+        = f.label :email, 'Correo'
+        = f.text_field :email, :class => 'form-control'
+      .form-group
+        = f.label :birth_date, 'Fecha de Nacimiento'
+        = f.text_field :birth_date, :class => 'form-control'
+          
+      %h3 Datos Laborales
+      .form-group
+        = f.label :reports_to, 'Reporta a'
+        = f.text_field :reports_to, :class => 'form-control'
+      .form-group
+        = f.label :occupation, 'Ocupación'
+        = f.text_field :occupation, :class => 'form-control'
+      .form-group
+        = f.label :location, 'Ubicación'
+        = f.text_field :location, :class => 'form-control'
+      .form-group
+        = f.label :start_date, 'Fecha de Inicio'
+        = f.text_field :start_date, :class => 'form-control'
+      .form-group
+        = f.label :end_date, 'Fecha de Finalización (en baja)'
+        = f.text_field :end_date, :class => 'form-control'
+      %h3 Teléfonos
+      .form-group
+        = f.label :phone1_desc, 'Teléfonos'
+        %table.table
+          %thead
+            %tr
+              %th Descripción
+              %th Número
+          %tbody
+            %tr
+              %td= f.text_field :phone1_desc, :class => 'form-control'
+              %td= f.text_field :phone1, :class => 'form-control'
+            %tr
+              %td= f.text_field :phone2_desc, :class => 'form-control'
+              %td= f.text_field :phone2, :class => 'form-control'
+            %tr
+              %td= f.text_field :phone3_desc, :class => 'form-control'
+              %td= f.text_field :phone3, :class => 'form-control'
+      %h3 Dirección
+      .form-group
+        = f.label :address1, 'Dirección'
+        = f.text_field :address1, :class => 'form-control'
+        = f.text_field :address2, :class => 'form-control'
+      %table.table
+        %tbody
+          %tr 
+            %td
+              .form-group
+                = f.label :city, 'Ciudad'
+                = f.text_field :city, :class => 'form-control'
+            %td
+              .form-group
+                = f.label :state_id, 'Estado'
+                = f.text_field :state_id, :class => 'form-control'
+            %td
+              .form-group
+                = f.label :zip, 'Código Postal'
+                = f.text_field :zip, :class => 'form-control'
+          %tr
+            %td
+              .form-group
+                = f.label :country_id, 'País'
+                = f.text_field :country_id, :class => 'form-control'
+            %td
+              .form-group
+                = f.label :lat, 'Latitud'
+                = f.text_field :lat, :class => 'form-control'
+            %td
+              .form-group
+                = f.label :long, 'Longitud'
+                = f.text_field :long, :class => 'form-control'
+      %h3 Otros
+      .form-group
+        = f.label :website, 'Página Web'
+        = f.text_field :website, :class => 'form-control'
+      .form-group
+        = f.label :status, 'Estado del usuario'
+        = f.text_field :status, :class => 'form-control'
+
+
+      .save-area
+        = f.submit "Guardar"
+  #grupos.tab-pane
+    - user_groups = Hash[ @user.memberships.map {|i| [i.group.group_type_id, i.id]} ]
+    - user_groups_ids = @user.memberships.map {|i| i.group_id }
+    - user_groups_ids_chk = Hash[ @user.memberships.map {|i| [i.group_id, i.id]} ]
+    %h3= "De Organización"
+    - i = 0
+    - GroupType.where(:required => GroupType::REQUIRED).each do |gt|
+      .form-group
+        %label= gt.name 
+        %select.form-control.required-group{'data-id' => user_groups[gt.id], 'data-user_id' => @user.id}
+          - gt.group.each do |g|
+            - if user_groups_ids.include? g.id
+              %option{:value => g.id,:selected => "selected"}= g.name
+            - else
+              %option{:value => g.id}= g.name 
+
+    %h3 Otros grupos
+    - GroupType.where(:required => GroupType::NOT_REQUIRED).each do |gt|
+      %h4= gt.name
+      %p
+        %em= gt.description 
+      - gt.group.each do |g|
+        .form-group
+          - if user_groups_ids.include? g.id
+            %input.other-group-checkbox{:checked => 'checked', :type => 'checkbox', :id=> "chk-grp-#{g.id}" ,:name=> "chk-grp-#{g.id}", :value => g.id, 'data-user_id' => @user.id, 'data-id' => user_groups_ids_chk[g.id]}
+          - else
+            %input.other-group-checkbox{:type => 'checkbox', :id=> "chk-grp-#{g.id}" ,:name=> "chk-grp-#{g.id}", :value => g.id, 'data-user_id' => @user.id, 'data-id' => user_groups_ids_chk[g.id]}
+            
+          %label{:for => "chk-grp-#{g.id}"}= g.name
+  
+

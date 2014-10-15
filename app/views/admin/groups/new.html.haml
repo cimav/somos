@@ -1,0 +1,28 @@
+%h1= "Nuevo Grupo"
+
+= form_for [:admin, @group] do |f|
+  .form-group
+    = f.label :group_type_id, 'Tipo'
+    %select.form-control{:name => "group[group_type_id]"}
+      - GroupType.order('name').each do |gt|
+        - if @group.group_type_id == gt.id
+          %option{:value => gt.id,:selected => "selected"}= gt.name
+        - else
+          %option{:value => gt.id}= gt.name 
+  .form-group
+    = f.label :name, 'Nombre'
+    = f.text_field :name, :class => 'form-control'
+  .form-group
+    = f.label :short_name, 'Nombre Corto'
+    = f.text_field :short_name, :class => 'form-control'
+  .form-group
+    = f.label :description, 'Descripción'
+    = f.text_field :description, :class => 'form-control'
+  .form-group
+    = f.label :position, 'Posición'
+    = f.text_field :position, :class => 'form-control'
+  .form-group
+    = f.label :limited, 'Limitado a (grupos separados por comas)'
+    = f.text_field :limited, :class => 'form-control'
+  .save-area
+    = f.submit "Guardar"

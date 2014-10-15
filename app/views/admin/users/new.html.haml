@@ -1,0 +1,30 @@
+%h1.user-edit-header Nuevo usuario
+
+= form_for [:admin, @user] do |f|
+  .form-group
+    = f.label :first_name, 'Usuario'
+    = f.text_field :username, :class => 'form-control'
+  .form-group
+    = f.label :first_name, 'Nombre(s)'
+    = f.text_field :first_name, :class => 'form-control'
+  .form-group
+    = f.label :last_name, 'Apellidos'
+    = f.text_field :last_name, :class => 'form-control'
+  .form-group
+    = f.label :display_name, 'Nombre a desplegar'
+    = f.text_field :display_name, :class => 'form-control'
+  .form-group
+    = f.label :email, 'Correo'
+    = f.text_field :email, :class => 'form-control'
+  .form-group
+    = f.label :birth_date, 'Fecha de Nacimiento'
+    = f.text_field :birth_date, :class => 'form-control'
+  .form-group
+    = f.label :start_date, 'Fecha de Inicio'
+    = f.text_field :start_date, :class => 'form-control'
+
+
+  .save-area
+    = f.submit "Crear"
+  
+
