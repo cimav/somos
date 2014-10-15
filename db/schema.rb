@@ -345,4 +345,40 @@ ActiveRecord::Schema.define(:version => 20120827173304) do
   add_index "users", ["state_id"], :name => "index_users_on_state_id"
   add_index "users", ["username"], :name => "index_users_on_username"
 
+  create_table "xxx", :id => false, :force => true do |t|
+    t.integer  "id",                         :default => 0, :null => false
+    t.string   "username",                                  :null => false
+    t.string   "first_name",                                :null => false
+    t.string   "last_name",                                 :null => false
+    t.string   "display_name",                              :null => false
+    t.string   "occupation"
+    t.string   "email",                                     :null => false
+    t.string   "location"
+    t.integer  "reports_to"
+    t.text     "bio"
+    t.date     "birth_date"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.integer  "state_id"
+    t.string   "zip",          :limit => 20
+    t.integer  "country_id"
+    t.string   "phone2",       :limit => 20
+    t.string   "phone3",       :limit => 20
+    t.string   "phone1",       :limit => 20
+    t.string   "website"
+    t.string   "lat",          :limit => 20
+    t.string   "long",         :limit => 20
+    t.string   "image"
+    t.integer  "status",                     :default => 1, :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "token"
+    t.string   "phone1_desc"
+    t.string   "phone2_desc"
+    t.string   "phone3_desc"
+  end
+
 end

@@ -22,6 +22,11 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless authenticated?
   end
 
+  def admin_required
+    raise ActionController::RoutingError.new('Not Found') unless current_user_is_admin
+
+  end
+
   helper_method :current_user
 
   private
@@ -30,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user_is_admin
-
+  
   private
   def current_user_is_admin
     @current_user_is_admin ||= current_user.memberships.includes(:group).where('groups.short_name' => 'admin').first.can_admin == 1 rescue false
@@ -38,7 +43,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :user_image
 
-  private 
+  private
   def user_image(id, size)
     url_for(:action => 'image', :controller => 'users', :id => id, :size => size)
   end

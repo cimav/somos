@@ -1,6 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+
 currentGroup = 0
 currentPost = 0
 currentUser = 0
@@ -9,6 +10,23 @@ hash = false
 lastBlockTop = 0
 in_ext_app = false
 
+$ ->
+  getGroupList()
+  getUserMenu()
+  if window.location.hash.length <= 2 || window.location.hash.slice(0, 2) != '#!'
+    getHome(false)
+
+getGroupList = () ->
+  url = '/g/list'
+  $.get(url, {}, (html) ->
+    $('#nav').html(html)
+  )
+
+getUserMenu = () ->
+  url = '/u/menu'
+  $.get(url, {}, (html) ->
+    $('#user-area').html(html)
+  )
 
 $('#nav-title-span').live('click', (e) ->
   $('#groups-area').toggle()
@@ -90,20 +108,6 @@ getShareForm = () ->
   $.get(url, {}, (html) ->
     $('#share-workarea').html(html)
   )
-
-getGroupList = () ->
-  url = '/g/list'
-  $.get(url, {}, (html) ->
-    $('#nav').html(html)
-  )
-
-getUserMenu = () ->
-  url = '/u/menu'
-  $.get(url, {}, (html) ->
-    $('#user-area').html(html)
-  )
-
-
 
 getPosts = () -> 
   url = '/p/recent'
@@ -407,11 +411,6 @@ getHome = (reload) ->
 resizeIframe = () ->
   calcFrameHeight('ext-iframe')
 
-$ ->
-  getGroupList()
-  getUserMenu()
-  if window.location.hash.length <= 2 || window.location.hash.slice(0, 2) != '#!' 
-    getHome(false)
 
 $(window).scroll( (e) ->
   h = $('#topbar')

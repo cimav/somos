@@ -1,0 +1,29 @@
+@import "users";
+@import "groups";
+
+
+.table {
+  tr {
+    th { 
+      font-weight: bold; 
+      color: #000; 
+      border-bottom: 2px solid #ddd; 
+    }
+  }
+}
+
+.save-area { 
+  margin: 2em 0 4em 0;
+  text-align: center;
+  input {
+    font-size: 200%;
+    padding: 0.5em;
+  }
+}
+
+
+.flash-messages {
+  .alert {
+    margin-top: 1em;
+  }
+}

@@ -1,0 +1,19 @@
+%h1= "Usuarios"
+.pull-right
+  = link_to "Crear usuario", controller: "users", action: "new"
+%table.table.table-striped.users-table
+  %thead
+    %tr
+      %th
+      %th Usuario
+      %th Nombre
+      %th Correo
+      %th Estado
+  %tbody
+    - @users.each do |u|
+      %tr.admin-user-link{'data-id' => u.id, :class => ".#{u.status_text}"}
+        %td= image_tag user_image(u.id, :small).to_s, :width => 32, :height => 32, :class => "profile-picture-small"
+        %td= u.username
+        %td= u.full_name
+        %td= u.email
+        %td= u.status_text

@@ -1,0 +1,46 @@
+!!!
+%html
+  %head
+    %title= "SOMOS Admin"
+    = stylesheet_link_tag    "application"
+    = stylesheet_link_tag    "bootstrap"
+    = stylesheet_link_tag    "admin/admin"
+    = javascript_include_tag "admin"
+    = csrf_meta_tags
+  %body#body-admin
+    %header.navbar.navbar-default.navbar-fixed-top{:role => 'banner'}
+      .container-navigation
+        .navbar-header
+          %button.navbar-toggle{'data-toggle' => 'collapse', 'data-target' => '#main-nav-collapse'}
+            %span.sr-only Abrir Menú
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to 'Somos - Administración', '/admin', {:class => 'navbar-brand'}
+        %nav.navbar-collapse.collapse#main-nav-collapse{:role => 'navigation'}
+          %ul.nav.navbar-nav
+            %li= link_to 'Usuarios', '/admin/users'
+            %li= link_to 'Grupos', '/admin/groups'
+            %li= link_to 'Aplicaciones', '/admin/applications'
+          
+          %ul.nav.navbar-nav.pull-right
+            %li.dropdown
+              %a{:class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                = image_tag ("http://cimav.edu.mx/foto/#{current_user.email.split('@')[0]}/20")
+                %b.caret
+              %ul{:class => 'dropdown-menu'}
+                %li
+                  = link_to "/logout" do
+                    %i.icon-off
+                    = "Salir"
+    .container-fluid
+      .flash-messages
+      - flash.each do |name, msg|
+        - if msg.is_a?(String)
+          .alert{:class => "alert-#{name}"}
+            %button.close{"data-dismiss" => "alert"}
+              %span{"aria-hidden" => "true"}= "&times;".html_safe
+              %span.sr-only Cerrar
+            = msg
+    
+      = yield

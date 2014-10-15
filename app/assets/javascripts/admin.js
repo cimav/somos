@@ -15,9 +15,6 @@
 //= require jquery.tokeninput
 //= require jquery.ui.selectmenu
 //= require bootstrap
-//= require home
-//= require pages
-//= require search
-//= require posts
-//= require users
-
+//= require admin/users
+//= require admin/groups
+//= require admin/applications
