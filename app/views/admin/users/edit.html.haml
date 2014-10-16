@@ -7,6 +7,8 @@
     %a{:href => '#datos', "data-toggle" => "tab"} Datos
   %li
     %a{:href => '#grupos', "data-toggle" => "tab"} Grupos
+  %li
+    %a{:href => '#aplicaciones', "data-toggle" => "tab"} Aplicaciones
 
 .tab-content
   #datos.tab-pane.active
@@ -115,22 +117,22 @@
     - user_groups_ids_chk = Hash[ @user.memberships.map {|i| [i.group_id, i.id]} ]
     %h3= "De Organización"
     - i = 0
-    - GroupType.where(:required => GroupType::REQUIRED).each do |gt|
+    - GroupType.where(:required => GroupType::REQUIRED).order('name').each do |gt|
       .form-group
         %label= gt.name 
         %select.form-control.required-group{'data-id' => user_groups[gt.id], 'data-user_id' => @user.id}
-          - gt.group.each do |g|
+          - gt.group.order('name').each do |g|
             - if user_groups_ids.include? g.id
               %option{:value => g.id,:selected => "selected"}= g.name
             - else
               %option{:value => g.id}= g.name 
 
     %h3 Otros grupos
-    - GroupType.where(:required => GroupType::NOT_REQUIRED).each do |gt|
+    - GroupType.where(:required => GroupType::NOT_REQUIRED).order('name').each do |gt|
       %h4= gt.name
       %p
         %em= gt.description 
-      - gt.group.each do |g|
+      - gt.group.order('name').each do |g|
         .form-group
           - if user_groups_ids.include? g.id
             %input.other-group-checkbox{:checked => 'checked', :type => 'checkbox', :id=> "chk-grp-#{g.id}" ,:name=> "chk-grp-#{g.id}", :value => g.id, 'data-user_id' => @user.id, 'data-id' => user_groups_ids_chk[g.id]}
@@ -138,5 +140,19 @@
             %input.other-group-checkbox{:type => 'checkbox', :id=> "chk-grp-#{g.id}" ,:name=> "chk-grp-#{g.id}", :value => g.id, 'data-user_id' => @user.id, 'data-id' => user_groups_ids_chk[g.id]}
             
           %label{:for => "chk-grp-#{g.id}"}= g.name
+
+  #aplicaciones.tab-pane
+    %h3 Aplicaciones
+    .apps
+      - user_apps_ids = @user.user_applications.map {|i| i.application_id }
+      - user_apps_ids_chk = Hash[ @user.user_applications.map {|i| [i.application_id, i.id]} ]
+      - Application.order('name').each do |app|
+        .form-group
+          - if user_apps_ids.include? app.id
+            %input.user-app-checkbox{:checked => 'checked', :type => 'checkbox', :id=> "chk-app-#{app.id}" ,:name=> "chk-app-#{app.id}", :value => app.id, 'data-user_id' => @user.id, 'data-id' => user_apps_ids_chk[app.id]}
+          - else
+            %input.user-app-checkbox{:type => 'checkbox', :id=> "chk-app-#{app.id}" ,:name=> "chk-app-#{app.id}", :value => app.id, 'data-user_id' => @user.id, 'data-id' => user_apps_ids_chk[app.id]}
+            
+          %label{:for => "chk-app-#{app.id}"}= app.name
   
 

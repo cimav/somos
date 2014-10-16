@@ -54,3 +54,28 @@ $(document).on 'change', '.other-group-checkbox', ->
       success: (msg) ->
         el.effect('highlight')
     })
+
+$(document).on 'change', '.user-app-checkbox', -> 
+  id = $(this).data('id')
+  el = $(this)
+  if (id == undefined) 
+    # New group
+    $.ajax({
+      type: "POST",
+      url: '/admin/user_applications',
+      data: { _method:'POST', user_application : { user_id: $(this).data('user_id'), application_id: $(this).val()} },
+      dataType: 'json',
+      success: (msg) ->
+        el.attr('data-id', msg.id);
+        el.effect('highlight')
+    })
+  else
+    # Remove group
+    $.ajax({
+      type: "POST",
+      url: '/admin/user_applications/' + id,
+      data: { _method:'DELETE' },
+      dataType: 'json',
+      success: (msg) ->
+        el.effect('highlight')
+    })
