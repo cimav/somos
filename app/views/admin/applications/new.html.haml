@@ -1,0 +1,33 @@
+%h1= "Nueva Aplicación"
+
+= form_for [:admin, @application] do |f|
+  .form-group
+    = f.label :group_type_id, 'Tipo'
+    %select.form-control{:name => "application[app_type]"}
+      - if @application.app_type == Application::APP_LOCAL
+        %option{:value => Application::APP_LOCAL,:selected => "selected"}= "Local"
+      - else
+        %option{:value => Application::APP_LOCAL}= "Local"
+      - if @application.app_type == Application::APP_EXTERNAL
+        %option{:value => Application::APP_EXTERNAL,:selected => "selected"}= "Externa/Legacy"
+      - else
+        %option{:value => Application::APP_EXTERNAL}= "Externa/Legacy"
+      - if @application.app_type == Application::APP_LINK
+        %option{:value => Application::APP_LINK,:selected => "selected"}= "Enlace"
+      - else
+        %option{:value => Application::APP_LINK}= "Enlace"
+
+  .form-group
+    = f.label :name, 'Nombre'
+    = f.text_field :name, :class => 'form-control'
+  .form-group
+    = f.label :short_name, 'Nombre Corto'
+    = f.text_field :short_name, :class => 'form-control'
+  .form-group
+    = f.label :icon, 'Icono'
+    = f.text_field :icon, :class => 'form-control'
+  .form-group
+    = f.label :url, 'URL'
+    = f.text_field :url, :class => 'form-control'
+  .save-area
+    = f.submit "Guardar"

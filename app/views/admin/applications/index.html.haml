@@ -1,0 +1,17 @@
+%h1= "Aplicaciones"
+.pull-right
+  = link_to "Crear aplicación", controller: "applications", action: "new"
+%table.table.table-striped.groups-table
+  %thead
+    %tr
+      %th Nombre
+      %th Nombre Corto
+      %th URL
+      %th Tipo
+  %tbody
+    - @applications.each do |app|
+      %tr.admin-app-link{'data-id' => app.id}
+        %td= app.name
+        %td= app.short_name
+        %td= app.url
+        %td= app.app_type_text
