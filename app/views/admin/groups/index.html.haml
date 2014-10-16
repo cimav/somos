@@ -1,6 +1,6 @@
-%h1= "Grupos"
-.pull-right
-  = link_to "Crear grupo", controller: "groups", action: "new"
+%h1.pull-left= "Grupos"
+.pull-right.create-new
+  = link_to "Crear grupo", {controller: "groups", action: "new"}, { :class => "btn btn-primary" }
 %table.table.table-striped.groups-table
   %thead
     %tr

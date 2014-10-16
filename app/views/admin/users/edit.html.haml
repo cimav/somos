@@ -31,12 +31,18 @@
         = f.text_field :email, :class => 'form-control'
       .form-group
         = f.label :birth_date, 'Fecha de Nacimiento'
-        = f.text_field :birth_date, :class => 'form-control'
+        = f.text_field :birth_date, :class => 'form-control', :type => "date"
           
       %h3 Datos Laborales
       .form-group
         = f.label :reports_to, 'Reporta a'
-        = f.text_field :reports_to, :class => 'form-control'
+        %select.form-control{:name => "user[reports_to]"}
+          - User.order('first_name, last_name').each do |rt|
+            - if @user.reports_to == rt.id
+              %option{:value => rt.id, :selected => "selected"}= rt.full_name
+            - else
+              %option{:value => rt.id}= rt.full_name
+      
       .form-group
         = f.label :occupation, 'Ocupación'
         = f.text_field :occupation, :class => 'form-control'
@@ -45,9 +51,9 @@
         = f.text_field :location, :class => 'form-control'
       .form-group
         = f.label :start_date, 'Fecha de Inicio'
-        = f.text_field :start_date, :class => 'form-control'
+        = f.text_field :start_date, :class => 'form-control', :type => "date"
       .form-group
-        = f.label :end_date, 'Fecha de Finalización (en baja)'
+        = f.label :end_date, 'Fecha de Finalización (en baja)', :type => "date"
         = f.text_field :end_date, :class => 'form-control'
       %h3 Teléfonos
       .form-group
@@ -106,8 +112,21 @@
         = f.text_field :website, :class => 'form-control'
       .form-group
         = f.label :status, 'Estado del usuario'
-        = f.text_field :status, :class => 'form-control'
+        %select.form-control{:name => "user[status]"}
+          - if @user.status == User::STATUS_ACTIVE
+            %option{:value => User::STATUS_ACTIVE, :selected => "selected"}= "Activo"
+          - else
+            %option{:value => User::STATUS_ACTIVE}= "Activo"
 
+          - if @user.status == User::STATUS_INACTIVE
+            %option{:value => User::STATUS_INACTIVE, :selected => "selected"}= "Inactivo"
+          - else
+            %option{:value => User::STATUS_INACTIVE}= "Inactivo"
+
+          - if @user.status == User::STATUS_DELETED
+            %option{:value => User::STATUS_DELETED, :selected => "selected"}= "Eliminado"
+          - else
+            %option{:value => User::STATUS_DELETED}= "Eliminado"
 
       .save-area
         = f.submit "Guardar"

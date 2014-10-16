@@ -1,6 +1,6 @@
-%h1= "Aplicaciones"
-.pull-right
-  = link_to "Crear aplicación", controller: "applications", action: "new"
+%h1.pull-left= "Aplicaciones"
+.pull-right.create-new
+  = link_to "Crear aplicación", {controller: "applications", action: "new"}, { :class => "btn btn-primary" }
 %table.table.table-striped.groups-table
   %thead
     %tr
