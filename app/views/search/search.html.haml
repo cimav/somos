@@ -42,14 +42,15 @@
   .search-section= t :pages
   %ul
     - @pages.each do |p|
-      - c_items += 1
-      %li
-        = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => p.group.short_name, :page_short_name => p.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{p.id}", :group_name => "#{p.group.short_name}", :short_name => "#{p.short_name}", :page_id => "#{p.id}" do
-          .search-item-display
-            = image_tag '/assets/icons/page.png', :width => 32, :height => 32, :class => "profile-picture-small"
-          .search-item-title= p.title
-          .search-item-desc= p.group.name
-          .clearfix
+      - if p.group 
+        - c_items += 1
+        %li
+          = link_to url_for(:controller => "pages", :action => "show_group_page", :group_short_name => p.group.short_name, :page_short_name => p.short_name), :method => :get, :remote => true, :class => 'get-page', :'data-type' => 'html', :id => "page_link_#{p.id}", :group_name => "#{p.group.short_name}", :short_name => "#{p.short_name}", :page_id => "#{p.id}" do
+            .search-item-display
+              = image_tag '/assets/icons/page.png', :width => 32, :height => 32, :class => "profile-picture-small"
+            .search-item-title= p.title
+            .search-item-desc= p.group.name
+            .clearfix
 
 - if @posts.count > 0
   .search-section= t :posts
