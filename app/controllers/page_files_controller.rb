@@ -115,7 +115,8 @@ class PageFilesController < ApplicationController
 
   def file
     s = PageFile.find(params[:id])
-    send_file s.file.to_s, :x_sendfile=>true, :filename => s.file.to_s
+    filename = File.basename s.file.to_s
+    send_file s.file.to_s, :x_sendfile=>true, :filename => filename
   end 
 
   def edit_details
