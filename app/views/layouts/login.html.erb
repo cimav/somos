@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Somos CIMAV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <style>
+    h5 {
+      line-height: 2.5ex;
+    }
+    #login-area {
+      z-index: 9999;
+      position: absolute;
+      top: 48px; 
+      right: 48px;
+      bottom: 48px;
+      width: 360px;
+      min-height: 440px;
+      background-color: rgba(255,255,255,0.95);
+    }
+    .slider h5 {
+      padding-right: 360px;
+      text-shadow: 2px 2px 5px #000;
+    }
+    .slider h3 {
+      text-shadow: 2px 2px 5px #000;
+    }
+    #cimav-logo {  
+      width: 340px;
+      padding: 20px;
+    }
+    #somos-logo {
+      width: 180px;
+    }
+    #logo-area {
+      text-align: center;
+    }
+    #logo-area h5 {
+      margin-bottom: 24px;
+    }
+    
+  </style>
+</head>
+<body>
+<div class="slider fullscreen">
+    <ul class="slides">
+      <li>
+        <img class="slide-image">
+        <div class="caption left-align">
+          <h3>Misión</h3>
+          <h5 class="light grey-text text-lighten-3">Realizar investigación científica, desarrollo tecnológico, innovación y formación de recursos humanos con criterios de excelencia, en las áreas de Materiales, Energía y Medio Ambiente, para contribuir a impulsar el desarrollo sustentable del país.</h5>
+        </div>
+      </li>
+      <li>
+        <img class="slide-image">
+        <div class="caption left-align">
+          <h3>Visión</h3>
+          <h5 class="light grey-text text-lighten-3">Ser un centro de clase mundial que eleve el nivel científico, tecnológico y de innovación del ámbito regional y nacional, en las áreas de Materiales, Energía y Medio Ambiente.</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+ 
+  <%= yield %>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+  
+  <script>
+  $(document).ready(function(){
+      $('.slider').slider();
+
+      // Random slides
+      var num_img = 12;
+      var num = 1;
+      var url = '';
+      $( ".slide-image" ).each(function(index) {
+        num = Math.floor(Math.random() * num_img) + 1; 
+        url = 'media/landing/' + num + '.jpg';
+      	$(this).attr('src', url)
+      });
+       
+
+    });
+  </script>
+</body>
+</html>

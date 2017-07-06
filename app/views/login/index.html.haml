@@ -1,8 +1,6 @@
-#login-area
-  .login-message= t :sign_in_with_your_existing_account
-  .login-methods
-    #login-google-apps.login-method
-      = link_to '/auth/google_oauth2' do
-        = image_tag("/assets/google-apps.png")
-  .clearfix
-
+#login-area.card
+  %img#cimav-logo{:src => '/media/landing/cimav-logo.png'}
+  #logo-area
+    %img#somos-logo{:src => '/media/landing/somos-logo.png'}
+    %h5= "SOMOS"
+    %a.red.lighten-1.waves-effect.waves-light.btn{:href => "/auth/google_oauth2"}= "Ingresar"
