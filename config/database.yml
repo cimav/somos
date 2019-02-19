@@ -37,6 +37,7 @@ production:
   reconnect: false
   database: somos_production
   pool: 5
-  username: root
-  password:
+  username: admin
+  password: azul0735
+  host: fermi.cimav.edu.mx
   #socket: /var/run/mysqld/mysqld.sock

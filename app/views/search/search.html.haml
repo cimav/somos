@@ -20,7 +20,7 @@
             .search-item-groups
               - user_groups = Array.new
               - u.groups.each do |g|
-                - if g.group_type.display_in > 0 
+                - if g.group_type.display_in && g.group_type.display_in > 0 
                   - user_groups << g.name
               = user_groups.join(',')
           .clearfix

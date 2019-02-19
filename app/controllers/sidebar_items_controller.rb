@@ -11,6 +11,7 @@ class SidebarItemsController < ApplicationController
     full_path = (url.query.blank?) ? url.path : "#{url.path}?#{url.query}"
     the_request = Net::HTTP::Get.new(full_path)
     the_response = Net::HTTP.start(url.host, url.port) { |http|
+      http.use_ssl = true
       http.request(the_request)
     }
     raise "Response was not 200, response was #{the_response.code}" if the_response.code != "200"
