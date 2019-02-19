@@ -1,23 +1,24 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '4.2'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 
 gem 'json'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
-gem 'jquery-rails', '2.0.2'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'therubyracer'
 gem 'haml'
 
@@ -46,3 +47,4 @@ gem 'puma'
 # To use debugger
 # gem 'ruby-debug'
 
+gem 'responders', '~> 2.0'
