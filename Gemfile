@@ -1,6 +1,7 @@
+#ruby=ruby-2.0.0-p643
 source 'http://rubygems.org'
 
-gem 'rails', '4.2'
+gem 'rails', '4.2.11.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -12,13 +13,16 @@ gem 'json'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
+  gem 'sass'
   gem 'coffee-rails'
   gem 'uglifier'
 end
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'sass-rails'
+
+
+gem 'jquery-rails', '2.0.2'
+#gem 'jquery-ui-rails'
 gem 'therubyracer'
 gem 'haml'
 

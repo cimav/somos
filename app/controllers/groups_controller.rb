@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
 
   def list
 
-    @groups = Group.includes(:group_type).where('group_types.display_in' => GroupType::STREAM)
+    @groups = Group.includes(:group_type).where('group_types.display_in' => GroupType::STREAM).references(:group_type)
 
     @groups = @groups.where("( 
                            (groups.limited = '0') OR 
@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
   end
 
   def members
-    @members = Membership.includes(:user).where('group_id = :group_id AND users.status = :status', {:group_id => params[:id], :status => User::STATUS_ACTIVE})
+    @members = Membership.includes(:user).where('group_id = :group_id AND users.status = :status', {:group_id => params[:id], :status => User::STATUS_ACTIVE}).references(:user)
     render :layout => false
   end
 

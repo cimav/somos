@@ -10,6 +10,38 @@ hash = false
 lastBlockTop = 0
 in_ext_app = false
 
+getPosts = () ->
+  url = '/p/recent'
+  if currentGroup > 0
+    url = url + '/g/' + currentGroup
+  $.get(url, {}, (html) ->
+    $('#posts-area').html(html)
+  )
+
+populateHome = () ->
+  $('.group-title').removeClass('selected')
+  $('.home-link').addClass('selected')
+  $('#nav-title-span').html($('#get-home').html())
+  getPosts()
+  if in_ext_app
+    in_ext_app = false
+    $('#wrapper-iframe').hide()
+    $('#wrapper').show()
+
+getHome = (reload) ->
+  currentGroup = 0
+  currentPost = 0
+  currentUser = 0
+  if (reload)
+    window.history.pushState('', document.title, window.location.pathname)
+    url = '/home/index'
+    $.get(url, {}, (html) ->
+      $("#container").html(html)
+      populateHome()
+    )
+  else
+    populateHome()
+
 $ ->
   getGroupList()
   getUserMenu()
@@ -107,14 +139,6 @@ getShareForm = () ->
   url = '/p/share_form'
   $.get(url, {}, (html) ->
     $('#share-workarea').html(html)
-  )
-
-getPosts = () -> 
-  url = '/p/recent'
-  if currentGroup > 0
-    url = url + '/g/' + currentGroup
-  $.get(url, {}, (html) ->
-    $('#posts-area').html(html)
   )
 
 
@@ -370,30 +394,6 @@ $('.get-external-app')
     window.scrollTo(0, 0);
   )
 
-
-populateHome = () ->
-  $('.group-title').removeClass('selected')
-  $('.home-link').addClass('selected')
-  $('#nav-title-span').html($('#get-home').html())
-  getPosts()
-  if in_ext_app
-    in_ext_app = false
-    $('#wrapper-iframe').hide()
-    $('#wrapper').show()
-
-getHome = (reload) ->
-  currentGroup = 0
-  currentPost = 0
-  currentUser = 0
-  if (reload) 
-    window.history.pushState('', document.title, window.location.pathname)
-    url = '/home/index'
-    $.get(url, {}, (html) ->
-      $("#container").html(html)
-      populateHome()
-    )
-  else
-    populateHome()
 
 @setHash = setHash = (h) ->
   hash = h

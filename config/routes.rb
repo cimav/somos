@@ -37,13 +37,13 @@ Somos::Application.routes.draw do
   get 'p/:id/f/:file_id/:filename' => 'post_files#file', :constraints => { :filename => /[^\/]*/ }
   get 'p/:id/photo/:photo_id/:version/:filename' => 'post_photos#photo', :constraints => { :filename => /[^\/]*/ }
   get 'p/:id/comments/:last' => 'posts#comments'
-  get 'p/:id/like' => 'posts#like'
+  post 'p/:id/like' => 'posts#like'
   get 'p/:id/likers' => 'posts#likers'
   get 'p/:id' => 'posts#show'
-  get 'p/delete/:id' => 'posts#mark_as_deleted'
+  post 'p/delete/:id' => 'posts#mark_as_deleted'
   resources :posts
 
-  get 'comments/delete/:id' => 'comments#mark_as_deleted'
+  post 'comments/delete/:id' => 'comments#mark_as_deleted'
   resources :comments
 
   get 'users/upcoming_birthdays' => 'users#upcoming_birthdays'
@@ -52,22 +52,22 @@ Somos::Application.routes.draw do
   resources :users
 
   resources :pages
-  get 'g/:group_id/p/add' => 'pages#add_page'
+  post 'g/:group_id/p/add' => 'pages#add_page'
   get 'g/:group_short_name/:page_short_name' => 'pages#show_group_page'
-  get 'pages/:id/update_title' => 'pages#update'
-  get 'pages/:id/add_file_section' => 'pages#add_file_section'
+  post 'pages/:id/update_title' => 'pages#update'
+  post 'pages/:id/add_file_section' => 'pages#add_file_section'
   get 'pages/:id/files_section' => 'pages#files_section'
   get 'pages/:id/edit_section/:section_id' => 'pages#edit_section'
-  get 'pages/delete/:id' => 'pages#mark_as_deleted'
-  get 'pages/mark_as_default/:id' => 'pages#mark_as_default'
+  post 'pages/delete/:id' => 'pages#mark_as_deleted'
+  post 'pages/mark_as_default/:id' => 'pages#mark_as_default'
 
-  get 'pages_file_sections/delete/:id' => 'page_file_sections#mark_as_deleted'
+  post 'pages_file_sections/delete/:id' => 'page_file_sections#mark_as_deleted'
   resources :page_file_sections
 
-  get 'page_files/reorder' => 'page_files#reorder'
+  post 'page_files/reorder' => 'page_files#reorder'
   get 'page_files/:id/file' => 'page_files#file'
   get 'page_files/:id/edit_details' => 'page_files#edit_details'
-  get 'pages_files/delete/:id' => 'page_files#mark_as_deleted'
+  post 'pages_files/delete/:id' => 'page_files#mark_as_deleted'
   resources :page_file_sections
   resources :page_files
 

@@ -1,6 +1,6 @@
 .sidebar-block
   #group-members
-    - members = group.memberships.includes(:user).where('users.status = :status', {:status => User::STATUS_ACTIVE})
+    - members = group.memberships.includes(:user).where('users.status = :status', {:status => User::STATUS_ACTIVE}).references(:user)
 
 
     %h3= "#{t :members} (#{members.count})"

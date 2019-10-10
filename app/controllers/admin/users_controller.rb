@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_filter :admin_required
   def index  
-    @users = User.find(:all, :order => "username")
+    @users = User.order("username")
     render :layout => 'admin'
   end
 
