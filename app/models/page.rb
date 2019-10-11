@@ -1,4 +1,6 @@
 class Page < ActiveRecord::Base
+  attr_accessible :user_id, :group_id, :title, :short_name, :position, :content, :page_id
+
   belongs_to :user
   belongs_to :group
   has_many :page_file_section

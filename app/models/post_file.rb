@@ -1,4 +1,5 @@
 class PostFile < ActiveRecord::Base
+  attr_accessible :post_id, :file
 
   belongs_to :post
 

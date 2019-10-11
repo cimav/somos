@@ -1,4 +1,5 @@
 class PostPhoto < ActiveRecord::Base
+  attr_accessible :post_id, :photo, :description
 
   belongs_to :post
 

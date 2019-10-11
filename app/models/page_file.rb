@@ -1,4 +1,7 @@
 class PageFile < ActiveRecord::Base
+
+  attr_accessible :page_file_section_id, :file, :title, :description, :position, :status
+
   belongs_to :page_file_section
   mount_uploader :file, PageFileUploader
 

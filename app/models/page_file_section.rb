@@ -1,5 +1,5 @@
 class PageFileSection < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :title, :body, :page_id, :position, :status
   belongs_to :page
   has_many :page_file
   after_create :set_position
